@@ -19,7 +19,9 @@ const config: Config = {
       },
     },
     extend: {
-      fontFamily: {},
+      fontFamily: {
+        'halyard-display': ['Halyard Display', 'sans-serif'],
+      },
       colors: {},
       backgroundImage: {},
       boxShadow: {},
@@ -45,6 +47,16 @@ const config: Config = {
         },
         '.absolute-y-center': {
           '@apply absolute top-1/2 -translate-y-1/2': {},
+        },
+        '.pc-2x-24-m': {
+          '@apply text-[#10475F] text-[1.5rem] font-medium font-halyard-display leading-[1.1]': {},
+        },
+        '.pc-16-16-r': {
+          '@apply text-[#10475F]/80 text-[1rem] font-normal font-halyard-display leading-[1.5]': {},
+        },
+        '.pc-18-18-m': {
+          '@apply text-[#10475F] text-[1.125rem] font-medium font-halyard-display leading-[1.3]':
+            {},
         },
       })
     }),
