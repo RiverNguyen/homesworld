@@ -1,16 +1,9 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import NextTopLoader from 'nextjs-toploader'
+import { Toaster } from 'sonner'
+
+import { halyardDisplay, montserrat } from '@/fonts'
 import './globals.css'
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -24,7 +17,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body
+        className={`${montserrat.variable} ${halyardDisplay.variable} ${halyardDisplay.className} antialiased`}
+      >
+        {children}
+        <NextTopLoader
+          color='linear-gradient(0deg, #8CC63F 0%, #27AAE1 100%)'
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={true}
+          easing='ease'
+          speed={200}
+          shadow='0 0 10px #8CC63F,0 0 5px #27AAE1'
+          template='<div class="bar" role="bar"><div class="peg"></div></div>
+    <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+          zIndex={1600}
+          showAtBottom={false}
+        />
+        <Toaster richColors />
+      </body>
     </html>
   )
 }
