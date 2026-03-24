@@ -1,34 +1,12 @@
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
-
-import { FlatCompat } from '@eslint/eslintrc'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
+import nextConfig from 'eslint-config-next/core-web-vitals'
 
 const eslintConfig = [
   {
     ignores: ['.next/**/*', 'node_modules/**/*', 'out/**/*', 'dist/**/*', 'build/**/*'],
   },
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  ...nextConfig,
   {
     rules: {
-      // TypeScript specific rules
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-non-null-assertion': 'warn',
-
       // React specific rules
       'react/no-unescaped-entities': 'error',
       'react/prop-types': 'off',
@@ -52,7 +30,8 @@ const eslintConfig = [
       'no-multi-spaces': 'error',
       'no-multiple-empty-lines': 'error',
       'space-before-blocks': ['error', 'always'],
-      'linebreak-style': 'error',
+      // Cross-platform: don't fail on LF/CRLF differences
+      'linebreak-style': 'off',
       'no-unexpected-multiline': 'error',
       'keyword-spacing': 'error',
       'comma-spacing': 'error',
@@ -82,7 +61,7 @@ const eslintConfig = [
       'max-len': [
         'error',
         {
-          code: 100,
+          code: 120,
           ignoreUrls: true,
           ignoreStrings: true,
           ignoreTemplateLiterals: true,
@@ -92,9 +71,19 @@ const eslintConfig = [
     },
   },
   {
-    files: ['**/*.js', '**/*.jsx'],
+    files: ['**/*.ts', '**/*.tsx'],
     rules: {
-      '@typescript-eslint/no-var-requires': 'off',
+      // TypeScript specific rules
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-non-null-assertion': 'warn',
     },
   },
   {
@@ -105,7 +94,7 @@ const eslintConfig = [
     },
   },
   {
-    files: ['src/components/ui/**/*'],
+    files: ['src/components/ui/**/*.{ts,tsx}'],
     rules: {
       // Disable all TypeScript rules for UI components
       '@typescript-eslint/no-explicit-any': 'off',

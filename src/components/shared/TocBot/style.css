@@ -1,0 +1,10 @@
+.toc-list-item {
+  color: var(--text-80, rgba(16, 71, 95, 0.8));
+
+  /* PC/16/16 - R */
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 1.5rem */
+  margin-bottom: 1.5rem;
+}
