@@ -10,129 +10,7 @@ import ICCall from '@/components/ui/icons/ICCall'
 import Image from 'next/image'
 import SwiperList from './swiper/swipe'
 
-const socialData = [
-  {
-    image: '/lien-he/dFacebook.webp',
-    text: 'Facebook',
-    icon: (
-      <Image
-        src='/lien-he/dfb.svg'
-        width={16}
-        height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/dIg.webp',
-    text: 'Instagram',
-    icon: (
-      <Image
-        src='/lien-he/dinstagra.svg'
-        width={16}
-        height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/dTiktok.webp',
-    text: 'Twitter',
-    icon: (
-      <Image
-        src='/lien-he/dtiktok.svg'
-        width={16}
-        height={16}
-        alt='TikTok'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/dFacebook.webp',
-    text: 'Facebook',
-    icon: (
-      <Image
-        src='/lien-he/dinstagram-[#167].svg'
-        width={16}
-        height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/dIg.webp',
-    text: 'Instagram',
-    icon: (
-      <Image
-        src='/lien-he/dtiktok.svg'
-        width={16}
-        height={16}
-        alt='Instagram'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/dTiktok.webp',
-    text: 'TikTok',
-    icon: (
-      <Image
-        src='/lien-he/dtk.svg'
-        width={16}
-        height={16}
-        alt='TikTok'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/dFacebook.webp',
-    text: 'Facebook',
-    icon: (
-      <Image
-        src='/lien-he/dinstagram-[#167].svg'
-        width={16}
-        height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/dIg.webp',
-    text: 'Instagram',
-    icon: (
-      <Image
-        src='/lien-he/dtiktok.svg'
-        width={16}
-        height={16}
-        alt='Instagram'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/dTiktok.webp',
-    text: 'TikTok',
-    icon: (
-      <Image
-        src='/lien-he/dtk.svg'
-        width={16}
-        height={16}
-        alt='TikTok'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-]
-
 const Desc = () => {
-  const swiperRef = useRef<SwiperType | null>(null)
-
   return (
     <div className='contact__left flex flex-col  xsm:w-[100%]  xsm:px[2rem] xsm:py[0.75rem]'>
       <h1 className='self-stretch w-full text-[#10475F] pc-h2-46-s-mons font-montserrat xsm:s-25-mon'>
@@ -165,10 +43,7 @@ const Desc = () => {
         <h3 className='pc-2x-20-m text-[#10475F] xsm:m-16 !m-[0]'>Theo dõi chúng tôi</h3>
 
         <div className='mt-[1.12rem] relative w-fit'>
-          
           <SwiperList />
-         
-          
         </div>
       </div>
     </div>
