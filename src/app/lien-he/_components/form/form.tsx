@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'sonner'
-
 import {
   Form,
   FormField,
@@ -18,16 +17,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Checkbox } from '@/components/ui/checkbox'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
+import ButtonPrimary from '@/components/ui/ButtonPrimary'
 
 const formSchema = z
   .object({
@@ -90,11 +83,74 @@ const formSchema = z
       }
     }
   })
+
+// data
 const options = [
   { label: 'Option 1', value: 'option1' },
   { label: 'Option 2', value: 'option2' },
   { label: 'Option 3', value: 'option3' },
 ]
+const userTypeOptions = [
+  { value: 'customer', label: 'Khách hàng' },
+  { value: 'partner', label: 'Đối tác (khách sạn, homestay,...)' },
+  { value: 'media', label: 'Đơn vị truyền thông' },
+] as const
+
+//common input
+function InputField({
+  control,
+  name,
+  label,
+  placeholder,
+  required,
+  form, // thêm cái này
+}: any) {
+  return (
+    <FormField
+      control={control}
+      name={name}
+      render={({ field, fieldState }) => {
+        const isError = !!fieldState.error
+        const isLoading = form?.formState?.isSubmitting
+
+        return (
+          <FormItem className='mt-[1.5rem]'>
+            <FormLabel>
+              <span className={isError ? 'text-red-500' : 'text-[#10475F]'}>
+                {label}
+                {required && <span className='text-red-500 ml-1'>*</span>}
+              </span>
+            </FormLabel>
+
+            <FormControl>
+              <div className='relative'>
+                <Input
+                  {...field}
+                  placeholder={placeholder}
+                  className={inputClass}
+                  disabled={isLoading}
+                />
+
+                {/* loading spinner */}
+                {isLoading && (
+                  <div className='absolute right-3 top-1/2 -translate-y-1/2'>
+                    <div className='w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin' />
+                  </div>
+                )}
+              </div>
+            </FormControl>
+
+            <FormMessage />
+          </FormItem>
+        )
+      }}
+    />
+  )
+}
+const inputClass =
+  'w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] bg-[#F8F8F8] text-[0.875rem] placeholder:text-[#10475F]/40 text-[#10475F] border-0 focus-visible:ring-0 mt-[0.25rem]'
+
+//form
 export default function MyForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -185,30 +241,19 @@ export default function MyForm() {
                       value={field.value}
                       className='flex items-center xsm:flex-col xsm:items-start'
                     >
-                      <FormItem className='flex items-center '>
-                        <FormControl className='m-[0]'>
-                          <RadioGroupItem value='customer' />
-                        </FormControl>
-                        <FormLabel className='font-normal text-[#10475F]/80 leading-none ml-[0.5rem]'>
-                          Khách hàng
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className='flex items-center ml-[2.82rem] xsm:ml-[0] xsm:mt-[1rem] '>
-                        <FormControl className='m-[0]'>
-                          <RadioGroupItem value='partner' />
-                        </FormControl>
-                        <FormLabel className='font-normal text-[#10475F]/80 leading-none  ml-[0.5rem]'>
-                          Đối tác (khách sạn, homestay,...)
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className='flex items-center ml-[2.82rem] xsm:ml-[0] xsm:mt-[1rem]'>
-                        <FormControl className='m-[0]'>
-                          <RadioGroupItem value='media' />
-                        </FormControl>
-                        <FormLabel className='font-normal text-[#10475F]/80 leading-none  ml-[0.5rem]'>
-                          Đơn vị truyền thông
-                        </FormLabel>
-                      </FormItem>
+                      {userTypeOptions.map((item, index) => (
+                        <FormItem
+                          key={item.value}
+                          className={`flex items-center ${index !== 0 ? 'ml-[2.82rem] xsm:ml-0 xsm:mt-[1rem]' : ''}`}
+                        >
+                          <FormControl className='m-[0]'>
+                            <RadioGroupItem value={item.value} />
+                          </FormControl>
+                          <FormLabel className='ml-[0.5rem] font-normal leading-none text-[#10475F]/80'>
+                            {item.label}
+                          </FormLabel>
+                        </FormItem>
+                      ))}
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
@@ -221,55 +266,21 @@ export default function MyForm() {
           <div className='grid grid-cols-12 gap-4'>
             <div className='col-span-6'>
               {/* name */}
-              <FormField
+              <InputField
                 control={form.control}
                 name='fullname'
-                render={({ field }) => (
-                  <FormItem className='mt-[1.5rem] xsm:mt-[1.62rem]'>
-                    <FormLabel className='pc-16-16-r-input  text-[#10475F] '>Tên của bạn</FormLabel>
-                    <FormControl>
-                      <Input
-                        className='w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] 
-             bg-[#F8F8F8] text-[0.875rem]
-             placeholder:text-[#10475F]/40 text-[#10475F]
-             border-0 focus-visible:ring-0 mt-[0.25rem]'
-                        placeholder='Nhập tên...'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                label='Tên của bạn'
+                placeholder='Nhập tên...'
               />
             </div>
-
             <div className='col-span-6'>
               {/* phone */}
-              <FormField
+              <InputField
                 control={form.control}
                 name='phone'
-                render={({ field }) => {
-                  const isError = !!form.formState.errors.phone
-                  return (
-                    <FormItem className='mt-[1.5rem] xsm:mt-[1.62rem] '>
-                      <FormLabel className='pc-16-16-r-input'>
-                        <span className={`${isError ? 'text-red-500' : 'text-[#10475F]'}`}>
-                          Số điện thoại
-                          <span className='text-red-500 ml-1'>*</span>
-                        </span>
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          type='tel'
-                          className='w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] bg-[#F8F8F8] text-[0.875rem] placeholder:text-[#10475F]/40 text-[#10475F] border-0 focus-visible:ring-0 mt-[0.25rem]'
-                          placeholder='Nhập số điện thoại...'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )
-                }}
+                label='Số điện thoại'
+                placeholder='Nhập số điện thoại...'
+                required
               />
             </div>
           </div>
@@ -277,71 +288,22 @@ export default function MyForm() {
             <div className='grid grid-cols-12 gap-4'>
               {/* Tên homestay */}
               <div className='col-span-6'>
-                <FormField
+                <InputField
                   control={form.control}
                   name='homestay_name'
-                  render={({ field, fieldState }) => {
-                    const isError = !!fieldState.error
-
-                    return (
-                      <FormItem className='mt-[1.5rem] xsm:mt-[1.62rem]'>
-                        <FormLabel className='pc-16-16-r-input'>
-                          <span className={isError ? 'text-red-500' : 'text-[#10475F]'}>
-                            Tên homestay
-                            <span className='text-red-500 ml-1'>*</span>
-                          </span>
-                        </FormLabel>
-
-                        <FormControl>
-                          <Input
-                            className='w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] 
-            bg-[#F8F8F8] text-[0.875rem]
-            placeholder:text-[#10475F]/40 text-[#10475F]
-            border-0 focus-visible:ring-0 mt-[0.25rem]'
-                            placeholder='Nhập tên homestay...'
-                            {...field}
-                          />
-                        </FormControl>
-
-                        <FormMessage />
-                      </FormItem>
-                    )
-                  }}
+                  label='Tên homestay'
+                  required
+                  placeholder='Nhập tên homestay...'
                 />
               </div>
-
               {/* Địa điểm */}
               <div className='col-span-6'>
-                <FormField
+                <InputField
                   control={form.control}
                   name='location'
-                  render={({ field, fieldState }) => {
-                    const isError = !!fieldState.error
-
-                    return (
-                      <FormItem className='mt-[1.5rem] xsm:mt-[1.62rem]'>
-                        <FormLabel className='pc-16-16-r-input'>
-                          <span className={isError ? 'text-red-500' : 'text-[#10475F]'}>
-                            Địa điểm
-                            <span className='text-red-500 ml-1'>*</span>
-                          </span>
-                        </FormLabel>
-
-                        <FormControl>
-                          <Input
-                            className='w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] 
-            bg-[#F8F8F8] text-[0.875rem]
-            placeholder:text-[#10475F]/40 text-[#10475F]
-            border-0 focus-visible:ring-0 mt-[0.25rem]'
-                            placeholder='Nhập địa điểm...'
-                            {...field}
-                          />
-                        </FormControl>
-
-                        <FormMessage />
-                      </FormItem>
-                    )
-                  }}
+                  label='Địa điểm'
+                  required
+                  placeholder='Nhập địa điểm...'
                 />
               </div>
             </div>
@@ -350,70 +312,27 @@ export default function MyForm() {
             <div className='grid grid-cols-12 gap-4'>
               {/* Điểm du lịch hợp tác */}
               <div className='col-span-6'>
-                <FormField
+                <InputField
                   control={form.control}
                   name='tourist_spot'
-                  render={({ field }) => {
-                    const isError = !!form.formState.errors.tourist_spot
-
-                    return (
-                      <FormItem className='mt-[1.5rem] xsm:mt-[1.62rem]'>
-                        <FormLabel className='pc-16-16-r-input'>
-                          <span className={isError ? 'text-red-500' : 'text-[#10475F]'}>
-                            Điểm du lịch hợp tác
-                            <span className='text-red-500 ml-1'>*</span>
-                          </span>
-                        </FormLabel>
-
-                        <FormControl>
-                          <Input
-                            className='w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] 
-            bg-[#F8F8F8] text-[0.875rem]
-            placeholder:text-[#10475F]/40 text-[#10475F]
-            border-0 focus-visible:ring-0 mt-[0.25rem]'
-                            placeholder='Nhập điểm du lịch hợp tác...'
-                            {...field}
-                          />
-                        </FormControl>
-
-                        <FormMessage />
-                      </FormItem>
-                    )
-                  }}
+                  label='Điểm du lịch hợp tác'
+                  required
+                  placeholder='Nhập điểm du lịch hợp tác...'
                 />
               </div>
-
               {/* Kênh truyền thông */}
               <div className='col-span-6'>
-                <FormField
+                <InputField
                   control={form.control}
                   name='koc_channel'
-                  render={({ field }) => (
-                    <FormItem className='mt-[1.5rem] xsm:mt-[1.62rem]'>
-                      <FormLabel className='pc-16-16-r-input text-[#10475F]'>
-                        Kênh truyền thông của KOC
-                      </FormLabel>
-
-                      <FormControl>
-                        <Input
-                          className='w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] 
-              bg-[#F8F8F8] text-[0.875rem]
-              placeholder:text-[#10475F]/40 text-[#10475F]
-              border-0 focus-visible:ring-0 mt-[0.25rem]'
-                          placeholder='Bạn vui lòng dán link truyền thông vào đây'
-                          {...field}
-                        />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  label='Kênh truyền thông'
+                  required
+                  placeholder='Nhập link kênh truyền thông...'
                 />
               </div>
             </div>
           )}
           {/* choice */}
-
           {youAre === 'customer' && (
             <FormField
               control={form.control}
@@ -428,7 +347,6 @@ export default function MyForm() {
                     field.onChange([...values, val])
                   }
                 }
-
                 return (
                   <FormItem className='mt-[1.5rem]'>
                     <FormLabel className='pc-16-16-r-input text-[#10475F]'>
@@ -440,10 +358,7 @@ export default function MyForm() {
                         <FormControl>
                           <button
                             type='button'
-                            className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between
-        rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem]
-        text-[0.875rem]
-        focus:outline-none'
+                            className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none'
                           >
                             <span
                               className={`${
@@ -453,7 +368,6 @@ export default function MyForm() {
                               {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
                             </span>
 
-                            {/* icon giống select */}
                             <svg
                               xmlns='http://www.w3.org/2000/svg'
                               width='16'
@@ -471,18 +385,15 @@ export default function MyForm() {
                           </button>
                         </FormControl>
                       </PopoverTrigger>
-
                       <PopoverContent
                         align='start'
-                        className='p-0 mt-1 bg-white rounded-[0.5rem] shadow-md border-0
-  w-[var(--radix-popover-trigger-width)]'
+                        className='p-0 mt-1 bg-white rounded-[0.5rem] shadow-md border-0 w-[var(--radix-popover-trigger-width)]'
                       >
                         <div className='flex flex-col'>
                           {options.map((item) => (
                             <label
                               key={item.value}
-                              className='flex items-center gap-2 px-3 py-2 cursor-pointer
-          hover:bg-[#F0F0F0]'
+                              className='flex items-center gap-2 px-3 py-2 cursor-pointer        hover:bg-[#F0F0F0]'
                             >
                               <Checkbox
                                 checked={values.includes(item.value)}
@@ -501,7 +412,6 @@ export default function MyForm() {
               }}
             />
           )}
-
           {/* Textarea */}
           <FormField
             control={form.control}
@@ -511,11 +421,9 @@ export default function MyForm() {
                 <FormLabel className='pc-16-16-r-input text-[#10475F] '>Ghi chú</FormLabel>
                 <FormControl>
                   <Textarea
-                    className='w-full h-[7.0625rem] px-[0.75rem] rounded-[0.5rem] 
-             bg-[#F8F8F8] text-[0.875rem]
-             placeholder:text-[#10475F]/40
-             border-0 focus-visible:ring-0 mt-[0.25rem] text-[#10475F]'
+                    className='w-full h-[7.0625rem] px-[0.75rem] rounded-[0.5rem]  bg-[#F8F8F8] text-[0.875rem] placeholder:text-[#10475F]/40 border-0 focus-visible:ring-0 mt-[0.25rem] text-[#10475F]'
                     placeholder='Nội dung ghi chú'
+                    disabled={form.formState.isSubmitting}
                     {...field}
                   />
                 </FormControl>
@@ -524,31 +432,11 @@ export default function MyForm() {
             )}
           />
 
-          <Button
-            className='mt-[1.5rem] xsm:mt-[1.62rem] flex items-center justify-center gap-2 px-4 py-3 h-10 w-fit rounded-full bg-[#27AAE1] hover:bg-[#42A3CC] xsm:w-[100%] xsm:hover:bg-[#27AAE1] '
-            type='submit'
-            disabled={form.formState.isSubmitting}
-          >
-            {form.formState.isSubmitting ? (
-              <span>Đang gửi...</span>
-            ) : (
-              <>
-                Gửi thông tin{' '}
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='14'
-                  height='14'
-                  viewBox='0 0 14 14'
-                  fill='none'
-                >
-                  <path
-                    d='M11.7356 11.4832L11.8125 2.1875C9.48489 2.21014 4.84544 2.24182 2.51786 2.26446L2.49862 3.42782C4.59316 3.40744 7.37221 3.39046 9.81771 3.36784L2.1875 10.9988L3.00109 11.8125L10.6313 4.18151L10.5657 11.4956L11.7357 11.4819L11.7356 11.4832Z'
-                    fill='white'
-                  />
-                </svg>
-              </>
-            )}
-          </Button>
+          <ButtonPrimary
+            isLoading={form.formState.isSubmitting}
+            text='Gửi thông tin'
+            className='xsm:w-[100% mt-[1.5rem] xsm:mt-[1.62rem] '
+          />
         </form>
       </Form>
     </div>

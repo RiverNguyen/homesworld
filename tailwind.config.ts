@@ -77,6 +77,11 @@ const config: Config = {
         '.s-25-mon': {
           '@apply text-[1.5625rem] font-semibold leading-[120%] tracking-[-0.09375rem]': {},
         },
+        '.pc-h3-32-r': {
+          '@apply text-[2rem] font-normal leading-[110%]': {},
+          'font-family': '"Halyard Display", sans-serif',
+          'font-style': 'normal',
+        },
       })
     }),
   ],

@@ -1,14 +1,10 @@
 'use client'
 
-import { useRef } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import type { Swiper as SwiperType } from 'swiper'
-import { Autoplay } from 'swiper/modules'
+
 import 'swiper/css'
 import ICLocation from '@/components/ui/icons/ICLocation'
 import ICCall from '@/components/ui/icons/ICCall'
-import Image from 'next/image'
-import SwiperList from './swiper/swipe'
+import SwiperList from '../swiper'
 
 const Desc = () => {
   return (

@@ -9,11 +9,11 @@ import 'swiper/css/grid'
 import 'swiper/css/pagination'
 const socialData = [
   {
-    image: '/lien-he/dFacebook.webp',
+    image: '/lien-he/d-imagectity.webp',
     text: 'Facebook',
     icon: (
       <Image
-        src='/lien-he/dfb.svg'
+        src='/lien-he/d-iconfb.svg'
         width={16}
         height={16}
         alt='Facebook'
@@ -22,11 +22,11 @@ const socialData = [
     ),
   },
   {
-    image: '/lien-he/dIg.webp',
+    image: '/lien-he/d-viewcity.webp',
     text: 'Instagram',
     icon: (
       <Image
-        src='/lien-he/dinstagra.svg'
+        src='/lien-he/d-icon-tiktok.svg'
         width={16}
         height={16}
         alt='Facebook'
@@ -35,11 +35,11 @@ const socialData = [
     ),
   },
   {
-    image: '/lien-he/dTiktok.webp',
+    image: '/lien-he/d-imagectity.webp',
     text: 'Twitter',
     icon: (
       <Image
-        src='/lien-he/dtiktok.svg'
+        src='/lien-he/d-icon-instagra.svg'
         width={16}
         height={16}
         alt='TikTok'
@@ -48,11 +48,11 @@ const socialData = [
     ),
   },
   {
-    image: '/lien-he/dFacebook.webp',
+    image: '/lien-he/d-imagectity.webp',
     text: 'Facebook',
     icon: (
       <Image
-        src='/lien-he/dinstagram-[#167].svg'
+        src='/lien-he/d-iconfb.svg'
         width={16}
         height={16}
         alt='Facebook'
@@ -61,24 +61,24 @@ const socialData = [
     ),
   },
   {
-    image: '/lien-he/dIg.webp',
+    image: '/lien-he/d-viewcity.webp',
     text: 'Instagram',
     icon: (
       <Image
-        src='/lien-he/dtiktok.svg'
+        src='/lien-he/d-icon-tiktok.svg'
         width={16}
         height={16}
-        alt='Instagram'
+        alt='Facebook'
         className='size-[0.65217rem] text-white'
       />
     ),
   },
   {
-    image: '/lien-he/dTiktok.webp',
-    text: 'TikTok',
+    image: '/lien-he/d-imagectity.webp',
+    text: 'Twitter',
     icon: (
       <Image
-        src='/lien-he/dtk.svg'
+        src='/lien-he/d-icon-instagra.svg'
         width={16}
         height={16}
         alt='TikTok'
@@ -87,11 +87,11 @@ const socialData = [
     ),
   },
   {
-    image: '/lien-he/dFacebook.webp',
+    image: '/lien-he/d-imagectity.webp',
     text: 'Facebook',
     icon: (
       <Image
-        src='/lien-he/dinstagram-[#167].svg'
+        src='/lien-he/d-iconfb.svg'
         width={16}
         height={16}
         alt='Facebook'
@@ -100,24 +100,63 @@ const socialData = [
     ),
   },
   {
-    image: '/lien-he/dIg.webp',
+    image: '/lien-he/d-viewcity.webp',
     text: 'Instagram',
     icon: (
       <Image
-        src='/lien-he/dtiktok.svg'
+        src='/lien-he/d-icon-tiktok.svg'
         width={16}
         height={16}
-        alt='Instagram'
+        alt='Facebook'
         className='size-[0.65217rem] text-white'
       />
     ),
   },
   {
-    image: '/lien-he/dTiktok.webp',
-    text: 'TikTok',
+    image: '/lien-he/d-imagectity.webp',
+    text: 'Twitter',
     icon: (
       <Image
-        src='/lien-he/dtk.svg'
+        src='/lien-he/d-icon-instagra.svg'
+        width={16}
+        height={16}
+        alt='TikTok'
+        className='size-[0.65217rem] text-white'
+      />
+    ),
+  },
+  {
+    image: '/lien-he/d-imagectity.webp',
+    text: 'Facebook',
+    icon: (
+      <Image
+        src='/lien-he/d-iconfb.svg'
+        width={16}
+        height={16}
+        alt='Facebook'
+        className='size-[0.65217rem] text-white'
+      />
+    ),
+  },
+  {
+    image: '/lien-he/d-viewcity.webp',
+    text: 'Instagram',
+    icon: (
+      <Image
+        src='/lien-he/d-icon-tiktok.svg'
+        width={16}
+        height={16}
+        alt='Facebook'
+        className='size-[0.65217rem] text-white'
+      />
+    ),
+  },
+  {
+    image: '/lien-he/d-imagectity.webp',
+    text: 'Twitter',
+    icon: (
+      <Image
+        src='/lien-he/d-icon-instagra.svg'
         width={16}
         height={16}
         alt='TikTok'
@@ -130,7 +169,7 @@ export default function GridSwiper() {
   const swiperRef = useRef<SwiperType | null>(null)
 
   return (
-    <div className='relative w-[400px]'>
+    <div className='relative w-[25rem]'>
       {/* NAVIGATION */}
       <div className='flex items-center justify-between gap-[1.25rem] absolute w-[31.6rem] h-[2.5rem] left-[-3.0625rem] top-[2.5625rem] xsm:hidden z-10'>
         {/* PREV */}
@@ -199,17 +238,21 @@ export default function GridSwiper() {
             <SwiperSlide
               key={index}
               className={`!w-[6.8125rem] lg:!w-auto ${
-                isFirstItemOfNextSlides ? ' lg:ml-[12px]' : ''
+                isFirstItemOfNextSlides ? ' lg:ml-[0.75rem]' : ''
               }`}
             >
-              <div className='relative w-full h-[6.8125rem] lg:h-[7.75rem] flex items-center justify-center rounded-xl overflow-hidden'>
+              <div className='relative w-full h-[6.8125rem] lg:h-[7.75rem] rounded-xl overflow-hidden'>
                 <img
                   src={item.image}
                   alt={item.text}
                   className='w-full h-full object-cover'
                 />
 
-                <div className='absolute bottom-2 left-2 right-2 flex items-center'>
+                {/* overlay */}
+                <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent'></div>
+
+                {/* content */}
+                <div className='absolute bottom-2 left-2 right-2 flex items-center z-10'>
                   <div className='flex items-center justify-center rounded-full w-[1.5rem] h-[1.5rem] bg-white/20'>
                     {item.icon}
                   </div>

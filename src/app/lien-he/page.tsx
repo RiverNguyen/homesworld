@@ -4,8 +4,8 @@ import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 
-import Desc from './_components/desc'
-import MyForm from './_components/form'
+import Desc from './_components/desc/desc'
+import MyForm from './_components/form/form'
 export default function Contact() {
   return (
     <div className='contact bg-[#FEFBF9]'>
