@@ -10,7 +10,7 @@ export function addIdToHeadings(html: string) {
     return `<h${level} id="${id}">${text}</h${level}>`
   })
 }
-const content = `<p><strong>Ngày có hiệu lực: 01/01/2025</strong></p>
+const content = `<strong>Ngày có hiệu lực: 01/01/2025</strong>
     <h2>1. Các điều khoản chung</h2>
     <p>Các điều khoản thanh toán sau đây chi phối việc sử dụng các dịch vụ thanh toán do Công ty TNHH Bất động sản VinAl cung cấp:<br />
     &#8211; Điều khoản sử dụng dịch vụ thanh toán<br />
@@ -51,7 +51,7 @@ const PaymentPolicy = () => {
   // const [content, setContent] = useState('')
   // useEffect(() => {
   //   const fetchData = async () => {
-  //     const res = await fetch('http://kingtech-prod.local//wp-json/custom/v1/post-592')
+  //     const res = await fetch('http://kingtech-prod.local/wp-json/custom/v1/post-592')
   //     const { data } = await res.json()
   //     setContent(data)
   //   }
@@ -59,11 +59,9 @@ const PaymentPolicy = () => {
   // }, [])
   const contentRef = useRef<HTMLElement>(null)
   return (
-    <section className='xsm:pt-[2rem] xsm:pb-[2.25rem] xsm:px-[0.75rem] bg-[#FEFBF9] py-[3.5rem]'>
+    <section className='xsm:pt-[2rem] pb-[2.25rem] xsm:my-0 xsm:px-[0.75rem] bg-[#FEFBF9] my-[3.5rem]'>
       <div className='max-w-[70rem] mx-auto'>
-        <h2 className='xsm:p-0 xsm:mb-25-s-mons pc-h2-46-s-mons py-[1.5rem]'>
-          Chính sách thanh toán
-        </h2>
+        <h2 className='xsm:p-0 xsm:mb-25-s-mons pc-h2-46-s-mons'>Chính sách thanh toán</h2>
         <TocBot contentRef={contentRef} />
         <article
           id='blog_content'

@@ -8,3 +8,10 @@
   line-height: 150%; /* 1.5rem */
   margin-bottom: 1.5rem;
 }
+
+@media (max-width: 639px) {
+  .toc-list-item {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+}

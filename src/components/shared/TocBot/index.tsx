@@ -47,7 +47,7 @@ export default function TocBot({ contentRef }: TocBotTypes) {
   }, [expand])
 
   return (
-    <aside className='xsm:my-[1.25rem] xsm:py-[1rem] xsm:px-[0.75rem] xsm:rounded-[1rem] p-[1.5rem] rounded-[1.125rem] w-full h-fit bg-white shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.02)] transition-all duration-300'>
+    <aside className='xsm:my-[1.25rem] xsm:py-[1rem] xsm:px-[0.75rem] xsm:rounded-[1rem] p-[1.5rem] my-[1.5rem] rounded-[1.125rem] w-full h-fit bg-white shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.02)] transition-all duration-300'>
       <span className='xsm:mb-[0.75rem] xsm:mb-16-m xsm:mb-[0.72917rem] mb-[1.5rem] block pc-2x-24-m'>
         Tóm tắt nội dung
       </span>
