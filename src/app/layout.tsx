@@ -4,6 +4,7 @@ import { Toaster } from 'sonner'
 
 import { halyardDisplay, montserrat } from '@/fonts'
 import './globals.css'
+import Footer from '@/layouts/footer/footer'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -37,6 +38,7 @@ export default function RootLayout({
           showAtBottom={false}
         />
         <Toaster richColors />
+        <Footer></Footer>
       </body>
     </html>
   )

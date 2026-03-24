@@ -1,9 +1,9 @@
 'use client'
-import { RefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import tocbot from 'tocbot'
 
 type TocBotTypes = {
-  contentRef: RefObject<HTMLElement | null>
+  contentRef: string
 }
 import './style.css'
 
@@ -22,12 +22,13 @@ export default function TocBot({ contentRef }: TocBotTypes) {
   }
 
   useEffect(() => {
-    if (!tocRef.current || !contentRef.current) return
+    if (!tocRef.current || !contentRef) return
 
     const timeout = setTimeout(() => {
       tocbot.init({
         tocElement: tocRef.current ?? undefined,
-        contentElement: contentRef.current ?? undefined,
+        // contentElement: contentRef.current ?? undefined,\
+        contentSelector: contentRef,
         headingSelector: 'h2, h3',
         scrollSmooth: true,
         scrollSmoothOffset: -80,
@@ -48,7 +49,7 @@ export default function TocBot({ contentRef }: TocBotTypes) {
 
   return (
     <aside className='xsm:my-[1.25rem] xsm:py-[1rem] xsm:px-[0.75rem] xsm:rounded-[1rem] p-[1.5rem] my-[1.5rem] rounded-[1.125rem] w-full h-fit bg-white shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.02)] transition-all duration-300'>
-      <span className='xsm:mb-[0.75rem] xsm:mb-16-m xsm:mb-[0.72917rem] mb-[1.5rem] block pc-2x-24-m'>
+      <span className='xsm:mb-[0.75rem] xsm:mb-16-m xsm:mb-[0.72917rem] mb-[1.5rem] block pc-2x-24-m text-[#10475F]'>
         Tóm tắt nội dung
       </span>
       <div ref={tocRef} />

@@ -50,27 +50,27 @@ const config: Config = {
           '@apply absolute top-1/2 -translate-y-1/2': {},
         },
         '.pc-h2-46-s-mons': {
-          '@apply text-[#10475F] text-[2.875rem] font-semibold font-montserrat leading-[1.3] tracking-[-0.15625rem]':
+          '@apply  text-[2.875rem] font-semibold font-montserrat leading-[1.3] tracking-[-0.15625rem]':
             {},
         },
         '.mb-25-s-mons': {
-          '@apply text-[#10475F] text-[1.5625rem] font-semibold font-montserrat leading-[1.1] tracking-[-0.09375rem]':
+          '@apply  text-[1.5625rem] font-semibold font-montserrat leading-[1.1] tracking-[-0.09375rem]':
             {},
         },
         '.mb-16-m': {
-          '@apply text-[#10475F] text-[1rem] font-medium leading-[1.3]': {},
+          '@apply  text-[1rem] font-medium leading-[1.3]': {},
         },
         '.mb-14-r': {
-          '@apply text-[#10475F]/80 text-[0.875rem] font-normal leading-[1.5]': {},
+          '@apply text-[0.875rem] font-normal leading-[1.5]': {},
         },
         '.pc-2x-24-m': {
-          '@apply text-[#10475F] text-[1.5rem] font-medium leading-[1.1]': {},
+          '@apply  text-[1.5rem] font-medium leading-[1.1]': {},
         },
         '.pc-16-16-r': {
-          '@apply text-[#10475F]/80 text-[1rem] font-normal leading-[1.5]': {},
+          '@apply text-[1rem] font-normal leading-[1.5]': {},
         },
         '.pc-18-18-m': {
-          '@apply text-[#10475F] text-[1.125rem] font-medium leading-[1.3]': {},
+          '@apply  text-[1.125rem] font-medium leading-[1.3]': {},
         },
       })
     }),
