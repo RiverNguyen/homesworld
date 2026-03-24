@@ -8,18 +8,24 @@ export type RequestPostGuest = {
   option?: any
   method?: 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH'
   notJson?: boolean
+  skipNextCache?: boolean // Bỏ qua next.revalidate khi dùng với unstable_cache
 }
 
 export default async function fetchData(request: RequestPostGuest) {
   try {
-    const res = await fetch(`${ENV.CMS}${ENV.API!}${request.api}`, {
+    const fetchOptions: RequestInit = {
       method: request.method || 'GET',
       headers: {
         ...(!request.notJson && { 'Content-Type': 'application/json' }),
         ...request.headers,
       },
       ...request.option,
-    })
+      next: {
+        revalidate: 60,
+      },
+    }
+
+    const res = await fetch(`${ENV.CMS}${ENV.API!}${request.api}`, fetchOptions)
 
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
