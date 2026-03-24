@@ -80,7 +80,7 @@ export default function MyForm() {
   }
 
   return (
-    <div className='w-[53.5rem] bg-[#fff] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.02)] rounded-[1.125rem] '>
+    <div className='w-[53.5rem] bg-[#fff] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.02)] rounded-[1.125rem]  xsm:w-[100%] '>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -96,7 +96,7 @@ export default function MyForm() {
                 <FormItem className='flex flex-col'>
                   <FormLabel className='pc-16-16-r-input'>
                     <span
-                      className={`${
+                      className={` ${
                         isError || !field.value ? 'text-[#10475F]/80' : 'text-[#10475F]'
                       }`}
                     >
@@ -150,7 +150,7 @@ export default function MyForm() {
                 name='fullname'
                 render={({ field }) => (
                   <FormItem className='mt-[1.5rem]'>
-                    <FormLabel className='pc-16-16-r-input text-[#10475F] '>Tên của bạn</FormLabel>
+                    <FormLabel className='pc-16-16-r-input  text-[#10475F] '>Tên của bạn</FormLabel>
                     <FormControl>
                       <Input
                         className='w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] 

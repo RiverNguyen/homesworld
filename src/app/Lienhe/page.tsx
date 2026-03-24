@@ -9,7 +9,7 @@ import MyForm from './_components/form'
 export default function Contact() {
   return (
     <div className='contact bg-[#FEFBF9]'>
-      <div className='contact__container max-w-[87.5rem] mx-auto pt-[3.5rem] pb-[5.62rem] flex justify-between '>
+      <div className='contact__container max-w-[87.5rem] mx-auto pt-[3.5rem] pb-[5.62rem] flex justify-between xsm:flex-col '>
         {/* LEFT */}
         <Desc />
         <MyForm />
