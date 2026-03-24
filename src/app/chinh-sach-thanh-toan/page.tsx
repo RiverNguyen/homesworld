@@ -3,16 +3,15 @@
 
 import TocBot from '@/components/shared/TocBot'
 import './style.css'
+import ENDPOINTS from '@/configs/endpoints'
+import { addIdToHeadings } from '@/helper/add-id-to-headings'
+import { IPaymentPolicyContent } from '@/interface/payment-policy'
 import paymentPolicyService from '@/services/payment-policy'
-export function addIdToHeadings(html: string) {
-  let i = 0
-  return html.replace(/<h([2-3])>(.*?)<\/h\1>/g, (_, level, text) => {
-    const id = `heading-${i++}`
-    return `<h${level} id="${id}">${text}</h${level}>`
-  })
-}
+
 const PaymentPolicy = async () => {
-  const [content] = await Promise.all([paymentPolicyService.getContent(18)])
+  const [{ content }]: [IPaymentPolicyContent] = await Promise.all([
+    paymentPolicyService.getContent(ENDPOINTS.paymentPolicyPageId),
+  ])
   return (
     <section className='xsm:pt-[2rem] xsm:pb-[2.25rem] pb-[5.75rem] xsm:my-0 xsm:px-[0.75rem] bg-[#FEFBF9] pt-[3.5rem]'>
       <div className='max-w-[70rem] mx-auto'>
@@ -23,7 +22,7 @@ const PaymentPolicy = async () => {
         <article
           id='blog_content'
           // ref={contentRef}
-          dangerouslySetInnerHTML={{ __html: addIdToHeadings(content.content.rendered) }}
+          dangerouslySetInnerHTML={{ __html: addIdToHeadings(content.rendered) }}
         />
       </div>
     </section>

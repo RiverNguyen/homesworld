@@ -66,6 +66,12 @@
   font-weight: 500;
   line-height: 130%; /* 1.4625rem */
 }
+#blog_content p:has(strong) {
+  margin: 0;
+}
+#blog_content p:empty {
+  margin: 0;
+}
 /* CSS tag image */
 #blog_content img {
   max-width: 100%;
