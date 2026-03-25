@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import Desc from '../desc'
 import SwipperItem2 from '../swiper/swiper_deskop'
 import DestinationMobileList from '../swiper/swiper_mobile'
@@ -61,33 +61,48 @@ const destinationData: DestinationItem[] = [
 const Layout = () => {
   const [activeIndex, setActiveIndex] = useState(0)
 
-  const activeItem = useMemo(() => {
-    return destinationData[activeIndex] ?? destinationData[0]
-  }, [activeIndex])
+
+  // không đổi background khi swiper
+  const backgroundItem = destinationData[0]
+
+
+  // đổi background khi bấm vào swiper 
+  // const backgroundItem = destinationData[activeIndex]
 
   return (
     <div className='w-full flex flex-col items-center'>
-      <div className='relative w-[87.5rem] h-[37.1rem] xsm:w-full xsm:h-[25.875rem]'>
+      <div className='relative w-[87.5rem] h-[37.1rem] xsm:w-full xsm:h-[25.875rem] rounded-[1.125rem]'>
         {/* Desktop background */}
         <Image
-          key={`desktop-${activeItem.bgDesktop}`}
-          src={activeItem.bgDesktop}
-          alt={activeItem.title}
+          src={backgroundItem.bgDesktop}
+          alt={backgroundItem.title}
           fill
           priority
-          className='object-cover xsm:hidden'
+          className='object-cover xsm:hidden rounded-[1.125rem]'
         />
+
+        {/* Desktop overlay */}
+        <div className='absolute inset-0 xsm:hidden rounded-[1.125rem] bg-gradient-to-b from-transparent via-black/40 to-black/80' />
 
         {/* Mobile background */}
         <div className='hidden xsm:block absolute inset-0 px-[0.75rem]'>
           <div className='relative w-full h-[25.875rem] overflow-hidden rounded-[1rem]'>
             <Image
-              key={`mobile-${activeItem.bgMobile}`}
-              src={activeItem.bgMobile}
-              alt={`${activeItem.title} mobile`}
+              src={backgroundItem.bgMobile}
+              alt={`${backgroundItem.title} mobile`}
               fill
               priority
               className='object-cover'
+            />
+
+            {/* Mobile overlay */}
+            <div
+              className='absolute inset-0'
+              style={{
+                opacity: 0.56,
+                background:
+                  'linear-gradient(180deg, rgba(0,0,0,0.20) 40.53%, rgba(0,0,0,0.55) 50.77%, #000 62.22%)',
+              }}
             />
           </div>
         </div>
@@ -107,7 +122,7 @@ const Layout = () => {
         </div>
       </div>
 
-      <div className='hidden xsm:block w-full '>
+      <div className='hidden xsm:block w-full pl-[0.75rem] '>
         <DestinationMobileList
           data={destinationData}
           activeIndex={activeIndex}

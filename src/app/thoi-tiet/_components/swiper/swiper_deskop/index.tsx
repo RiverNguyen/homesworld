@@ -24,28 +24,47 @@ export default function DestinationSwiper({
 }: DestinationSwiperProps) {
   const swiperRef = useRef<SwiperType | null>(null)
 
+  const handlePrev = () => {
+    if (!data.length) return
+    const newIndex = activeIndex <= 0 ? 0 : activeIndex - 1
+    setActiveIndex(newIndex)
+    swiperRef.current?.slideTo(newIndex)
+  }
+
+  const handleNext = () => {
+    if (!data.length) return
+    const newIndex = activeIndex >= data.length - 1 ? data.length - 1 : activeIndex + 1
+    setActiveIndex(newIndex)
+    swiperRef.current?.slideTo(newIndex)
+  }
+
+  const handleSelectItem = (index: number) => {
+    setActiveIndex(index)
+    swiperRef.current?.slideTo(index)
+  }
+
   return (
     <div className='absolute bottom-[2.5rem] right-0 z-20 w-full max-w-[36.5rem] xsm:bottom-[1rem] xsm:max-w-full xsm:px-[0.75rem] xsm:hidden'>
       <div className='absolute right-[2.5rem] top-[-0.87rem] z-50 flex gap-2 xsm:right-[0.75rem]'>
         <button
           type='button'
-          onClick={() => swiperRef.current?.slidePrev()}
+          onClick={handlePrev}
           className='flex h-[2.75rem] w-[2.75rem] items-center justify-center rounded-full bg-white shadow'
         >
-          <ICArrowLeft className='h-[1.25rem] w-[1.25rem] text-[#10475F]' />
+          <ICArrowLeft className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
         </button>
 
         <button
           type='button'
-          onClick={() => swiperRef.current?.slideNext()}
+          onClick={handleNext}
           className='flex h-[2.75rem] w-[2.75rem] items-center justify-center rounded-full bg-white shadow'
         >
-          <ICRight className='h-[1.25rem] w-[1.25rem] text-[#10475F]' />
+          <ICRight className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
         </button>
       </div>
 
       <div className='pt-[3.5rem]'>
-        <div className='-mt-[0.88rem] pt-[0.88rem] overflow-hidden'>
+        <div className='-mt-[0.88rem] pt-[0.88rem] pr-[1rem] overflow-hidden'>
           <Swiper
             onSwiper={(swiper) => {
               swiperRef.current = swiper
@@ -63,18 +82,19 @@ export default function DestinationSwiper({
                   className='!w-auto'
                 >
                   <div
-                    onMouseEnter={() => setActiveIndex(index)}
-                    onClick={() => setActiveIndex(index)}
+                    // onMouseEnter={() => setActiveIndex(index)}
+                    onClick={() => setActiveIndex(index)} // (có thể giữ hoặc bỏ)
                     className={`
-                      group relative cursor-pointer overflow-hidden
-                      w-[7.25rem] h-[6.875rem]
-                      xsm:w-[6.8125rem] xsm:h-[6.25rem]
-                      rounded-[0.75rem]
-                      border border-white
-                      transition-all duration-300
-                      shadow-[0_46px_18px_rgba(0,0,0,0.03),_0_26px_16px_rgba(0,0,0,0.1),_0_12px_12px_rgba(0,0,0,0.17),_0_3px_6px_rgba(0,0,0,0.2)]
-                      ${isActive ? '-translate-y-[0.88rem] border-2' : 'hover:-translate-y-[0.88rem] hover:border-2'}
-                    `}
+                                     group relative cursor-pointer overflow-hidden
+    w-[7.25rem] h-[6.875rem]
+    rounded-[0.75rem]
+    transition-all duration-300
+
+   
+    ${isActive ? 'border-2 border-white' : 'border border-white/30'}
+
+    hover:-translate-y-[0.88rem]
+  `}
                   >
                     <Image
                       src={item.thumb}

@@ -1,14 +1,15 @@
 'use client'
+
 import { useRef } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Grid, Pagination } from 'swiper/modules'
-import type { Swiper as SwiperType } from 'swiper'
 import Image from 'next/image'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import type { Swiper as SwiperType } from 'swiper'
+
 import 'swiper/css'
-import 'swiper/css/grid'
-import 'swiper/css/pagination'
+
 import ICArrowLeft from '@/components/ui/icons/ICLeft'
 import ICRight from '@/components/ui/icons/ICRight'
+
 const socialData = [
   {
     image: '/lien-he/d-imagectity.webp',
@@ -19,7 +20,7 @@ const socialData = [
         width={16}
         height={16}
         alt='Facebook'
-        className='size-[0.65217rem] text-white'
+        className='size-[0.65217rem]'
       />
     ),
   },
@@ -31,217 +32,165 @@ const socialData = [
         src='/lien-he/d-icon-tiktok.svg'
         width={16}
         height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
+        alt='Instagram'
+        className='size-[0.65217rem]'
       />
     ),
   },
   {
     image: '/lien-he/d-imagectity.webp',
-    text: 'Twitter',
+    text: 'Tiktok',
     icon: (
       <Image
-        src='/lien-he/d-icon-instagra.svg'
+        src='/lien-he/d-icon-tiktok.svg'
         width={16}
         height={16}
-        alt='TikTok'
-        className='size-[0.65217rem] text-white'
+        alt='Tiktok'
+        className='size-[0.65217rem]'
       />
     ),
   },
   {
-    image: '/lien-he/d-imagectity.webp',
-    text: 'Facebook',
+    image: '/lien-he/d-viewcity.webp',
+    text: 'Youtube',
     icon: (
       <Image
         src='/lien-he/d-iconfb.svg'
         width={16}
         height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
+        alt='Youtube'
+        className='size-[0.65217rem]'
       />
     ),
   },
   {
     image: '/lien-he/d-viewcity.webp',
-    text: 'Instagram',
-    icon: (
-      <Image
-        src='/lien-he/d-icon-tiktok.svg'
-        width={16}
-        height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/d-imagectity.webp',
-    text: 'Twitter',
-    icon: (
-      <Image
-        src='/lien-he/d-icon-instagra.svg'
-        width={16}
-        height={16}
-        alt='TikTok'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/d-imagectity.webp',
-    text: 'Facebook',
+    text: 'Youtube',
     icon: (
       <Image
         src='/lien-he/d-iconfb.svg'
         width={16}
         height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
+        alt='Youtube'
+        className='size-[0.65217rem]'
       />
     ),
   },
   {
     image: '/lien-he/d-viewcity.webp',
-    text: 'Instagram',
-    icon: (
-      <Image
-        src='/lien-he/d-icon-tiktok.svg'
-        width={16}
-        height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/d-imagectity.webp',
-    text: 'Twitter',
-    icon: (
-      <Image
-        src='/lien-he/d-icon-instagra.svg'
-        width={16}
-        height={16}
-        alt='TikTok'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/d-imagectity.webp',
-    text: 'Facebook',
+    text: 'Youtube',
     icon: (
       <Image
         src='/lien-he/d-iconfb.svg'
         width={16}
         height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/d-viewcity.webp',
-    text: 'Instagram',
-    icon: (
-      <Image
-        src='/lien-he/d-icon-tiktok.svg'
-        width={16}
-        height={16}
-        alt='Facebook'
-        className='size-[0.65217rem] text-white'
-      />
-    ),
-  },
-  {
-    image: '/lien-he/d-imagectity.webp',
-    text: 'Twitter',
-    icon: (
-      <Image
-        src='/lien-he/d-icon-instagra.svg'
-        width={16}
-        height={16}
-        alt='TikTok'
-        className='size-[0.65217rem] text-white'
+        alt='Youtube'
+        className='size-[0.65217rem]'
       />
     ),
   },
 ]
-export default function GridSwiper() {
+
+export default function SocialSwiper() {
   const swiperRef = useRef<SwiperType | null>(null)
 
   return (
-    <div className='relative w-[25rem]'>
-      {/* NAVIGATION */}
-      <div className='flex items-center justify-between gap-[1.25rem] absolute w-[31.2rem] h-[2.5rem] left-[-3.0625rem] top-[2.5625rem] xsm:hidden z-10'>
-        {/* PREV */}
-        <div
-          onClick={() => swiperRef.current?.slidePrev()}
-          className='cursor-pointer flex items-center justify-center p-[0.625rem] rounded-[6.25rem] bg-white shadow-[0_0_1.875rem_rgba(0,0,0,0.12)] '
-        >
-          <ICArrowLeft className='w-[1.25rem] h-[1.25rem] text-[#10475F]' />
-        </div>
+    <>
+      {/* desktop */}
+      <section className='w-full xsm:hidden'>
+        <div className='flex items-center relative'>
+          <button
+            type='button'
+            onClick={() => swiperRef.current?.slidePrev()}
+            className='absolute left-[-15%] z-10 top-1/2 -translate-y-1/2 flex size-[3rem] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)]'
+            aria-label='Previous'
+          >
+            <ICArrowLeft className='h-[1.25rem] w-[1.25rem] text-[#10475F]' />
+          </button>
 
-        {/* NEXT */}
-        <div
-          onClick={() => swiperRef.current?.slideNext()}
-          className='cursor-pointer flex items-center justify-center p-[0.625rem] rounded-[6.25rem] bg-white shadow-[0_0_1.875rem_rgba(0,0,0,0.12)]'
-        >
-          <ICRight className='w-[1.25rem] h-[1.25rem] text-[#10475F]' />
-        </div>
-      </div>
-
-      {/* SWIPER */}
-      <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        breakpoints={{
-          0: {
-            slidesPerView: 'auto',
-            slidesPerGroup: 1,
-            spaceBetween: 12,
-          },
-          1025: {
-            slidesPerView: 3,
-            slidesPerGroup: 3,
-            spaceBetween: 16,
-          },
-        }}
-      >
-        {socialData.map((item, index) => {
-          const isFirstItemOfNextSlides = index !== 0 && index % 3 === 0
-
-          return (
-            <SwiperSlide
-              key={index}
-              className={`!w-[6.8125rem] lg:!w-auto ${
-                isFirstItemOfNextSlides ? ' lg:ml-[0.75rem]' : ''
-              }`}
+          <div className='w-[24.6875rem] overflow-hidden'>
+            <Swiper
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper
+              }}
+              slidesPerView='auto'
+              slidesPerGroup={1}
+              spaceBetween={16}
             >
-              <div className='relative w-full h-[6.8125rem] lg:h-[7.75rem] rounded-xl overflow-hidden'>
-                <img
+              {socialData.map((item, index) => (
+                <SwiperSlide
+                  key={index}
+                  className='!w-[7.5625rem]'
+                >
+                  <div className='relative h-[7.5625rem] w-[7.5625rem] overflow-hidden rounded-[1.125rem]'>
+                    <Image
+                      src={item.image}
+                      alt={item.text}
+                      fill
+                      className='object-cover'
+                    />
+
+                    <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent'></div>
+
+                    <div className='absolute bottom-2 left-2 right-2 z-10 flex items-center'>
+                      <div className='flex size-[1.5rem] items-center justify-center rounded-full bg-white/20'>
+                        {item.icon}
+                      </div>
+
+                      <p className='ml-[0.375rem] text-[0.875rem] leading-[1.5] text-white'>
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          <button
+            type='button'
+            onClick={() => swiperRef.current?.slideNext()}
+            className='absolute right-[-15%] z-10 top-1/2 -translate-y-1/2 flex size-[3rem] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)]'
+            aria-label='Next'
+          >
+            <ICRight className='h-[1.25rem] w-[1.25rem] text-[#10475F]' />
+          </button>
+        </div>
+      </section>
+
+    
+      {/* mobile */}
+      <section className='hidden w-full xsm:block'>
+        <div className='w-[21.9375rem] overflow-x-auto scrollbar-none'>
+          <div className='flex gap-[0.75rem]'>
+            {socialData.map((item, index) => (
+              <div
+                key={index}
+                className='relative h-[6.8125rem] w-[6.8125rem] shrink-0 overflow-hidden rounded-[1rem]'
+              >
+                <Image
                   src={item.image}
                   alt={item.text}
-                  className='w-full h-full object-cover'
+                  fill
+                  className='object-cover'
                 />
 
-                {/* overlay */}
-                <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent'></div>
+                <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent' />
 
-                {/* content */}
-                <div className='absolute bottom-2 left-2 right-2 flex items-center z-10'>
-                  <div className='flex items-center justify-center rounded-full w-[1.5rem] h-[1.5rem] bg-white/20'>
+                <div className='absolute bottom-[0.75rem] left-[0.75rem] z-10 flex items-center'>
+                  <div className='flex size-[1.5rem] items-center justify-center rounded-full bg-white/20'>
                     {item.icon}
                   </div>
 
-                  <p className='ml-[0.375rem] text-white text-[0.875rem] leading-[1.5]'>
+                  <p className='ml-[0.38rem] truncate text-[0.75rem] leading-[1.4] text-white'>
                     {item.text}
                   </p>
                 </div>
               </div>
-            </SwiperSlide>
-          )
-        })}
-      </Swiper>
-    </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

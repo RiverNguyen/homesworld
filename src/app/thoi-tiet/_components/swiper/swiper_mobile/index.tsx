@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import type { DestinationItem } from '../../Layout'
+import "./index.css"
 
 type DestinationMobileListProps = {
   data: DestinationItem[]
@@ -15,15 +16,16 @@ export default function DestinationMobileList({
   setActiveIndex,
 }: DestinationMobileListProps) {
   return (
-    <div className='hidden w-full xsm:block ml-[0.75rem]'>
+    <div className=' hidden w-full xsm:block'>
       <div
         className='
+          scrollbar-none
           flex gap-[0.375rem]
           overflow-x-auto overflow-y-visible
-          pl-[0.75rem] pr-[0.75rem] pt-[0.5rem] pb-[1rem]
-          scrollbar-none
           snap-x snap-mandatory
           touch-pan-x
+          scrollbar-hide
+          px-[0.75rem] pt-[0.5rem] pb-[2rem] 
         '
       >
         {data.map((item, index) => {
@@ -38,38 +40,33 @@ export default function DestinationMobileList({
             >
               <div
                 className={`
-                  relative
-                  w-[4.375rem] h-[4.125rem]
-                  rounded-[0.75rem]
-                  transition-all duration-200
-                  ${
-                    isActive
-                      ? 'shadow-[0_0_0_0.125rem_rgba(255,255,255,0.9),0_0_0.5rem_rgba(0,0,0,0.2),0_0.25rem_0.75rem_rgba(0,0,0,0.18)]'
-                      : 'shadow-[0_0_0.5rem_rgba(0,0,0,0.2),0_0.25rem_0.75rem_rgba(0,0,0,0.18)]'
-                  }
-                `}
+    relative box-border h-[4.125rem] w-[4.375rem] overflow-hidden rounded-[0.75rem] 
+    transition-all duration-200
+
+    shadow-[0_72px_20px_rgba(0,0,0,0),_0_46px_18px_rgba(0,0,0,0.03),_0_26px_16px_rgba(0,0,0,0.10),_0_12px_12px_rgba(0,0,0,0.17),_0_3px_6px_rgba(0,0,0,0.20)]
+
+    ${isActive ? 'border-2 border-white' : 'border border-white/30'}
+  `}
               >
+                <Image
+                  src={item.thumb}
+                  alt={item.title}
+                  fill
+                  className='object-cover'
+                  sizes='4.375rem'
+                />
+
                 <div
-                  className='
-                    relative h-full w-full
-                    overflow-hidden rounded-[0.75rem]
-                    border border-white
-                  '
-                >
-                  <Image
-                    src={item.thumb}
-                    alt={item.title}
-                    fill
-                    className='object-cover'
-                    sizes='4.375rem'
-                  />
+                  className={`
+                    absolute inset-0 bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)]
+                    transition-opacity duration-200
+                    ${isActive ? 'opacity-0' : 'opacity-100'}
+                  `}
+                />
 
-                  <div className='absolute inset-0 bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)]' />
-
-                  <span className='absolute bottom-[0.31rem] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.625rem] text-white'>
-                    {item.title}
-                  </span>
-                </div>
+                <span className='absolute bottom-[0.31rem] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.625rem] text-white'>
+                  {item.title}
+                </span>
               </div>
             </button>
           )
