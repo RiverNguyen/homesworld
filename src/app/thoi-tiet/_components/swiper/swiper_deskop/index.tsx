@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useCallback, useMemo } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
@@ -24,24 +24,29 @@ export default function DestinationSwiper({
 }: DestinationSwiperProps) {
   const swiperRef = useRef<SwiperType | null>(null)
 
-  const handlePrev = () => {
-    if (!data.length) return
-    const newIndex = activeIndex <= 0 ? 0 : activeIndex - 1
-    setActiveIndex(newIndex)
-    swiperRef.current?.slideTo(newIndex)
-  }
+  const slideToIndex = useCallback(
+    (newIndex: number) => {
+      setActiveIndex(newIndex)
+      swiperRef.current?.slideTo(newIndex)
+    },
+    [setActiveIndex],
+  )
 
-  const handleNext = () => {
+  const handlePrev = useCallback(() => {
     if (!data.length) return
-    const newIndex = activeIndex >= data.length - 1 ? data.length - 1 : activeIndex + 1
-    setActiveIndex(newIndex)
-    swiperRef.current?.slideTo(newIndex)
-  }
+    const newIndex = Math.max(activeIndex - 1, 0)
+    slideToIndex(newIndex)
+  }, [activeIndex, data.length, slideToIndex])
 
-  const handleSelectItem = (index: number) => {
-    setActiveIndex(index)
-    swiperRef.current?.slideTo(index)
-  }
+  const handleNext = useCallback(() => {
+    if (!data.length) return
+    const newIndex = Math.min(activeIndex + 1, data.length - 1)
+    slideToIndex(newIndex)
+  }, [activeIndex, data.length, slideToIndex])
+
+  const handleSwiper = useCallback((swiper: SwiperType) => {
+    swiperRef.current = swiper
+  }, [])
 
   return (
     <div className='absolute bottom-[2.5rem] right-0 z-20 w-full max-w-[36.5rem] xsm:bottom-[1rem] xsm:max-w-full xsm:px-[0.75rem] xsm:hidden'>
@@ -50,6 +55,7 @@ export default function DestinationSwiper({
           type='button'
           onClick={handlePrev}
           className='flex h-[2.75rem] w-[2.75rem] items-center justify-center rounded-full bg-white shadow'
+          aria-label='Previous slide'
         >
           <ICArrowLeft className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
         </button>
@@ -58,6 +64,7 @@ export default function DestinationSwiper({
           type='button'
           onClick={handleNext}
           className='flex h-[2.75rem] w-[2.75rem] items-center justify-center rounded-full bg-white shadow'
+          aria-label='Next slide'
         >
           <ICRight className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
         </button>
@@ -66,9 +73,7 @@ export default function DestinationSwiper({
       <div className='pt-[3.5rem]'>
         <div className='-mt-[0.88rem] pt-[0.88rem] pr-[1rem] overflow-hidden'>
           <Swiper
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper
-            }}
+            onSwiper={handleSwiper}
             slidesPerView='auto'
             spaceBetween={12}
             className='!overflow-visible'
@@ -81,41 +86,32 @@ export default function DestinationSwiper({
                   key={`${item.title}-${index}`}
                   className='!w-auto'
                 >
-                  <div
-                    // onMouseEnter={() => setActiveIndex(index)}
-                    onClick={() => setActiveIndex(index)} // (có thể giữ hoặc bỏ)
-                    className={`
-                                     group relative cursor-pointer overflow-hidden
-    w-[7.25rem] h-[6.875rem]
-    rounded-[0.75rem]
-    transition-all duration-300
-
-   
-    ${isActive ? 'border-2 border-white' : 'border border-white/30'}
-
-    hover:-translate-y-[0.88rem]
-  `}
+                  <button
+                    type='button'
+                    onClick={() => slideToIndex(index)}
+                    className={`group relative overflow-hidden cursor-pointer rounded-[0.75rem] transition-all duration-300 w-[7.25rem] h-[6.875rem] hover:-translate-y-[0.88rem] ${
+                      isActive ? 'border-2 border-white' : 'border border-white/30'
+                    }`}
+                    aria-label={`Select ${item.title}`}
                   >
                     <Image
                       src={item.thumb}
                       alt={item.title}
                       fill
-                      className='object-cover'
+                      className='object-cover '
                       sizes='(max-width: 640px) 6.8125rem, 7.25rem'
                     />
 
                     <div
-                      className={`
-                        absolute inset-0 transition-opacity duration-300
-                        bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)]
-                        ${isActive ? 'opacity-0' : 'group-hover:opacity-0'}
-                      `}
+                      className={`absolute inset-0 transition-opacity duration-300 bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)] ${
+                        isActive ? 'opacity-0' : 'group-hover:opacity-0'
+                      }`}
                     />
 
                     <span className='absolute bottom-[0.44rem] left-1/2 -translate-x-1/2 text-center whitespace-nowrap text-white pc-14-14-r'>
                       {item.title}
                     </span>
-                  </div>
+                  </button>
                 </SwiperSlide>
               )
             })}

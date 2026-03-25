@@ -2,12 +2,12 @@
 
 import Image from 'next/image'
 import type { DestinationItem } from '../../Layout'
-import "./index.css"
+import './index.css'
 
 type DestinationMobileListProps = {
   data: DestinationItem[]
   activeIndex: number
-  setActiveIndex: React.Dispatch<React.SetStateAction<number>>
+  setActiveIndex: (index: number) => void
 }
 
 export default function DestinationMobileList({
@@ -15,8 +15,12 @@ export default function DestinationMobileList({
   activeIndex,
   setActiveIndex,
 }: DestinationMobileListProps) {
+  const handleSelectItem = (index: number) => {
+    setActiveIndex(index)
+  }
+
   return (
-    <div className=' hidden w-full xsm:block'>
+    <div className='hidden w-full xsm:block'>
       <div
         className='
           scrollbar-none
@@ -25,7 +29,7 @@ export default function DestinationMobileList({
           snap-x snap-mandatory
           touch-pan-x
           scrollbar-hide
-          px-[0.75rem] pt-[0.5rem] pb-[2rem] 
+          px-[0.75rem] pt-[0.5rem] pb-[2rem]
         '
       >
         {data.map((item, index) => {
@@ -35,18 +39,16 @@ export default function DestinationMobileList({
             <button
               key={`${item.title}-${index}`}
               type='button'
-              onClick={() => setActiveIndex(index)}
+              onClick={() => handleSelectItem(index)}
               className='snap-start shrink-0 text-left'
             >
               <div
                 className={`
-    relative box-border h-[4.125rem] w-[4.375rem] overflow-hidden rounded-[0.75rem] 
-    transition-all duration-200
-
-    shadow-[0_72px_20px_rgba(0,0,0,0),_0_46px_18px_rgba(0,0,0,0.03),_0_26px_16px_rgba(0,0,0,0.10),_0_12px_12px_rgba(0,0,0,0.17),_0_3px_6px_rgba(0,0,0,0.20)]
-
-    ${isActive ? 'border-2 border-white' : 'border border-white/30'}
-  `}
+                  relative box-border h-[4.125rem] w-[4.375rem] overflow-hidden rounded-[0.75rem]
+                  transition-all duration-200
+                  shadow-[0_72px_20px_rgba(0,0,0,0),_0_46px_18px_rgba(0,0,0,0.03),_0_26px_16px_rgba(0,0,0,0.10),_0_12px_12px_rgba(0,0,0,0.17),_0_3px_6px_rgba(0,0,0,0.20)]
+                  ${isActive ? 'border-2 border-white' : 'border border-white/30'}
+                `}
               >
                 <Image
                   src={item.thumb}

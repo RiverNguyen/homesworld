@@ -1,19 +1,24 @@
-import ButtonPrimary from '@/components/ui/ButtonPrimary'
+'use client'
+
+import { memo } from 'react'
 import Image from 'next/image'
+import ButtonPrimary from '@/components/ui/ButtonPrimary'
+import { IWeatherAcf } from '@/interfaces/weather'
+import type { DestinationItem } from '../Layout'
 
-const WEATHER_TEXT =
-  'Vào tháng 3, Vĩnh Hy có thời tiết mát mẻ, ban ngày nắng nhẹ khoảng 15–22°C, sáng sớm và tối trời se lạnh, đôi khi xuất hiện sương mù và biển mây đẹp sau những ngày có mưa nhẹ.'
-
-const TEMPERATURE = '15 - 20°C'
-const BUTTON_TEXT = 'Nhóm Zalo thời tiết vĩnh hy'
-
-const ThermometerIcon = ({ className = '' }: { className?: string }) => {
+type DescProps = {
+  acfData: IWeatherAcf
+  activeItem: DestinationItem
+}
+// icon nhiệt độ 
+const ThermometerIcon = memo(function ThermometerIcon({ className = '' }: { className?: string }) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       className={className}
       viewBox='0 0 35 35'
       fill='none'
+      aria-hidden='true'
     >
       <path
         opacity='0.4'
@@ -26,22 +31,25 @@ const ThermometerIcon = ({ className = '' }: { className?: string }) => {
       />
     </svg>
   )
-}
-
-const VerticalDashLine = () => {
+})
+// icon dọc
+const VerticalDashLine = memo(function VerticalDashLine() {
   return (
-    <div className='relative ml-[1.5rem] mr-[1.5rem] xsm:hidden'>
+    <div
+      className='relative mx-[1.5rem] xsm:hidden'
+      aria-hidden='true'
+    >
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        className='w-[0.0625rem] h-[7.625rem]'
+        className='h-[7.625rem] w-[0.0625rem]'
         viewBox='0 0 1 122'
         fill='none'
       >
         <line
           opacity='0.2'
           x1='0.5'
-          y1='2.18557e-08'
-          x2='0.499995'
+          y1='0'
+          x2='0.5'
           y2='122'
           stroke='white'
           strokeDasharray='4 4'
@@ -49,22 +57,25 @@ const VerticalDashLine = () => {
       </svg>
     </div>
   )
-}
-
-const HorizontalDashLineMobile = () => {
+})
+// line mobile 
+const HorizontalDashLineMobile = memo(function HorizontalDashLineMobile() {
   return (
-    <div className='relative hidden xsm:block xsm:mt-[0.62rem] '>
+    <div
+      className='relative hidden xsm:mt-[0.62rem] xsm:block'
+      aria-hidden='true'
+    >
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        className='xsm:w-[19.4375rem] xsm:h-[full]'
+        className='h-auto w-[19.4375rem]'
         viewBox='0 0 311 1'
         fill='none'
       >
         <line
           x1='311'
           y1='0.5'
-          x2='7.91715e-10'
-          y2='0.500001'
+          x2='0'
+          y2='0.5'
           stroke='white'
           strokeOpacity='0.4'
           strokeDasharray='4 4'
@@ -72,111 +83,125 @@ const HorizontalDashLineMobile = () => {
       </svg>
     </div>
   )
+})
+
+function TemperatureDesktop({
+  temperature,
+  buttonText,
+  linkUrl,
+}: {
+  temperature: string
+  buttonText: string
+  linkUrl: string
+}) {
+  return (
+    <div className='mt-[0.38rem] flex items-center xsm:hidden'>
+      <ThermometerIcon className='h-[2.1875rem] w-[2.1875rem]' />
+      <p className='pc-h3-32-r ml-[0.25rem] font-halyard-display text-[2rem] font-normal text-white'>
+        {temperature}
+      </p>
+
+      {linkUrl && (
+        <ButtonPrimary
+          text={buttonText}
+          className='ml-[1.5rem]'
+          type='link'
+          href={linkUrl}
+        />
+      )}
+    </div>
+  )
 }
 
-const Desc = () => {
+function TemperatureMobile({
+  temperature,
+  buttonText,
+  linkUrl,
+}: {
+  temperature: string
+  buttonText: string
+  linkUrl: string
+}) {
   return (
-    <div
-      className='
-        absolute left-[2.5rem] bottom-[2.5rem]
-        flex flex-col
-        xsm:left-[1rem] xsm:right-[1rem] xsm:bottom-[1.25rem] xsm:px-[1.25rem]
-      '
-    >
-      {/* hàng trên: qr + nội dung */}
+    <div className='mt-[0.38rem] hidden xsm:ml-[0.88rem] xsm:flex xsm:flex-wrap xsm:items-center xsm:justify-center'>
+      <div className='flex w-full items-center justify-center xsm:mb-[0.44rem]'>
+        <p className='pc-14-14-r mr-[0.5rem] flex items-center justify-center font-halyard-display text-[0.875rem] font-normal text-white opacity-[0.72]'>
+          Nhiệt độ hôm nay :
+        </p>
+        <ThermometerIcon className='xsm:size-[1rem]' />
+        <p className='pc-h3-32-r font-halyard-display text-[2rem] font-normal text-white xsm:text-[1.25rem] xsm:leading-[1]'>
+          {temperature}
+        </p>
+      </div>
+
+      {linkUrl && (
+        <ButtonPrimary
+          text={buttonText}
+          className='xsm:w-[14rem]'
+          type='link'
+          href={linkUrl}
+        />
+      )}
+    </div>
+  )
+}
+
+function Desc({ acfData, activeItem }: DescProps) {
+  const weather = acfData?.weather
+  const qrSrc = weather?.qr_zalo || ''
+  const linkUrl = weather?.link?.url || ''
+  const buttonText = weather?.link?.title || 'Nhóm Zalo thời tiết'
+
+  const temperature = activeItem?.weather || ''
+  const weatherText = activeItem?.weatherDesc || ''
+
+  return (
+    <div className='absolute bottom-[2.5rem] left-[2.5rem] flex flex-col xsm:bottom-[1.25rem] xsm:left-[1rem] xsm:right-[1rem] xsm:px-[1.25rem]'>
       <div className='flex items-end justify-start xsm:items-center'>
-        {/* QR */}
-        <div
-          className='
-            relative h-[7.625rem] w-[7.625rem]
-            xsm:h-[4.5rem] xsm:w-[4.5rem] xsm:shrink-0
-          '
-        >
-          <Image
-            alt='qr'
-            src='/thoi-tiet/d-qr.webp'
-            fill
-            style={{ objectFit: 'contain' }}
-          />
+        <div className='relative h-[7.625rem] w-[7.625rem] xsm:h-[4.5rem] xsm:w-[4.5rem] xsm:shrink-0'>
+          {qrSrc && (
+            <Image
+              alt='QR Zalo thời tiết'
+              src={qrSrc}
+              fill
+              className='object-contain'
+              sizes='(max-width: 640px) 72px, 122px'
+            />
+          )}
         </div>
 
-        {/* desktop only: line dọc */}
         <VerticalDashLine />
 
-        {/* content */}
         <div className='flex flex-col justify-center'>
-          {/* desktop only: title */}
-          <p className='pc-14-14-r xsm:hidden text-[0.875rem] font-normal font-halyard-display text-white opacity-[0.72]'>
+          <p className='pc-14-14-r xsm:hidden font-halyard-display text-[0.875rem] font-normal text-white opacity-[0.72]'>
             Nhiệt độ hôm nay
           </p>
 
-          {/* desktop only: block nhiệt độ + button */}
-          <div className='mt-[0.38rem] flex items-center xsm:hidden'>
-            <ThermometerIcon className='h-[2.1875rem] w-[2.1875rem]' />
+          <TemperatureDesktop
+            temperature={temperature}
+            buttonText={buttonText}
+            linkUrl={linkUrl}
+          />
 
-            <p className='pc-h3-32-r ml-[0.25rem] text-[2rem] font-normal font-halyard-display text-white'>
-              {TEMPERATURE}
-            </p>
+          <TemperatureMobile
+            temperature={temperature}
+            buttonText={buttonText}
+            linkUrl={linkUrl}
+          />
 
-            <ButtonPrimary
-              text={BUTTON_TEXT}
-              className='ml-[1.5rem]'
-              type='link'
-              href='/contact'
-            />
-          </div>
-
-          {/* mobile only: block nhiệt độ */}
-          {/* NOTE MOBILE: tách riêng để dễ canh giữa, tránh vỡ layout khi xuống dòng */}
-          <div className='mt-[0.38rem] hidden xsm:flex xsm:flex-wrap xsm:items-center xsm:justify-center xsm:ml-[0.88rem]'>
-            <div className='flex w-full items-center justify-center xsm:mb-[0.44rem]'>
-              <p className='pc-14-14-r mr-[0.5rem] flex items-center justify-center text-[0.875rem] font-normal font-halyard-display text-white opacity-[0.72]'>
-                Nhiệt độ hôm nay :
-              </p>
-
-              <ThermometerIcon className='block xsm:size-[1rem]' />
-
-              <p className='pc-h3-32-r text-[2rem] font-normal font-halyard-display text-white xsm:text-[1.25rem] xsm:leading-[1]'>
-                {TEMPERATURE}
-              </p>
-            </div>
-
-            {/* NOTE MOBILE: button xuống hàng riêng để full chiều ngang đẹp hơn */}
-            <ButtonPrimary
-              text={BUTTON_TEXT}
-              className='xsm:w-[14rem]'
-              type='link'
-              href='/contact'
-            />
-          </div>
-
-          {/* desktop only: mô tả */}
-          <p
-            className='
-              pc-14-14-r mt-[0.75rem] max-w-[33rem] font-halyard-display text-white
-              xsm:hidden
-            '
-          >
-            {WEATHER_TEXT}
+          <p className='pc-14-14-r mt-[0.75rem] max-w-[33rem] font-halyard-display text-white xsm:hidden'>
+            {weatherText}
           </p>
         </div>
       </div>
 
-      {/* mobile only: line ngang */}
-      {/* NOTE MOBILE: chỉ hiện ở mobile để tách block trên và đoạn mô tả */}
       <HorizontalDashLineMobile />
 
-      {/* mobile only: mô tả */}
-      <p
-        className='
-          pc-14-14-r mt-[0.75rem] hidden max-w-[33rem] font-halyard-display text-white
-          xsm:mt-[0.62rem] xsm:block xsm:max-w-none
-        '
-      >
-        {WEATHER_TEXT}
+      <p className='pc-14-14-r mt-[0.75rem] hidden max-w-[33rem] font-halyard-display text-white xsm:mt-[0.62rem] xsm:block xsm:max-w-none'>
+        {weatherText}
       </p>
     </div>
   )
 }
 
-export default Desc
+export default memo(Desc)
