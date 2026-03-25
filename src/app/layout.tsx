@@ -5,6 +5,7 @@ import { Toaster } from 'sonner'
 import { halyardDisplay, montserrat } from '@/fonts'
 import './globals.css'
 import Footer from '@/layouts/footer/footer'
+import Header from '@/layouts/header/header'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${halyardDisplay.variable} ${halyardDisplay.className} antialiased`}
       >
+        <Header></Header>
         {children}
         <NextTopLoader
           color='linear-gradient(0deg, #8CC63F 0%, #27AAE1 100%)'

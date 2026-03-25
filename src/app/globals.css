@@ -195,3 +195,14 @@ input[type='number'] {
 @utility text-edge-* {
   text-box-edge: --value(--text-edge-*, 'text', 'alphabetic', 'ideographic', 'cap', 'ex', [*]);
 }
+
+::-webkit-scrollbar {
+  width: 0.38rem; /* Hoặc bất kỳ độ rộng nào */
+}
+
+/* Ẩn phần thanh cuộn nhưng vẫn cho phép cuộn */
+::-webkit-scrollbar-thumb {
+  width: 0.25rem;
+  border-radius: 2.8125rem;
+  background: var(--mng-m-mng-icon, #10475f);
+}

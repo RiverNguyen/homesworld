@@ -63,6 +63,12 @@ const config: Config = {
         '.mb-14-r': {
           '@apply text-[0.875rem] font-normal leading-[1.5]': {},
         },
+        '.mb-20-m': {
+          '@apply text-[1.25rem] font-medium leading-[1.1]': {},
+        },
+        '.pc-14-14-r': {
+          '@apply text-[0.875rem] font-normal leading-[1.5]': {},
+        },
         '.pc-2x-24-m': {
           '@apply  text-[1.5rem] font-medium leading-[1.1]': {},
         },
