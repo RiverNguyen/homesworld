@@ -19,7 +19,10 @@ const config: Config = {
       },
     },
     extend: {
-      fontFamily: {},
+      fontFamily: {
+        sans: ['var(--font-halyard-display)', 'system-ui', 'sans-serif'],
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+      },
       colors: {},
       backgroundImage: {},
       boxShadow: {},
