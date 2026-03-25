@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { IFooterAcf } from '@/interface/footer'
 import footerService from '@/services/footer'
 
+import FooterClient from './footer-client'
+
 const Footer = async () => {
   const [{ footer }]: [{ footer: IFooterAcf }] = await Promise.all([footerService.getFooter()])
 
@@ -22,6 +24,9 @@ const Footer = async () => {
 
         <div className='xsm:order-5 xsm:max-w-max xsm:pt-[1.38rem] flex flex-col max-w-[17.9rem] xsm:border-t-1 border-dashed border-[#10475F]/20'>
           {footer.info.map((item, index) => {
+            if (!item.link.url || !item.link.title) {
+              return
+            }
             return (
               <div
                 key={index}
@@ -46,35 +51,15 @@ const Footer = async () => {
             )
           })}
         </div>
-        <div className='xsm:flex-row xsm:pt-[1.38rem] xsm:w-full flex flex-col xsm:border-t-1 border-dashed border-[#10475F]/20 lg:max-w-[10rem]'>
-          {footer.first_column.map((item, index) => {
-            return (
-              <a
-                href={item.link.url}
-                className='xsm:hidden xsm:text-[0.875rem] pc-16-16-r text-[#10475F] lg:hover:opacity-70 line-clamp-1 transition-all duration-300 mb-[1.62rem] last:mb-0 text-edge-[cap_alphabetic] [text-box-trim:trim-both]'
-                key={index}
-              >
-                {item.link.title}
-              </a>
-            )
-          })}
-          {footer.link_mobile.map((item, index) => {
-            return (
-              <a
-                href={item.link.url}
-                className='xsm:block xsm:text-[0.875rem] hidden pc-16-16-r text-[#10475F]'
-                key={index}
-              >
-                {item.link.title}
-              </a>
-            )
-          })}
-        </div>
+        <FooterClient acfFooter={footer}></FooterClient>
         <div className='xsm:hidden w-[18.1875rem] flex flex-col'>
           {footer.second_column.map((item, index) => {
+            if (!item.link.url || !item.link.title) {
+              return
+            }
             return (
               <Link
-                href={item.link.url}
+                href={item?.link?.url}
                 className='pc-16-16-r text-[#10475F] lg:hover:opacity-70 transition-all duration-300 mb-[1.62rem] last:mb-0 text-edge-[cap_alphabetic] [text-box-trim:trim-both]'
                 key={index}
               >
@@ -87,7 +72,7 @@ const Footer = async () => {
           {footer.social_footer.map((item, index) => {
             return (
               <a
-                href={item.link.url}
+                href={item?.link?.url ?? '#'}
                 target='_blank'
                 key={index}
                 className='xsm:rounded-[4.89131rem] flex justify-center items-center rounded-[6.25rem] mr-[1rem] last:mr-0 size-[2.875rem] bg-[#10475F]/6 lg:hover:opacity-70 transition-all duration-300'
@@ -96,7 +81,7 @@ const Footer = async () => {
                   width={18}
                   height={18}
                   className='xsm:size-[0.97825rem] size-[1.25rem]'
-                  src={item.icon}
+                  src={item?.icon}
                   alt='Icon social media'
                 ></Image>
               </a>
