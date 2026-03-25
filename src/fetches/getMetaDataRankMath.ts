@@ -1,4 +1,4 @@
-import ENV from '@/config-global.env'
+import ENV from '@/configs/env'
 import parseRankMathHead from '@/utils/parseRankMathHead'
 
 export default async function getMetaDataRankMath(slug: string) {
