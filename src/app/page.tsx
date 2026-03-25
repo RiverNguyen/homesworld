@@ -1,7 +1,12 @@
-export default function Page() {
+import BannerHomepage from '@/app/_components/banner'
+import homeService from '@/services/home'
+
+export default async function HomePage() {
+  const { acf } = await homeService.getHome()
+
   return (
-    <div >
-      <h1 className=''>Homes World</h1>
-    </div>
+    <>
+      <BannerHomepage data={acf?.banner} />
+    </>
   )
 }

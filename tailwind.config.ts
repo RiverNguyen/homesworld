@@ -19,7 +19,9 @@ const config: Config = {
       },
     },
     extend: {
-      fontFamily: {},
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)'],
+      },
       colors: {},
       backgroundImage: {},
       boxShadow: {},
@@ -45,6 +47,18 @@ const config: Config = {
         },
         '.absolute-y-center': {
           '@apply absolute top-1/2 -translate-y-1/2': {},
+        },
+        '.pc-h1-48-s': {
+          '@apply text-[3rem] leading-[1.2] font-semibold tracking-[-0.15625rem]': {},
+        },
+        '.pc-16-r': {
+          '@apply text-[1rem] leading-[1.5]': {},
+        },
+        '.mb-26-s': {
+          '@apply text-[1.625rem] font-semibold leading-[1.2] tracking-[-0.09375rem]': {},
+        },
+        '.mb-14-r': {
+          '@apply text-[0.875rem] leading-[1.5]': {},
         },
       })
     }),
