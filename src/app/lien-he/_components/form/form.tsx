@@ -261,8 +261,6 @@ export default function MyForm() {
               )
             }}
           />
-
-          {/* 2 cột */}
           <div className='grid grid-cols-12 gap-4'>
             <div className='col-span-6'>
               {/* name */}
@@ -435,6 +433,7 @@ export default function MyForm() {
           <ButtonPrimary
             isLoading={form.formState.isSubmitting}
             text='Gửi thông tin'
+            type='submit'
             className='xsm:w-[100% mt-[1.5rem] xsm:mt-[1.62rem] '
           />
         </form>
