@@ -1,14 +1,7 @@
-'use client'
-
-import 'swiper/css'
-import 'swiper/css/autoplay'
-import 'swiper/css/navigation'
-
+import Desc from '@/app/lien-he/_components/desc'
+import MyForm from '@/app/lien-he/_components/form'
 import type { Contact as ContactType } from '@/interfaces/contact.interface'
 import { ServiceComboItem } from '@/interfaces/serviceCombo.interface'
-
-import Desc from './_components/desc'
-import MyForm from './_components/form'
 
 export default function Contact({
   data,

@@ -101,7 +101,6 @@ const Layout = ({ acfData }: LayoutProps) => {
                           src={item?.bgDesktop}
                           alt={title}
                           fill
-                          priority={index === 0}
                           className='rounded-[1.125rem] object-cover'
                           sizes='87.5rem'
                         />
@@ -124,9 +123,8 @@ const Layout = ({ acfData }: LayoutProps) => {
               src={activeItem?.bgMobile}
               alt={`${activeItem?.title} mobile`}
               fill
-              priority
               className='object-cover'
-              sizes='100vw'
+              sizes='calc(100vw - 1.5rem)'
             />
 
             <div
