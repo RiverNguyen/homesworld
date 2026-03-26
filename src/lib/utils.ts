@@ -18,12 +18,3 @@ export function formatDateDMY(dateStr: string) {
   const [year, month, day] = dateStr.split('-')
   return `${day}/${month}/${year}`
 }
-
-export function convertRemToPx(rem: number) {
-  if (typeof window === 'undefined' || !document?.documentElement) {
-    return
-  }
-
-  const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize)
-  return rem * rootFontSize
-}
