@@ -19,7 +19,7 @@ export default function BannerHomepage({ data }: { data: IHome['banner'] }) {
     images[activeIndex]?.location ?? data?.location ?? ''
 
   return (
-    <div className="w-full h-[36.5rem] overflow-hidden relative xsm:h-[21.06rem]">
+    <section className="w-full h-[36.5rem] overflow-hidden relative xsm:h-[21.06rem]">
       <h1 className='sr-only'>HomesWorld</h1>
       <div className='absolute top-0 left-0 w-full h-full bg-black/40 z-10 pointer-events-none' />
       <article className='absolute z-[10] left-0 w-[87.5rem] xsm:right-3 xsm:left-3 right-0 mx-auto absolute-y-center pointer-events-none'>
@@ -87,7 +87,7 @@ export default function BannerHomepage({ data }: { data: IHome['banner'] }) {
       </div>
 
       <div className="banner-pagination" />
-    </div>
+    </section>
   )
 }
 

@@ -1,4 +1,9 @@
 const ENDPOINTS = {
+  taxonomies: {
+    getAll(taxonomy: string) {
+      return `api/v1/taxonomies/${taxonomy}`
+    },
+  },
   tour: {
     list: '/tour/list',
   },
