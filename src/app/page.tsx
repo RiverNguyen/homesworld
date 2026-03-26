@@ -7,15 +7,11 @@ import taxonomiesService from '@/services/taxonomies'
 import Weather from './_components/weather'
 
 export default async function HomePage() {
-  const [homeData, blogRes, taxonomiesData] = await Promise.all([
-    homeService.getHome(),
-    homeService.getBlogs({ limit: 5 }),
-    taxonomiesService.getAllTaxonomies('service_combo'),
-  ])
+  const [homeData, blogRes, taxonomiesData, locationData] = await Promise.all([homeService.getHome(), homeService.getBlogs({ limit: 5 }), taxonomiesService.getAllTaxonomies('service_combo'), taxonomiesService.getAllTaxonomies('location')])
   return (
     <>
       <BannerHomepage data={homeData?.acf?.banner} />
-      <FilterSearch taxonomies={taxonomiesData?.data} />
+      <FilterSearch taxonomies={taxonomiesData?.data} locations={locationData?.data} />
       <Weather acfData={homeData?.acf} />
       <TravelGuide
         page={homeData?.acf?.travel_guide || {}}
