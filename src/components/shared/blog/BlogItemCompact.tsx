@@ -27,7 +27,7 @@ export default function BlogItemCompact({
             src={blog.thumbnail.url}
             alt={decode(blog.title)}
             fill
-            className='w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-350'
+            className='object-cover lg:group-hover:scale-105 transition-transform duration-350'
           />
           <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(13,13,13,0.42)_3.46%,rgba(13,13,13,0.14)_20.54%,rgba(13,13,13,0.14)_44.48%,rgba(13,13,13,0.70)_71.51%)] pointer-events-none' />
           <div className='absolute top-4 right-4 flex-center h-7.25 px-3 rounded-[6rem] bg-[#8CC63F] text-white text-[0.875rem] leading-[150%] xsm:h-6.5 xsm:text-[0.75rem]'>
@@ -61,7 +61,7 @@ export default function BlogItemCompact({
             src={blog.thumbnail.url}
             alt={decode(blog.title)}
             fill
-            className='w-full h-full object-cover lg:group-hover:scale-110 transition-transform duration-350'
+            className='object-cover lg:group-hover:scale-110 transition-transform duration-350'
           />
           <div className='absolute inset-0 opacity-[0.2] bg-black pointer-events-none' />
         </div>
