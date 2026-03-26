@@ -56,6 +56,7 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
                       src={item.image}
                       alt={item.link?.title}
                       fill
+                      sizes='7.5625rem'
                       className='object-cover'
                     />
 
@@ -110,6 +111,7 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
                   src={item.image}
                   alt={item.link?.title}
                   fill
+                  sizes='6.8125rem'
                   className='object-cover'
                 />
 
