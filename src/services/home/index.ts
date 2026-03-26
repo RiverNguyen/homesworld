@@ -7,6 +7,10 @@ const homeService = {
       api: ENDPOINTS.home,
     })
   },
+  getBlogs: async ({ limit = 12 }: { limit?: number }) => {
+    return await fetchData({
+      api: ENDPOINTS.blog.getAll({ limit }),
+    })
+  },
 }
-
 export default homeService
