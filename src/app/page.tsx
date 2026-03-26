@@ -14,6 +14,11 @@ export default async function HomePage() {
   ])
   return (
     <>
+      <style>{`
+          body {
+            margin-top:0;
+          }
+        `}</style>
       <BannerHomepage data={homeData?.acf?.banner} />
       <FilterSearch taxonomies={taxonomiesData?.data} />
       <Weather acfData={homeData?.acf} />

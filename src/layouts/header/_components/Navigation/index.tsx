@@ -6,10 +6,10 @@ import ListCard from '@/layouts/header/_components/ListCard'
 const Navigation = () => {
   return (
     <nav className='flex pt-[0.88rem]'>
-      <div className='relative group mr-[2.25rem]'>
+      <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300'
+          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Hỗ trợ
         </Link>
@@ -33,10 +33,10 @@ const Navigation = () => {
           </ul>
         </div>
       </div>
-      <div className='relative group mr-[2.25rem]'>
+      <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 '
+          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50 transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Combo du lịch
         </Link>
@@ -44,10 +44,10 @@ const Navigation = () => {
           <ListCard></ListCard>
         </div>
       </div>
-      <div className='relative group mr-[2.25rem]'>
+      <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300'
+          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Khách sạn
         </Link>
@@ -55,18 +55,18 @@ const Navigation = () => {
           <ListCard></ListCard>
         </div>
       </div>
-      <div className='relative group mr-[2.25rem]'>
+      <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300'
+          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Tin tức
         </Link>
       </div>
-      <div className='relative group'>
+      <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300'
+          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Liên hệ
         </Link>

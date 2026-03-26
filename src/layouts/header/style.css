@@ -1,0 +1,6 @@
+:root {
+  --header-color: #ffffff; /* Màu nền mặc định */
+}
+.transparent {
+  --header-color: #06000000;
+}

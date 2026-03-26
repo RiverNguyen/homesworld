@@ -22,7 +22,11 @@ export function useScrollHeader(headerRef: React.RefObject<HTMLElement>) {
         if (Math.abs(scrollY - lastScrollY.current) > 15) {
           if (direction === 'down') {
             headerRef.current!.style.transform = 'translateY(-150%)'
+            headerRef.current.classList.remove('transparent')
           } else {
+            if (scrollY <= window.innerHeight / 2 && window.location.pathname === '/') {
+              headerRef.current.classList.add('transparent')
+            }
             headerRef.current!.style.transform = 'translateY(0)'
           }
           lastScrollY.current = scrollY > 0 ? scrollY : 0
