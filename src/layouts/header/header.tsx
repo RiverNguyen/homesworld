@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <header
       ref={headerRef}
-      className='transparent z-99 fixed top-0 left-0  w-full bg-[var(--header-color)] transition-all duration-300'
+      className='transparent z-99 fixed top-0 left-0  w-full bg-[var(--header-bg)] transition-all duration-600'
     >
       {isMobile ? (
         <div className='flex justify-between items-center w-full pl-[0.75rem] w-[23.4375rem] h-[3.125rem]  border-white/20 border-b-[0.0625rem] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.01),0rem_3.4375rem_3.4375rem_0rem_rgba(0,0,0,0.01),0rem_7.75rem_4.625rem_0rem_rgba(0,0,0,0.01),0rem_13.75rem_5.5rem_0rem_rgba(0,0,0,0),0rem_21.5rem_6rem_0rem_rgba(0,0,0,0)]'>
@@ -139,13 +139,23 @@ const Header = () => {
       ) : (
         <div className='flex justify-between items-center py-[1rem] w-[87.5rem] mx-auto'>
           <div className='flex items-center'>
-            <Link href={'/'}>
+            <Link
+              href={'/'}
+              className='relative w-[12.75rem] h-[2.125rem] mr-[2.62rem]'
+            >
               <Image
-                className='mr-[2.62rem] w-[12.75rem] h-[2.125rem]'
+                className='logo-dark absolute top-0 left-0 transition-all duration-300'
                 width={204}
                 height={34}
                 alt='Logo'
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Logo.svg'}
+              />
+              <Image
+                className='logo-white absolute top-0 left-0 opacity-0 transition-all duration-300'
+                width={204}
+                height={34}
+                alt='Logo'
+                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Icon-white.svg'}
               />
             </Link>
             <Navigation></Navigation>

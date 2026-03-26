@@ -9,7 +9,7 @@ const Navigation = () => {
       <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
+          className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Hỗ trợ
         </Link>
@@ -36,7 +36,7 @@ const Navigation = () => {
       <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50 transition-all duration-300 px-[1.25rem] py-[0.5rem]'
+          className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50 transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Combo du lịch
         </Link>
@@ -47,7 +47,7 @@ const Navigation = () => {
       <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
+          className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Khách sạn
         </Link>
@@ -58,7 +58,7 @@ const Navigation = () => {
       <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
+          className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Tin tức
         </Link>
@@ -66,7 +66,7 @@ const Navigation = () => {
       <div className='relative group '>
         <Link
           href={'#'}
-          className='text-[#10475F]/80 pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
+          className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
         >
           Liên hệ
         </Link>

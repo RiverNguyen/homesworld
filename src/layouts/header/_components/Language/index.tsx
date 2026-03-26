@@ -76,7 +76,7 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
 
   return (
     <div className=''>
-      <span className='text-[#10475F]/80 opacity-[0.68] text-[0.75rem] font-normal font-halyard-display leading-[1.3] text-left'>
+      <span className='text-[var(--header-color)] transition-all duration-300 opacity-[0.68] text-[0.75rem] font-normal font-halyard-display leading-[1.3] text-left'>
         Chọn ngôn ngữ
       </span>
       <div className='flex relative items-center group cursor-pointer'>
@@ -87,7 +87,9 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
           height={18}
           src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Flag.svg'}
         />
-        <span className='pc-16-16-r font-medium text-[#10475F] mr-[0.5625rem]'>Tiếng việt</span>
+        <span className='text-[var(--header-color)] transition-all duration-300 pc-16-16-r font-medium mr-[0.5625rem]'>
+          Tiếng việt
+        </span>
         <ChevronDown className='text-[#10475F] size-[0.75rem]'></ChevronDown>
         <div className='absolute top-full pt-[1rem] right-0 group-hover:opacity-100 group-hover:visible invisible opacity-0 transition-all duration-300'>
           <div className='rounded-[1.125rem] w-[10.9375rem] h-fit bg-white shadow-[0.125rem_0.375rem_2rem_0rem_rgba(0,0,0,0.06)] overflow-hidden'>

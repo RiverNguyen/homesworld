@@ -1,6 +1,18 @@
 :root {
-  --header-color: #ffffff; /* Màu nền mặc định */
+  --header-bg: #ffffff;
+  --header-color: #10475fcc;
 }
 .transparent {
-  --header-color: #06000000;
+  --header-bg: #06000000;
+  --header-color: #ffffff;
+}
+
+.transparent .logo-white {
+  opacity: 1;
+}
+.transparent .logo-dark {
+  opacity: 0;
+}
+.logo-dark {
+  opacity: 1;
 }
