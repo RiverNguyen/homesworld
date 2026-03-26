@@ -36,6 +36,30 @@ function Calendar({
       )}
       captionLayout={captionLayout}
       formatters={{
+        formatCaption: (month) =>
+          `Tháng ${month.getMonth() + 1} - ${month.getFullYear()}`,
+        // Vietnamese weekday header abbreviations: "CN", "T2"..."T7"
+        formatWeekdayName: (weekday) => {
+          const day = weekday.getDay() // 0=Sun ... 6=Sat
+          switch (day) {
+            case 0:
+              return 'CN'
+            case 1:
+              return 'T2'
+            case 2:
+              return 'T3'
+            case 3:
+              return 'T4'
+            case 4:
+              return 'T5'
+            case 5:
+              return 'T6'
+            case 6:
+              return 'T7'
+            default:
+              return 'CN'
+          }
+        },
         formatMonthDropdown: (date) =>
           date.toLocaleString("default", { month: "short" }),
         ...formatters,

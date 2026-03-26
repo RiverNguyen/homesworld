@@ -141,6 +141,9 @@ input[type='number'] {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --text-trim-both: trim-both;
+  --text-trim-start: trim-start;
+  --text-trim-end: trim-end;
 }
 
 .dark {
@@ -195,8 +198,17 @@ input[type='number'] {
   text-box-edge: --value(--text-edge-*, 'text', 'alphabetic', 'ideographic', 'cap', 'ex', [*]);
 }
 
-@layer components {
+::-webkit-scrollbar {
+  width: 0.38rem; /* Hoặc bất kỳ độ rộng nào */
+}
 
+/* Ẩn phần thanh cuộn nhưng vẫn cho phép cuộn */
+::-webkit-scrollbar-thumb {
+  width: 0.25rem;
+  border-radius: 2.8125rem;
+  background: var(--mng-m-mng-icon, #10475f);
+}
+@layer components {
   .banner-pagination {
     position: absolute;
     right: 6.25rem !important;

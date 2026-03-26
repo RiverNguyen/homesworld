@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  next-app:
+    container_name: homesworld
+    platform: linux/amd64
+    image: okhubvn/homesworld:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_CMS: ${NEXT_PUBLIC_CMS}
+        NEXT_PUBLIC_DOMAIN: ${NEXT_PUBLIC_DOMAIN}
+        NEXT_PUBLIC_API: ${NEXT_PUBLIC_API}
+        NEXT_PUBLIC_API_CF7: ${NEXT_PUBLIC_API_CF7}
+
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - homesworld
+
+  # Add more containers below (nginx, postgres, etc.)
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  homesworld:
+    external: true
