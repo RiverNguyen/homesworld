@@ -85,7 +85,6 @@ const config: Config = {
         '.m-16': {
           '@apply text-[1rem] font-medium leading-[130%]': {},
         },
-
         '.s-25-mon': {
           '@apply text-[1.5625rem] font-semibold leading-[120%] tracking-[-0.09375rem]': {},
         },
@@ -93,6 +92,9 @@ const config: Config = {
           '@apply text-[2rem] font-normal leading-[110%]': {},
           'font-family': '"Halyard Display", sans-serif',
           'font-style': 'normal',
+        },
+        '.pc-18-r': {
+          '@apply text-[1.125rem] leading-[1.3]': {},
         },
       })
     }),
