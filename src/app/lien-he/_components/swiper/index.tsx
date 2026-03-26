@@ -105,10 +105,10 @@ export default function SocialSwiper() {
             className='absolute left-[-15%] z-10 top-1/2 -translate-y-1/2 flex size-[3rem] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)]'
             aria-label='Previous'
           >
-            <ICArrowLeft className='h-[1.25rem] w-[1.25rem] text-[#10475F]' />
+            <ICArrowLeft className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
           </button>
 
-          <div className='w-[24.6875rem] overflow-hidden'>
+          <div className='w-[24.9rem] overflow-hidden'>
             <Swiper
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
@@ -132,12 +132,12 @@ export default function SocialSwiper() {
 
                     <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent'></div>
 
-                    <div className='absolute bottom-2 left-2 right-2 z-10 flex items-center'>
+                    <div className='absolute bottom-[0.75rem] left-[0.75rem] right-[0.75rem] z-10 flex items-center'>
                       <div className='flex size-[1.5rem] items-center justify-center rounded-full bg-white/20'>
                         {item.icon}
                       </div>
 
-                      <p className='ml-[0.375rem] text-[0.875rem] leading-[1.5] text-white'>
+                      <p className='ml-[0.375rem] text-[0.875rem] leading-[1.5] text-white pc-14-14-r'>
                         {item.text}
                       </p>
                     </div>
@@ -153,12 +153,11 @@ export default function SocialSwiper() {
             className='absolute right-[-15%] z-10 top-1/2 -translate-y-1/2 flex size-[3rem] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)]'
             aria-label='Next'
           >
-            <ICRight className='h-[1.25rem] w-[1.25rem] text-[#10475F]' />
+            <ICRight className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
           </button>
         </div>
       </section>
 
-    
       {/* mobile */}
       <section className='hidden w-full xsm:block'>
         <div className='w-[21.9375rem] overflow-x-auto scrollbar-none'>
@@ -182,9 +181,7 @@ export default function SocialSwiper() {
                     {item.icon}
                   </div>
 
-                  <p className='ml-[0.38rem] truncate text-[0.75rem] leading-[1.4] text-white'>
-                    {item.text}
-                  </p>
+                  <p className='ml-[0.38rem] truncate r-14 leading-[1.4] text-white'>{item.text}</p>
                 </div>
               </div>
             ))}

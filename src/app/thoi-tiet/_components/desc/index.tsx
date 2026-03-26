@@ -6,9 +6,16 @@ import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import { IWeatherAcf } from '@/interfaces/weather'
 import type { DestinationItem } from '../Layout'
 
+type DescData = {
+  qrSrc: string
+  linkUrl: string
+  buttonText: string
+  temperature: string
+  weatherText: string
+}
+
 type DescProps = {
-  acfData: IWeatherAcf
-  activeItem: DestinationItem
+  descData: DescData
 }
 // icon nhiệt độ 
 const ThermometerIcon = memo(function ThermometerIcon({ className = '' }: { className?: string }) {
@@ -146,14 +153,9 @@ function TemperatureMobile({
   )
 }
 
-function Desc({ acfData, activeItem }: DescProps) {
-  const weather = acfData?.weather
-  const qrSrc = weather?.qr_zalo || ''
-  const linkUrl = weather?.link?.url || ''
-  const buttonText = weather?.link?.title || 'Nhóm Zalo thời tiết'
-
-  const temperature = activeItem?.weather || ''
-  const weatherText = activeItem?.weatherDesc || ''
+function Desc({ descData }: DescProps) {
+  
+   const { temperature, weatherText, qrSrc, linkUrl, buttonText } = descData
 
   return (
     <div className='absolute bottom-[2.5rem] left-[2.5rem] flex flex-col xsm:bottom-[1.25rem] xsm:left-[1rem] xsm:right-[1rem] xsm:px-[1.25rem]'>

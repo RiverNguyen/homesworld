@@ -36,9 +36,9 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
     </>
   )
 
-  const classNames = `font-halyard-display flex items-center justify-center gap-2 px-4 py-3 h-10 w-fit rounded-full bg-[#27AAE1] hover:bg-[#42A3CC] xsm:hover:bg-[#27AAE1] ${className}`
+  const classNames = `font-halyard-display flex items-center justify-center   w-fit rounded-full bg-[#27AAE1] hover:bg-[#42A3CC] xsm:hover:bg-[#27AAE1] cursor-pointer px-[0.88rem] py-[1rem]  ${className}`
 
-  // 👉 CASE 1: LINK
+  //  CASE 1: LINK
   if (type === 'link') {
     return (
       <Button
@@ -50,7 +50,7 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
     )
   }
 
-  // 👉 CASE 2: BUTTON / SUBMIT
+  // CASE 2: BUTTON / SUBMIT
   return (
     <Button
       type={type}

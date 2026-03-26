@@ -324,7 +324,7 @@ export default function MyForm() {
                   control={form.control}
                   name='koc_channel'
                   label='Kênh truyền thông'
-                  required
+                  
                   placeholder='Nhập link kênh truyền thông...'
                 />
               </div>

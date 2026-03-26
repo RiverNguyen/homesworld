@@ -19,6 +19,7 @@ export type DestinationItem = {
 const Layout = ({ acfData }: { acfData: IWeatherAcf }) => {
   const [activeIndex, setActiveIndex] = useState(0)
 
+  //data swiper, bg
   const destinationData: DestinationItem[] = useMemo(() => {
     return (acfData?.weather?.location || []).map((item) => ({
       title: item.name,
@@ -31,8 +32,16 @@ const Layout = ({ acfData }: { acfData: IWeatherAcf }) => {
   }, [acfData])
 
   const activeItem = destinationData[activeIndex] || destinationData[0]
-
   if (!activeItem) return null
+
+  // data desc
+  const descData = {
+    temperature: activeItem?.weather || '',
+    weatherText: activeItem?.weatherDesc || '',
+    qrSrc: acfData?.weather?.qr_zalo || '',
+    linkUrl: acfData?.weather?.link?.url || '',
+    buttonText: acfData?.weather?.link?.title || '',
+  }
 
   return (
     <div className='w-full flex flex-col items-center'>
@@ -75,10 +84,7 @@ const Layout = ({ acfData }: { acfData: IWeatherAcf }) => {
           {acfData.weather.title}
         </h1>
 
-        <Desc
-          acfData={acfData}
-          activeItem={activeItem}
-        />
+        <Desc descData={descData} />
 
         <div className='xsm:hidden'>
           <SwipperItem2

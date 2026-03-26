@@ -50,11 +50,11 @@ export default function DestinationSwiper({
 
   return (
     <div className='absolute bottom-[2.5rem] right-0 z-20 w-full max-w-[36.5rem] xsm:bottom-[1rem] xsm:max-w-full xsm:px-[0.75rem] xsm:hidden'>
-      <div className='absolute right-[2.5rem] top-[-0.87rem] z-50 flex gap-2 xsm:right-[0.75rem]'>
+      <div className='absolute right-[2.5rem] top-[-0.87rem] z-50 flex   xsm:right-[0.75rem]'>
         <button
           type='button'
           onClick={handlePrev}
-          className='flex h-[2.75rem] w-[2.75rem] items-center justify-center rounded-full bg-white shadow'
+          className='flex h-[2.75rem] w-[2.75rem] items-center justify-center rounded-full bg-white shadow mr-[0.62rem]'
           aria-label='Previous slide'
         >
           <ICArrowLeft className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
