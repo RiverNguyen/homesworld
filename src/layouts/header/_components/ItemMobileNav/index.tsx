@@ -1,41 +1,197 @@
+'use client'
 import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
-const ItemMobileNav = () => {
+import { Button } from '@/components/ui/button'
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer'
+
+import CardItem from '../CardItem'
+
+type ItemMobileNavProps = {
+  title: string
+  type: boolean
+}
+const ItemMobileNav = ({ title, type }: ItemMobileNavProps) => {
   return (
-    <div>
-      <div className='flex justify-between items-center py-[1.125rem]'>
-        <div className='flex'>
-          <Image
-            className='size-[1.375rem] mr-[0.75rem]'
-            width={22}
-            height={22}
-            alt=''
-            src={
-              'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/message-question.svg'
-            }
-          ></Image>
-          <span className='mb-20-m text-[#10475F]'>Hỗ Trợ</span>
+    <Drawer>
+      <DrawerTrigger asChild>
+        <button>
+          <Trigger>{title}</Trigger>
+        </button>
+      </DrawerTrigger>
+      <DrawerContent className='rounded-tl-[1.5rem] rounded-tr-[1.5rem]  border-none'>
+        <div className='mx-auto w-full max-w-sm'>
+          <DrawerHeader>
+            <DrawerTitle>{title}</DrawerTitle>
+          </DrawerHeader>
+          {type ? (
+            <div className='pr-[0.25rem]'>
+              <div className='flex flex-col pb-[0.5rem] w-full min-h-[12rem] max-h-[33.97rem] overflow-auto'>
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách hoàn tiền
+                  </p>
+                </Link>
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách thanh toán - quy trình
+                  </p>
+                </Link>{' '}
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách huỷ - đổi lịch - hoàn tiền
+                  </p>
+                </Link>
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách hoàn tiền
+                  </p>
+                </Link>
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách thanh toán - quy trình
+                  </p>
+                </Link>{' '}
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách huỷ - đổi lịch - hoàn tiền
+                  </p>
+                </Link>
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách hoàn tiền
+                  </p>
+                </Link>
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách thanh toán - quy trình
+                  </p>
+                </Link>
+                <Link
+                  href={'#'}
+                  className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
+                >
+                  <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                    Chính sách huỷ - đổi lịch - hoàn tiền
+                  </p>
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className='relative pl-[0.75rem] pr-[0.25rem]'>
+              <div className='pr-[0.28rem] pt-[0.75rem] pb-[3.65rem]  grid grid-cols-3 justify-items-center gap-y-[0.6875rem] w-full min-h-[12rem] max-h-[33.97rem] overflow-auto'>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+                <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+                  Hà Nội - Hà Đông
+                </CardItem>
+              </div>
+              <div className='pointer-events-none pt-[2.59rem] pb-[0.38rem] px-[1rem] absolute w-[23.4375rem] h-[5.4375rem] bg-[linear-gradient(180deg,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.709)_39.57%,_rgba(255,255,255,1)_74.05%)] left-0 bottom-0'>
+                <Link
+                  href={'#'}
+                  className='pointer-events-auto'
+                >
+                  <Button>Xem tất cả</Button>
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
-        <ChevronRight className='size-[1rem]'></ChevronRight>
+      </DrawerContent>
+    </Drawer>
+  )
+}
+type TrigerProps = {
+  children: string
+}
+export const Trigger = ({ children }: TrigerProps) => {
+  return (
+    <div className='flex justify-between w-[21.94rem] items-center py-[1.125rem] border-b-[0.0625rem] border-dashed border-[#10475F]/20'>
+      <div className='flex'>
+        <Image
+          className='size-[1.375rem] mr-[0.75rem]'
+          width={22}
+          height={22}
+          alt=''
+          src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/message-question.svg'}
+        ></Image>
+        <span className='mb-20-m text-[#10475F]'>{children}</span>
       </div>
-      <svg
-        width='351'
-        height='1'
-        viewBox='0 0 351 1'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <line
-          opacity='0.2'
-          x1='351'
-          y1='0.5'
-          x2='-4.37114e-08'
-          y2='0.499969'
-          stroke='#10475F'
-          strokeDasharray='4 4'
-        />
-      </svg>
+      <ChevronRight className='size-[1rem]'></ChevronRight>
     </div>
   )
 }

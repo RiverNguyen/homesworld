@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${montserrat.variable} ${halyardDisplay.variable} ${halyardDisplay.className} antialiased`}
+        className={`${montserrat.variable} ${halyardDisplay.variable} ${halyardDisplay.className} antialiased mt-[4.87rem] xsm:mt-[3.13rem]`}
       >
         <Header></Header>
         {children}

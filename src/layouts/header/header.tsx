@@ -1,6 +1,7 @@
 'use client'
 import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 
 import useIsMobile from '@/hooks/useIsMobile'
@@ -15,13 +16,15 @@ const Header = () => {
   if (isMobile) {
     return (
       <header className='fixed top-0 left-0 flex justify-between items-center w-full pl-[0.75rem] w-[23.4375rem] h-[3.125rem] bg-white border-white/20 border-b-[0.0625rem] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.01),0rem_3.4375rem_3.4375rem_0rem_rgba(0,0,0,0.01),0rem_7.75rem_4.625rem_0rem_rgba(0,0,0,0.01),0rem_13.75rem_5.5rem_0rem_rgba(0,0,0,0),0rem_21.5rem_6rem_0rem_rgba(0,0,0,0)]'>
-        <Image
-          className='w-[8.5rem] h-[1.375rem]'
-          width={204}
-          height={34}
-          alt='Logo'
-          src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Logo.svg'}
-        />
+        <Link href={'#'}>
+          <Image
+            className='w-[8.5rem] h-[1.375rem]'
+            width={204}
+            height={34}
+            alt='Logo'
+            src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Logo.svg'}
+          />
+        </Link>
         <div
           onClick={() => {
             setIsOpen(true)
@@ -70,10 +73,15 @@ const Header = () => {
             <span className='mb-16-m font-normal'>Quay lại</span>
           </div>
           <div className='px-[0.75rem] mb-[3.62rem]'>
-            <ItemMobileNav></ItemMobileNav>
-            <ItemMobileNav></ItemMobileNav>
-            <ItemMobileNav></ItemMobileNav>
-            <ItemMobileNav></ItemMobileNav>
+            <ItemMobileNav
+              title='Hỗ trợ'
+              type={true}
+            ></ItemMobileNav>
+            <ItemMobileNav
+              title='Combo du lịch'
+              type={false}
+            ></ItemMobileNav>
+            {/* <ItemMobileNav></ItemMobileNav> */}
           </div>
           <Language
             language={language}
@@ -87,7 +95,7 @@ const Header = () => {
               <Image
                 width={18}
                 height={18}
-                className='xsm:size-[0.97825rem] size-[1.25rem]'
+                className='size-[1.25rem]'
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/instagram.svg'}
                 alt='Icon social media'
               ></Image>
@@ -99,8 +107,8 @@ const Header = () => {
               <Image
                 width={18}
                 height={18}
-                className='xsm:size-[0.97825rem] size-[1.25rem]'
-                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/instagram.svg'}
+                className='size-[1.25rem]'
+                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/facebook.svg'}
                 alt='Icon social media'
               ></Image>
             </a>
@@ -111,8 +119,8 @@ const Header = () => {
               <Image
                 width={18}
                 height={18}
-                className='xsm:size-[0.97825rem] size-[1.25rem]'
-                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/instagram.svg'}
+                className='size-[1.25rem]'
+                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/tiktok.svg'}
                 alt='Icon social media'
               ></Image>
             </a>
@@ -122,19 +130,59 @@ const Header = () => {
     )
   }
   return (
-    <header className='fixed top-0 left-0 bg-gray-600 w-full'>
+    <header className='fixed top-0 left-0 bg-white w-full'>
       <div className='flex justify-between items-center py-[1rem] w-[87.5rem] mx-auto'>
         <div className='flex items-center'>
-          <Image
-            className='mr-[2.62rem] w-[12.75rem] h-[2.125rem]'
-            width={204}
-            height={34}
-            alt='Logo'
-            src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Icon-white.svg'}
-          />
+          <Link href={'#'}>
+            <Image
+              className='mr-[2.62rem] w-[12.75rem] h-[2.125rem]'
+              width={204}
+              height={34}
+              alt='Logo'
+              src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Logo.svg'}
+            />
+          </Link>
           <Navigation></Navigation>
         </div>
-        <div>
+        <div className='flex items-center'>
+          <div className='flex justify-center mr-[1.5rem]'>
+            <a
+              href=''
+              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
+            >
+              <Image
+                width={18}
+                height={18}
+                className=' size-[1.25rem]'
+                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/instagram.svg'}
+                alt='Icon social media'
+              ></Image>
+            </a>
+            <a
+              href=''
+              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
+            >
+              <Image
+                width={18}
+                height={18}
+                className=' size-[1.25rem]'
+                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/facebook.svg'}
+                alt='Icon social media'
+              ></Image>
+            </a>
+            <a
+              href=''
+              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
+            >
+              <Image
+                width={18}
+                height={18}
+                className=' size-[1.25rem]'
+                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/tiktok.svg'}
+                alt='Icon social media'
+              ></Image>
+            </a>
+          </div>
           <Language
             language={language}
             setLanguage={setLanguage}
