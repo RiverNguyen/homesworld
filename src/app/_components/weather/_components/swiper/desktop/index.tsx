@@ -1,7 +1,8 @@
+/* eslint-disable indent */
 'use client'
 
-import { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 import { FreeMode } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -10,7 +11,6 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 
 import type { DestinationItem } from '@/app/_components/weather/_components/layout'
-
 import ICArrowLeft from '@/components/ui/icons/ICLeft'
 import ICRight from '@/components/ui/icons/ICRight'
 
@@ -91,9 +91,8 @@ export default function SwipperItem2({
                     <button
                       type='button'
                       onClick={() => handleClickThumb(index)}
-                      className={`group relative h-[6.875rem] w-[7.25rem] cursor-pointer overflow-hidden rounded-[0.75rem] transition-all duration-500 ease-out hover:-translate-y-[0.5rem] ${
-                        isActive ? 'border-[0.125rem] border-white' : 'border border-white/30'
-                      }`}
+                      className={`group relative h-[6.875rem] w-[7.25rem] cursor-pointer overflow-hidden rounded-[0.75rem] transition-all duration-500 ease-out hover:-translate-y-[0.5rem] ${isActive ? 'border-[0.125rem] border-white' : 'border border-white/30'
+                        }`}
                       aria-label={`Select ${item?.title}`}
                     >
                       <Image
@@ -105,9 +104,8 @@ export default function SwipperItem2({
                       />
 
                       <div
-                        className={`absolute left-0 top-0 h-full w-full bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)] transition-opacity duration-300 ${
-                          isActive ? 'opacity-0' : 'group-hover:opacity-0'
-                        }`}
+                        className={`absolute left-0 top-0 h-full w-full bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)] transition-opacity duration-300 ${isActive ? 'opacity-0' : 'group-hover:opacity-0'
+                          }`}
                       />
 
                       <span className='absolute bottom-[0.44rem] left-1/2 -translate-x-1/2 whitespace-nowrap text-center text-white pc-14-14-r'>

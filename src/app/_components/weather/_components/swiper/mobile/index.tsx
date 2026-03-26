@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+
 import type { DestinationItem } from '@/app/_components/weather/_components/layout'
 
 import './index.css'

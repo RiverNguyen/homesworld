@@ -13,8 +13,7 @@ const ENDPOINTS = {
     getAll: ({ limit }: { limit: number }) =>
       `api/v1/get-all/post?orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
   },
-
-   weather: {
+  weather: {
     page_id: {
       vi: 66,
     },
