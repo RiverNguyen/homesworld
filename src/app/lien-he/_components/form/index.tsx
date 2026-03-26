@@ -1,26 +1,27 @@
+/* eslint-disable indent */
 'use client'
 
-import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
+import { parsePhoneNumberFromString } from 'libphonenumber-js'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { z } from 'zod'
+
+import ButtonPrimary from '@/components/ui/ButtonPrimary'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
   FormMessage,
 } from '@/components/ui/form'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Checkbox } from '@/components/ui/checkbox'
-
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import ButtonPrimary from '@/components/ui/ButtonPrimary'
+import { Textarea } from '@/components/ui/textarea'
+
 
 const formSchema = z
   .object({
@@ -324,7 +325,7 @@ export default function MyForm() {
                   control={form.control}
                   name='koc_channel'
                   label='Kênh truyền thông'
-                  
+
                   placeholder='Nhập link kênh truyền thông...'
                 />
               </div>
@@ -359,9 +360,8 @@ export default function MyForm() {
                             className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none'
                           >
                             <span
-                              className={`${
-                                values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
-                              }`}
+                              className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
+                                }`}
                             >
                               {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
                             </span>

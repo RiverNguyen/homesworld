@@ -1,8 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import type { DestinationItem } from '../../Layout'
-import './index.css'
+
+import type { DestinationItem } from '@/app/_components/weather/_components/layout'
+import '@/app/_components/weather/_components/swiper/mobile/index.css'
 
 type DestinationMobileListProps = {
   data: DestinationItem[]
@@ -24,7 +25,7 @@ export default function DestinationMobileList({
       <div
         className='
           scrollbar-none
-          flex  
+          flex
           overflow-x-auto overflow-y-visible
           snap-x snap-mandatory
           touch-pan-x
@@ -32,7 +33,7 @@ export default function DestinationMobileList({
            pt-[0.5rem] pb-[2rem]
         '
       >
-        {data.map((item, index) => {
+        {Array.isArray(data) && data?.map((item, index) => {
           const isActive = index === activeIndex
 
           return (

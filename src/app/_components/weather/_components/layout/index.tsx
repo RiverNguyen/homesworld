@@ -1,11 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useMemo, useState } from 'react'
-import Desc from '../desc'
-import SwipperItem2 from '../swiper/swiper_deskop'
-import DestinationMobileList from '../swiper/swiper_mobile'
+import { useMemo, useState } from 'react'
+
+
+import Desc from '@/app/_components/weather/_components/desc'
+import DestinationSwiper from '@/app/_components/weather/_components/swiper/desktop'
+import DestinationMobileList from '@/app/_components/weather/_components/swiper/mobile'
 import { IWeatherAcf } from '@/interfaces/weather'
+
 
 export type DestinationItem = {
   title: string
@@ -48,10 +51,9 @@ const Layout = ({ acfData }: { acfData: IWeatherAcf }) => {
       <div className='relative w-[87.5rem] h-[37.1rem] xsm:w-full xsm:h-[25.875rem] rounded-[1.125rem]'>
         {/* Desktop background */}
         <Image
-          src={activeItem.bgDesktop}
+          src={activeItem?.bgDesktop}
           alt={activeItem.title}
           fill
-          priority
           className='object-cover xsm:hidden rounded-[1.125rem]'
         />
 
@@ -65,7 +67,6 @@ const Layout = ({ acfData }: { acfData: IWeatherAcf }) => {
               src={activeItem.bgMobile}
               alt={`${activeItem.title} mobile`}
               fill
-              priority
               className='object-cover'
             />
 
@@ -80,14 +81,14 @@ const Layout = ({ acfData }: { acfData: IWeatherAcf }) => {
           </div>
         </div>
 
-        <h1 className='absolute top-[2.5rem] left-[2.5rem] z-10 text-[white] pc-h2-46-s-mons font-montserrat max-w-[27rem] flex-shrink-0 xsm:s-25-mon xsm:top-[1.25rem] xsm:left-[2rem] xsm:max-w-[15rem]'>
-          {acfData.weather.title}
-        </h1>
+        <h2 className='absolute top-[2.5rem] left-[2.5rem] z-10 text-white pc-h2-46-s-mons font-montserrat max-w-[27rem] shrink-0 xsm:s-25-mon xsm:top-[1.25rem] xsm:left-[2rem] xsm:max-w-[15rem]'>
+          {acfData?.weather?.title}
+        </h2>
 
         <Desc descData={descData} />
 
         <div className='xsm:hidden'>
-          <SwipperItem2
+          <DestinationSwiper
             data={destinationData}
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}

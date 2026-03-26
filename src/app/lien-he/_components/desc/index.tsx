@@ -2,9 +2,10 @@
 
 
 import 'swiper/css'
-import ICLocation from '@/components/ui/icons/ICLocation'
+import SwiperList from '@/app/lien-he/_components/swiper'
 import ICCall from '@/components/ui/icons/ICCall'
-import SwiperList from '../swiper'
+import ICLocation from '@/components/ui/icons/ICLocation'
+
 
 const Desc = () => {
   return (
