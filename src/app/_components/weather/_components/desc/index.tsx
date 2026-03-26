@@ -28,7 +28,6 @@ export function ThermometerIcon({ className = '', ...props }: IconProps) {
       {...props}
       viewBox='0 0 35 35'
       fill='none'
-      
     >
       <path
         opacity='0.4'

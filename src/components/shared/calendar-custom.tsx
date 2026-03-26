@@ -1,9 +1,7 @@
 'use client'
 
 import { vi } from 'date-fns/locale'
-import {
-  ChevronDownIcon,
-} from 'lucide-react'
+import { ChevronDownIcon } from 'lucide-react'
 import * as React from 'react'
 import { DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker'
 
@@ -35,8 +33,7 @@ function Calendar({
       )}
       captionLayout={captionLayout}
       formatters={{
-        formatCaption: (month) =>
-          `Tháng ${month.getMonth() + 1} - ${month.getFullYear()}`,
+        formatCaption: (month) => `Tháng ${month.getMonth() + 1} - ${month.getFullYear()}`,
         // Vietnamese weekday header abbreviations: "CN", "T2"..."T7"
         formatWeekdayName: (weekday) => {
           const day = weekday.getDay() // 0=Sun ... 6=Sat
@@ -59,16 +56,12 @@ function Calendar({
               return 'CN'
           }
         },
-        formatMonthDropdown: (date) =>
-          date.toLocaleString('default', { month: 'short' }),
+        formatMonthDropdown: (date) => date.toLocaleString('default', { month: 'short' }),
         ...formatters,
       }}
       classNames={{
         root: cn('w-fit', defaultClassNames.root),
-        months: cn(
-          'relative flex flex-col gap-4 md:flex-row pb-3',
-          defaultClassNames.months,
-        ),
+        months: cn('relative flex flex-col gap-4 md:flex-row pb-3', defaultClassNames.months),
         month: cn('flex w-full flex-col gap-2', defaultClassNames.month),
         nav: cn(
           'absolute left-8 right-8 top-4 flex items-center justify-between gap-1',
@@ -94,10 +87,7 @@ function Calendar({
           'has-focus:border-ring border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] relative rounded-[6.25rem] border',
           defaultClassNames.dropdown_root,
         ),
-        dropdown: cn(
-          'bg-popover absolute inset-0 opacity-0',
-          defaultClassNames.dropdown,
-        ),
+        dropdown: cn('bg-popover absolute inset-0 opacity-0', defaultClassNames.dropdown),
         caption_label: cn(
           'select-none font-medium',
           captionLayout === 'label'
@@ -111,11 +101,11 @@ function Calendar({
           'text-[0.75rem] text-[#10475F]/60 flex-1 select-none rounded-md leading-[1.5] font-normal',
           defaultClassNames.weekday,
         ),
-        week: cn('flex w-full justify-between px-[0.625rem] first-of-type:mt-1', defaultClassNames.week),
-        week_number_header: cn(
-          'w-[--cell-size] select-none',
-          defaultClassNames.week_number_header,
+        week: cn(
+          'flex w-full justify-between px-[0.625rem] first-of-type:mt-1',
+          defaultClassNames.week,
         ),
+        week_number_header: cn('w-[--cell-size] select-none', defaultClassNames.week_number_header),
         week_number: cn(
           'text-muted-foreground select-none text-[0.8rem]',
           defaultClassNames.week_number,
@@ -124,10 +114,7 @@ function Calendar({
           'group/day relative aspect-square size-8 select-none p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-[6.25rem] [&:last-child[data-selected=true]_button]:rounded-r-[6.25rem]',
           defaultClassNames.day,
         ),
-        range_start: cn(
-          'bg-[#F5F5F5] rounded-l-[6.25rem]',
-          defaultClassNames.range_start,
-        ),
+        range_start: cn('bg-[#F5F5F5] rounded-l-[6.25rem]', defaultClassNames.range_start),
         range_middle: cn('rounded-none', defaultClassNames.range_middle),
         range_end: cn('bg-[#F5F5F5] rounded-r-[6.25rem]', defaultClassNames.range_end),
         today: cn(
@@ -138,10 +125,7 @@ function Calendar({
           'text-muted-foreground aria-selected:text-muted-foreground',
           defaultClassNames.outside,
         ),
-        disabled: cn(
-          'text-muted-foreground opacity-50',
-          defaultClassNames.disabled,
-        ),
+        disabled: cn('text-muted-foreground opacity-50', defaultClassNames.disabled),
         hidden: cn('invisible', defaultClassNames.hidden),
         ...classNames,
       }}
@@ -149,7 +133,7 @@ function Calendar({
         Root: ({ className, rootRef, ...props }) => {
           return (
             <div
-              data-slot="calendar"
+              data-slot='calendar'
               ref={rootRef}
               className={cn(className)}
               {...props}
@@ -159,7 +143,10 @@ function Calendar({
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === 'left') {
             return (
-              <ICChevronLeft className={cn('size-6', className)} {...props} />
+              <ICChevronLeft
+                className={cn('size-6', className)}
+                {...props}
+              />
             )
           }
 
@@ -173,7 +160,10 @@ function Calendar({
           }
 
           return (
-            <ChevronDownIcon className={cn('size-4', className)} {...props} />
+            <ChevronDownIcon
+              className={cn('size-4', className)}
+              {...props}
+            />
           )
         },
         MonthCaption: ({
@@ -184,8 +174,21 @@ function Calendar({
         }) => (
           <div {...props}>
             {children}
-            <svg className="w-full mt-4 mb-2" width="100%" height="1" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line opacity="0.2" y1="0.5" x2="100%" y2="0.5" stroke="#00026E" strokeDasharray="4 4" />
+            <svg
+              className='w-full mt-4 mb-2'
+              width='100%'
+              height='1'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <line
+                opacity='0.2'
+                y1='0.5'
+                x2='100%'
+                y2='0.5'
+                stroke='#00026E'
+                strokeDasharray='4 4'
+              />
             </svg>
           </div>
         ),
@@ -193,7 +196,7 @@ function Calendar({
         WeekNumber: ({ children, ...props }) => {
           return (
             <td {...props}>
-              <div className="flex size-[--cell-size] items-center justify-center text-center">
+              <div className='flex size-[--cell-size] items-center justify-center text-center'>
                 {children}
               </div>
             </td>
@@ -222,8 +225,8 @@ function CalendarDayButton({
   return (
     <Button
       ref={ref}
-      variant="ghost"
-      size="icon"
+      variant='ghost'
+      size='icon'
       data-day={day.date.toLocaleDateString()}
       data-selected-single={
         modifiers.selected &&
@@ -245,14 +248,40 @@ function CalendarDayButton({
 }
 
 const ICChevronLeft = (props: React.SVGAttributes<SVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
-    <path d="M15 18L9 12L15 6" stroke="#124681" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    {...props}
+  >
+    <path
+      d='M15 18L9 12L15 6'
+      stroke='#124681'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
   </svg>
 )
 
 const ICChevronRight = (props: React.SVGAttributes<SVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
-    <path d="M9 18L15 12L9 6" stroke="#124681" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    {...props}
+  >
+    <path
+      d='M9 18L15 12L9 6'
+      stroke='#124681'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
   </svg>
 )
 

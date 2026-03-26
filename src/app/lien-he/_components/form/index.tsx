@@ -3,7 +3,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState, useWatch, type Control, type FieldPath } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -96,6 +96,8 @@ const userTypeOptions = [
   { value: 'media', label: 'Đơn vị truyền thông' },
 ] as const
 
+type FormValues = z.infer<typeof formSchema>
+
 //common input
 function InputField({
   control,
@@ -103,15 +105,21 @@ function InputField({
   label,
   placeholder,
   required,
-  form, // thêm cái này
-}: any) {
+}: {
+  control: Control<FormValues>
+  name: FieldPath<FormValues>
+  label: string
+  placeholder?: string
+  required?: boolean
+}) {
+  const { isSubmitting } = useFormState({ control })
   return (
     <FormField
       control={control}
       name={name}
       render={({ field, fieldState }) => {
         const isError = !!fieldState.error
-        const isLoading = form?.formState?.isSubmitting
+        const isLoading = isSubmitting
 
         return (
           <FormItem className='mt-[1.5rem]'>
@@ -167,10 +175,11 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
       note: '',
     },
   })
-  const youAre = form.watch('you_are')
+  // Avoid React Compiler incompatibility: `form.watch()` returns an internal subscription function.
+  // `useWatch()` is the hook-based alternative.
+  const youAre = useWatch({ control: form.control, name: 'you_are' })
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-
       const payload = {
         ...values,
         your_choice: values.your_choice?.join(', '),
@@ -192,8 +201,8 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
 
       toast.error(
         response?.message ||
-        response?.detail ||
-        'Gửi thông tin chưa thành công. Vui lòng kiểm tra lại và thử lại!',
+          response?.detail ||
+          'Gửi thông tin chưa thành công. Vui lòng kiểm tra lại và thử lại!',
       )
     } catch (error) {
       console.error(error)
@@ -311,7 +320,6 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                   control={form.control}
                   name='koc_channel'
                   label='Kênh truyền thông'
-
                   placeholder='Nhập link kênh truyền thông...'
                 />
               </div>
@@ -348,8 +356,9 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                               className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
                             >
                               <span
-                                className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
-                                  }`}
+                                className={`${
+                                  values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
+                                }`}
                               >
                                 {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
                               </span>

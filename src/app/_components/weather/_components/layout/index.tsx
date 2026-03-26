@@ -2,17 +2,16 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { EffectFade } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
+import { EffectFade } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-
-import type { IWeatherAcf } from '@/interfaces/weather'
 
 import Desc from '@/app/_components/weather/_components/desc'
 import SwipperDesktop from '@/app/_components/weather/_components/swiper/desktop'
 import SwipperMobile from '@/app/_components/weather/_components/swiper/mobile'
+import type { IWeatherAcf } from '@/interfaces/weather'
 
 export type DestinationItem = {
   title: string
@@ -30,7 +29,6 @@ type LayoutProps = {
 const Layout = ({ acfData }: LayoutProps) => {
   const [activeIndex, setActiveIndex] = useState(0)
   const mainSwiperRef = useRef<SwiperType | null>(null)
-  const bgRef = useRef<HTMLDivElement | null>(null)
   const destinationData: DestinationItem[] =
     acfData?.weather?.location?.map((item) => ({
       title: item?.name || '',

@@ -8,7 +8,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 
-
 import ICArrowLeft from '@/components/ui/icons/ICLeft'
 import ICRight from '@/components/ui/icons/ICRight'
 import type { SocialItem } from '@/interfaces/contact.interface'
@@ -127,7 +126,9 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
                     />
                   </div>
 
-                  <p className='ml-[0.38rem] truncate r-14 leading-[1.4] text-white'>{item.link?.title}</p>
+                  <p className='ml-[0.38rem] truncate r-14 leading-[1.4] text-white'>
+                    {item.link?.title}
+                  </p>
                 </div>
               </Link>
             ))}
