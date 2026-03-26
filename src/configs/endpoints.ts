@@ -9,6 +9,14 @@ const ENDPOINTS = {
   home: {
     getPage: 'wp/v2/pages/66?_fields=acf&acf_format=standard',
   },
+  weather: {
+    page_id: {
+      vi: 66,
+    },
+    rank_math: {
+      vi: 66,
+    },
+  },
 }
 
 export default ENDPOINTS
