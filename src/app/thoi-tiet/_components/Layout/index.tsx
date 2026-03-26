@@ -2,10 +2,12 @@
 
 import Image from 'next/image'
 import React, { useMemo, useState } from 'react'
+
+import { IWeatherAcf } from '@/interfaces/weather'
+
 import Desc from '../desc'
 import SwipperItem2 from '../swiper/swiper_deskop'
 import DestinationMobileList from '../swiper/swiper_mobile'
-import { IWeatherAcf } from '@/interfaces/weather'
 
 export type DestinationItem = {
   title: string

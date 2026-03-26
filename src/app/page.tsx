@@ -1,10 +1,20 @@
-import ICLocation from '@/components/ui/icons/ICLocation'
-import ICCall from '@/components/ui/icons/ICCall'
+import { PostItem, ApiResponse } from '@/interfaces/blog.interface'
+import { HomeResponse } from '@/interfaces/home.interface'
+import TravelGuide from '@/modules/home/TravelGuide'
+import homeService from '@/services/home'
 
-export default function Contact() {
+export default async function Page() {
+  const [acfData, blogRes] = await Promise.all([
+    homeService.getHomeData<HomeResponse>(),
+    homeService.getBlogs<ApiResponse<PostItem>>({ limit: 5 }),
+  ])
+
   return (
-    <div >
-      <h1 className=''>Homes World</h1>
-    </div>
+    <>
+      <TravelGuide
+        page={acfData?.acf?.travel_guide || {}}
+        data={blogRes.data || []}
+      />
+    </>
   )
 }

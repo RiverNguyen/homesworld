@@ -1,9 +1,9 @@
 'use client'
 
-import { useRef } from 'react'
 import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useRef } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 

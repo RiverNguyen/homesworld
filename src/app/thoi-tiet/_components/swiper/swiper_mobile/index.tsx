@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+
 import type { DestinationItem } from '../../Layout'
 import './index.css'
 
@@ -24,7 +25,7 @@ export default function DestinationMobileList({
       <div
         className='
           scrollbar-none
-          flex  
+          flex
           overflow-x-auto overflow-y-visible
           snap-x snap-mandatory
           touch-pan-x

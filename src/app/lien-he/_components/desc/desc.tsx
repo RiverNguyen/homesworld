@@ -2,8 +2,9 @@
 
 
 import 'swiper/css'
-import ICLocation from '@/components/ui/icons/ICLocation'
 import ICCall from '@/components/ui/icons/ICCall'
+import ICLocation from '@/components/ui/icons/ICLocation'
+
 import SwiperList from '../swiper'
 
 const Desc = () => {

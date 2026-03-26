@@ -1,9 +1,11 @@
 'use client'
 
-import { memo } from 'react'
 import Image from 'next/image'
+import { memo } from 'react'
+
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import { IWeatherAcf } from '@/interfaces/weather'
+
 import type { DestinationItem } from '../Layout'
 
 type DescData = {
@@ -17,7 +19,7 @@ type DescData = {
 type DescProps = {
   descData: DescData
 }
-// icon nhiệt độ 
+// icon nhiệt độ
 const ThermometerIcon = memo(function ThermometerIcon({ className = '' }: { className?: string }) {
   return (
     <svg
@@ -65,7 +67,7 @@ const VerticalDashLine = memo(function VerticalDashLine() {
     </div>
   )
 })
-// line mobile 
+// line mobile
 const HorizontalDashLineMobile = memo(function HorizontalDashLineMobile() {
   return (
     <div
@@ -154,8 +156,8 @@ function TemperatureMobile({
 }
 
 function Desc({ descData }: DescProps) {
-  
-   const { temperature, weatherText, qrSrc, linkUrl, buttonText } = descData
+
+  const { temperature, weatherText, qrSrc, linkUrl, buttonText } = descData
 
   return (
     <div className='absolute bottom-[2.5rem] left-[2.5rem] flex flex-col xsm:bottom-[1.25rem] xsm:left-[1rem] xsm:right-[1rem] xsm:px-[1.25rem]'>

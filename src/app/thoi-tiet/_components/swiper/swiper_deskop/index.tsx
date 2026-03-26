@@ -1,14 +1,15 @@
 'use client'
 
-import { useRef, useCallback, useMemo } from 'react'
 import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useRef, useCallback, useMemo } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 
 import ICArrowLeft from '@/components/ui/icons/ICLeft'
 import ICRight from '@/components/ui/icons/ICRight'
+
 import type { DestinationItem } from '../../Layout'
 
 type DestinationSwiperProps = {
