@@ -7,6 +7,7 @@ const ENDPOINTS = {
   tour: {
     list: '/tour/list',
   },
+  paymentPolicyPageId: 18,
   home: 'wp/v2/pages/66?_fields=acf&acf_format=standard',
   blog: {
     getAll: ({ limit }: { limit: number }) =>

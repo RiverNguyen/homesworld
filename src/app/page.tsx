@@ -6,7 +6,6 @@ import taxonomiesService from '@/services/taxonomies'
 
 import Weather from './_components/weather'
 
-
 export default async function HomePage() {
   const [homeData, blogRes, taxonomiesData, locationData] = await Promise.all([homeService.getHome(), homeService.getBlogs({ limit: 5 }), taxonomiesService.getAllTaxonomies('service_combo'), taxonomiesService.getAllTaxonomies('location')])
   return (
@@ -18,7 +17,6 @@ export default async function HomePage() {
         page={homeData?.acf?.travel_guide || {}}
         data={blogRes.data || []}
       />
-
     </>
   )
 }
