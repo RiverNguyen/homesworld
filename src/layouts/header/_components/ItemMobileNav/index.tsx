@@ -26,7 +26,7 @@ const ItemMobileNav = ({ title, type }: ItemMobileNavProps) => {
           <Trigger>{title}</Trigger>
         </button>
       </DrawerTrigger>
-      <DrawerContent className='rounded-tl-[1.5rem] rounded-tr-[1.5rem]  border-none'>
+      <DrawerContent className=' rounded-tl-[1.5rem] rounded-tr-[1.5rem]  border-none'>
         <div className='mx-auto w-full max-w-sm'>
           <DrawerHeader>
             <DrawerTitle>{title}</DrawerTitle>
@@ -165,7 +165,7 @@ const ItemMobileNav = ({ title, type }: ItemMobileNavProps) => {
                   href={'#'}
                   className='pointer-events-auto'
                 >
-                  <Button>Xem tất cả</Button>
+                  <Button variant={'primary'}>Xem tất cả</Button>
                 </Link>
               </div>
             </div>

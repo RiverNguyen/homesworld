@@ -18,7 +18,7 @@ const ListCard = () => {
     }
   }
   return (
-    <div className=' pointer-events-none'>
+    <div className='pointer-events-none'>
       <div className='absolute z-[-1] w-screen h-screen left-[50%] -translate-x-1/2 top-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,_rgba(0,0,0,0.3)_8.1%,_rgba(0,0,0,0.7)_24.19%)]'></div>
       {/* Clound */}
       <div className='w-[87.5rem] bg-white h-[30.38rem] pointer-events-auto p-[2.1875rem] pr-[0.62rem] mx-auto rounded-[1.125rem] shadow-[0.125rem_0.375rem_2rem_0rem_rgba(0,0,0,0.06)] overflow-hidden'>
@@ -134,7 +134,10 @@ const ListCard = () => {
           className='z-[1] pointer-events-none rounded-b-[1.125rem] absolute w-full h-[6.625rem] bg-[linear-gradient(180deg,_rgba(248,248,248,0)_0%,_rgba(248,248,248,0.709)_39.57%,_rgba(248,248,248,1)_74.05%)] left-[0rem] bottom-0 transition-all duration-300'
         ></div>
         <Link href={'#'}>
-          <Button className='z-2 absolute right-[2.19rem] bottom-[1.25rem] w-fit'>
+          <Button
+            variant={'primary'}
+            className='z-2 absolute right-[2.19rem] bottom-[1.25rem] w-fit'
+          >
             Xem tất cả
             <ArrowUpRight className='size-[0.875rem]'></ArrowUpRight>
           </Button>

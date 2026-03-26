@@ -24,7 +24,6 @@ export default function RootLayout({
         className={`${montserrat.variable} ${halyardDisplay.variable} ${halyardDisplay.className} antialiased mt-[4.87rem] xsm:mt-[3.13rem]`}
       >
         <Header />
-        {children}
         <NuqsAdapter>{children}</NuqsAdapter>
         <NextTopLoader
           color='linear-gradient(0deg, #8CC63F 0%, #27AAE1 100%)'

@@ -15,8 +15,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
   if (isMobile) {
     return (
-      <header className='fixed top-0 left-0 flex justify-between items-center w-full pl-[0.75rem] w-[23.4375rem] h-[3.125rem] bg-white border-white/20 border-b-[0.0625rem] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.01),0rem_3.4375rem_3.4375rem_0rem_rgba(0,0,0,0.01),0rem_7.75rem_4.625rem_0rem_rgba(0,0,0,0.01),0rem_13.75rem_5.5rem_0rem_rgba(0,0,0,0),0rem_21.5rem_6rem_0rem_rgba(0,0,0,0)]'>
-        <Link href={'#'}>
+      <header className='z-99 fixed top-0 left-0 flex justify-between items-center w-full pl-[0.75rem] w-[23.4375rem] h-[3.125rem] bg-white border-white/20 border-b-[0.0625rem] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.01),0rem_3.4375rem_3.4375rem_0rem_rgba(0,0,0,0.01),0rem_7.75rem_4.625rem_0rem_rgba(0,0,0,0.01),0rem_13.75rem_5.5rem_0rem_rgba(0,0,0,0),0rem_21.5rem_6rem_0rem_rgba(0,0,0,0)]'>
+        <Link href={'/'}>
           <Image
             className='w-[8.5rem] h-[1.375rem]'
             width={204}
@@ -60,17 +60,19 @@ const Header = () => {
         </div>
         <div
           className={`absolute top-0 left-0 w-screen h-screen bg-white transition-all duration-300 ${
-            isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+            isOpen ? '' : 'translate-x-full'
           }`}
         >
-          <div
-            onClick={() => {
-              setIsOpen(false)
-            }}
-            className='flex p-[0.875rem] w-full h-fit border-[#10475F]/12 border-b-[0.0625rem]'
-          >
-            <ChevronLeft className='size-[1.25rem] mr-[0.25rem]'></ChevronLeft>
-            <span className='mb-16-m font-normal'>Quay lại</span>
+          <div className='w-full border-[#10475F]/12 border-b-[0.0625rem]'>
+            <div
+              onClick={() => {
+                setIsOpen(false)
+              }}
+              className='flex p-[0.875rem] w-fit h-fit '
+            >
+              <ChevronLeft className='size-[1.25rem] mr-[0.25rem]'></ChevronLeft>
+              <span className='mb-16-m font-normal'>Quay lại</span>
+            </div>
           </div>
           <div className='px-[0.75rem] mb-[3.62rem]'>
             <ItemMobileNav
@@ -86,9 +88,9 @@ const Header = () => {
           <Language
             language={language}
             setLanguage={setLanguage}
-          ></Language>
+          />
           <div className='flex justify-center mt-[1.56rem]'>
-            <a
+            <Link
               href=''
               className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0'
             >
@@ -98,9 +100,9 @@ const Header = () => {
                 className='size-[1.25rem]'
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/instagram.svg'}
                 alt='Icon social media'
-              ></Image>
-            </a>
-            <a
+              />
+            </Link>
+            <Link
               href=''
               className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0'
             >
@@ -110,9 +112,9 @@ const Header = () => {
                 className='size-[1.25rem]'
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/facebook.svg'}
                 alt='Icon social media'
-              ></Image>
-            </a>
-            <a
+              />
+            </Link>
+            <Link
               href=''
               className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0'
             >
@@ -122,18 +124,18 @@ const Header = () => {
                 className='size-[1.25rem]'
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/tiktok.svg'}
                 alt='Icon social media'
-              ></Image>
-            </a>
+              />
+            </Link>
           </div>
         </div>
       </header>
     )
   }
   return (
-    <header className='fixed top-0 left-0 bg-white w-full'>
+    <header className='z-99 fixed top-0 left-0 bg-white w-full'>
       <div className='flex justify-between items-center py-[1rem] w-[87.5rem] mx-auto'>
         <div className='flex items-center'>
-          <Link href={'#'}>
+          <Link href={'/'}>
             <Image
               className='mr-[2.62rem] w-[12.75rem] h-[2.125rem]'
               width={204}
@@ -146,7 +148,7 @@ const Header = () => {
         </div>
         <div className='flex items-center'>
           <div className='flex justify-center mr-[1.5rem]'>
-            <a
+            <Link
               href=''
               className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
             >
@@ -156,9 +158,9 @@ const Header = () => {
                 className=' size-[1.25rem]'
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/instagram.svg'}
                 alt='Icon social media'
-              ></Image>
-            </a>
-            <a
+              />
+            </Link>
+            <Link
               href=''
               className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
             >
@@ -168,9 +170,9 @@ const Header = () => {
                 className=' size-[1.25rem]'
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/facebook.svg'}
                 alt='Icon social media'
-              ></Image>
-            </a>
-            <a
+              />
+            </Link>
+            <Link
               href=''
               className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
             >
@@ -180,13 +182,13 @@ const Header = () => {
                 className=' size-[1.25rem]'
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/tiktok.svg'}
                 alt='Icon social media'
-              ></Image>
-            </a>
+              />
+            </Link>
           </div>
           <Language
             language={language}
             setLanguage={setLanguage}
-          ></Language>
+          />
         </div>
       </div>
     </header>
