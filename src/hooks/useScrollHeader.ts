@@ -1,7 +1,8 @@
 'use client'
 
-import { useIsClient } from '@/hooks/useIsClient'
 import { useCallback, useEffect, useRef } from 'react'
+
+import { useIsClient } from '@/hooks/useIsClient'
 
 export function useScrollHeader(headerRef: React.RefObject<HTMLElement>) {
   const lastScrollY = useRef(0)

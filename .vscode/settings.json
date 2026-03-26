@@ -2,6 +2,10 @@
   "tailwindCSS.experimental.classRegex": [
     ["className[A-Za-z]*\\s*[:=]\\s*[\"'`]([^\"'`]*)[\"'`]"],
     ["cn\\(([^)]*)\\)"]
-  ]
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
 }
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster } from 'sonner'
 
 import { halyardDisplay, montserrat } from '@/fonts'
@@ -22,8 +23,9 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${halyardDisplay.variable} ${halyardDisplay.className} antialiased mt-[4.87rem] xsm:mt-[3.13rem]`}
       >
-        <Header></Header>
+        <Header />
         {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
         <NextTopLoader
           color='linear-gradient(0deg, #8CC63F 0%, #27AAE1 100%)'
           initialPosition={0.08}
@@ -40,7 +42,7 @@ export default function RootLayout({
           showAtBottom={false}
         />
         <Toaster richColors />
-        <Footer></Footer>
+        <Footer />
       </body>
     </html>
   )
