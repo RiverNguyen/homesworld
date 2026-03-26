@@ -1,6 +1,3 @@
-// 'use client'
-// import { useRef } from 'react'
-
 import TocBot from '@/components/shared/TocBot'
 import './style.css'
 import ENDPOINTS from '@/configs/endpoints'
