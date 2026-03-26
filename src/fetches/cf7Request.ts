@@ -6,7 +6,18 @@ class CF7Request {
   constructor(formData: Record<string, any>) {
     this.formData = new FormData()
     Object.entries(formData).forEach(([key, value]) => {
-      this.formData.append(key, value)
+      // CF7 endpoint đọc fields từ request body.
+      // Skip undefined/null để tránh gửi chuỗi "undefined"/"null".
+      if (value === undefined || value === null) return
+
+      if (Array.isArray(value)) {
+        // Bạn muốn submit "your_choice" dạng chuỗi => join mảng thành "a,b".
+        if (value.length === 0) return
+        this.formData.append(key, value.join(','))
+        return
+      }
+
+      this.formData.append(key, String(value))
     })
   }
 
