@@ -10,7 +10,9 @@ export function useScrollHeader(headerRef: React.RefObject<HTMLElement>) {
   const isClient = useIsClient()
 
   const updateScrollDirection = useCallback(() => {
-    if (!headerRef.current || !isClient) return
+    if (!isClient) return
+    const el = headerRef.current
+    if (!el) return
 
     const scrollY = window.scrollY
 

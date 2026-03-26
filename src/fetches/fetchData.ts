@@ -12,6 +12,11 @@ export type RequestPostGuest = {
 }
 
 export default async function fetchData(request: RequestPostGuest) {
+  const apiBase = ENV.API
+  if (!apiBase) {
+    throw new Error('Missing ENV.API configuration')
+  }
+
   try {
     const fetchOptions: RequestInit = {
       method: request.method || 'GET',
@@ -25,7 +30,7 @@ export default async function fetchData(request: RequestPostGuest) {
       },
     }
 
-    const res = await fetch(`${ENV.CMS}${ENV.API!}${request.api}`, fetchOptions)
+    const res = await fetch(`${ENV.CMS}${apiBase}${request.api}`, fetchOptions)
 
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
@@ -36,6 +41,6 @@ export default async function fetchData(request: RequestPostGuest) {
   } catch (error: unknown) {
     // Convert the error to a string or handle based on its type
     const errorMessage = error instanceof Error ? error.message : String(error)
-    throw new Error(`${ENV.CMS}${ENV.API!}${request.api}: ${errorMessage}`)
+    throw new Error(`${ENV.CMS}${apiBase}${request.api}: ${errorMessage}`)
   }
 }

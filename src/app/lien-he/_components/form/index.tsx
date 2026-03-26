@@ -3,12 +3,13 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState, useWatch, type Control, type FieldPath } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import { Checkbox } from '@/components/ui/checkbox'
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import {
   Form,
   FormControl,
@@ -21,7 +22,10 @@ import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Textarea } from '@/components/ui/textarea'
-
+import endpoints from '@/configs/endpoints'
+import CF7Request from '@/fetches/cf7Request'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { ServiceComboItem } from '@/interfaces/serviceCombo.interface'
 
 const formSchema = z
   .object({
@@ -39,9 +43,9 @@ const formSchema = z
         { message: 'Số điện thoại không hợp lệ' },
       ),
     your_choice: z.array(z.string()).optional(),
-    homestay_name: z.string().optional(),
-    location: z.string().optional(),
-    tourist_spot: z.string().optional(),
+    homestay_name: z.string().trim().min(1, 'Vui lòng nhập'),
+    location: z.string().trim().min(1, 'Vui lòng nhập'),
+    tourist_spot: z.string().trim().min(1, 'Vui lòng nhập'),
     koc_channel: z.string().optional(),
     note: z.string().optional(),
   })
@@ -86,16 +90,13 @@ const formSchema = z
   })
 
 // data
-const options = [
-  { label: 'Option 1', value: 'option1' },
-  { label: 'Option 2', value: 'option2' },
-  { label: 'Option 3', value: 'option3' },
-]
 const userTypeOptions = [
   { value: 'customer', label: 'Khách hàng' },
   { value: 'partner', label: 'Đối tác (khách sạn, homestay,...)' },
   { value: 'media', label: 'Đơn vị truyền thông' },
 ] as const
+
+type FormValues = z.infer<typeof formSchema>
 
 //common input
 function InputField({
@@ -104,15 +105,21 @@ function InputField({
   label,
   placeholder,
   required,
-  form, // thêm cái này
-}: any) {
+}: {
+  control: Control<FormValues>
+  name: FieldPath<FormValues>
+  label: string
+  placeholder?: string
+  required?: boolean
+}) {
+  const { isSubmitting } = useFormState({ control })
   return (
     <FormField
       control={control}
       name={name}
       render={({ field, fieldState }) => {
         const isError = !!fieldState.error
-        const isLoading = form?.formState?.isSubmitting
+        const isLoading = isSubmitting
 
         return (
           <FormItem className='mt-[1.5rem]'>
@@ -152,7 +159,8 @@ const inputClass =
   'w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] bg-[#F8F8F8] text-[0.875rem] placeholder:text-[#10475F]/40 text-[#10475F] border-0 focus-visible:ring-0 mt-[0.25rem]'
 
 //form
-export default function MyForm() {
+export default function MyForm({ serviceComboData }: { serviceComboData: ServiceComboItem[] }) {
+  const { isMobile } = useIsMobile()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -167,48 +175,35 @@ export default function MyForm() {
       note: '',
     },
   })
-  const youAre = form.watch('you_are')
+  // Avoid React Compiler incompatibility: `form.watch()` returns an internal subscription function.
+  // `useWatch()` is the hook-based alternative.
+  const youAre = useWatch({ control: form.control, name: 'you_are' })
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const payload = (() => {
-        switch (values.you_are) {
-          case 'customer':
-            return {
-              you_are: values.you_are,
-              fullname: values.fullname,
-              phone: values.phone,
-              your_choice: values.your_choice,
-              note: values.note,
-            }
-          case 'partner':
-            return {
-              you_are: values.you_are,
-              fullname: values.fullname,
-              phone: values.phone,
-              homestay_name: values.homestay_name,
-              location: values.location,
-              note: values.note,
-            }
-          case 'media':
-            return {
-              you_are: values.you_are,
-              fullname: values.fullname,
-              phone: values.phone,
-              tourist_spot: values.tourist_spot,
-              koc_channel: values.koc_channel,
-              note: values.note,
-            }
-        }
-      })()
+      const payload = {
+        ...values,
+        your_choice: values.your_choice?.join(', '),
+      }
 
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      console.log(payload)
-      toast(
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(payload, null, 2)}</code>
-        </pre>,
+      const request = new CF7Request(payload)
+      const cf7Form = endpoints.contact.form
+      const response = await request.send({
+        id: cf7Form.id,
+        unitTag: cf7Form.unit_tag,
+      })
+
+      const status = response?.status
+      if (status === 'mail_sent' || status === 'success') {
+        toast('Gửi thông tin thành công')
+        form.reset()
+        return
+      }
+
+      toast.error(
+        response?.message ||
+          response?.detail ||
+          'Gửi thông tin chưa thành công. Vui lòng kiểm tra lại và thử lại!',
       )
-      form.reset()
     } catch (error) {
       console.error(error)
       toast.error('Failed to submit the form. Please try again.')
@@ -325,7 +320,6 @@ export default function MyForm() {
                   control={form.control}
                   name='koc_channel'
                   label='Kênh truyền thông'
-
                   placeholder='Nhập link kênh truyền thông...'
                 />
               </div>
@@ -346,64 +340,118 @@ export default function MyForm() {
                     field.onChange([...values, val])
                   }
                 }
+
                 return (
                   <FormItem className='mt-[1.5rem]'>
                     <FormLabel className='pc-16-16-r-input text-[#10475F]'>
                       Nhu cầu của bạn
                     </FormLabel>
 
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <button
-                            type='button'
-                            className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none'
-                          >
-                            <span
-                              className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
+                    {!isMobile && (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <button
+                              type='button'
+                              className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
+                            >
+                              <span
+                                className={`${
+                                  values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
                                 }`}
-                            >
-                              {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
-                            </span>
+                              >
+                                {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
+                              </span>
 
-                            <svg
-                              xmlns='http://www.w3.org/2000/svg'
-                              width='16'
-                              height='16'
-                              viewBox='0 0 24 24'
-                              fill='none'
-                              stroke='#10475F'
-                              strokeWidth='2'
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                              className='opacity-50'
-                            >
-                              <path d='m6 9 6 6 6-6' />
-                            </svg>
-                          </button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent
-                        align='start'
-                        className='p-0 mt-1 bg-white rounded-[0.5rem] shadow-md border-0 w-[var(--radix-popover-trigger-width)]'
-                      >
-                        <div className='flex flex-col'>
-                          {options.map((item) => (
-                            <label
-                              key={item.value}
-                              className='flex items-center gap-2 px-3 py-2 cursor-pointer        hover:bg-[#F0F0F0]'
-                            >
-                              <Checkbox
-                                checked={values.includes(item.value)}
-                                onCheckedChange={() => toggleValue(item.value)}
-                              />
-                              <span className='text-[#10475F] text-[0.875rem]'>{item.label}</span>
-                            </label>
-                          ))}
-                        </div>
-                      </PopoverContent>
-                    </Popover>
+                              <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                width='16'
+                                height='16'
+                                viewBox='0 0 24 24'
+                                fill='none'
+                                stroke='#10475F'
+                                strokeWidth='2'
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                                className='opacity-50'
+                              >
+                                <path d='m6 9 6 6 6-6' />
+                              </svg>
+                            </button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent
+                          align='start'
+                          className='p-0 mt-1 bg-white rounded-[0.5rem] shadow-md border-0 w-[var(--radix-popover-trigger-width)]'
+                        >
+                          <div className='flex flex-col'>
+                            {serviceComboData.map((item) => (
+                              <label
+                                key={item.id}
+                                className='flex items-center gap-2 px-3 py-2 cursor-pointer        hover:bg-[#F0F0F0]'
+                              >
+                                <Checkbox
+                                  checked={values.includes(item.name)}
+                                  onCheckedChange={() => toggleValue(item.name)}
+                                />
+                                <span className='text-[#10475F] text-[0.875rem]'>{item.name}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    )}
 
+                    {isMobile && (
+                      <Drawer>
+                        <DrawerTrigger asChild>
+                          <FormControl>
+                            <button
+                              type='button'
+                              className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
+                            >
+                              <span
+                                className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'}`}
+                              >
+                                {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
+                              </span>
+
+                              <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                width='16'
+                                height='16'
+                                viewBox='0 0 24 24'
+                                fill='none'
+                                stroke='#10475F'
+                                strokeWidth='2'
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                                className='opacity-50'
+                              >
+                                <path d='m6 9 6 6 6-6' />
+                              </svg>
+                            </button>
+                          </FormControl>
+                        </DrawerTrigger>
+
+                        <DrawerContent showDrawerDrag={false}>
+                          <div className='max-h-[50vh] overflow-y-auto'>
+                            {serviceComboData.map((item) => (
+                              <label
+                                key={item.id}
+                                className='flex items-center gap-2.5 px-5 py-3.5 cursor-pointer'
+                              >
+                                <Checkbox
+                                  checked={values.includes(item.name)}
+                                  onCheckedChange={() => toggleValue(item.name)}
+                                />
+                                <span className='text-[#10475F] text-[0.875rem]'>{item.name}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </DrawerContent>
+                      </Drawer>
+                    )}
                     <FormMessage />
                   </FormItem>
                 )
@@ -434,7 +482,7 @@ export default function MyForm() {
             isLoading={form.formState.isSubmitting}
             text='Gửi thông tin'
             type='submit'
-            className='xsm:w-[100% mt-[1.5rem] xsm:mt-[1.62rem] '
+            className='xsm:w-[100%] [&_svg]:size-3.5 mt-[1.5rem] xsm:mt-[1.62rem] '
           />
         </form>
       </Form>

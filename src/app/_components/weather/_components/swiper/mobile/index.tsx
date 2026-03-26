@@ -3,7 +3,8 @@
 import Image from 'next/image'
 
 import type { DestinationItem } from '@/app/_components/weather/_components/layout'
-import '@/app/_components/weather/_components/swiper/mobile/index.css'
+
+import './index.css'
 
 type DestinationMobileListProps = {
   data: DestinationItem[]
@@ -33,12 +34,12 @@ export default function DestinationMobileList({
            pt-[0.5rem] pb-[2rem]
         '
       >
-        {Array.isArray(data) && data?.map((item, index) => {
+        {data.map((item, index) => {
           const isActive = index === activeIndex
 
           return (
             <button
-              key={`${item.title}-${index}`}
+              key={`${item?.title}-${index}`}
               type='button'
               onClick={() => handleSelectItem(index)}
               className='snap-start shrink-0 text-left pl-[0.38rem]'
@@ -52,8 +53,8 @@ export default function DestinationMobileList({
                 `}
               >
                 <Image
-                  src={item.thumb}
-                  alt={item.title}
+                  src={item?.thumb}
+                  alt={item?.title}
                   fill
                   className='object-cover '
                   sizes='4.375rem '
@@ -61,14 +62,14 @@ export default function DestinationMobileList({
 
                 <div
                   className={`
-                    absolute inset-0 bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)]
+                    absolute tinset bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)]
                     transition-opacity duration-200
                     ${isActive ? 'opacity-0' : 'opacity-100'}
                   `}
                 />
 
                 <span className='absolute bottom-[0.31rem] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.625rem] text-white'>
-                  {item.title}
+                  {item?.title}
                 </span>
               </div>
             </button>
