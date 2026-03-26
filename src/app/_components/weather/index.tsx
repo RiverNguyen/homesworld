@@ -1,8 +1,6 @@
-
 import { IWeatherAcf, IWeatherResponse } from '@/interfaces/weather'
 
-
-import Layout from '@/app/_components/weather/_components/Layout'
+import Layout from '@/app/_components/weather/_components/layout'
 
 const Weather = async ({ acfData }: { acfData: IWeatherAcf }) => {
   return (

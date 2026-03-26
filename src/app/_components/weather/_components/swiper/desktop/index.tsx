@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 
-import type { DestinationItem } from '@/app/_components/weather/_components/Layout'
+import type { DestinationItem } from '@/app/_components/weather/_components/layout'
 
 import ICArrowLeft from '@/components/ui/icons/ICLeft'
 import ICRight from '@/components/ui/icons/ICRight'
@@ -76,45 +76,47 @@ export default function SwipperItem2({
             freeMode
             watchSlidesProgress
             speed={700}
-            className='!overflow-visible'
+            className='!overflow-visible rounded-[0.75rem]!'
           >
-            {data.map((item, index) => {
-              const isActive = activeIndex === index
-
-              return (
-                <SwiperSlide
-                  key={`${item.title}-${index}`}
-                  className='!w-auto'
-                >
-                  <button
-                    type='button'
-                    onClick={() => handleClickThumb(index)}
-                    className={`group relative h-[6.875rem] w-[7.25rem] cursor-pointer overflow-hidden rounded-[0.75rem] transition-all duration-500 ease-out hover:-translate-y-[0.5rem] ${
-                      isActive ? 'border-[0.125rem] border-white' : 'border border-white/30'
-                    }`}
-                    aria-label={`Select ${item.title}`}
+            {Array.isArray(data) &&
+              data?.length > 0 &&
+              data?.map((item, index) => {
+                const isActive = activeIndex === index
+                if (!item) return null
+                return (
+                  <SwiperSlide
+                    key={`${item?.title}-${index}`}
+                    className='!w-auto'
                   >
-                    <Image
-                      src={item.thumb}
-                      alt={item.title}
-                      fill
-                      className='object-cover'
-                      sizes='7.25rem'
-                    />
-
-                    <div
-                      className={`absolute left-0 top-0 h-full w-full bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)] transition-opacity duration-300 ${
-                        isActive ? 'opacity-0' : 'group-hover:opacity-0'
+                    <button
+                      type='button'
+                      onClick={() => handleClickThumb(index)}
+                      className={`group relative h-[6.875rem] w-[7.25rem] cursor-pointer overflow-hidden rounded-[0.75rem] transition-all duration-500 ease-out hover:-translate-y-[0.5rem] ${
+                        isActive ? 'border-[0.125rem] border-white' : 'border border-white/30'
                       }`}
-                    />
+                      aria-label={`Select ${item?.title}`}
+                    >
+                      <Image
+                        src={item?.thumb}
+                        alt={item?.title}
+                        fill
+                        className='object-cover'
+                        sizes='7.25rem'
+                      />
 
-                    <span className='absolute bottom-[0.44rem] left-1/2 -translate-x-1/2 whitespace-nowrap text-center text-white pc-14-14-r'>
-                      {item.title}
-                    </span>
-                  </button>
-                </SwiperSlide>
-              )
-            })}
+                      <div
+                        className={`absolute left-0 top-0 h-full w-full bg-[linear-gradient(186deg,rgba(0,0,0,0.18)_4.51%,rgba(0,0,0,0.24)_58.09%,rgba(0,0,0,0.60)_79.91%)] transition-opacity duration-300 ${
+                          isActive ? 'opacity-0' : 'group-hover:opacity-0'
+                        }`}
+                      />
+
+                      <span className='absolute bottom-[0.44rem] left-1/2 -translate-x-1/2 whitespace-nowrap text-center text-white pc-14-14-r'>
+                        {item?.title}
+                      </span>
+                    </button>
+                  </SwiperSlide>
+                )
+              })}
           </Swiper>
         </div>
       </div>

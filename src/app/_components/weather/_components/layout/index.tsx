@@ -83,28 +83,37 @@ const Layout = ({ acfData }: LayoutProps) => {
               mainSwiperRef.current = swiper
             }}
             onSlideChange={(swiper) => {
-              setActiveIndex(swiper.activeIndex)
+              setActiveIndex(swiper?.activeIndex ?? 0)
             }}
             slidesPerView={1}
             speed={700}
-            allowTouchMove={true} // để vẫn vuốt được
+            allowTouchMove
             className='h-full w-full rounded-[1.125rem]'
           >
-            {destinationData.map((item, index) => (
-              <SwiperSlide key={`${item.title}-${index}`}>
-                <div className='relative h-[37.1rem] w-full overflow-hidden rounded-[1.125rem]'>
-                  <Image
-                    src={item.bgDesktop}
-                    alt={item.title}
-                    fill
-                    priority={index === 0}
-                    className='rounded-[1.125rem] object-cover'
-                    sizes='87.5rem'
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
+            {Array.isArray(destinationData) &&
+              destinationData
+                ?.filter((item) => item && typeof item === 'object' && item?.bgDesktop)
+                ?.map((item, index) => {
+                  const title = item?.title || `Destination ${index + 1}`
+
+                  return (
+                    <SwiperSlide key={`${title}-${index}`}>
+                      <div className='relative h-[37.1rem] w-full overflow-hidden rounded-[1.125rem]'>
+                        <Image
+                          src={item?.bgDesktop}
+                          alt={title}
+                          fill
+                          priority={index === 0}
+                          className='rounded-[1.125rem] object-cover'
+                          sizes='87.5rem'
+                        />
+                      </div>
+                    </SwiperSlide>
+                  )
+                })}
           </Swiper>
+
+          <div className='pointer-events-none absolute left-0 top-0 z-10 h-full w-full rounded-[1.125rem] bg-[linear-gradient(180deg,rgba(0,0,0,0)_54.4%,rgba(0,0,0,0.548)_67%,rgba(0,0,0,1)_79.99%)]' />
         </div>
 
         {/* Desktop overlay */}
@@ -114,8 +123,8 @@ const Layout = ({ acfData }: LayoutProps) => {
         <div className='absolute left-0 top-0 hidden h-full w-full px-[0.75rem] xsm:block'>
           <div className='relative h-[25.875rem] w-full overflow-hidden rounded-[1rem]'>
             <Image
-              src={activeItem.bgMobile}
-              alt={`${activeItem.title} mobile`}
+              src={activeItem?.bgMobile}
+              alt={`${activeItem?.title} mobile`}
               fill
               priority
               className='object-cover'
