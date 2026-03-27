@@ -2,13 +2,15 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
+import { Trash2Icon } from 'lucide-react'
+import { useState } from 'react'
 import { useForm, useFormState, useWatch, type Control, type FieldPath } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import DrawerProvider from '@/components/providers/DrawerProvider'
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import {
   Form,
   FormControl,
@@ -42,9 +44,9 @@ const formSchema = z
         { message: 'Số điện thoại không hợp lệ' },
       ),
     your_choice: z.array(z.string()).optional(),
-    homestay_name: z.string().trim().min(1, 'Vui lòng nhập'),
-    location: z.string().trim().min(1, 'Vui lòng nhập'),
-    tourist_spot: z.string().trim().min(1, 'Vui lòng nhập'),
+    homestay_name: z.string().optional(),
+    location: z.string().optional(),
+    tourist_spot: z.string().optional(),
     koc_channel: z.string().optional(),
     note: z.string().optional(),
   })
@@ -137,13 +139,6 @@ function InputField({
                   className={inputClass}
                   disabled={isLoading}
                 />
-
-                {/* loading spinner */}
-                {isLoading && (
-                  <div className='absolute right-3 top-1/2 -translate-y-1/2'>
-                    <div className='w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin' />
-                  </div>
-                )}
               </div>
             </FormControl>
 
@@ -160,6 +155,7 @@ const inputClass =
 //form
 export default function MyForm({ serviceComboData }: { serviceComboData: ServiceComboItem[] }) {
   const isMobile = useIsMobile()
+  const [choiceDrawerOpen, setChoiceDrawerOpen] = useState(false)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -193,7 +189,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
 
       const status = response?.status
       if (status === 'mail_sent' || status === 'success') {
-        toast('Gửi thông tin thành công')
+        toast.success('Gửi thông tin thành công')
         form.reset()
         return
       }
@@ -205,7 +201,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
       )
     } catch (error) {
       console.error(error)
-      toast.error('Failed to submit the form. Please try again.')
+      toast.error('Gửi thông tin chưa thành công. Vui lòng kiểm tra lại và thử lại!')
     }
   }
 
@@ -241,10 +237,10 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                           key={item.value}
                           className={`flex items-center ${index !== 0 ? 'ml-[2.82rem] xsm:ml-0 xsm:mt-[1rem]' : ''}`}
                         >
-                          <FormControl className='m-[0]'>
+                          <FormControl className='m-[0] cursor-pointer'>
                             <RadioGroupItem value={item.value} />
                           </FormControl>
-                          <FormLabel className='ml-[0.5rem] font-normal leading-none text-[#10475F]/80'>
+                          <FormLabel className='ml-[0.5rem] font-normal leading-none text-[#10475F]/80 cursor-pointer'>
                             {item.label}
                           </FormLabel>
                         </FormItem>
@@ -342,8 +338,8 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
 
                 return (
                   <FormItem className='mt-[1.5rem]'>
-                    <FormLabel className='pc-16-16-r-input text-[#10475F]'>
-                      Nhu cầu của bạn
+                    <FormLabel className={`pc-16-16-r-input ${form.formState.errors.your_choice ? 'text-red-500' : 'text-[#10475F]'}`}>
+                      Nhu cầu của bạn <span className='text-red-500'>*</span>
                     </FormLabel>
 
                     {!isMobile && (
@@ -355,8 +351,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                               className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
                             >
                               <span
-                                className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
-                                  }`}
+                                className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'}`}
                               >
                                 {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
                               </span>
@@ -401,54 +396,82 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                     )}
 
                     {isMobile && (
-                      <Drawer>
-                        <DrawerTrigger asChild>
-                          <FormControl>
-                            <button
-                              type='button'
-                              className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
+                      <>
+                        <FormControl>
+                          <button
+                            type='button'
+                            onClick={() => setChoiceDrawerOpen(true)}
+                            className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
+                          >
+                            <span
+                              className={`${values.length > 0 ? 'text-[#10475F] truncate max-w-[18rem]' : 'text-[#10475F]/40'}`}
                             >
-                              <span
-                                className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'}`}
-                              >
-                                {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
-                              </span>
+                              {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
+                            </span>
 
-                              <svg
-                                xmlns='http://www.w3.org/2000/svg'
-                                width='16'
-                                height='16'
-                                viewBox='0 0 24 24'
-                                fill='none'
-                                stroke='#10475F'
-                                strokeWidth='2'
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                className='opacity-50'
-                              >
-                                <path d='m6 9 6 6 6-6' />
-                              </svg>
-                            </button>
-                          </FormControl>
-                        </DrawerTrigger>
+                            <svg
+                              xmlns='http://www.w3.org/2000/svg'
+                              width='16'
+                              height='16'
+                              viewBox='0 0 24 24'
+                              fill='none'
+                              stroke='#10475F'
+                              strokeWidth='2'
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              className='opacity-50'
+                            >
+                              <path d='m6 9 6 6 6-6' />
+                            </svg>
+                          </button>
+                        </FormControl>
 
-                        <DrawerContent showDrawerDrag={false}>
-                          <div className='max-h-[50vh] overflow-y-auto'>
-                            {serviceComboData.map((item) => (
-                              <label
-                                key={item.id}
-                                className='flex items-center gap-2.5 px-5 py-3.5 cursor-pointer'
+                        <DrawerProvider open={choiceDrawerOpen} setOpen={setChoiceDrawerOpen} showDrawerDrag>
+                          <div className='relative'>
+                            <div className='h-[3.44rem] bg-[#27AAE1] px-3 flex items-center justify-between'>
+                              <p className='mb-16-m text-trim-trim-both text-edge-[cap_alphabetic] text-white'>Chọn nhu cầu</p>
+                              <button
+                                type='button'
+                                onClick={() => field.onChange([])}
+                                disabled={values.length === 0}
+                                className='h-[2.0625rem] px-[0.6875rem] flex-center bg-white rounded-[2.5625rem] disabled:opacity-60 disabled:cursor-not-allowed'
                               >
-                                <Checkbox
-                                  checked={values.includes(item.name)}
-                                  onCheckedChange={() => toggleValue(item.name)}
-                                />
-                                <span className='text-[#10475F] text-[0.875rem]'>{item.name}</span>
-                              </label>
-                            ))}
+                                <p className='mb-14-r text-[#EF2020]'>Xoá lựa chọn</p>
+                                <Trash2Icon className='size-[1.125rem] text-[#EF2020]' />
+                              </button>
+                            </div>
+                            <div className='flex flex-col max-h-[18rem] overflow-y-auto'>
+                              {serviceComboData.map((item) => (
+                                <label
+                                  key={item.id}
+                                  className='flex items-center px-[1.25rem] py-[0.875rem] space-x-[0.625rem] cursor-pointer'
+                                >
+                                  <Checkbox
+                                    checked={values.includes(item.name)}
+                                    onCheckedChange={() => toggleValue(item.name)}
+                                    className='size-[1.125rem]'
+                                  />
+                                  <span className='text-[1.125rem] text-[#10475F] leading-[1.3] text-trim-trim-both text-edge-[cap_alphabetic]'>
+                                    {item.name}
+                                  </span>
+                                </label>
+                              ))}
+                            </div>
+
+                            <div className='sticky bottom-0 left-0 w-full h-[3.625rem] bg-white shadow-[0_-3px_8px_0_rgba(0,0,0,0.06)] pt-4 px-3 pb-[0.375rem] flex items-center justify-between'>
+                              <button
+                                type='button'
+                                onClick={() => {
+                                  setChoiceDrawerOpen(false)
+                                }}
+                                className='w-full h-[2.25rem] rounded-[6.25rem] bg-[#27AAE1] text-white text-[0.8125rem] leading-[1.5] disabled:opacity-80 disabled:cursor-not-allowed'
+                              >
+                                Tiếp tục
+                              </button>
+                            </div>
                           </div>
-                        </DrawerContent>
-                      </Drawer>
+                        </DrawerProvider>
+                      </>
                     )}
                     <FormMessage />
                   </FormItem>
