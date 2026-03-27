@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -160,7 +159,7 @@ const inputClass =
 
 //form
 export default function MyForm({ serviceComboData }: { serviceComboData: ServiceComboItem[] }) {
-  const { isMobile } = useIsMobile()
+  const isMobile = useIsMobile()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

@@ -19,7 +19,7 @@ export default function TravelGuide({ page, data }: TravelGuideProps) {
   const featuredData = data.slice(0, 2)
   const compactData = data.slice(2, 5)
 
-  const { isMobile } = useIsMobile()
+  const isMobile = useIsMobile()
 
   return (
     <section className='pt-30 mb-28.75 xsm:pt-0 xsm:mb-18'>
