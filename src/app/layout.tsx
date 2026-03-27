@@ -5,25 +5,32 @@ import { Toaster } from 'sonner'
 
 import { halyardDisplay, montserrat } from '@/fonts'
 import './globals.css'
+import { ApiHeaderResponse } from '@/interfaces/header.interface'
 import Footer from '@/layouts/footer/footer'
 import Header from '@/layouts/header/header'
+import headerService from '@/services/header'
 
 export const metadata: Metadata = {
   title: 'Homes World',
   description: 'Homes World',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const [headerData]: [ApiHeaderResponse] = await Promise.all([headerService.getHeader()])
+
   return (
-    <html lang='vi' suppressHydrationWarning>
+    <html
+      lang='vi'
+      suppressHydrationWarning
+    >
       <body
         className={`${montserrat.variable} ${halyardDisplay.variable} ${halyardDisplay.className} antialiased mt-[4.87rem] xsm:mt-[3.13rem]`}
       >
-        <Header />
+        <Header data={headerData?.header} />
         <NuqsAdapter>{children}</NuqsAdapter>
         <NextTopLoader
           color='linear-gradient(0deg, #8CC63F 0%, #27AAE1 100%)'

@@ -2,27 +2,41 @@
 import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import useIsMobile from '@/hooks/useIsMobile'
+import { useScrollHeader } from '@/hooks/useScrollHeader'
+import { IHeaderAcf } from '@/interfaces/header.interface'
 import ItemMobileNav from '@/layouts/header/_components/ItemMobileNav'
 import Language from '@/layouts/header/_components/Language'
 import Navigation from '@/layouts/header/_components/Navigation'
-
-const Header = () => {
-  const { isMobile } = useIsMobile()
+import './style.css'
+type HeaderProps = {
+  data: IHeaderAcf
+}
+const Header = ({ data }: HeaderProps) => {
   const [language, setLanguage] = useState<'en' | 'vi'>('vi')
+
   const [isOpen, setIsOpen] = useState(false)
-  if (isMobile) {
-    return (
-      <header className='z-99 fixed top-0 left-0 flex justify-between items-center w-full pl-[0.75rem] w-[23.4375rem] h-[3.125rem] bg-white border-white/20 border-b-[0.0625rem] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.01),0rem_3.4375rem_3.4375rem_0rem_rgba(0,0,0,0.01),0rem_7.75rem_4.625rem_0rem_rgba(0,0,0,0.01),0rem_13.75rem_5.5rem_0rem_rgba(0,0,0,0),0rem_21.5rem_6rem_0rem_rgba(0,0,0,0)]'>
+  const headerRef = useRef<HTMLElement>(null)
+  useScrollHeader(headerRef as React.RefObject<HTMLElement>)
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto'
+  }, [isOpen])
+  return (
+    <header
+      ref={headerRef}
+      className='z-99 fixed top-0 left-0  w-full bg-[var(--header-bg)] transition-all duration-600'
+    >
+      {/* MB */}
+      <div className='xsm:flex hidden justify-between items-center w-full pl-[0.75rem] w-[23.4375rem] h-[3.125rem]  border-white/20 border-b-[0.0625rem] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.01),0rem_3.4375rem_3.4375rem_0rem_rgba(0,0,0,0.01),0rem_7.75rem_4.625rem_0rem_rgba(0,0,0,0.01),0rem_13.75rem_5.5rem_0rem_rgba(0,0,0,0),0rem_21.5rem_6rem_0rem_rgba(0,0,0,0)]'>
         <Link href={'/'}>
           <Image
             className='w-[8.5rem] h-[1.375rem]'
             width={204}
             height={34}
             alt='Logo'
-            src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Logo.svg'}
+            src={data?.logo}
           />
         </Link>
         <div
@@ -75,14 +89,22 @@ const Header = () => {
             </div>
           </div>
           <div className='px-[0.75rem] mb-[3.62rem]'>
-            <ItemMobileNav
-              title='Hỗ trợ'
-              type={true}
-            ></ItemMobileNav>
-            <ItemMobileNav
-              title='Combo du lịch'
-              type={false}
-            ></ItemMobileNav>
+            {data?.menu?.map((menu, index) => {
+              return (
+                <ItemMobileNav
+                  key={index}
+                  data={menu}
+                  onClose={() => {
+                    setIsOpen(false)
+                  }}
+                ></ItemMobileNav>
+              )
+            })}
+
+            {/* <ItemMobileNav
+                title='Combo du lịch'
+                type={false}
+              ></ItemMobileNav> */}
             {/* <ItemMobileNav></ItemMobileNav> */}
           </div>
           <Language
@@ -90,31 +112,25 @@ const Header = () => {
             setLanguage={setLanguage}
           />
           <div className='flex justify-center mt-[1.56rem]'>
-            <Link
-              href=''
-              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0'
-            >
-              <Image
-                width={18}
-                height={18}
-                className='size-[1.25rem]'
-                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/instagram.svg'}
-                alt='Icon social media'
-              />
-            </Link>
-            <Link
-              href=''
-              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0'
-            >
-              <Image
-                width={18}
-                height={18}
-                className='size-[1.25rem]'
-                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/facebook.svg'}
-                alt='Icon social media'
-              />
-            </Link>
-            <Link
+            {data?.social_media?.map((item, index) => {
+              return (
+                <Link
+                  key={index}
+                  target={item?.link?.target}
+                  href={item?.link?.url}
+                  className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0'
+                >
+                  <Image
+                    width={18}
+                    height={18}
+                    className='size-[1.25rem]'
+                    src={item?.icon}
+                    alt='Icon social media'
+                  />
+                </Link>
+              )
+            })}
+            {/* <Link
               href=''
               className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0'
             >
@@ -125,56 +141,64 @@ const Header = () => {
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/tiktok.svg'}
                 alt='Icon social media'
               />
-            </Link>
+            </Link> */}
           </div>
         </div>
-      </header>
-    )
-  }
-  return (
-    <header className='z-99 fixed top-0 left-0 bg-white w-full'>
-      <div className='flex justify-between items-center py-[1rem] w-[87.5rem] mx-auto'>
+      </div>
+      {/* PC */}
+      <div className='xsm:hidden flex justify-between items-center py-[1rem] w-[87.5rem] mx-auto'>
         <div className='flex items-center'>
-          <Link href={'/'}>
+          <Link
+            href={'/'}
+            className='relative w-[12.75rem] h-[2.125rem] mr-[2.62rem]'
+          >
             <Image
-              className='mr-[2.62rem] w-[12.75rem] h-[2.125rem]'
+              className='logo-dark absolute top-0 left-0 transition-all duration-300'
               width={204}
               height={34}
               alt='Logo'
-              src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Logo.svg'}
+              src={data?.logo}
+            />
+            <Image
+              className='logo-white absolute top-0 left-0 opacity-0 transition-all duration-300'
+              width={204}
+              height={34}
+              alt='Logo'
+              src={data?.logo_white}
             />
           </Link>
-          <Navigation></Navigation>
+          <Navigation data={data?.menu}></Navigation>
         </div>
         <div className='flex items-center'>
           <div className='flex justify-center mr-[1.5rem]'>
-            <Link
+            {data?.social_media?.map((item, index) => {
+              return (
+                <Link
+                  key={index}
+                  target={item?.link?.target}
+                  href={item?.link?.url}
+                  className='relative flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[var(--header-icon)] mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
+                >
+                  <Image
+                    width={18}
+                    height={18}
+                    className='absolute left-1/2 top-1/2 -translate-1/2 size-[1.25rem] logo-white transition-all duration-300'
+                    src={item?.icon_white}
+                    alt='Icon social media'
+                  />
+                  <Image
+                    width={18}
+                    height={18}
+                    className='absolute left-1/2 top-1/2 -translate-1/2 size-[1.25rem] logo-dark transition-all duration-300'
+                    src={item?.icon}
+                    alt='Icon social media'
+                  />
+                </Link>
+              )
+            })}
+            {/* <Link
               href=''
-              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
-            >
-              <Image
-                width={18}
-                height={18}
-                className=' size-[1.25rem]'
-                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/instagram.svg'}
-                alt='Icon social media'
-              />
-            </Link>
-            <Link
-              href=''
-              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
-            >
-              <Image
-                width={18}
-                height={18}
-                className=' size-[1.25rem]'
-                src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/facebook.svg'}
-                alt='Icon social media'
-              />
-            </Link>
-            <Link
-              href=''
-              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
+              className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[var(--header-icon)] mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
             >
               <Image
                 width={18}
@@ -183,7 +207,7 @@ const Header = () => {
                 src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/tiktok.svg'}
                 alt='Icon social media'
               />
-            </Link>
+            </Link> */}
           </div>
           <Language
             language={language}
