@@ -89,7 +89,7 @@ const Header = ({ data }: HeaderProps) => {
             </div>
           </div>
           <div className='px-[0.75rem] mb-[3.62rem]'>
-            {data.menu.map((menu, index) => {
+            {data?.menu?.map((menu, index) => {
               return (
                 <ItemMobileNav
                   key={index}
@@ -116,15 +116,15 @@ const Header = ({ data }: HeaderProps) => {
               return (
                 <Link
                   key={index}
-                  target={item.link.target}
-                  href={item.link.url}
+                  target={item?.link?.target}
+                  href={item?.link?.url}
                   className='flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[#27AAE1]/10 mr-[1rem] last:mr-0'
                 >
                   <Image
                     width={18}
                     height={18}
                     className='size-[1.25rem]'
-                    src={item.icon}
+                    src={item?.icon}
                     alt='Icon social media'
                   />
                 </Link>
@@ -167,7 +167,7 @@ const Header = ({ data }: HeaderProps) => {
               src={data?.logo_white}
             />
           </Link>
-          <Navigation data={data.menu}></Navigation>
+          <Navigation data={data?.menu}></Navigation>
         </div>
         <div className='flex items-center'>
           <div className='flex justify-center mr-[1.5rem]'>
@@ -175,22 +175,22 @@ const Header = ({ data }: HeaderProps) => {
               return (
                 <Link
                   key={index}
-                  target={item.link.target}
-                  href={item.link.url}
+                  target={item?.link?.target}
+                  href={item?.link?.url}
                   className='relative flex items-center justify-center rounded-[6.25rem] size-[2.875rem] bg-[var(--header-icon)] mr-[1rem] last:mr-0 hover:opacity-70 transition-all duration-300'
                 >
                   <Image
                     width={18}
                     height={18}
                     className='absolute left-1/2 top-1/2 -translate-1/2 size-[1.25rem] logo-white transition-all duration-300'
-                    src={item.icon_white}
+                    src={item?.icon_white}
                     alt='Icon social media'
                   />
                   <Image
                     width={18}
                     height={18}
                     className='absolute left-1/2 top-1/2 -translate-1/2 size-[1.25rem] logo-dark transition-all duration-300'
-                    src={item.icon}
+                    src={item?.icon}
                     alt='Icon social media'
                   />
                 </Link>

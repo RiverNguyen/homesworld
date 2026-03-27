@@ -1,7 +1,7 @@
 'use client'
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
-import React, { ChangeEvent } from 'react'
+import { ChangeEvent } from 'react'
 
 type LanguageProps = {
   language: 'en' | 'vi'

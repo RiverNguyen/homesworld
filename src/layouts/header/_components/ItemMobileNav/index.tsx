@@ -12,8 +12,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { IHeaderMenu } from '@/interfaces/header.interface'
-
-import CardItem from '../CardItem'
+import CardItem from '@/layouts/header/_components/CardItem/index'
 
 type ItemMobileNavProps = {
   data: IHeaderMenu
@@ -21,7 +20,7 @@ type ItemMobileNavProps = {
 }
 const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
   const { link, icon } = data
-  if (data.select === 'normal')
+  if (data?.select === 'normal')
     return (
       <Link
         href={link?.url ?? '#'}
@@ -44,10 +43,10 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
           <DrawerHeader>
             <DrawerTitle>{`${link?.title} tại địa điểm`}</DrawerTitle>
           </DrawerHeader>
-          {data.select === 'mega' ? (
+          {data?.select === 'mega' ? (
             <div className='pr-[0.25rem]'>
               <div className='flex flex-col pb-[0.5rem] w-full min-h-[12rem] max-h-[33.97rem] overflow-auto'>
-                {data.links.map((item, index) => {
+                {data?.links?.map((item, index) => {
                   return (
                     <Link
                       key={index}
@@ -73,7 +72,7 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
           ) : (
             <div className='relative pl-[0.75rem] pr-[0.25rem]'>
               <div className='pr-[0.28rem] pt-[0.75rem] pb-[3.65rem]  grid grid-cols-3 justify-items-center gap-y-[0.6875rem] w-full min-h-[12rem] max-h-[33.97rem] overflow-auto'>
-                {data.categories.map((item, index) => {
+                {data?.categories?.map((item, index) => {
                   return (
                     <CardItem
                       key={index}

@@ -4,8 +4,8 @@ import { useRef } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { ICategory } from '@/interfaces/header.interface'
+import CardItem from '@/layouts/header/_components/CardItem/index'
 
-import CardItem from '../CardItem'
 type ListCardProps = {
   data: ICategory[]
 }
@@ -30,14 +30,14 @@ const ListCard = ({ data }: ListCardProps) => {
           className='grid grid-cols-9 grid-auto-rows pr-[1.38rem] gap-[1rem] max-h-full overflow-auto'
           onScroll={checkScrollPosition}
         >
-          {data.map((category, index) => {
+          {data?.map((category, index) => {
             return (
               <CardItem
                 key={index}
-                slug={category.slug}
-                image={category.acf.thumbnail}
+                slug={category?.slug}
+                image={category?.acf?.thumbnail}
               >
-                {category.name}
+                {category?.name}
               </CardItem>
             )
           })}

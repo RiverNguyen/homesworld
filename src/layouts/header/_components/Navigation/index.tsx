@@ -11,7 +11,7 @@ type NavigationProps = {
 const Navigation = ({ data }: NavigationProps) => {
   return (
     <nav className='flex pt-[0.88rem]'>
-      {data.map((menu, index) => {
+      {data?.map((menu, index) => {
         return (
           <div
             key={index}
@@ -34,7 +34,7 @@ const Navigation = ({ data }: NavigationProps) => {
                           href={subLink?.link.url ?? '#'}
                         >
                           <li className='pc-18-18-m font-normal cursor-pointer py-[0.875rem] pl-[1.25rem] w-[21.4375rem] h-[3.25rem] bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
-                            {subLink?.link.title}
+                            {subLink?.link?.title}
                           </li>
                         </Link>
                       )
@@ -48,7 +48,7 @@ const Navigation = ({ data }: NavigationProps) => {
                 </div>
               </>
             )}
-            {menu.select === 'category' && (
+            {menu?.select === 'category' && (
               <>
                 <div className='fixed left-1/2 -translate-x-1/2 pt-[1.5rem] group-hover:opacity-100 group-hover:visible invisible opacity-0 transition-all duration-300'>
                   <ListCard data={menu?.categories}></ListCard>
