@@ -9,6 +9,11 @@ export function useScrollHeader(headerRef: React.RefObject<HTMLElement>) {
   const ticking = useRef(false)
   const isClient = useIsClient()
 
+  useEffect(() => {
+    if (window.location.pathname === '/' && window.innerWidth > 639) {
+      headerRef.current.classList.add('transparent')
+    }
+  }, [])
   const updateScrollDirection = useCallback(() => {
     if (!isClient) return
     const el = headerRef.current
@@ -26,7 +31,11 @@ export function useScrollHeader(headerRef: React.RefObject<HTMLElement>) {
             headerRef.current!.style.transform = 'translateY(-150%)'
             headerRef.current.classList.remove('transparent')
           } else {
-            if (scrollY <= window.innerHeight / 4 && window.location.pathname === '/') {
+            if (
+              scrollY <= window.innerHeight / 4 &&
+              window.location.pathname === '/' &&
+              window.innerWidth > 639
+            ) {
               headerRef.current.classList.add('transparent')
             }
             headerRef.current!.style.transform = 'translateY(0)'

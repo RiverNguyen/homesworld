@@ -1,10 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { IFooterAcf } from '@/interface/footer'
+import { IFooterAcf } from '@/interfaces/footer.interface'
 import footerService from '@/services/footer'
-
-import FooterClient from './footer-client'
 
 const Footer = async () => {
   const [{ footer }]: [{ footer: IFooterAcf }] = await Promise.all([footerService.getFooter()])
@@ -21,7 +19,6 @@ const Footer = async () => {
             height={92}
           ></Image>
         </Link>
-
         <div className='xsm:order-5 xsm:max-w-max xsm:pt-[1.38rem] flex flex-col max-w-[17.9rem] xsm:border-t-1 border-dashed border-[#10475F]/20'>
           {footer.info.map((item, index) => {
             if (!item.link.url || !item.link.title) {
@@ -51,7 +48,39 @@ const Footer = async () => {
             )
           })}
         </div>
-        <FooterClient acfFooter={footer}></FooterClient>
+        {/* <FooterClient acfFooter={footer}></FooterClient> */}
+        <div className='xsm:hidden flex flex-col xsm:border-t-1 border-dashed border-[#10475F]/20 lg:max-w-[10rem]'>
+          {footer.first_column.map((item, index) => {
+            if (!item.link.url || !item.link.title) {
+              return
+            }
+            return (
+              <Link
+                href={item.link.url}
+                className='pc-16-16-r text-[#10475F] lg:hover:opacity-70 transition-all duration-300 mb-[1.62rem] last:mb-0 text-edge-[cap_alphabetic] [text-box-trim:trim-both]'
+                key={index}
+              >
+                {item.link.title}
+              </Link>
+            )
+          })}
+        </div>
+        <div className='xsm:flex hidden flex-row pt-[1.38rem] w-full justify-between border-t-1 border-dashed border-[#10475F]/20 lg:max-w-[10rem]'>
+          {footer.link_mobile.map((item, index) => {
+            if (!item.link.url || !item.link.title) {
+              return
+            }
+            return (
+              <a
+                href={item.link.url}
+                className='xsm:block xsm:text-[0.875rem] hidden pc-16-16-r text-[#10475F]'
+                key={index}
+              >
+                {item.link.title}
+              </a>
+            )
+          })}
+        </div>
         <div className='xsm:hidden w-[18.1875rem] flex flex-col'>
           {footer.second_column.map((item, index) => {
             if (!item.link.url || !item.link.title) {

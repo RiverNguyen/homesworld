@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -24,7 +23,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Textarea } from '@/components/ui/textarea'
 import endpoints from '@/configs/endpoints'
 import CF7Request from '@/fetches/cf7Request'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import useIsMobile from '@/hooks/useIsMobile'
 import { ServiceComboItem } from '@/interfaces/serviceCombo.interface'
 
 const formSchema = z
@@ -160,7 +159,7 @@ const inputClass =
 
 //form
 export default function MyForm({ serviceComboData }: { serviceComboData: ServiceComboItem[] }) {
-  const { isMobile } = useIsMobile()
+  const isMobile = useIsMobile()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

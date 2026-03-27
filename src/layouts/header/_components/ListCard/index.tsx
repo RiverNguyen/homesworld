@@ -3,9 +3,13 @@ import Link from 'next/link'
 import { useRef } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { ICategory } from '@/interfaces/header.interface'
 
 import CardItem from '../CardItem'
-const ListCard = () => {
+type ListCardProps = {
+  data: ICategory[]
+}
+const ListCard = ({ data }: ListCardProps) => {
   const decoRef = useRef<HTMLDivElement>(null)
   const checkScrollPosition = (event: React.UIEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement
@@ -26,108 +30,20 @@ const ListCard = () => {
           className='grid grid-cols-9 grid-auto-rows pr-[1.38rem] gap-[1rem] max-h-full overflow-auto'
           onScroll={checkScrollPosition}
         >
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
+          {data.map((category, index) => {
+            return (
+              <CardItem
+                key={index}
+                slug={category.slug}
+                image={category.acf.thumbnail}
+              >
+                {category.name}
+              </CardItem>
+            )
+          })}
+          {/* <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
             Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
-          <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
-            Hà Nội - Hà Đông
-          </CardItem>
+          </CardItem> */}
         </div>
         <div
           ref={decoRef}

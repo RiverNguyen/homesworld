@@ -2,7 +2,7 @@ import TocBot from '@/components/shared/TocBot'
 import './style.css'
 import ENDPOINTS from '@/configs/endpoints'
 import { addIdToHeadings } from '@/helper/add-id-to-headings'
-import { IPaymentPolicyContent } from '@/interface/payment-policy'
+import { IPaymentPolicyContent } from '@/interfaces/payment-policy.interface'
 import paymentPolicyService from '@/services/payment-policy'
 
 const PaymentPolicy = async () => {

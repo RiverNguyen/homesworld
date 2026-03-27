@@ -1,12 +1,64 @@
 'use client'
 import Link from 'next/link'
 
+import { IHeaderMenu } from '@/interfaces/header.interface'
 import ListCard from '@/layouts/header/_components/ListCard'
 
-const Navigation = () => {
+type NavigationProps = {
+  data: IHeaderMenu[]
+}
+
+const Navigation = ({ data }: NavigationProps) => {
   return (
     <nav className='flex pt-[0.88rem]'>
-      <div className='relative group '>
+      {data.map((menu, index) => {
+        return (
+          <div
+            key={index}
+            className='relative group'
+          >
+            <Link
+              href={menu?.link?.url}
+              className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
+            >
+              {menu?.link?.title}
+            </Link>
+            {menu?.select === 'mega' && (
+              <>
+                <div className='-translate-x-1/2 absolute left-1/2 top-full pt-[1.5rem] group-hover:opacity-100 group-hover:visible invisible opacity-0 transition-all duration-300'>
+                  <ul className='bg-white rounded-[1.125rem] shadow-[0.125rem_0.375rem_2rem_0rem_rgba(0,0,0,0.06)] overflow-hidden'>
+                    {menu.links.map((subLink, index) => {
+                      return (
+                        <Link
+                          key={index}
+                          href={subLink?.link.url ?? '#'}
+                        >
+                          <li className='pc-18-18-m font-normal cursor-pointer py-[0.875rem] pl-[1.25rem] w-[21.4375rem] h-[3.25rem] bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
+                            {subLink?.link.title}
+                          </li>
+                        </Link>
+                      )
+                    })}
+                    {/* <Link href={'#'}>
+                      <li className='pc-18-18-m font-normal cursor-pointer py-[0.875rem] pl-[1.25rem] w-[21.4375rem] h-[3.25rem] bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
+                        Chính sách thanh toán - quy trình
+                      </li>
+                    </Link> */}
+                  </ul>
+                </div>
+              </>
+            )}
+            {menu.select === 'category' && (
+              <>
+                <div className='fixed left-1/2 -translate-x-1/2 pt-[1.5rem] group-hover:opacity-100 group-hover:visible invisible opacity-0 transition-all duration-300'>
+                  <ListCard data={menu?.categories}></ListCard>
+                </div>
+              </>
+            )}
+          </div>
+        )
+      })}
+      {/* <div className='relative group '>
         <Link
           href={'#'}
           className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
@@ -70,7 +122,7 @@ const Navigation = () => {
         >
           Liên hệ
         </Link>
-      </div>
+      </div> */}
     </nav>
   )
 }

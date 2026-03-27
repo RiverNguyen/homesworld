@@ -3,12 +3,13 @@ import Link from 'next/link'
 type CardItemProps = {
   children: string
   image: string
+  slug: string
 }
-const CardItem = ({ children, image }: CardItemProps) => {
+const CardItem = ({ children, image, slug }: CardItemProps) => {
   return (
     <Link
       className='xsm:w-[6.875rem] xsm:h-[6.625rem] relative group w-[8.375rem] h-[8rem] rounded-[0.75rem] border-white/20 border-[0.0625rem] shadow-[0rem_0.1875rem_0.375rem_0rem_rgba(153,153,153,0.2),0rem_0.75rem_0.75rem_0rem_rgba(153,153,153,0.17),0rem_1.625rem_1rem_0rem_rgba(153,153,153,0.1),0rem_2.875rem_1.125rem_0rem_rgba(153,153,153,0.03),0rem_4.5rem_1.25rem_0rem_rgba(153,153,153,0)] overflow-hidden hover:scale-99 hover:border-white hover:border-[0.125rem] transition-all duration-300'
-      href={'#'}
+      href={`/${slug}`}
     >
       <Image
         width={134}
