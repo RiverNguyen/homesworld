@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ICLocation = (props: React.SVGAttributes<SVGElement>) => {
+const ICCall = (props: React.SVGAttributes<SVGElement>) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -21,4 +21,4 @@ const ICLocation = (props: React.SVGAttributes<SVGElement>) => {
   )
 }
 
-export default ICLocation
+export default ICCall

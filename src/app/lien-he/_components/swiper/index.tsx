@@ -8,8 +8,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 
-import ICArrowLeft from '@/components/ui/icons/ICLeft'
-import ICRight from '@/components/ui/icons/ICRight'
+import ICArrowLeft from '@/components/icons/ICLeft'
+import ICRight from '@/components/icons/ICRight'
 import type { SocialItem } from '@/interfaces/contact.interface'
 
 export default function SocialSwiper({ data }: { data: SocialItem[] }) {

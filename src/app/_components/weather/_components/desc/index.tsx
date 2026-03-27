@@ -1,5 +1,6 @@
 'use client'
 
+import { AnimatePresence, motion } from 'motion/react'
 import Image from 'next/image'
 
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
@@ -8,6 +9,7 @@ type DescData = {
   qrSrc: string
   linkUrl: string
   buttonText: string
+  location: string
   temperature: string
   weatherText: string
 }
@@ -114,25 +116,61 @@ function TemperatureDesktop({
   temperature,
   buttonText,
   linkUrl,
+  location,
 }: {
   temperature: string
   buttonText: string
   linkUrl: string
+  location: string
 }) {
   return (
-    <div className='mt-[0.38rem] flex items-center xsm:hidden'>
+    <div
+      className='mt-[0.38rem] flex items-center xsm:hidden'
+    >
       <ThermometerIcon className='h-[2.1875rem] w-[2.1875rem] text-white' />
-      <p className='pc-h3-32-r ml-[0.25rem] font-halyard-display text-[2rem] font-normal text-white'>
-        {temperature}
-      </p>
+      <AnimatePresence mode='wait' initial={false}>
+        <motion.p
+          key={temperature}
+          className='pc-h3-32-r ml-[0.25rem] font-halyard-display text-[2rem] font-normal text-white'
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{
+            duration: 0.25,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          {temperature}
+        </motion.p>
+      </AnimatePresence>
 
       {linkUrl && (
         <ButtonPrimary
-          text={buttonText}
           className='ml-[1.5rem]'
           type='link'
           href={linkUrl}
-        />
+        >
+          <span className='inline-flex items-center gap-[0.35rem]'>
+            <span>{buttonText}</span>
+            <AnimatePresence mode='wait' initial={false}>
+              {location ? (
+                <motion.span
+                  key={location}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{
+                    duration: 0.28,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className='inline-block text-trim-trim-both'
+                >
+                  {location}
+                </motion.span>
+              ) : null}
+            </AnimatePresence>
+          </span>
+        </ButtonPrimary>
       )}
     </div>
   )
@@ -142,10 +180,12 @@ function TemperatureMobile({
   temperature,
   buttonText,
   linkUrl,
+  location,
 }: {
   temperature: string
   buttonText: string
   linkUrl: string
+  location: string
 }) {
   return (
     <div className='mt-[0.38rem] hidden xsm:ml-[0.88rem] xsm:flex xsm:flex-wrap xsm:items-center xsm:justify-center'>
@@ -154,25 +194,57 @@ function TemperatureMobile({
           Nhiệt độ hôm nay :
         </p>
         <ThermometerIcon className='xsm:size-[1rem] text-white' />
-        <p className='pc-h3-32-r font-halyard-display text-[2rem] font-normal text-white xsm:text-[1.25rem] xsm:leading-[1]'>
-          {temperature}
-        </p>
+        <AnimatePresence mode='wait' initial={false}>
+          <motion.p
+            key={temperature}
+            className='pc-h3-32-r font-halyard-display text-[2rem] font-normal text-white xsm:text-[1.25rem] xsm:leading-[1]'
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{
+              duration: 0.25,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {temperature}
+          </motion.p>
+        </AnimatePresence>
       </div>
 
       {linkUrl && (
         <ButtonPrimary
-          text={buttonText}
           className='xsm:w-[14rem]'
           type='link'
           href={linkUrl}
-        />
+        >
+          <span className='inline-flex items-center gap-[0.35rem]'>
+            <span>{buttonText}</span>
+            <AnimatePresence mode='wait' initial={false}>
+              {location ? (
+                <motion.span
+                  key={location}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{
+                    duration: 0.26,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  {location}
+                </motion.span>
+              ) : null}
+            </AnimatePresence>
+          </span>
+        </ButtonPrimary>
       )}
     </div>
   )
 }
 
 function Desc({ descData }: DescProps) {
-  const { temperature, weatherText, qrSrc, linkUrl, buttonText } = descData
+  const { temperature, weatherText, qrSrc, linkUrl, buttonText, location } =
+    descData
 
   return (
     <div className='absolute bottom-[2.5rem] z-50 left-[2.5rem] flex flex-col xsm:bottom-[1.25rem] xsm:left-[1rem] xsm:right-[1rem] xsm:px-[1.25rem]'>
@@ -200,25 +272,69 @@ function Desc({ descData }: DescProps) {
             temperature={temperature}
             buttonText={buttonText}
             linkUrl={linkUrl}
+            location={location}
           />
 
           <TemperatureMobile
             temperature={temperature}
             buttonText={buttonText}
             linkUrl={linkUrl}
+            location={location}
           />
 
-          <p className='pc-14-14-r mt-[0.75rem] max-w-[33rem] font-halyard-display text-white xsm:hidden'>
-            {weatherText}
-          </p>
+          <AnimatePresence mode='wait' initial={false}>
+            <motion.p
+              key={weatherText}
+              className='pc-14-14-r mt-[0.75rem] max-w-[33rem] overflow-hidden font-halyard-display text-white xsm:hidden'
+              initial={{
+                opacity: 0,
+                clipPath: 'inset(0% 0% 100% 0%)',
+              }}
+              animate={{
+                opacity: 1,
+                clipPath: 'inset(0% 0% 0% 0%)',
+              }}
+              exit={{
+                opacity: 0,
+                clipPath: 'inset(0% 0% 100% 0%)',
+              }}
+              transition={{
+                duration: 0.35,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {weatherText}
+            </motion.p>
+          </AnimatePresence>
         </div>
       </div>
 
       <ICHorizontalDashedLine className='hidden xsm:block xsm:mt-[0.625rem] w-[19.4375rem] text-white' />
 
-      <p className='pc-14-14-r mt-[0.75rem] hidden max-w-[33rem] font-halyard-display text-white xsm:mt-[0.62rem] xsm:block xsm:max-w-none'>
-        {weatherText}
-      </p>
+      <AnimatePresence mode='wait' initial={false}>
+        <motion.p
+          key={weatherText}
+          className='pc-14-14-r mt-[0.75rem] hidden max-w-[33rem] overflow-hidden font-halyard-display text-white xsm:mt-[0.62rem] xsm:block xsm:max-w-none'
+          initial={{
+            opacity: 0,
+            clipPath: 'inset(0% 0% 100% 0%)',
+          }}
+          animate={{
+            opacity: 1,
+            clipPath: 'inset(0% 0% 0% 0%)',
+          }}
+          exit={{
+            opacity: 0,
+            clipPath: 'inset(0% 0% 100% 0%)',
+          }}
+          transition={{
+            duration: 0.35,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          {weatherText}
+        </motion.p>
+      </AnimatePresence>
     </div>
   )
 }

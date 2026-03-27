@@ -6,7 +6,7 @@ import { Fragment } from 'react'
 import ICLineDashed from '@/components/icons/ICLineDashed'
 import ICRightArrow from '@/components/icons/ICRightArrow'
 import BlogItemCompact from '@/components/shared/blog/BlogItemCompact'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import useIsMobile from '@/hooks/useIsMobile'
 import { PostItem } from '@/interfaces/blog.interface'
 import { TravelGuide as TravelGuideType } from '@/interfaces/home.interface'
 

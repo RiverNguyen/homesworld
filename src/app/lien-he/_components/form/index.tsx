@@ -24,7 +24,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Textarea } from '@/components/ui/textarea'
 import endpoints from '@/configs/endpoints'
 import CF7Request from '@/fetches/cf7Request'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import useIsMobile from '@/hooks/useIsMobile'
 import { ServiceComboItem } from '@/interfaces/serviceCombo.interface'
 
 const formSchema = z
@@ -201,8 +201,8 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
 
       toast.error(
         response?.message ||
-          response?.detail ||
-          'Gửi thông tin chưa thành công. Vui lòng kiểm tra lại và thử lại!',
+        response?.detail ||
+        'Gửi thông tin chưa thành công. Vui lòng kiểm tra lại và thử lại!',
       )
     } catch (error) {
       console.error(error)
@@ -356,9 +356,8 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                               className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
                             >
                               <span
-                                className={`${
-                                  values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
-                                }`}
+                                className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'
+                                  }`}
                               >
                                 {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
                               </span>
@@ -480,10 +479,11 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
 
           <ButtonPrimary
             isLoading={form.formState.isSubmitting}
-            text='Gửi thông tin'
             type='submit'
             className='xsm:w-[100%] [&_svg]:size-3.5 mt-[1.5rem] xsm:mt-[1.62rem] '
-          />
+          >
+            Gửi thông tin
+          </ButtonPrimary>
         </form>
       </Form>
     </div>

@@ -14,6 +14,7 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
   }
 
   const { isMobile } = useIsMobile()
+
   if (isMobile)
     return (
       <div className='px-[0.75rem]'>
@@ -35,9 +36,7 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
               src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Flag.svg'}
             ></Image>
             <span
-              className={`text-[#10475F] text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${
-                language === 'vi' ? 'text-white' : 'text-[#10475F]'
-              }`}
+              className={`text-[#10475F] text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${language === 'vi' ? 'text-white' : 'text-[#10475F]'}`}
             >
               Tiếng Việt
             </span>
@@ -58,17 +57,13 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
               }
             ></Image>
             <span
-              className={` text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${
-                language === 'en' ? 'text-white' : 'text-[#10475F]'
-              }`}
+              className={` text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${language === 'en' ? 'text-white' : 'text-[#10475F]'}`}
             >
               Tiếng Anh
             </span>
           </div>
           <div
-            className={`absolute z-1 p-[0.875rem] grow rounded-[6.25rem] w-[calc(50%-0.25rem)] h-[2.25rem] bg-[#27AAE1] transition-all duration-300 ${
-              language === 'en' ? 'translate-x-[100%]' : ''
-            }`}
+            className={`absolute z-1 p-[0.875rem] grow rounded-[6.25rem] w-[calc(50%-0.25rem)] h-[2.25rem] bg-[#27AAE1] transition-all duration-300 ${language === 'en' ? 'translate-x-[100%]' : ''}`}
           ></div>
         </div>
       </div>

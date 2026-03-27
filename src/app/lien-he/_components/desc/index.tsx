@@ -2,8 +2,8 @@
 
 import 'swiper/css'
 import SwiperList from '@/app/lien-he/_components/swiper'
-import ICCall from '@/components/ui/icons/ICCall'
-import ICLocation from '@/components/ui/icons/ICLocation'
+import ICCall from '@/components/icons/ICCall'
+import ICLocation from '@/components/icons/ICLocation'
 import type { Contact as ContactType } from '@/interfaces/contact.interface'
 
 const Desc = ({ data }: { data: ContactType }) => {

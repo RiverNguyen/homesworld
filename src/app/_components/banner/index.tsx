@@ -19,7 +19,7 @@ export default function BannerHomepage({ data }: { data: IHome['banner'] }) {
     <section className='w-full h-[36.5rem] overflow-hidden relative xsm:h-[21.06rem]'>
       <h1 className='sr-only'>HomesWorld</h1>
       <div className='absolute top-0 left-0 w-full h-full bg-black/40 z-10 pointer-events-none' />
-      <article className='absolute z-[10] left-0 w-[87.5rem] xsm:right-3 xsm:left-3 right-0 mx-auto absolute-y-center pointer-events-none'>
+      <article className='absolute z-[10] left-0 w-[87.5rem] xsm:right-3 xsm:left-3 right-0 mx-auto absolute-y-center pointer-events-none xsm:top-[4.38rem] xsm:translate-y-0'>
         <h2 className='w-[33.18rem] pc-h1-48-s text-white font-montserrat pointer-events-auto xsm:mb-26-s xsm:w-[17.25rem]'>
           {data?.title}
         </h2>

@@ -59,9 +59,7 @@ const Header = () => {
           </svg>
         </div>
         <div
-          className={`absolute top-0 left-0 w-screen h-screen bg-white transition-all duration-300 ${
-            isOpen ? '' : 'translate-x-full'
-          }`}
+          className={`absolute top-0 left-0 w-screen h-screen bg-white transition-all duration-300 ${isOpen ? '' : 'translate-x-full'}`}
         >
           <div className='w-full border-[#10475F]/12 border-b-[0.0625rem]'>
             <div

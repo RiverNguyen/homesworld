@@ -1,11 +1,13 @@
 'use client'
 import Link from 'next/link'
 
-import { useIsMobile } from '@/hooks/useIsMobile'
+import useIsMobile from '@/hooks/useIsMobile'
 import { IFooterAcf } from '@/interface/footer'
 
 const FooterClient = ({ acfFooter: footer }: { acfFooter: IFooterAcf }) => {
   const { isMobile } = useIsMobile()
+
+  if (isMobile === undefined) return null
 
   if (!isMobile) {
     return (
