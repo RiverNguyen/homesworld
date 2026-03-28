@@ -57,12 +57,12 @@ const Background = () => {
         className='absolute left-0 top-0 h-full w-full object-cover opacity-[0.4] xsm:opacity-[0.3]'
       />
       <div
-        className='pointer-events-none absolute inset-x-0 top-0 z-10 h-[6.53044rem]'
+        className='pointer-events-none absolute left-0 right-0 top-0 z-10 h-[6.53044rem]'
         style={TOP_OVERLAY_STYLE}
       />
 
       <div
-        className='pointer-events-none absolute inset-x-0 bottom-[-4rem] z-20 h-[18.875rem] xsm:hidden'
+        className='pointer-events-none absolute left-0 right-0 bottom-[-4rem] z-20 h-[18.875rem] xsm:hidden'
         style={DESKTOP_CLOUD_OVERLAY_STYLE}
       />
 
@@ -103,7 +103,7 @@ const Background = () => {
 export default Background
 const DESKTOP_DECORATIONS = [
   {
-    // chùa 
+    // chùa
     src: '/ve-chung-toi/bg-ve-chung-toi/frame_2147264195.webp',
     alt: 'Background Overlay Desktop 1',
     width: 400,
@@ -120,7 +120,7 @@ const DESKTOP_DECORATIONS = [
     className:
       'absolute bottom-0 left-[17rem] z-[100] h-[7.4375rem] w-[42.1875rem] overflow-hidden xsm:hidden',
   },
-  // cầu 
+  // cầu
   {
     src: '/ve-chung-toi/bg-ve-chung-toi/frame_2147264192.webp',
     alt: 'Background Overlay Desktop 3',
@@ -129,7 +129,7 @@ const DESKTOP_DECORATIONS = [
     className:
       'absolute bottom-0 left-0 z-[99] h-[17.75rem] w-[18.5625rem] overflow-hidden xsm:hidden',
   },
-  // vườn cỏ + thờ 
+  // vườn cỏ + thờ
   {
     src: '/ve-chung-toi/bg-ve-chung-toi/frame_2147264193.webp',
     alt: 'Background Overlay Desktop 4',
@@ -138,7 +138,7 @@ const DESKTOP_DECORATIONS = [
     className:
       'absolute bottom-0 right-0 z-[100] h-[10.6875rem] w-[43.625rem] overflow-hidden xsm:hidden',
   },
-  // hỏa phải 
+  // hỏa phải
   {
     src: '/ve-chung-toi/bg-ve-chung-toi/frame_2147264191.webp',
     alt: 'Background Overlay Desktop 5',
@@ -150,7 +150,7 @@ const DESKTOP_DECORATIONS = [
 ] as const
 
 const MOBILE_DECORATIONS = [
-  // chùa 
+  // chùa
   {
     src: '/ve-chung-toi/bg-mobile-vechung-toi/frame_2147264202.webp',
     alt: 'Background Overlay Mobile 1',
@@ -168,7 +168,7 @@ const MOBILE_DECORATIONS = [
     className:
       'absolute bottom-0 left-0 z-[101] hidden h-[7.75rem] w-[23.4375rem] overflow-hidden xsm:block',
   },
-  // nhà 
+  // nhà
   {
     src: '/ve-chung-toi/bg-mobile-vechung-toi/frame_2147264203.webp',
     alt: 'Background Overlay Mobile 3',
