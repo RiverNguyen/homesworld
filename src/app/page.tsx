@@ -14,23 +14,14 @@ export default async function HomePage() {
     taxonomiesService.getAllTaxonomies('service_combo'),
     taxonomiesService.getAllTaxonomies('location'),
   ])
+
   return (
     <>
-      <style>{`
-          body {
-            margin-top:0;
-          }
-          @media (max-width: 639px) {
-            body {
-              margin-top: 3.13rem;
-            }
-          }
-        `}</style>
       <BannerHomepage data={homeData?.acf?.banner} />
       <FilterSearch
         taxonomies={taxonomiesData?.data}
         locations={locationData?.data}
-      /> 
+      />
       <About_us />
       <Weather acfData={homeData?.acf} />
       <TravelGuide

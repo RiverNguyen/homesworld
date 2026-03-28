@@ -1,40 +1,55 @@
-import BannerHomepage from '@/app/_components/banner'
-import FilterSearch from '@/app/_components/search'
-import TravelGuide from '@/app/_components/travel-guide'
-import homeService from '@/services/home'
-import taxonomiesService from '@/services/taxonomies'
+import type { Metadata } from 'next'
+import NextTopLoader from 'nextjs-toploader'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import { Toaster } from 'sonner'
 
-import Weather from './_components/weather'
+import { halyardDisplay, montserrat } from '@/fonts'
+import './globals.css'
+import { ApiHeaderResponse } from '@/interfaces/header.interface'
+import Footer from '@/layouts/footer/footer'
+import Header from '@/layouts/header/header'
+import headerService from '@/services/header'
 
-export default async function HomePage() {
-  const [homeData, blogRes, taxonomiesData, locationData] = await Promise.all([
-    homeService.getHome(),
-    homeService.getBlogs({ limit: 5 }),
-    taxonomiesService.getAllTaxonomies('service_combo'),
-    taxonomiesService.getAllTaxonomies('location'),
-  ])
+export const metadata: Metadata = {
+  title: 'Homes World',
+  description: 'Homes World',
+}
+
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  const [headerData]: [ApiHeaderResponse] = await Promise.all([headerService.getHeader()])
+
   return (
-    <>
-      <style>{`
-          body {
-            margin-top:0;
-          }
-          @media (max-width: 639px) {
-            body {
-              margin-top: 3.13rem;
-            }
-          }
-        `}</style>
-      <BannerHomepage data={homeData?.acf?.banner} />
-      <FilterSearch
-        taxonomies={taxonomiesData?.data}
-        locations={locationData?.data}
-      />
-      <Weather acfData={homeData?.acf} />
-      <TravelGuide
-        page={homeData?.acf?.travel_guide || {}}
-        data={blogRes.data || []}
-      />
-    </>
+    <html
+      lang='vi'
+      suppressHydrationWarning
+    >
+      <body
+        className={`${montserrat.variable} ${halyardDisplay.variable} ${halyardDisplay.className} antialiased mt-[4.87rem] xsm:mt-[3.13rem]`}
+      >
+        <Header data={headerData?.header} />
+        <NuqsAdapter>{children}</NuqsAdapter>
+        <NextTopLoader
+          color='linear-gradient(0deg, #8CC63F 0%, #27AAE1 100%)'
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={true}
+          easing='ease'
+          speed={200}
+          shadow='0 0 10px #8CC63F,0 0 5px #27AAE1'
+          template='<div class="bar" role="bar"><div class="peg"></div></div>
+    <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+          zIndex={1600}
+          showAtBottom={false}
+        />
+        <Toaster richColors />
+        <Footer />
+      </body>
+    </html>
   )
 }
