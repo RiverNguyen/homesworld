@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -H 192.168.1.99",
     "build": "npm run lint && npm run format && next build --debug-prerender",
     "start": "next start",
     "lint": "eslint .",

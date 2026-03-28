@@ -16,7 +16,17 @@ export default async function HomePage() {
   ])
   return (
     <>
-       <BannerHomepage data={homeData?.acf?.banner} /> 
+      <style>{`
+          body {
+            margin-top:0;
+          }
+          @media (max-width: 639px) {
+            body {
+              margin-top: 3.13rem;
+            }
+          }
+        `}</style>
+      <BannerHomepage data={homeData?.acf?.banner} />
       <FilterSearch
         taxonomies={taxonomiesData?.data}
         locations={locationData?.data}
