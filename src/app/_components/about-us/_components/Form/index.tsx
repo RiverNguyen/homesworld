@@ -49,6 +49,7 @@ const Layout = () => {
         <div className='flex w-full xsm:block'>
           <div className='mr-[1rem] flex-1 xsm:mr-0 xsm:w-full xsm:flex-none'>
             <div className='mb-[1rem] flex xsm:mb-[0.75rem] xsm:block'>
+              {/* cột trên trái 1 */}
               <div
                 className={`${cardBaseClass} group mr-[1rem] flex h-[16.4375rem] flex-1 flex-col justify-between xsm:mr-0 xsm:h-[14rem] xsm:w-full`}
               >
@@ -74,7 +75,7 @@ const Layout = () => {
                   </div>
                 </div>
               </div>
-
+              {/* cột trên trái 2 */}
               <div
                 className={`${cardBaseClass} group flex h-[16.4375rem] xsm:h-[13rem] flex-1 flex-col justify-between xsm:mt-[0.75rem] xsm:w-full`}
               >
@@ -103,7 +104,7 @@ const Layout = () => {
                 </div>
               </div>
             </div>
-
+            {/* cột trên trái dưới trái */}
             <div
               className={`${cardBaseClass} group/policy h-[10.6875rem] w-full p-[1.25rem] xsm:min-h-[12rem] cursor-pointer `}
             >
@@ -157,7 +158,7 @@ const Layout = () => {
               </div>
             </div>
           </div>
-
+          {/* cột phải  */}
           <div
             className={`${cardBaseClass} z-[107] w-[21rem] py-[1.5rem] xsm:mt-[0.75rem] xsm:w-full`}
           >
