@@ -1,17 +1,14 @@
 'use client'
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
-import { ChangeEvent } from 'react'
+
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 type LanguageProps = {
   language: 'en' | 'vi'
   setLanguage: (language: 'en' | 'vi') => void
 }
 const Language = ({ language, setLanguage }: LanguageProps) => {
-  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setLanguage(event.target.value as 'en' | 'vi')
-  }
-
   return (
     <>
       {/* MB */}
@@ -31,8 +28,8 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
               width={28}
               height={18}
               alt=''
-              src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Flag.svg'}
-            ></Image>
+              src='/header/vn-flag.svg'
+            />
             <span
               className={`text-[#10475F] text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${language === 'vi' ? 'text-white' : 'text-[#10475F]'}`}
             >
@@ -50,10 +47,8 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
               width={28}
               height={18}
               alt=''
-              src={
-                'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Eng-Flag.svg'
-              }
-            ></Image>
+              src='/header/en-flag.svg'
+            />
             <span
               className={` text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${language === 'en' ? 'text-white' : 'text-[#10475F]'}`}
             >
@@ -76,52 +71,48 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
             alt='Language'
             width={28}
             height={18}
-            src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Flag.svg'}
+            src={language === 'vi' ? '/header/vn-flag.svg' : '/header/en-flag.svg'}
           />
           <span className='text-[var(--header-color)] transition-all duration-300 pc-16-16-r font-medium mr-[0.5625rem]'>
-            Tiếng việt
+            {language === 'vi' ? 'Tiếng Việt' : 'Tiếng Anh'}
           </span>
           <ChevronDown className='text-[var(--header-color)] size-[0.75rem]'></ChevronDown>
           <div className='absolute top-full pt-[1rem] right-0 group-hover:opacity-100 group-hover:visible invisible opacity-0 transition-all duration-300'>
             <div className='rounded-[1.125rem] w-[10.9375rem] h-fit bg-white shadow-[0.125rem_0.375rem_2rem_0rem_rgba(0,0,0,0.06)] overflow-hidden'>
-              <label className='flex items-center py-[0.875rem] px-[0.75rem] self-stretch w-full h-[3.25rem] cursor-pointer bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
-                <input
-                  name='language'
-                  className='mr-[0.62rem]'
-                  type='radio'
-                  value='vi'
-                  checked={language === 'vi'}
-                  onChange={handleRadioChange}
-                  id='language-radio'
-                />
-                <Image
-                  className='mr-[0.38rem] rounded-[0.25rem] w-[1.75rem] h-[1.125rem] overflow-hidden'
-                  alt=''
-                  width={28}
-                  height={18}
-                  src='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Flag.svg'
-                />
-                <span>Tiếng Việt</span>
-              </label>
-              <label className='flex items-center py-[0.875rem] px-[0.75rem] self-stretch w-full h-[3.25rem] cursor-pointer bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
-                <input
-                  name='language'
-                  value='en'
-                  className='mr-[0.62rem]'
-                  checked={language === 'en'}
-                  onChange={handleRadioChange}
-                  type='radio'
-                  id='language-radio'
-                />
-                <Image
-                  className='mr-[0.38rem] rounded-[0.25rem] w-[1.75rem] h-[1.125rem] overflow-hidden'
-                  alt=''
-                  width={28}
-                  height={18}
-                  src='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Eng-Flag.svg'
-                />
-                <span>Tiếng Anh</span>
-              </label>
+              <RadioGroup
+                value={language}
+                onValueChange={(value) => setLanguage(value as 'en' | 'vi')}
+                className='block gap-0'
+              >
+                <label className='flex items-center py-[0.875rem] px-[0.75rem] self-stretch w-full h-[3.25rem] cursor-pointer bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
+                  <RadioGroupItem
+                    value='vi'
+                    className='mr-[0.62rem] size-[1.125rem]'
+                  />
+                  <Image
+                    className='mr-[0.38rem] rounded-[0.25rem] w-[1.75rem] h-[1.125rem] overflow-hidden'
+                    alt=''
+                    width={28}
+                    height={18}
+                    src='/header/vn-flag.svg'
+                  />
+                  <span>Tiếng Việt</span>
+                </label>
+                <label className='flex items-center py-[0.875rem] px-[0.75rem] self-stretch w-full h-[3.25rem] cursor-pointer bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
+                  <RadioGroupItem
+                    value='en'
+                    className='mr-[0.62rem] size-[1.125rem]'
+                  />
+                  <Image
+                    className='mr-[0.38rem] rounded-[0.25rem] w-[1.75rem] h-[1.125rem] overflow-hidden'
+                    alt=''
+                    width={28}
+                    height={18}
+                    src='/header/en-flag.svg'
+                  />
+                  <span>Tiếng Anh</span>
+                </label>
+              </RadioGroup>
             </div>
           </div>
         </div>

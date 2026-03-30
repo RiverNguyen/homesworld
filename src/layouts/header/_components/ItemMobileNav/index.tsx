@@ -120,7 +120,7 @@ export const Trigger = ({ children, icon }: TrigerProps) => {
           height={22}
           alt=''
           src={icon}
-        ></Image>
+        />
         <span className='mb-20-m text-[#10475F]'>{children}</span>
       </div>
       <ChevronRight className='size-[1rem]'></ChevronRight>

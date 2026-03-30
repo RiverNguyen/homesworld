@@ -1,4 +1,3 @@
-
 'use client'
 
 import { format, startOfDay } from 'date-fns'
@@ -46,17 +45,23 @@ const FilterSearch = ({
     })
   }
 
-  const locationOptions: LocationOption[] = locations?.map((item) => ({ value: item.slug, label: item.name })) ?? []
+  const locationOptions: LocationOption[] =
+    locations?.map((item) => ({ value: item.slug, label: item.name })) ?? []
   const hasSelectedDateRange = !!(startDate && endDate)
   const hasConfirmedDateRange = !!(confirmedStartDate && confirmedEndDate)
-  const selectedDateRange: DateRange | undefined = startDate ? { from: startDate, to: endDate } : undefined
+  const selectedDateRange: DateRange | undefined = startDate
+    ? { from: startDate, to: endDate }
+    : undefined
   const formattedStartDate = startDate ? format(startDate, 'dd/MM/yyyy') : '--/--/----'
   const formattedEndDate = endDate ? format(endDate, 'dd/MM/yyyy') : '--/--/----'
   const mobileSelectedDateText = hasConfirmedDateRange
     ? `${format(confirmedStartDate, 'dd/MM/yyyy')} - ${format(confirmedEndDate, 'dd/MM/yyyy')}`
     : null
   const mobileSelectedLocationText = confirmedLocations.length
-    ? locationOptions.filter((opt) => confirmedLocations.includes(opt.value)).map((opt) => opt.label).join(', ')
+    ? locationOptions
+        .filter((opt) => confirmedLocations.includes(opt.value))
+        .map((opt) => opt.label)
+        .join(', ')
     : null
   const mobileSelectedNumberText = hasConfirmedNumber
     ? `${confirmedAdults} người lớn, ${confirmedRooms} phòng`
@@ -81,7 +86,11 @@ const FilterSearch = ({
 
   return (
     <section className='translate-y-[-6.1875rem] xsm:translate-y-[-7.75rem] relative z-[11] max-w-[87.5rem] mx-auto'>
-      <ServiceTabs taxonomies={taxonomies} activeId={activeId} onChange={setActiveId} />
+      <ServiceTabs
+        taxonomies={taxonomies}
+        activeId={activeId}
+        onChange={setActiveId}
+      />
       <SearchDesktop
         startDate={startDate}
         endDate={endDate}
@@ -90,7 +99,10 @@ const FilterSearch = ({
         onStartDateChange={handleStartDateChange}
         onEndDateChange={setEndDate}
       />
-      <SearchMobile rowLabels={mobileRowLabels} onOpenDrawer={openDrawer} />
+      <SearchMobile
+        rowLabels={mobileRowLabels}
+        onOpenDrawer={openDrawer}
+      />
       <SearchDrawers
         dateDrawerOpen={dateDrawerOpen}
         locationDrawerOpen={locationDrawerOpen}

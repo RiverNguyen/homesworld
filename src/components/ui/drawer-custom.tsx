@@ -1,32 +1,44 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { Drawer as DrawerPrimitive } from "vaul"
+import * as React from 'react'
+import { Drawer as DrawerPrimitive } from 'vaul'
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils'
 
-function Drawer({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />
+function Drawer({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
+  return (
+    <DrawerPrimitive.Root
+      data-slot='drawer'
+      {...props}
+    />
+  )
 }
 
-function DrawerTrigger({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
-  return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
+function DrawerTrigger({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
+  return (
+    <DrawerPrimitive.Trigger
+      data-slot='drawer-trigger'
+      {...props}
+    />
+  )
 }
 
-function DrawerPortal({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
-  return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />
+function DrawerPortal({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
+  return (
+    <DrawerPrimitive.Portal
+      data-slot='drawer-portal'
+      {...props}
+    />
+  )
 }
 
-function DrawerClose({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Close>) {
-  return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />
+function DrawerClose({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Close>) {
+  return (
+    <DrawerPrimitive.Close
+      data-slot='drawer-close'
+      {...props}
+    />
+  )
 }
 
 function DrawerOverlay({
@@ -35,10 +47,10 @@ function DrawerOverlay({
 }: React.ComponentProps<typeof DrawerPrimitive.Overlay>) {
   return (
     <DrawerPrimitive.Overlay
-      data-slot="drawer-overlay"
+      data-slot='drawer-overlay'
       className={cn(
-        "fixed inset-0 bg-black/10 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0 z-[99]",
-        className
+        'fixed inset-0 bg-black/10 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0 z-[99]',
+        className,
       )}
       {...props}
     />
@@ -52,19 +64,19 @@ function DrawerContent({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Content> & { showDrawerDrag?: boolean }) {
   return (
-    <DrawerPortal data-slot="drawer-portal">
+    <DrawerPortal data-slot='drawer-portal'>
       <DrawerOverlay />
       <DrawerPrimitive.Content
-        data-slot="drawer-content"
+        data-slot='drawer-content'
         className={cn(
-          "group/drawer-content fixed z-[99] flex h-auto flex-col bg-popover text-sm text-popover-foreground data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-[1.5rem_1.5rem_0rem_0rem] data-[vaul-drawer-direction=bottom]:border-t data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=left]:rounded-[0rem_1.5rem_1.5rem_0rem] data-[vaul-drawer-direction=left]:border-r data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=right]:rounded-[1.5rem_0rem_0rem_1.5rem] data-[vaul-drawer-direction=right]:border-l data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-[0rem_0rem_1.5rem_1.5rem] data-[vaul-drawer-direction=top]:border-b data-[vaul-drawer-direction=left]:sm:max-w-sm data-[vaul-drawer-direction=right]:sm:max-w-sm border-none",
-          className
+          'group/drawer-content fixed z-[99] flex h-auto flex-col bg-popover text-sm text-popover-foreground data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-[1.5rem_1.5rem_0rem_0rem] data-[vaul-drawer-direction=bottom]:border-t data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=left]:rounded-[0rem_1.5rem_1.5rem_0rem] data-[vaul-drawer-direction=left]:border-r data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=right]:rounded-[1.5rem_0rem_0rem_1.5rem] data-[vaul-drawer-direction=right]:border-l data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-[0rem_0rem_1.5rem_1.5rem] data-[vaul-drawer-direction=top]:border-b data-[vaul-drawer-direction=left]:sm:max-w-sm data-[vaul-drawer-direction=right]:sm:max-w-sm border-none',
+          className,
         )}
         {...props}
       >
         {showDrawerDrag && (
-          <div className="h-[2rem] bg-[#27AAE1] rounded-[1.5rem_1.5rem_0rem_0rem]">
-            <div className="mx-auto mt-[0.625rem] hidden h-[0.375rem] w-[4.9375rem] shrink-0 rounded-full bg-white/70 group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
+          <div className='h-[2rem] bg-[#27AAE1] rounded-[1.5rem_1.5rem_0rem_0rem]'>
+            <div className='mx-auto mt-[0.625rem] hidden h-[0.375rem] w-[4.9375rem] shrink-0 rounded-full bg-white/70 group-data-[vaul-drawer-direction=bottom]/drawer-content:block' />
           </div>
         )}
         {children}
@@ -73,40 +85,34 @@ function DrawerContent({
   )
 }
 
-function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
+function DrawerHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
-      data-slot="drawer-header"
+      data-slot='drawer-header'
       className={cn(
-        "flex flex-col gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center md:gap-0.5 md:text-left",
-        className
+        'flex flex-col gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center md:gap-0.5 md:text-left',
+        className,
       )}
       {...props}
     />
   )
 }
 
-function DrawerFooter({ className, ...props }: React.ComponentProps<"div">) {
+function DrawerFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
-      data-slot="drawer-footer"
-      className={cn("mt-auto flex flex-col gap-2 p-4", className)}
+      data-slot='drawer-footer'
+      className={cn('mt-auto flex flex-col gap-2 p-4', className)}
       {...props}
     />
   )
 }
 
-function DrawerTitle({
-  className,
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Title>) {
+function DrawerTitle({ className, ...props }: React.ComponentProps<typeof DrawerPrimitive.Title>) {
   return (
     <DrawerPrimitive.Title
-      data-slot="drawer-title"
-      className={cn(
-        "cn-font-heading text-base font-medium text-foreground",
-        className
-      )}
+      data-slot='drawer-title'
+      className={cn('cn-font-heading text-base font-medium text-foreground', className)}
       {...props}
     />
   )
@@ -118,8 +124,8 @@ function DrawerDescription({
 }: React.ComponentProps<typeof DrawerPrimitive.Description>) {
   return (
     <DrawerPrimitive.Description
-      data-slot="drawer-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      data-slot='drawer-description'
+      className={cn('text-sm text-muted-foreground', className)}
       {...props}
     />
   )

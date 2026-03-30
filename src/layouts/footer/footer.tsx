@@ -8,8 +8,8 @@ const Footer = async () => {
   const [{ footer }]: [{ footer: IFooterAcf }] = await Promise.all([footerService.getFooter()])
 
   return (
-    <footer className='bg-[#FFF] bg-white shadow-[0rem_-0.75rem_1.6875rem_0rem_rgba(217,214,211,0.1),0rem_-3.0625rem_3.0625rem_0rem_rgba(217,214,211,0.09),0rem_-6.875rem_4.125rem_0rem_rgba(217,214,211,0.05),0rem_-12.25rem_4.875rem_0rem_rgba(217,214,211,0.01),0rem_-19.1875rem_5.375rem_0rem_rgba(217,214,211,0)]'>
-      <div className='xsm:pb-[5.25rem] xsm:flex-col xsm:px-[1rem] xsm:items-center xsm:px-0 xsm:py-[1.5rem] mx-auto max-w-[87.5rem] flex justify-between py-[3.375rem]'>
+    <footer className='bg-white shadow-[0rem_-0.75rem_1.6875rem_0rem_rgba(217,214,211,0.1),0rem_-3.0625rem_3.0625rem_0rem_rgba(217,214,211,0.09),0rem_-6.875rem_4.125rem_0rem_rgba(217,214,211,0.05),0rem_-12.25rem_4.875rem_0rem_rgba(217,214,211,0.01),0rem_-19.1875rem_5.375rem_0rem_rgba(217,214,211,0)]'>
+      <div className='xsm:pb-[5.25rem] xsm:flex-col xsm:items-center xsm:px-0 xsm:py-[1.5rem] mx-auto max-w-[87.5rem] flex justify-between py-[3.375rem]'>
         <Link href={'/'}>
           <Image
             className='xsm:mb-[1.38rem] xsm:w-[14.875rem] xsm:h-[4.9375rem] w-[17.3rem] h-[5.75rem]'
@@ -17,7 +17,7 @@ const Footer = async () => {
             alt='Logo'
             width={276}
             height={92}
-          ></Image>
+          />
         </Link>
         <div className='xsm:order-5 xsm:max-w-max xsm:pt-[1.38rem] flex flex-col max-w-[17.9rem] xsm:border-t-1 border-dashed border-[#10475F]/20'>
           {footer.info.map((item, index) => {
@@ -31,12 +31,12 @@ const Footer = async () => {
               >
                 {/* <Icon className='xsm:size-[0.875rem] size-[1rem] '></Icon> */}
                 <Image
-                  className='xsm:size-[0.875rem] size-[1rem] xsm:mr-[0.5rem] mr-[0.62rem] xsm:size-[0.875rem] shrink-0'
+                  className='size-[1rem] xsm:mr-[0.5rem] mr-[0.62rem] xsm:size-[0.875rem] shrink-0'
                   width={16}
                   height={16}
                   alt='Logo info'
                   src={item.icon}
-                ></Image>
+                />
                 <Link
                   href={item.link.url}
                   target={item.link.target}
@@ -112,7 +112,7 @@ const Footer = async () => {
                   className='xsm:size-[0.97825rem] size-[1.25rem]'
                   src={item?.icon}
                   alt='Icon social media'
-                ></Image>
+                />
               </a>
             )
           })}

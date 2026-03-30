@@ -17,7 +17,7 @@ const CardItem = ({ children, image, slug }: CardItemProps) => {
         alt=''
         src={image}
         className='w-full h-full object-cover'
-      ></Image>
+      />
       <div className='w-full group h-full absolute top-0 left-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0.3)_0%,_rgba(0,0,0,0.4)_58.89%,_rgba(0,0,0,1)_82.88%)] hover:bg-[linear-gradient(180deg,_rgba(0,0,0,0)_58.89%,_rgba(0,0,0,1)_82.88%)] hover:opacity-20 transition-all duration-300'></div>
       <span className='pc-14-14-r text-white absolute bottom-[0.44rem] left-1/2 -translate-x-1/2 line-clamp-1 w-[90%] text-center'>
         {children}

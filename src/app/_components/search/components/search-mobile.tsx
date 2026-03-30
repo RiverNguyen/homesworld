@@ -1,6 +1,9 @@
 import { Fragment } from 'react'
 
-import { MOBILE_ROWS, type MobileRowKey } from '@/app/_components/search/components/search-constants'
+import {
+  MOBILE_ROWS,
+  type MobileRowKey,
+} from '@/app/_components/search/components/search-constants'
 
 type SearchMobileProps = {
   rowLabels: Record<MobileRowKey, string>
@@ -21,7 +24,9 @@ const SearchMobile = ({ rowLabels, onOpenDrawer }: SearchMobileProps) => {
               >
                 <div className='flex space-x-2 items-center'>
                   {row.icon}
-                  <p className='mb-16-m text-[#10475F] truncate max-w-[15rem]'>{rowLabels[row.key]}</p>
+                  <p className='mb-16-m text-[#10475F] truncate max-w-[15rem]'>
+                    {rowLabels[row.key]}
+                  </p>
                 </div>
                 <ICChevron />
               </button>
@@ -30,7 +35,9 @@ const SearchMobile = ({ rowLabels, onOpenDrawer }: SearchMobileProps) => {
         </div>
         <button className='absolute-x-center bottom-3 flex-y-center space-x-[0.375rem]'>
           <ICSearch className='size-[1.875rem]' />
-          <p className='text-trim-trim-both text-edge-[cap_alphabetic] text-white leading-[1.3]'>Tìm kiếm ngay</p>
+          <p className='text-trim-trim-both text-edge-[cap_alphabetic] text-white leading-[1.3]'>
+            Tìm kiếm ngay
+          </p>
         </button>
       </div>
     </div>
@@ -45,13 +52,32 @@ const HorizontalDivider = () => (
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
   >
-    <line opacity='0.2' x1='333' y1='0.5' x2='0' y2='0.5' stroke='#10475F' strokeDasharray='4 4' />
+    <line
+      opacity='0.2'
+      x1='333'
+      y1='0.5'
+      x2='0'
+      y2='0.5'
+      stroke='#10475F'
+      strokeDasharray='4 4'
+    />
   </svg>
 )
 
 const ICChevron = () => (
-  <svg className='size-4' xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'>
-    <path d='M3.3335 5.33325L8.45235 10.3334L13.3335 5.33325' stroke='#10475F' strokeWidth='1.3' />
+  <svg
+    className='size-4'
+    xmlns='http://www.w3.org/2000/svg'
+    width='16'
+    height='16'
+    viewBox='0 0 16 16'
+    fill='none'
+  >
+    <path
+      d='M3.3335 5.33325L8.45235 10.3334L13.3335 5.33325'
+      stroke='#10475F'
+      strokeWidth='1.3'
+    />
   </svg>
 )
 

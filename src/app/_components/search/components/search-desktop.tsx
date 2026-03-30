@@ -62,7 +62,9 @@ const SearchDesktop = ({
       {desktopFilters.map((filter, i) => (
         <Fragment key={i}>
           {i > 0 && <VerticalDivider />}
-          <div className='px-[1.25rem] py-4 flex flex-col space-y-1 w-[19.6875rem] flex-center'>{filter}</div>
+          <div className='px-[1.25rem] py-4 flex flex-col space-y-1 w-[19.6875rem] flex-center'>
+            {filter}
+          </div>
         </Fragment>
       ))}
 
@@ -83,7 +85,15 @@ const VerticalDivider = () => (
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
   >
-    <line opacity='0.2' x1='0.5' y1='2.18557e-08' x2='0.499996' y2='90' stroke='#10475F' strokeDasharray='4 4' />
+    <line
+      opacity='0.2'
+      x1='0.5'
+      y1='2.18557e-08'
+      x2='0.499996'
+      y2='90'
+      stroke='#10475F'
+      strokeDasharray='4 4'
+    />
   </svg>
 )
 

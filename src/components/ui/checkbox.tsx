@@ -23,8 +23,21 @@ const Checkbox = React.forwardRef<
         'grid place-content-center text-current rounded-[0.25rem] size-[1.25rem] bg-[#10475F]',
       )}
     >
-      <svg className='size-[0.875rem]' xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
-        <path d="M10.5001 3.41248L4.7251 9.18748L2.1001 6.56248" stroke="white" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        className='size-[0.875rem]'
+        xmlns='http://www.w3.org/2000/svg'
+        width='13'
+        height='13'
+        viewBox='0 0 13 13'
+        fill='none'
+      >
+        <path
+          d='M10.5001 3.41248L4.7251 9.18748L2.1001 6.56248'
+          stroke='white'
+          strokeWidth='1.35'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
       </svg>
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>

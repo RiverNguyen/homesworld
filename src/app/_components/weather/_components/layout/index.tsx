@@ -111,16 +111,22 @@ const Layout = ({ acfData }: LayoutProps) => {
                 })}
           </Swiper>
 
-          <div className='pointer-events-none absolute left-0 top-0 z-10 h-full w-full rounded-[1.125rem]' style={{
-            opacity: 0.56,
-            background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 54.4%, rgba(0, 0, 0, 0.55) 67%, #000 79.99%)',
-          }} />
-          <div className='pointer-events-none absolute left-0 top-0 z-10 h-full w-full rounded-[1.125rem]' style={{
-            opacity: 0.3,
-            background: '#000',
-          }} />
+          <div
+            className='pointer-events-none absolute left-0 top-0 z-10 h-full w-full rounded-[1.125rem]'
+            style={{
+              opacity: 0.56,
+              background:
+                'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 54.4%, rgba(0, 0, 0, 0.55) 67%, #000 79.99%)',
+            }}
+          />
+          <div
+            className='pointer-events-none absolute left-0 top-0 z-10 h-full w-full rounded-[1.125rem]'
+            style={{
+              opacity: 0.3,
+              background: '#000',
+            }}
+          />
         </div>
-
 
         {/* Mobile background */}
         <div className='absolute left-0 top-0 hidden h-full w-full px-[0.75rem] xsm:block'>

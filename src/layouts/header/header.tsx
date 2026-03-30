@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
+import { useGoogleTranslate } from '@/hooks/useGoogleTranslate'
 import { useScrollHeader } from '@/hooks/useScrollHeader'
 import { IHeaderAcf } from '@/interfaces/header.interface'
 import ItemMobileNav from '@/layouts/header/_components/ItemMobileNav'
@@ -14,7 +15,7 @@ type HeaderProps = {
   data: IHeaderAcf
 }
 const Header = ({ data }: HeaderProps) => {
-  const [language, setLanguage] = useState<'en' | 'vi'>('vi')
+  const { language, setLanguage } = useGoogleTranslate()
 
   const [isOpen, setIsOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)

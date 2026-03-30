@@ -196,8 +196,8 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
 
       toast.error(
         response?.message ||
-        response?.detail ||
-        'Gửi thông tin chưa thành công. Vui lòng kiểm tra lại và thử lại!',
+          response?.detail ||
+          'Gửi thông tin chưa thành công. Vui lòng kiểm tra lại và thử lại!',
       )
     } catch (error) {
       console.error(error)
@@ -338,7 +338,9 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
 
                 return (
                   <FormItem className='mt-[1.5rem]'>
-                    <FormLabel className={`pc-16-16-r-input ${form.formState.errors.your_choice ? 'text-red-500' : 'text-[#10475F]'}`}>
+                    <FormLabel
+                      className={`pc-16-16-r-input ${form.formState.errors.your_choice ? 'text-red-500' : 'text-[#10475F]'}`}
+                    >
                       Nhu cầu của bạn <span className='text-red-500'>*</span>
                     </FormLabel>
 
@@ -426,10 +428,16 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                           </button>
                         </FormControl>
 
-                        <DrawerProvider open={choiceDrawerOpen} setOpen={setChoiceDrawerOpen} showDrawerDrag>
+                        <DrawerProvider
+                          open={choiceDrawerOpen}
+                          setOpen={setChoiceDrawerOpen}
+                          showDrawerDrag
+                        >
                           <div className='relative'>
                             <div className='h-[3.44rem] bg-[#27AAE1] px-3 flex items-center justify-between'>
-                              <p className='mb-16-m text-trim-trim-both text-edge-[cap_alphabetic] text-white'>Chọn nhu cầu</p>
+                              <p className='mb-16-m text-trim-trim-both text-edge-[cap_alphabetic] text-white'>
+                                Chọn nhu cầu
+                              </p>
                               <button
                                 type='button'
                                 onClick={() => field.onChange([])}

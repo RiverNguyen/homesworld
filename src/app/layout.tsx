@@ -49,6 +49,10 @@ export default async function RootLayout({
         />
         <Toaster richColors />
         <Footer />
+        <div
+          id='google_translate_element'
+          style={{ height: 0, overflow: 'hidden' }}
+        />
       </body>
     </html>
   )

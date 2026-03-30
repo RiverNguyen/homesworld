@@ -124,11 +124,12 @@ function TemperatureDesktop({
   location: string
 }) {
   return (
-    <div
-      className='mt-[0.38rem] flex items-center xsm:hidden'
-    >
+    <div className='mt-[0.38rem] flex items-center xsm:hidden'>
       <ThermometerIcon className='h-[2.1875rem] w-[2.1875rem] text-white' />
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence
+        mode='wait'
+        initial={false}
+      >
         <motion.p
           key={temperature}
           className='pc-h3-32-r ml-[0.25rem] font-halyard-display text-[2rem] font-normal text-white'
@@ -152,7 +153,10 @@ function TemperatureDesktop({
         >
           <span className='inline-flex items-center gap-[0.35rem]'>
             <span>{buttonText}</span>
-            <AnimatePresence mode='wait' initial={false}>
+            <AnimatePresence
+              mode='wait'
+              initial={false}
+            >
               {location ? (
                 <motion.span
                   key={location}
@@ -194,7 +198,10 @@ function TemperatureMobile({
           Nhiệt độ hôm nay :
         </p>
         <ThermometerIcon className='xsm:size-[1rem] text-white' />
-        <AnimatePresence mode='wait' initial={false}>
+        <AnimatePresence
+          mode='wait'
+          initial={false}
+        >
           <motion.p
             key={temperature}
             className='pc-h3-32-r font-halyard-display text-[2rem] font-normal text-white xsm:text-[1.25rem] xsm:leading-[1]'
@@ -219,7 +226,10 @@ function TemperatureMobile({
         >
           <span className='inline-flex items-center gap-[0.35rem]'>
             <span>{buttonText}</span>
-            <AnimatePresence mode='wait' initial={false}>
+            <AnimatePresence
+              mode='wait'
+              initial={false}
+            >
               {location ? (
                 <motion.span
                   key={location}
@@ -243,8 +253,7 @@ function TemperatureMobile({
 }
 
 function Desc({ descData }: DescProps) {
-  const { temperature, weatherText, qrSrc, linkUrl, buttonText, location } =
-    descData
+  const { temperature, weatherText, qrSrc, linkUrl, buttonText, location } = descData
 
   return (
     <div className='absolute bottom-[2.5rem] z-50 left-[2.5rem] flex flex-col xsm:bottom-[1.25rem] xsm:left-[1rem] xsm:right-[1rem] xsm:px-[1.25rem]'>
@@ -282,7 +291,10 @@ function Desc({ descData }: DescProps) {
             location={location}
           />
 
-          <AnimatePresence mode='wait' initial={false}>
+          <AnimatePresence
+            mode='wait'
+            initial={false}
+          >
             <motion.p
               key={weatherText}
               className='pc-14-14-r mt-[0.75rem] max-w-[33rem] overflow-hidden font-halyard-display text-white xsm:hidden'
@@ -311,7 +323,10 @@ function Desc({ descData }: DescProps) {
 
       <ICHorizontalDashedLine className='hidden xsm:block xsm:mt-[0.625rem] w-[19.4375rem] text-white' />
 
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence
+        mode='wait'
+        initial={false}
+      >
         <motion.p
           key={weatherText}
           className='pc-14-14-r mt-[0.75rem] hidden max-w-[33rem] overflow-hidden font-halyard-display text-white xsm:mt-[0.62rem] xsm:block xsm:max-w-none'

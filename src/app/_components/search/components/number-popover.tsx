@@ -176,5 +176,4 @@ export const CounterRow = ({ label, value, min = 0, onDecrease, onIncrease }: Co
   )
 }
 
-
 export default NumberPopover

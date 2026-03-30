@@ -72,7 +72,11 @@ const SearchDrawers = ({
 }: SearchDrawersProps) => {
   return (
     <>
-      <DrawerProvider open={dateDrawerOpen} setOpen={setDateDrawerOpen} showDrawerDrag>
+      <DrawerProvider
+        open={dateDrawerOpen}
+        setOpen={setDateDrawerOpen}
+        showDrawerDrag
+      >
         <div className='h-[2.69rem] bg-[#27AAE1]'>
           <p className='mb-16-m text-trim-trim-both text-edge-[cap_alphabetic] text-white text-center mt-[0.6275rem]'>
             Ngày nhận phòng và trả phòng
@@ -124,10 +128,16 @@ const SearchDrawers = ({
         </div>
       </DrawerProvider>
 
-      <DrawerProvider open={locationDrawerOpen} setOpen={setLocationDrawerOpen} showDrawerDrag>
+      <DrawerProvider
+        open={locationDrawerOpen}
+        setOpen={setLocationDrawerOpen}
+        showDrawerDrag
+      >
         <div className='relative'>
           <div className='h-[3.44rem] bg-[#27AAE1] px-3 flex items-center justify-between'>
-            <p className='mb-16-m text-trim-trim-both text-edge-[cap_alphabetic] text-white'>Chọn điểm đến</p>
+            <p className='mb-16-m text-trim-trim-both text-edge-[cap_alphabetic] text-white'>
+              Chọn điểm đến
+            </p>
             <button
               onClick={() => setSelectedLocations([])}
               disabled={selectedLocations.length === 0}
@@ -169,7 +179,11 @@ const SearchDrawers = ({
         </div>
       </DrawerProvider>
 
-      <DrawerProvider open={numberDrawerOpen} setOpen={setNumberDrawerOpen} showDrawerDrag>
+      <DrawerProvider
+        open={numberDrawerOpen}
+        setOpen={setNumberDrawerOpen}
+        showDrawerDrag
+      >
         <div className='relative'>
           <div className='h-[2.69rem] bg-[#27AAE1]'>
             <p className='mb-16-m text-trim-trim-both text-edge-[cap_alphabetic] text-white text-center pt-[0.6275rem]'>
@@ -212,7 +226,13 @@ const SearchDrawers = ({
 }
 
 const ArrowIcon = () => (
-  <svg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 21 21' fill='none'>
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='21'
+    height='21'
+    viewBox='0 0 21 21'
+    fill='none'
+  >
     <path
       d='M12.6262 5.18872L17.9375 10.5L12.6262 15.8112'
       stroke='white'
@@ -231,7 +251,14 @@ const ArrowIcon = () => (
 )
 
 const DeleteIcon = () => (
-  <svg className='size-[1.125rem] ml-1' xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'>
+  <svg
+    className='size-[1.125rem] ml-1'
+    xmlns='http://www.w3.org/2000/svg'
+    width='18'
+    height='18'
+    viewBox='0 0 18 18'
+    fill='none'
+  >
     <path
       d='M15.75 4.48499C13.2525 4.23749 10.74 4.10999 8.235 4.10999C6.75 4.10999 5.265 4.18499 3.78 4.33499L2.25 4.48499'
       stroke='#EF2020'
@@ -253,8 +280,20 @@ const DeleteIcon = () => (
       strokeLinecap='round'
       strokeLinejoin='round'
     />
-    <path d='M7.74756 12.375H10.2451' stroke='#EF2020' strokeWidth='1.35' strokeLinecap='round' strokeLinejoin='round' />
-    <path d='M7.125 9.375H10.875' stroke='#EF2020' strokeWidth='1.35' strokeLinecap='round' strokeLinejoin='round' />
+    <path
+      d='M7.74756 12.375H10.2451'
+      stroke='#EF2020'
+      strokeWidth='1.35'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='M7.125 9.375H10.875'
+      stroke='#EF2020'
+      strokeWidth='1.35'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
   </svg>
 )
 

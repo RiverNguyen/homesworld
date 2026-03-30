@@ -34,7 +34,9 @@ const ServiceTabs = ({ taxonomies, activeId, onChange }: ServiceTabsProps) => {
               height={30}
               className='size-[1.875rem] object-cover'
             />
-            <span className='pc-16-r text-trim-trim-both text-edge-[cap_alphabetic]'>{item.name}</span>
+            <span className='pc-16-r text-trim-trim-both text-edge-[cap_alphabetic]'>
+              {item.name}
+            </span>
           </button>
         )
       })}

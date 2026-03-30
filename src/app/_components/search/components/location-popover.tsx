@@ -135,5 +135,4 @@ const LocationPopover = ({
   )
 }
 
-
 export default LocationPopover

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/parallax'
+import 'swiper/css/pagination'
 import { Autoplay, Pagination, Parallax } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 

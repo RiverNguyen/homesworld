@@ -22,12 +22,14 @@ function CalendarMobile({
 }) {
   const defaultClassNames = getDefaultClassNames()
   const selectedRange =
-    props.mode === 'range' && props.selected && typeof props.selected === 'object' && 'from' in props.selected
+    props.mode === 'range' &&
+    props.selected &&
+    typeof props.selected === 'object' &&
+    'from' in props.selected
       ? props.selected
       : undefined
   const isPartialRangeSelection =
-    !!selectedRange?.from &&
-    (!selectedRange.to || isSameDay(selectedRange.from, selectedRange.to))
+    !!selectedRange?.from && (!selectedRange.to || isSameDay(selectedRange.from, selectedRange.to))
   const rangeStartClass = isPartialRangeSelection
     ? 'relative rounded-l-[6.25rem] bg-transparent [&>button]:relative [&>button]:z-10'
     : "relative rounded-l-[6.25rem] bg-transparent after:content-[''] after:absolute after:inset-y-0 after:right-0 after:w-1/2 after:bg-[#10475F] [&>button]:relative [&>button]:z-10"
@@ -77,10 +79,7 @@ function CalendarMobile({
       classNames={{
         root: cn('w-full', defaultClassNames.root),
         months: cn('relative flex flex-col gap-0 md:flex-row pb-3', defaultClassNames.months),
-        month: cn(
-          'flex w-full flex-col',
-          defaultClassNames.month,
-        ),
+        month: cn('flex w-full flex-col', defaultClassNames.month),
         nav: cn(
           'absolute left-8 right-8 top-4 flex items-center justify-between gap-1 xsm:hidden',
           defaultClassNames.nav,
@@ -119,10 +118,7 @@ function CalendarMobile({
           'text-[0.75rem] leading-[1.5] text-[#10475F]/40 font-normal flex-1 select-none rounded-md',
           defaultClassNames.weekday,
         ),
-        week: cn(
-          'flex w-full px-[0.75rem] first-of-type:mt-1',
-          defaultClassNames.week,
-        ),
+        week: cn('flex w-full px-[0.75rem] first-of-type:mt-1', defaultClassNames.week),
         week_number_header: cn('w-[--cell-size] select-none', defaultClassNames.week_number_header),
         week_number: cn(
           'text-muted-foreground select-none text-[0.8rem]',
@@ -185,7 +181,10 @@ function CalendarMobile({
           )
         },
         Month: ({ children, displayIndex, className, ...props }) => (
-          <div className={cn(className)} {...props}>
+          <div
+            className={cn(className)}
+            {...props}
+          >
             {children}
             {displayIndex < monthCount - 1 && (
               <svg
@@ -197,7 +196,14 @@ function CalendarMobile({
                 fill='none'
                 xmlns='http://www.w3.org/2000/svg'
               >
-                <line opacity='0.2' y1='0.5' x2='375' y2='0.5' stroke='#10475F' strokeDasharray='4 4' />
+                <line
+                  opacity='0.2'
+                  y1='0.5'
+                  x2='375'
+                  y2='0.5'
+                  stroke='#10475F'
+                  strokeDasharray='4 4'
+                />
               </svg>
             )}
           </div>
@@ -207,11 +213,7 @@ function CalendarMobile({
           calendarMonth: _calendarMonth,
           displayIndex: _displayIndex,
           ...props
-        }) => (
-          <div {...props}>
-            {children}
-          </div>
-        ),
+        }) => <div {...props}>{children}</div>,
         DayButton: (dayButtonProps) => (
           <CalendarDayButton
             {...dayButtonProps}
