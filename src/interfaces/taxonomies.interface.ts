@@ -1,5 +1,5 @@
 export interface ITaxonomies {
-  id: string
+  id: number
   name: string
   slug: string
   description: string

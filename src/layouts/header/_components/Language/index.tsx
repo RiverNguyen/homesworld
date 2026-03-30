@@ -107,7 +107,7 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
                   height={18}
                   src='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Flag.svg'
                 />
-                <span>Tiếng Việt</span>
+                <span className='pc-16-16-r font-medium text-[#10475F]'>Tiếng Việt</span>
               </label>
               <label className='flex items-center py-[0.875rem] px-[0.75rem] self-stretch w-full h-[3.25rem] cursor-pointer bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
                 <input
@@ -126,7 +126,7 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
                   height={18}
                   src='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Eng-Flag.svg'
                 />
-                <span>Tiếng Anh</span>
+                <span className='pc-16-16-r font-medium text-[#10475F]'>Tiếng Anh</span>
               </label>
             </div>
           </div>

@@ -4,6 +4,7 @@ import TravelGuide from '@/app/_components/travel-guide'
 import homeService from '@/services/home'
 import taxonomiesService from '@/services/taxonomies'
 
+import HeaderSearch from './_components/header-search'
 import Weather from './_components/weather'
 
 export default async function HomePage() {
@@ -25,6 +26,7 @@ export default async function HomePage() {
             }
           }
         `}</style>
+      <HeaderSearch taxonomies={taxonomiesData?.data} locations={locationData?.data} />
       <BannerHomepage data={homeData?.acf?.banner} />
       <FilterSearch
         taxonomies={taxonomiesData?.data}

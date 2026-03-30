@@ -1,29 +1,28 @@
-
 'use client'
 
 import { startOfDay } from 'date-fns'
 import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
+import ComboPopover from '@/app/_components/header-search/_components/combo-popover'
 import DatePicker from '@/app/_components/search/components/datepicker-popover'
 import LocationPopover from '@/app/_components/search/components/location-popover'
 import NumberPopover from '@/app/_components/search/components/number-popover'
 import { ITaxonomies } from '@/interfaces/taxonomies.interface'
 import { useFilterStore } from '@/store/store'
 
-const ICONS = [
-  { src: '/home/icon/icon-1.svg', hoverSrc: '/home/icon/icon-1-hover.svg' },
-  { src: '/home/icon/icon-2.svg', hoverSrc: '/home/icon/icon-2-hover.svg' },
-  { src: '/home/icon/icon-3.svg', hoverSrc: '/home/icon/icon-3-hover.svg' },
-  { src: '/home/icon/icon-4.svg', hoverSrc: '/home/icon/icon-4-hover.svg' },
-]
 
-const FilterSearch = ({
+const today = startOfDay(new Date())
+const HeaderSearch = ({
   taxonomies,
   locations,
 }: {
   taxonomies: ITaxonomies[]
   locations: ITaxonomies[]
 }) => {
+
+
   const {
     combo, setCombo,
     startDate, setStartDate,
@@ -31,104 +30,71 @@ const FilterSearch = ({
     locations:pickLocations, setLocations,
     quantity, setQuantity,
   } = useFilterStore()
-  // const [activeId, setActiveId] = useState<string | null>(taxonomies?.[0]?.id ?? null)
+  // const [combo, setCombo] = useState<number| null>(null)
   // const [startDate, setStartDate] = useState<Date | undefined>(undefined)
   // const [endDate, setEndDate] = useState<Date | undefined>(undefined)
-
-  const today = startOfDay(new Date())
-
-  const SERVICE_COMBO = taxonomies?.map((item, index) => ({
-    ...item,
-    icon: ICONS[index]?.src ?? ICONS[0].src,
-    iconHover: ICONS[index]?.hoverSrc ?? ICONS[0].hoverSrc,
-  }))
-
   return (
-    <section id='filter' className='translate-y-[-6.1875rem] relative z-[11] max-w-[87.5rem] mx-auto'>
-      <div className='flex space-x-2'>
-        {SERVICE_COMBO?.map((item) => {
-          const isActive = combo === item.id
-          return (
-            <button
-              key={item.id}
-              onClick={() => setCombo(item.id)}
-              className={`group h-[2.875rem] px-4 space-x-2 flex-center cursor-pointer rounded-[6.25rem] backdrop-blur-[5px] transition-colors ${
-                isActive ? 'bg-[#27AAE1] text-white' : 'bg-white text-[#10475F]'
-              }`}
-            >
-              <Image
-                src={isActive ? item.iconHover : item.icon}
-                alt={item.name}
-                width={30}
-                height={30}
-                className='size-[1.875rem] object-cover'
-              />
-              <span className='pc-16-r  text-trim-trim-both text-edge-[cap_alphabetic]'>
-                {item.name}
-              </span>
-            </button>
-          )
-        })}
+    <section id='header-search' className='xsm:hidden fixed z-[100] w-full h-[4.625rem] bg-white flex items-center justify-start shadow-[0rem_0.8125rem_1.75rem_0rem_rgba(168,168,168,0.1),0rem_3.125rem_3.125rem_0rem_rgba(168,168,168,0.09),0rem_7.0625rem_4.25rem_0rem_rgba(168,168,168,0.05),0rem_12.625rem_5.0625rem_0rem_rgba(168,168,168,0.01),0rem_19.6875rem_5.5rem_0rem_rgba(168,168,168,0)] overflow-hidden transition-transform duration-300 translate-y-[-150%]'>
+      <div className='flex items-center w-[31.6875rem] bg-[#27AAE1] h-full px-[1rem]'>
+        <Link href={'/'} >
+          <Image
+            width={138}
+            height={23}
+            alt=''
+            className='mr-[1rem] w-[8.625rem] h-[1.42059rem]'
+            src={
+              'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Icon-white.svg'
+            }/></Link>
+        <svg width="1" height="74" viewBox="0 0 1 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line opacity="0.4" x1="0.5" y1="2.18557e-08" x2="0.499997" y2="74" stroke="white"/>
+        </svg>
+        <div className='pl-[1rem] flex flex-col space-y-1 w-[19.6875rem] flex-center'>
+          <ComboPopover
+            taxonomies={taxonomies}
+            label='Tìm kiếm nhanh'
+            placeholder='Combo khách sạn tàu'
+            value={combo}
+            onChange={(value) => {
+              if (value)
+                setCombo(value)
+            }}
+          />
+        </div>
       </div>
-
-      <div className='flex bg-white w-full h-[5.625rem] mt-[0.9125rem] rounded-[1.125rem] shadow-[0_315px_88px_0_rgba(168,168,168,0),0_202px_81px_0_rgba(168,168,168,0.01),0_113px_68px_0_rgba(168,168,168,0.05),0_50px_50px_0_rgba(168,168,168,0.09),0_13px_28px_0_rgba(168,168,168,0.10)]'>
-        <div className='px-[1.25rem] py-4 flex flex-col space-y-1 w-[19.6875rem] flex-center'>
+      <div className='flex items-center h-full'>
+        <div className='px-[1.25rem] py-[0.75rem] h-full flex flex-col space-y-1 w-[14.56rem] flex-center'>
           <DatePicker
             label='Bắt đầu'
-            placeholder='Ngày nhận phòng'
+            placeholder='Ngày đi'
             value={startDate}
-            onChange={setStartDate}
+            onChange={(da)=>{
+              setStartDate(da)
+
+            }}
+            disabled={{ before: today }}
+            defaultMonth={endDate ?? today}
+          />
+        </div>
+        <svg width="1" height="74" viewBox="0 0 1 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line opacity="0.2" x1="0.5" y1="2.18557e-08" x2="0.499997" y2="74" stroke="#223B66" strokeDasharray="4 4"/>
+        </svg>
+        <div className='px-[1.25rem] py-[0.75rem] h-full flex flex-col space-y-1 w-[14.56rem] flex-center'>
+          <DatePicker
+            label='Đến ngày'
+            placeholder='Ngày về'
+            value={endDate}
+            onChange={(da)=>{
+              setEndDate(da)
+
+            }}
             disabled={{ before: today }}
             defaultMonth={startDate ?? today}
           />
         </div>
-        <svg
-          width='1'
-          height='90'
-          className='h-full w-[0.0625rem]'
-          viewBox='0 0 1 90'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <line
-            opacity='0.2'
-            x1='0.5'
-            y1='2.18557e-08'
-            x2='0.499996'
-            y2='90'
-            stroke='#10475F'
-            strokeDasharray='4 4'
-          />
+        <svg width="1" height="74" viewBox="0 0 1 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line opacity="0.2" x1="0.5" y1="2.18557e-08" x2="0.499997" y2="74" stroke="#223B66" strokeDasharray="4 4"/>
         </svg>
-        <div className='px-[1.25rem] py-4 flex flex-col space-y-1 w-[19.6875rem] flex-center'>
-          <DatePicker
-            label='Đến ngày'
-            placeholder='Ngày trả phòng'
-            value={endDate}
-            onChange={(d) => setEndDate(d)}
-            disabled={{ before: startDate ?? today }}
-            defaultMonth={startDate ?? today}
-          />
-        </div>
-        <svg
-          width='1'
-          height='90'
-          className='h-full w-[0.0625rem]'
-          viewBox='0 0 1 90'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <line
-            opacity='0.2'
-            x1='0.5'
-            y1='2.18557e-08'
-            x2='0.499996'
-            y2='90'
-            stroke='#10475F'
-            strokeDasharray='4 4'
-          />
-        </svg>
-        <div className='px-[1.25rem] py-4 flex flex-col space-y-1 w-[19.6875rem] flex-center'>
+        <div className='px-[1.25rem] py-[0.75rem] h-full flex flex-col space-y-1 w-[14.56rem] flex-center'>
           <LocationPopover
             label='Địa điểm'
             placeholder='Điểm đến'
@@ -140,25 +106,10 @@ const FilterSearch = ({
             onChange={setLocations}
           />
         </div>
-        <svg
-          width='1'
-          height='90'
-          className='h-full w-[0.0625rem]'
-          viewBox='0 0 1 90'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <line
-            opacity='0.2'
-            x1='0.5'
-            y1='2.18557e-08'
-            x2='0.499996'
-            y2='90'
-            stroke='#10475F'
-            strokeDasharray='4 4'
-          />
+        <svg width="1" height="74" viewBox="0 0 1 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line opacity="0.2" x1="0.5" y1="2.18557e-08" x2="0.499997" y2="74" stroke="#223B66" strokeDasharray="4 4"/>
         </svg>
-        <div className='px-[1.25rem] py-4 flex flex-col space-y-1 w-[19.6875rem] flex-center'>
+        <div className='px-[1.25rem] py-[0.75rem] h-full flex flex-col space-y-1 w-[14.56rem] flex-center'>
           <NumberPopover
             label='Số lượng'
             placeholder='Số người, phòng'
@@ -168,8 +119,10 @@ const FilterSearch = ({
             }}
           />
         </div>
-
-        <button className='w-[6.625rem] hover:opacity-80 transition-opacity cursor-pointer duration-300 h-[4.625rem] flex-center flex-col rounded-[0.75rem] bg-[#27AAE1] text-white ml-[1.25rem] my-auto'>
+        <svg className='w-[0.0625rem]' width="1" height="74" viewBox="0 0 1 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line opacity="0.2" x1="0.5" y1="2.18557e-08" x2="0.499997" y2="74" stroke="#223B66" strokeDasharray="4 4"/>
+        </svg>
+        <button className='mx-[1.5rem] w-[6.625rem] h-[3.625rem] hover:opacity-80 transition-opacity cursor-pointer duration-300 flex-center flex-col rounded-[0.75rem] bg-[#27AAE1] text-white'>
           <ICSearch className='size-8' />
           <p className='text-[0.75rem] leading-[1.5]'>Tìm kiếm</p>
         </button>
@@ -177,7 +130,6 @@ const FilterSearch = ({
     </section>
   )
 }
-
 const ICSearch = (props: React.SVGAttributes<SVGElement>) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
@@ -224,4 +176,4 @@ const ICSearch = (props: React.SVGAttributes<SVGElement>) => (
   </svg>
 )
 
-export default FilterSearch
+export default HeaderSearch
