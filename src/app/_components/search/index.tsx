@@ -1,4 +1,3 @@
-
 'use client'
 
 import { startOfDay } from 'date-fns'
@@ -26,11 +25,16 @@ const FilterSearch = ({
   locations: ITaxonomies[]
 }) => {
   const {
-    combo, setCombo,
-    startDate, setStartDate,
-    endDate, setEndDate,
-    locations: pickLocations, setLocations,
-    quantity, setQuantity,
+    combo,
+    setCombo,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    locations: pickLocations,
+    setLocations,
+    quantity,
+    setQuantity,
   } = useFilterStore()
   // const [activeId, setActiveId] = useState<string | null>(taxonomies?.[0]?.id ?? null)
   // const [startDate, setStartDate] = useState<Date | undefined>(undefined)
@@ -45,7 +49,10 @@ const FilterSearch = ({
   }))
 
   return (
-    <section id='filter' className='translate-y-[-6.1875rem] relative z-[11] max-w-[87.5rem] mx-auto'>
+    <section
+      id='filter'
+      className='translate-y-[-6.1875rem] relative z-[11] max-w-[87.5rem] mx-auto'
+    >
       <div className='flex space-x-2'>
         {SERVICE_COMBO?.map((item) => {
           const isActive = combo === item.id

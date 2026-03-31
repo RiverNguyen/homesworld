@@ -6,7 +6,7 @@ const Weather = ({ acfData }: { acfData: IWeatherAcf }) => {
   return (
     <div className='max-w-[100rem]'>
       <Cloud />
-      <div className="bg-[#FEFBF9] relative z-[5]">
+      <div className='bg-[#FEFBF9] relative z-[5]'>
         <Layout acfData={acfData} />
       </div>
     </div>

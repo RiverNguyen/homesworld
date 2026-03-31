@@ -40,7 +40,7 @@ const Layout = ({ acfData }: LayoutProps) => {
   const socialItems = acfData?.distinctive?.social_media?.social ?? []
   const policyLink = acfData?.distinctive?.group_3?.link
   const policyHref = policyLink?.url || '#'
-  const isExternalPolicy = policyHref.startsWith('http')
+  // const isExternalPolicy = policyHref.startsWith('http')
   return (
     <div className='w-full max-w-[83.5rem] xsm:px-[1rem]'>
       <div className='flex items-center justify-between xsm:flex-col xsm:items-start'>
@@ -143,7 +143,7 @@ const Layout = ({ acfData }: LayoutProps) => {
                     type='link'
                     href={policyHref}
                     // target={isExternalPolicy ? '_blank' : undefined}
-                    rel={isExternalPolicy ? 'noopener noreferrer' : undefined}
+                    // rel={isExternalPolicy ? 'noopener noreferrer' : undefined}
                     className='relative pr-[1rem] transition-all duration-300 group-hover/policy:pr-[2rem] xsm:w-full'
                     hideDefaultIcon
                     rightIcon={
@@ -186,7 +186,7 @@ const Layout = ({ acfData }: LayoutProps) => {
               {socialItems.map((item, index) => {
                 const href = item.link?.url || '#'
                 const isExternal = href.startsWith('http')
-                const isPhone = href.startsWith('tel:')
+                // const isPhone = href.startsWith('tel:')
 
                 return (
                   <Link
