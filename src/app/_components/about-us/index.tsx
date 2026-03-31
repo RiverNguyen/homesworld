@@ -2,8 +2,9 @@
 import { useEffect, useRef, useState } from 'react'
 
 import Background from '@/app/_components/about-us/_components/Background'
+import { IAboutUs } from '@/interfaces/about-us'
 
-const AboutUs = () => {
+const AboutUs = ({ acfData }: { acfData: IAboutUs }) => {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
@@ -29,7 +30,7 @@ const AboutUs = () => {
         top: isVisible ? '1.875rem' : 'auto',
       }}
     >
-      <Background />
+      <Background acfData={acfData} />
     </section>
   )
 }

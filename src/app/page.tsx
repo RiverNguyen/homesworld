@@ -46,7 +46,7 @@ export default async function HomePage() {
           comboData={comboData?.data || []}
           locations={locationData?.data || []}
         />
-        <About_us />
+        <About_us acfData={homeData?.acf} />
 
         <Weather acfData={homeData?.acf} />
         <TravelGuide
