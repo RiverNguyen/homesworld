@@ -121,11 +121,15 @@ function InputField({
         const isLoading = isSubmitting
 
         return (
-          <FormItem className='mt-[1.5rem]'>
+          <FormItem className='mt-[1.5rem] xsm:mt-[1rem]'>
             <FormLabel>
-              <span className={isError ? 'text-red-500' : 'text-[#10475F]'}>
+              <span
+                className={
+                  isError ? 'text-red-500  pc-16-16-r-input' : 'text-[#10475F] pc-16-16-r-input'
+                }
+              >
                 {label}
-                {required && <span className='text-red-500 ml-1'>*</span>}
+                {required && <span className='text-red-500 ml-1  pc-16-16-r-input'>*</span>}
               </span>
             </FormLabel>
 
@@ -155,8 +159,7 @@ function InputField({
   )
 }
 const inputClass =
-  'w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] bg-[#F8F8F8] text-[0.875rem] placeholder:text-[#10475F]/40 text-[#10475F] border-0 focus-visible:ring-0 mt-[0.25rem]'
-
+  'w-full h-[3rem] px-[0.75rem] rounded-[0.5rem] bg-[#F8F8F8] text-[0.875rem] placeholder:text-[rgba(16,71,95,0.40)] text-[#10475F] border-0 mt-[0.25rem] focus:outline-none focus-visible:outline-none focus-visible:ring-0 shadow-none xsm:border-[#10475F]/20 xsm:border-[0.0625rem] xsm:bg-[transparent]'
 //form
 export default function MyForm({ serviceComboData }: { serviceComboData: ServiceComboItem[] }) {
   const isMobile = useIsMobile()
@@ -174,7 +177,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
       note: '',
     },
   })
-  // Avoid React Compiler incompatibility: `form.watch()` returns an internal subscription function.
+  // Avoid React Compiler incompatibility: `form.w  atch()` returns an internal subscription function.
   // `useWatch()` is the hook-based alternative.
   const youAre = useWatch({ control: form.control, name: 'you_are' })
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -224,9 +227,9 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
               const isError = !!form.formState.errors.you_are
               return (
                 <FormItem className='flex flex-col'>
-                  <FormLabel className='pc-16-16-r-input text-[1rem]'>
+                  <FormLabel className='pc-16-16-r-input text-[1rem] m-0 inline-flex items-center leading-[1] text-trim-both text-edge-[cap_alphabetic]'>
                     <span
-                      className={`${isError ? 'text-red-500' : 'text-[#10475F]'} pc-16-16-r-input text-[1rem] text-trim-both text-edge-cap`}
+                      className={`${isError ? 'text-red-500' : 'text-[#10475F]'} pc-16-16-r-input text-[1rem] inline-flex items-center leading-[1] text-trim-both text-edge-[cap_alphabetic]`}
                     >
                       Bạn là
                       <span className='ml-[0.25rem] text-red-500'>*</span>
@@ -243,12 +246,25 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                           key={item.value}
                           className={`flex items-center ${index !== 0 ? 'ml-[2.82rem] xsm:ml-0 xsm:mt-[1rem]' : ''}`}
                         >
-                          <FormControl className='m-[0]'>
-                            <RadioGroupItem value={item.value} />
+                          <FormControl className='m-[0]   '>
+                            <RadioGroupItem
+                              className='peer'
+                              value={item.value}
+                            />
                           </FormControl>
-                          <FormLabel className='ml-[0.5rem] font-normal leading-none text-[#10475F]/80'>
+                          <p
+                            className='
+    ml-[0.5rem]
+    inline-flex items-center
+    font-normal leading-[1]
+    text-[rgba(16,71,95,0.80)]
+    peer-data-[state=checked]:text-[#10475F]
+    text-trim-both text-edge-[cap_alphabetic]
+    pc-14-14-r
+  '
+                          >
                             {item.label}
-                          </FormLabel>
+                          </p>
                         </FormItem>
                       ))}
                     </RadioGroup>
@@ -343,10 +359,8 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                 }
 
                 return (
-                  <FormItem className='mt-[1.5rem]'>
-                    <FormLabel className='pc-16-16-r-input text-[#10475F]'>
-                      Nhu cầu của bạn
-                    </FormLabel>
+                  <FormItem className='mt-[1.5rem] xsm:mt-[1rem]'>
+                    <p className='pc-16-16-r-input text-[#10475F] m-0 '>Nhu cầu của bạn</p>
 
                     {!isMobile && (
                       <Popover>
@@ -354,7 +368,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                           <FormControl>
                             <button
                               type='button'
-                              className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
+                              className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer xsm:border-[#10475F]/20 xsm:border-[0.0625rem] xsm:bg-transparent'
                             >
                               <span
                                 className={`${
@@ -374,7 +388,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                                 strokeWidth='2'
                                 strokeLinecap='round'
                                 strokeLinejoin='round'
-                                className='opacity-50'
+                                className='opacity-50 size-[1.125rem]'
                               >
                                 <path d='m6 9 6 6 6-6' />
                               </svg>
@@ -389,13 +403,15 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                             {serviceComboData.map((item) => (
                               <label
                                 key={item.id}
-                                className='flex items-center gap-2 px-3 py-2 cursor-pointer        hover:bg-[#F0F0F0]'
+                                className='flex items-center  px-[1.25rem] py-[0.88rem] cursor-pointer        hover:bg-[#F0F0F0]'
                               >
                                 <Checkbox
                                   checked={values.includes(item.name)}
                                   onCheckedChange={() => toggleValue(item.name)}
                                 />
-                                <span className='text-[#10475F] text-[0.875rem]'>{item.name}</span>
+                                <span className='text-[#10475F] ml-[0.62rem] pc-18-18-m font-normal! '>
+                                  {item.name}
+                                </span>
                               </label>
                             ))}
                           </div>
@@ -409,10 +425,10 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                           <FormControl>
                             <button
                               type='button'
-                              className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-[#F8F8F8] border-0 mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
+                              className='w-full h-[3rem] px-[0.75rem] flex items-center justify-between rounded-[0.5rem] bg-transparent border-[#10475F]/20 border-[0.0625rem] mt-[0.25rem] text-[0.875rem] focus:outline-none cursor-pointer'
                             >
                               <span
-                                className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[#10475F]/40'}`}
+                                className={`${values.length > 0 ? 'text-[#10475F]' : 'text-[rgba(16,71,95,0.40)]'}`}
                               >
                                 {values.length > 0 ? values.join(', ') : 'Chọn nhu cầu'}
                               </span>
@@ -423,11 +439,10 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                                 height='16'
                                 viewBox='0 0 24 24'
                                 fill='none'
-                                stroke='#10475F'
-                                strokeWidth='2'
+                                stroke='var(--mng-m-mng-icon, #10475F)'
                                 strokeLinecap='round'
                                 strokeLinejoin='round'
-                                className='opacity-50'
+                                className='size-[1.125rem]'
                               >
                                 <path d='m6 9 6 6 6-6' />
                               </svg>
@@ -440,13 +455,15 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                             {serviceComboData.map((item) => (
                               <label
                                 key={item.id}
-                                className='flex items-center gap-2.5 px-5 py-3.5 cursor-pointer'
+                                className='flex items-center   cursor-pointer'
                               >
                                 <Checkbox
                                   checked={values.includes(item.name)}
                                   onCheckedChange={() => toggleValue(item.name)}
                                 />
-                                <span className='text-[#10475F] text-[0.875rem]'>{item.name}</span>
+                                <span className='text-[#10475F]  pc-18-18-m font-medium'>
+                                  {item.name}
+                                </span>
                               </label>
                             ))}
                           </div>
@@ -464,11 +481,11 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
             control={form.control}
             name='note'
             render={({ field }) => (
-              <FormItem className='mt-[1.5rem] xsm:mt[1.62rem]'>
-                <FormLabel className='pc-16-16-r-input text-[#10475F] '>Ghi chú</FormLabel>
+              <FormItem className='mt-[1.5rem] xsm:mt[1rem]'>
+                <p className='pc-16-16-r-input text-[#10475F] m-0 '>Ghi chú</p>
                 <FormControl>
                   <Textarea
-                    className='w-full h-[7.0625rem] px-[0.75rem] rounded-[0.5rem]  bg-[#F8F8F8] text-[0.875rem] placeholder:text-[#10475F]/40 border-0 focus-visible:ring-0 mt-[0.25rem] text-[#10475F]'
+                    className='w-full h-[7.0625rem] px-[0.75rem] rounded-[0.5rem] text-[0.875rem] placeholder:text-[rgba(16,71,95,0.40)] mt-[0.25rem] text-[#10475F] bg-transparent border-[#10475F]/20 border-[0.0625rem] shadow-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 ring-0 xsm:border-[#10475F]/20 xsm:border-[0.0625rem] xsm:bg-transparent'
                     placeholder='Nội dung ghi chú'
                     disabled={form.formState.isSubmitting}
                     {...field}
@@ -483,7 +500,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
             isLoading={form.formState.isSubmitting}
             text='Gửi thông tin'
             type='submit'
-            className='xsm:w-[100%] [&_svg]:size-3.5 mt-[1.5rem] xsm:mt-[1.62rem] w-[8rem] h-[2.5rem] '
+            className='xsm:w-[100%] [&_svg]:size-3.5 mt-[1.5rem] xsm:mt-[1.12rem] w-[8rem] h-[2.5rem] text-white  font-normal! xsm:text-white xsm:text-[0.8125rem] xsm:font-normal font-halyard-display xsm:leading-[1.5] xsm:text-left'
           />
         </form>
       </Form>

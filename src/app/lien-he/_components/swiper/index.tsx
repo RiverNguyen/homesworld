@@ -40,7 +40,7 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
             </button>
           )}
 
-          <div className='w-[24.9rem] overflow-hidden'>
+          <div className='w-full max-w-[24.9rem] overflow-hidden'>
             <Swiper
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
@@ -146,7 +146,7 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
                     />
                   </div>
 
-                  <p className='ml-[0.38rem] truncate r-14 leading-[1.4] text-white'>
+                  <p className='ml-[0.38rem] truncate r-14 leading-[1.4] text-white  xsm:text-[0.75rem] xsm:font-normal! xsm:font-halyard-display xsm:leading-[1.5] '>
                     {item.link?.title}
                   </p>
                 </div>
