@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
+import { IAboutUs } from '@/interfaces/about-us'
 
 type IconProps = React.SVGProps<SVGSVGElement>
 
@@ -31,18 +32,24 @@ const policyOverlayStyle = {
   maskImage: 'linear-gradient(to left, black 60%, transparent 100%)',
   WebkitMaskImage: 'linear-gradient(to left, black 60%, transparent 100%)',
 }
+type LayoutProps = {
+  acfData: IAboutUs
+}
 
-const Layout = () => {
+const Layout = ({ acfData }: LayoutProps) => {
+  const socialItems = acfData?.distinctive?.social_media?.social ?? []
+  const policyLink = acfData?.distinctive?.group_3?.link
+  const policyHref = policyLink?.url || '#'
+  const isExternalPolicy = policyHref.startsWith('http')
   return (
     <div className='w-full max-w-[83.5rem] xsm:px-[1rem]'>
       <div className='flex items-center justify-between xsm:flex-col xsm:items-start'>
         <h2 className='z-50 text-left font-montserrat text-[2.875rem] font-semibold leading-[1.3] tracking-[-0.15625rem] text-white xsm:s-25-mon xsm:text-center xsm:text-[2rem] xsm:tracking-[-0.08rem]'>
-          Khác biệt tại HOMESWORLD
+          {acfData?.distinctive?.title}
         </h2>
 
         <p className='z-50 max-w-[24.8125rem] text-left font-halyard-display text-[1rem] font-normal leading-[1.5] text-white xsm:mt-[1rem] xsm:max-w-full xsm:text-center xsm:r-14'>
-          Mỗi hành trình được xây dựng dựa trên sự thấu hiểu nhu cầu, giúp bạn có một chuyến đi dễ
-          dàng, thoải mái và đáng nhớ.
+          {acfData?.distinctive?.desc}
         </p>
       </div>
 
@@ -56,10 +63,10 @@ const Layout = () => {
               >
                 <div className='relative z-20 m-[1.5rem] xsm:h-[11rem]'>
                   <p className='pc-2x-24-m text-[#27AAE1] transition-colors duration-500 ease-out group-hover:text-white xsm:text-[1.25rem] xsm:font-medium xsm:leading-[1.1]'>
-                    Trọn gói chi phí
+                    {acfData?.distinctive?.group_1?.title}
                   </p>
                   <p className='pc-14-14-r mt-[0.25rem] text-[#10475F]/80 transition-colors duration-500 ease-out group-hover:text-white/90 r-14'>
-                    Chi phí bao gôm mọi thứ của chuyến đi
+                    {acfData?.distinctive?.group_1?.desc}
                   </p>
                 </div>
 
@@ -67,7 +74,7 @@ const Layout = () => {
                   <div className='relative h-full w-full'>
                     <div className='absolute right-0 bottom-0 left-0 h-[10rem] transition-all duration-500 ease-out group-hover:h-full group-hover:-translate-y-[1.5rem] xsm:h-[8rem]'>
                       <Image
-                        src='/ve-chung-toi/image.webp'
+                        src={acfData?.distinctive?.group_1?.image}
                         fill
                         alt='Description'
                         className='object-cover rounded-[1.125rem] transition-transform duration-500 ease-out group-hover:scale-[1.2]'
@@ -87,11 +94,10 @@ const Layout = () => {
 
                 <div className='relative z-20 m-[1.5rem] '>
                   <p className={`${cardTitleClass} max-w-[11rem] xsm:max-w-full`}>
-                    Tuyển chọn đối tác chất lượng
+                    {acfData?.distinctive?.group_2?.title}
                   </p>
                   <p className={`${cardDescClass} mt-[0.6rem] max-w-[23.5rem] xsm:max-w-full`}>
-                    Hợp tác cùng hệ thống khách sạn và đơn vị dịch vụ uy tín, được đánh giá dựa trên
-                    phản hồi thực tế từ khách hàng.
+                    {acfData?.distinctive?.group_2?.desc}
                   </p>
                 </div>
 
@@ -121,13 +127,12 @@ const Layout = () => {
                     <p
                       className={`${cardTitleClass} ml-[0.75rem] max-w-[12.68rem] xsm:ml-0 xsm:w-full xsm:max-w-full`}
                     >
-                      Chính sách hoàn và hủy linh hoạt
+                      {acfData?.distinctive?.group_3?.title}
                     </p>
                   </div>
 
                   <p className='pc-14-14-r max-w-[24.5625rem] text-[#10475F]/80 xsm:mt-[0.5rem] xsm:max-w-full'>
-                    Hỗ trợ thay đổi hoặc hoàn hủy theo điều kiện rõ ràng, minh bạch, giúp bạn chủ
-                    động xử lý kế hoạch khi có phát sinh ngoài dự kiến.
+                    {acfData?.distinctive?.group_3?.desc}
                   </p>
                 </div>
 
@@ -136,8 +141,10 @@ const Layout = () => {
                 <div className='flex justify-end xsm:justify-start'>
                   <ButtonPrimary
                     type='link'
-                    href='/chinh-sach-thanh-toan'
-                    className='relative xsm:w-full pr-[1rem] transition-all duration-300 group-hover/policy:pr-[2rem]'
+                    href={policyHref}
+                    // target={isExternalPolicy ? '_blank' : undefined}
+                    rel={isExternalPolicy ? 'noopener noreferrer' : undefined}
+                    className='relative pr-[1rem] transition-all duration-300 group-hover/policy:pr-[2rem] xsm:w-full'
                     hideDefaultIcon
                     rightIcon={
                       <svg
@@ -145,7 +152,7 @@ const Layout = () => {
                         height='14'
                         viewBox='0 0 14 14'
                         fill='none'
-                        className='absolute right-[0.75rem] top-1/2 -translate-y-1/2 opacity-0 translate-x-[-0.375rem] transition-all duration-300 ease-out group-hover/policy:opacity-100 group-hover/policy:translate-x-0 xsm:opacity-100 xsm:translate-x-0'
+                        className='absolute right-[0.75rem] top-1/2 -translate-y-1/2 opacity-0 translate-x-[-0.375rem] transition-all duration-300 ease-out group-hover/policy:translate-x-0 group-hover/policy:opacity-100 xsm:translate-x-0 xsm:opacity-100'
                       >
                         <path
                           d='M11.7356 11.4832L11.8125 2.1875C9.48489 2.21014 4.84544 2.24182 2.51786 2.26446L2.49862 3.42782C4.59316 3.40744 7.37221 3.39046 9.81771 3.36784L2.1875 10.9988L3.00109 11.8125L10.6313 4.18151L10.5657 11.4956L11.7357 11.4819L11.7356 11.4832Z'
@@ -154,7 +161,7 @@ const Layout = () => {
                       </svg>
                     }
                   >
-                    Chính sách hủy - đổi lịch - hoàn tiền
+                    {policyLink?.title}
                   </ButtonPrimary>
                 </div>
               </div>
@@ -165,38 +172,51 @@ const Layout = () => {
             className={`${cardBaseClass} z-[107] w-[21rem] py-[1.5rem] xsm:mt-[0.75rem] xsm:w-full`}
           >
             <p className='pc-2x-24-m mx-[1.5rem] mb-[1.5rem] text-[#27AAE1] xsm:mx-[1.25rem] xsm:mb-[1.11rem] xsm:text-[1.25rem] xsm:font-medium xsm:leading-[1.1]'>
-              Xem thêm ở đây <br></br> chúng tôi có gì hay lắm nè
+              {acfData?.distinctive?.social_media?.title?.split(/\r?\n/).map((line, index) => (
+                <span
+                  key={index}
+                  className='block'
+                >
+                  {line}
+                </span>
+              ))}
             </p>
 
-            <div className='xsm:ml-[1.25rem] xsm:flex xsm:overflow-x-auto xsm:whitespace-nowrap cursor-pointer'>
-              {socialContactData.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.href}
-                  target={item.href.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className='flex w-full cursor-pointer flex-col items-start transition-colors duration-300 hover:bg-[#10475F]/10 xsm:w-auto xsm:flex-none xsm:hover:bg-transparent'
-                >
-                  <ICHorizontalDashedLine336 className='block h-px w-full text-[#10475F] xsm:hidden' />
+            <div className='cursor-pointer xsm:ml-[1.25rem] xsm:flex xsm:overflow-x-auto xsm:whitespace-nowrap'>
+              {socialItems.map((item, index) => {
+                const href = item.link?.url || '#'
+                const isExternal = href.startsWith('http')
+                const isPhone = href.startsWith('tel:')
 
-                  <div className='my-[0.88rem] ml-[1.5rem] mr-[1.5rem] flex w-auto items-center justify-start rounded-[0.75rem] xsm:my-0 xsm:ml-0 xsm:mr-[0.75rem]'>
-                    <div className='flex size-[2.875rem] items-center justify-center rounded-[6.25rem] bg-[#10475F]/6'>
-                      <Image
-                        src={item.icon}
-                        className='size-[1.25rem] object-contain'
-                        width={20}
-                        height={20}
-                        alt={item.title}
-                      />
-                    </div>
+                return (
+                  <Link
+                    key={`${item.name}-${index}`}
+                    href={href}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    className='flex w-full cursor-pointer flex-col items-start transition-colors duration-300 hover:bg-[#10475F]/10 xsm:w-auto xsm:flex-none xsm:hover:bg-transparent'
+                  >
+                    <ICHorizontalDashedLine336 className='block h-px w-full text-[#10475F] xsm:hidden' />
 
-                    <div className='ml-[0.75rem] min-w-0 xsm:hidden'>
-                      <p className='pc-14-14-r font-semibold text-[#10475F]'>{item.title}</p>
-                      <p className='pc-14-14-r break-all text-[#10475F]/80'>{item.value}</p>
+                    <div className='my-[0.88rem] ml-[1.5rem] mr-[1.5rem] flex w-auto items-center justify-start rounded-[0.75rem] xsm:my-0 xsm:ml-0 xsm:mr-[0.75rem]'>
+                      <div className='flex size-[2.875rem] items-center justify-center rounded-[6.25rem] bg-[#10475F]/6'>
+                        <Image
+                          src={item.icon}
+                          className='size-[1.25rem] object-contain'
+                          width={20}
+                          height={20}
+                          alt={item.name}
+                        />
+                      </div>
+
+                      <div className='ml-[0.75rem] min-w-0 xsm:hidden'>
+                        <p className='pc-14-14-r font-semibold text-[#10475F]'>{item.name}</p>
+                        <p className='pc-14-14-r break-all text-[#10475F]/80'>{item.link?.title}</p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </div>

@@ -31,16 +31,22 @@ export default async function HomePage() {
             }
           }
         `}</style>
-      <HeaderSearch taxonomies={taxonomiesData?.data} locations={locationData?.data} />
+      <HeaderSearch
+        taxonomies={taxonomiesData?.data}
+        locations={locationData?.data}
+      />
       <BannerHomepage data={homeData?.acf?.banner} />
       <div className='bg-[#FEFBF9]'>
         <FilterSearch
           taxonomies={taxonomiesData?.data}
           locations={locationData?.data}
         />
-        <Combo data={homeData?.acf?.combo || []} comboData={comboData?.data || []}
-          locations={locationData?.data || []} />
-        <About_us />
+        <Combo
+          data={homeData?.acf?.combo || []}
+          comboData={comboData?.data || []}
+          locations={locationData?.data || []}
+        />
+        <About_us acfData={homeData?.acf} />
 
         <Weather acfData={homeData?.acf} />
         <TravelGuide
