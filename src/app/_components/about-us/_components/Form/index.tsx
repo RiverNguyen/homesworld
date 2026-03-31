@@ -64,12 +64,12 @@ const Layout = () => {
 
                 <div className='absolute top-[0.25rem] right-[0.25rem] bottom-[0.25rem] left-[0.25rem] overflow-hidden rounded-[1.125rem]'>
                   <div className='relative h-full w-full'>
-                    <div className='absolute right-0 bottom-0 left-0 h-[10rem] transition-[height] duration-500 ease-out group-hover:h-full group-hover:scale-120 xsm:h-[8rem]'>
+                    <div className='absolute right-0 bottom-0 left-0 h-[10rem] transition-all duration-500 ease-out group-hover:h-full xsm:h-[8rem]'>
                       <Image
                         src='/ve-chung-toi/image.webp'
                         fill
                         alt='Description'
-                        className='object-cover transition-transform duration-500 ease-out rounded-[1.125rem]'
+                        className='object-cover rounded-[1.125rem] transition-transform duration-500 ease-out group-hover:scale-[1.2]'
                       />
                     </div>
                   </div>
