@@ -10,4 +10,3 @@ export const fetcher = async (url: string, baseCustom?: string) => {
   }
   return response.json()
 }
-

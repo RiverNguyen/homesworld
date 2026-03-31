@@ -21,10 +21,14 @@ const AboutUs = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
   return (
-    <section ref={sectionRef} className='relative' style={{
-      position: isVisible ? 'sticky' : 'relative',
-      top: isVisible ? '1.875rem' : 'auto',
-    }}>
+    <section
+      ref={sectionRef}
+      className='relative'
+      style={{
+        position: isVisible ? 'sticky' : 'relative',
+        top: isVisible ? '1.875rem' : 'auto',
+      }}
+    >
       <Background />
     </section>
   )

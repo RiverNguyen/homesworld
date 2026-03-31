@@ -63,7 +63,7 @@
 .interactive-map-default-marker__label {
   max-width: 0;
   opacity: 0;
-  color: var(--Text, #10475F);
+  color: var(--Text, #10475f);
 
   font-size: 0.75rem;
   font-style: normal;

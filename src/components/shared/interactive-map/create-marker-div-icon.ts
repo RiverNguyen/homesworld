@@ -46,7 +46,7 @@ export function createMarkerDivIconOptions(label: string, options?: CreateMarker
     MARKER_DIV_ICON_WIDTH / 2,
     MARKER_DIV_ICON_HEIGHT,
   ]
- 
+
   return {
     className: 'leaflet-div-icon interactive-map-default-marker-root',
     html:

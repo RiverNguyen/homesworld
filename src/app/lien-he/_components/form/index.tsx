@@ -2,7 +2,6 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import { Trash2Icon } from 'lucide-react'
 import { useState } from 'react'
 import { useForm, useFormState, useWatch, type Control, type FieldPath } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -352,7 +351,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
             </div>
           )}
           {/* choice */}
-          {form.watch('you_are') === 'customer' && (
+          {youAre === 'customer' && (
             <FormField
               control={form.control}
               name='your_choice'

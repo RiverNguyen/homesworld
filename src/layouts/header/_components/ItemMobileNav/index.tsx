@@ -72,17 +72,18 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
           ) : (
             <div className='relative pl-[0.75rem] pr-[0.25rem]'>
               <div className='pr-[0.28rem] pt-[0.75rem] pb-[3.65rem]  grid grid-cols-3 justify-items-center gap-y-[0.6875rem] w-full min-h-[12rem] max-h-[33.97rem] overflow-auto'>
-                {Array.isArray(data?.categories) && data?.categories?.map((item, index) => {
-                  return (
-                    <CardItem
-                      key={index}
-                      slug={item?.slug}
-                      image={item?.acf?.thumbnail}
-                    >
-                      {item?.name}
-                    </CardItem>
-                  )
-                })}
+                {Array.isArray(data?.categories) &&
+                  data?.categories?.map((item, index) => {
+                    return (
+                      <CardItem
+                        key={index}
+                        slug={item?.slug}
+                        image={item?.acf?.thumbnail}
+                      >
+                        {item?.name}
+                      </CardItem>
+                    )
+                  })}
 
                 {/* <CardItem
                   slug=''
