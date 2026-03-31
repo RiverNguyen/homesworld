@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import Layout from '@/app/_components/about-us/_components/Form'
 
-const BG_DESKTOP = '/ve-chung-toi/background.png'
+const BG_DESKTOP = '/home/img/d-bg-about.webp'
 const BG_MOBILE = '/ve-chung-toi/bg-mobile.webp'
 const BG_OVERLAY = '/ve-chung-toi/riso_texture_1_11zon.jpg'
 

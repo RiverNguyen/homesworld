@@ -22,7 +22,7 @@ export default function TravelGuide({ page, data }: TravelGuideProps) {
   const isMobile = useIsMobile()
 
   return (
-    <section className='pt-30 mb-28.75 xsm:pt-0 xsm:mb-18'>
+    <section className='pt-30 mb-28.75 xsm:pt-0 xsm:mb-18 relative z-[5] bg-[#FEFBF9]'>
       <div className='w-full max-w-350 mx-auto flex flex-col gap-8'>
         <div className='flex justify-between xsm:flex-col xsm:gap-6'>
           <div className='flex flex-col gap-2.5 xsm:px-3 xsm:gap-1.5'>
