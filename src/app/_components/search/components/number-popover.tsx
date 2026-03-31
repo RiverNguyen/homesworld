@@ -14,13 +14,12 @@ type NumberPopoverProps = {
 }
 
 const NumberPopover = ({ className, placeholder, label, value, onChange }: NumberPopoverProps) => {
-
   const [open, setOpen] = useState(false)
 
   const summary = `${String(value.adults).padStart(2, '0')} người, ${String(value.rooms).padStart(2, '0')} phòng`
-  const displayText = ((value?.adults !==0 || value?.rooms !==0)? summary : placeholder)
+  const displayText = value?.adults !== 0 || value?.rooms !== 0 ? summary : placeholder
   const handleRoomsChange = (direction: 'increase' | 'decrease') => {
-    if ( direction === 'decrease' ) {
+    if (direction === 'decrease') {
       onChange(value.adults, Math.max(1, value.rooms - 1))
     } else {
       onChange(value.adults, value.rooms + 1)
@@ -28,7 +27,7 @@ const NumberPopover = ({ className, placeholder, label, value, onChange }: Numbe
   }
 
   const handleAdultsChange = (direction: 'increase' | 'decrease') => {
-    if ( direction === 'decrease' ) {
+    if (direction === 'decrease') {
       onChange(Math.max(1, value.adults - 1), value.rooms)
     } else {
       onChange(value.adults + 1, value.rooms)
@@ -52,7 +51,14 @@ const NumberPopover = ({ className, placeholder, label, value, onChange }: Numbe
             <p className='pc-14-14-r text-[#10475F]'>{label}</p>
           </div>
           <div className='flex-y-center justify-between space-x-[0.375rem]'>
-            <p className={cn(!(value?.adults !==0 || value?.rooms !==0) && 'opacity-55', 'line-clamp-1')}>{displayText}</p>
+            <p
+              className={cn(
+                !(value?.adults !== 0 || value?.rooms !== 0) && 'opacity-55',
+                'line-clamp-1',
+              )}
+            >
+              {displayText}
+            </p>
             <svg
               className={cn(
                 'size-5 transition-transform duration-200 ease-out',

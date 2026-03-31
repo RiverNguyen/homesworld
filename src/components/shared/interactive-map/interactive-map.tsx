@@ -254,11 +254,7 @@ const MapController = ({
 }
 
 const escapeHtml = (s: string) =>
-  s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 function maritimeLabelMarkersFromGeoJson(data: GeoJsonObject, leaflet: any) {
   if (data.type !== 'FeatureCollection') return []
@@ -277,7 +273,7 @@ function maritimeLabelMarkersFromGeoJson(data: GeoJsonObject, leaflet: any) {
     const b = layer.getBounds()
     const c = b.getCenter()
     const name =
-      ((feature.properties as { NAME_1?: string })?.NAME_1) ||
+      (feature.properties as { NAME_1?: string })?.NAME_1 ||
       (country === 'ParacelIslands' ? 'Hoàng Sa' : 'Trường Sa')
     items.push({
       id: country,
@@ -316,7 +312,12 @@ const MaritimeLabelMarker = ({
   )
 
   return (
-    <Marker position={position} icon={icon} interactive={false} zIndexOffset={900} />
+    <Marker
+      position={position}
+      icon={icon}
+      interactive={false}
+      zIndexOffset={900}
+    />
   )
 }
 
@@ -350,16 +351,13 @@ const DefaultMarker = dynamic(() => import('./default-marker').then((mod) => mod
   ssr: false,
 })
 
-const noopSubscribe = () => () => { }
+const noopSubscribe = () => () => {}
 
 /** Cùng HTML/CSS với `createMarkerDivIconOptions` — rộng hơn để vùng hover/click khớp label bung ra */
 // Leaflet DivIcon cần `iconSize` dạng số, nên để tránh width cố định quá lớn
 // (thường tạo ra style `width: 160px` trên element), ta dùng kích thước marker mặc định.
 const CLUSTER_ICON_SIZE: [number, number] = [MARKER_DIV_ICON_WIDTH, MARKER_DIV_ICON_HEIGHT]
-const CLUSTER_ICON_ANCHOR: [number, number] = [
-  MARKER_DIV_ICON_WIDTH / 2,
-  MARKER_DIV_ICON_HEIGHT,
-]
+const CLUSTER_ICON_ANCHOR: [number, number] = [MARKER_DIV_ICON_WIDTH / 2, MARKER_DIV_ICON_HEIGHT]
 
 type ClusterIconCluster = {
   getChildCount(): number
@@ -409,7 +407,9 @@ function CityMarkersCluster({
       const group = e.target as LeafletMarkerClusterGroupHack
 
       const allChildMarkers = cluster.getAllChildMarkers?.() ?? []
-      const firstChild = allChildMarkers[0] as (L.Marker & { options?: { alt?: string; title?: string } }) | undefined
+      const firstChild = allChildMarkers[0] as
+        | (L.Marker & { options?: { alt?: string; title?: string } })
+        | undefined
       const citySlug = firstChild?.options?.alt?.trim()
       const cityLabel = firstChild?.options?.title?.trim()
 
@@ -557,8 +557,13 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     if (geoJsonData.type !== 'FeatureCollection') return
 
     const normalizedSelected = normalizeForCompare(selectedCity.city)
-    const features = (geoJsonData as FeatureCollection).features as Feature<Geometry, GeoJsonProperties>[]
-    const hit = features.some((f) => normalizeForCompare(f?.properties?.VARNAME_1 as string) === normalizedSelected)
+    const features = (geoJsonData as FeatureCollection).features as Feature<
+      Geometry,
+      GeoJsonProperties
+    >[]
+    const hit = features.some(
+      (f) => normalizeForCompare(f?.properties?.VARNAME_1 as string) === normalizedSelected,
+    )
 
     console.warn('[InteractiveMap] selectedCity match VARNAME_1?', {
       selectedCity: selectedCity.city,
@@ -612,7 +617,11 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     const country = feature?.properties?.COUNTRY as string | undefined
     if (country === 'ParacelIslands' || country === 'SpratlyIslands') {
       const cityName = feature?.properties?.VARNAME_1
-      if (selectedCity && cityName && normalizeForCompare(cityName) === normalizeForCompare(selectedCity.city)) {
+      if (
+        selectedCity &&
+        cityName &&
+        normalizeForCompare(cityName) === normalizeForCompare(selectedCity.city)
+      ) {
         return {
           ...maritimeStyle,
           fillColor: mapStyle.selectedFillColor || mapStyle.fillColor,
@@ -623,7 +632,11 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     }
 
     const cityName = feature?.properties?.VARNAME_1
-    if (selectedCity && cityName && normalizeForCompare(cityName) === normalizeForCompare(selectedCity.city)) {
+    if (
+      selectedCity &&
+      cityName &&
+      normalizeForCompare(cityName) === normalizeForCompare(selectedCity.city)
+    ) {
       return {
         ...mapStyle,
         fillColor: mapStyle.selectedFillColor || mapStyle.fillColor,
@@ -654,11 +667,19 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       />
 
       {fitBoundsToGeoJson && leaflet ? (
-        <FitBoundsToGeoJson data={geoJsonData} leaflet={leaflet} maxZoom={mapMaxZoom} />
+        <FitBoundsToGeoJson
+          data={geoJsonData}
+          leaflet={leaflet}
+          maxZoom={mapMaxZoom}
+        />
       ) : null}
 
       <GeoJSON
-        key={selectedCity ? `selected-${selectedCity.value}-${normalizeForCompare(selectedCity.city)}` : 'selected-none'}
+        key={
+          selectedCity
+            ? `selected-${selectedCity.value}-${normalizeForCompare(selectedCity.city)}`
+            : 'selected-none'
+        }
         data={geoJsonData}
         style={getStyle}
       />

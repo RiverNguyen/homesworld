@@ -28,7 +28,6 @@ function emitComboEnd(swiper: SwiperType, cb?: (isAtEnd: boolean) => void) {
   cb(atEnd)
 }
 
-
 const List = ({ onHorizontalScrollEndChange, data }: ListProps) => {
   return (
     <div className='w-full relative'>
@@ -146,9 +145,7 @@ const List = ({ onHorizontalScrollEndChange, data }: ListProps) => {
                     </p>
                     <p className='flex items-center mt-[0.4375rem]'>
                       <ICHotel className='size-[0.875rem] mr-[0.375rem]' />
-                      <span className='pc-14-14-r text-[#10475F]/80'>
-                        Mã khách sạn: QKFGAKD
-                      </span>
+                      <span className='pc-14-14-r text-[#10475F]/80'>Mã khách sạn: QKFGAKD</span>
                     </p>
                     <p className='pc-16-16-r text-[#10475F]/60 mt-4'>
                       từ{' '}

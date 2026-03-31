@@ -11,7 +11,6 @@ import InteractiveMap, {
 } from '@/components/shared/interactive-map/interactive-map'
 import { LocationTerm } from '@/interfaces/combo.interface'
 
-
 // Example map configuration
 const mapConfig: MapConfig = {
   center: [16.2, 108.5],
@@ -62,7 +61,6 @@ export default function Map({
     })),
   }))
 
-
   const handleCitySelect = (city: CityData) => {
     const isSameCity = selectedCity?.value === city.value
     const nextCity = isSameCity ? null : city
@@ -80,9 +78,9 @@ export default function Map({
   }
 
   return (
-    <div className="w-full h-full relative">
+    <div className='w-full h-full relative'>
       {/* Map Container */}
-      <div className="w-full h-full relative">
+      <div className='w-full h-full relative'>
         <InteractiveMap
           config={mapConfig}
           style={customStyle}
@@ -104,24 +102,56 @@ export default function Map({
       </div>
 
       {/* Control Panel */}
-      <div className="absolute bottom-5 left-5 z-20">
-        <div className="space-y-2">
+      <div className='absolute bottom-5 left-5 z-20'>
+        <div className='space-y-2'>
           <button
             onClick={handleZoomIn}
-            className="size-[2.375rem] rounded-[0.75rem] bg-[#124681]/9 flex-center cursor-pointer"
+            className='size-[2.375rem] rounded-[0.75rem] bg-[#124681]/9 flex-center cursor-pointer'
           >
-            <svg className='size-[1.125rem]' xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M9 2.8125V15.1875" stroke="#10475F" strokeWidth="2.375" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M15.1875 9L2.8125 9" stroke="#10475F" strokeWidth="2.375" strokeLinecap="round" strokeLinejoin="round" />
+            <svg
+              className='size-[1.125rem]'
+              xmlns='http://www.w3.org/2000/svg'
+              width='18'
+              height='18'
+              viewBox='0 0 18 18'
+              fill='none'
+            >
+              <path
+                d='M9 2.8125V15.1875'
+                stroke='#10475F'
+                strokeWidth='2.375'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+              <path
+                d='M15.1875 9L2.8125 9'
+                stroke='#10475F'
+                strokeWidth='2.375'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
             </svg>
           </button>
 
           <button
             onClick={handleZoomOut}
-            className="size-[2.375rem] rounded-[0.75rem] bg-[#124681]/9 flex-center cursor-pointer"
+            className='size-[2.375rem] rounded-[0.75rem] bg-[#124681]/9 flex-center cursor-pointer'
           >
-            <svg className='size-[1.125rem]' xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M2.8125 9H15.1875" stroke="#10475F" strokeWidth="2.375" strokeLinecap="round" strokeLinejoin="round" />
+            <svg
+              className='size-[1.125rem]'
+              xmlns='http://www.w3.org/2000/svg'
+              width='18'
+              height='18'
+              viewBox='0 0 18 18'
+              fill='none'
+            >
+              <path
+                d='M2.8125 9H15.1875'
+                stroke='#10475F'
+                strokeWidth='2.375'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
             </svg>
           </button>
         </div>

@@ -273,7 +273,7 @@ input[type='number'] {
   display: none !important;
 }
 
-body>.skiptranslate {
+body > .skiptranslate {
   height: 0 !important;
   overflow: hidden !important;
 }

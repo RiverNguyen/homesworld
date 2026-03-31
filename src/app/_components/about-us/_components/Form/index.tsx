@@ -242,6 +242,9 @@ gap-[0.76087rem]
                     className='
     relative
     pr-[1rem]
+    transition-all
+    duration-300
+    group-hover/policy:pr-[2rem]
     pc-14-14-r-button
     xsm:w-full
     xsm:font-normal!
@@ -287,7 +290,7 @@ gap-[0.76087rem]
               {socialItems.map((item, index) => {
                 const href = item.link?.url || '#'
                 const isExternal = href.startsWith('http')
-                const isPhone = href.startsWith('tel:')
+                // const isPhone = href.startsWith('tel:')
 
                 return (
                   <Link

@@ -11,13 +11,15 @@ import { ApiResponse, ComboItem, LocationTerm } from '@/interfaces/combo.interfa
 import { fetcher } from '@/lib/swr'
 import { cn } from '@/lib/utils'
 
-
 const comboTabs = ['Combo du lịch', 'Khách sạn'] as const
 
 const ComboListSkeleton = () => (
   <div className='flex gap-[0.625rem] w-[50.44rem] overflow-hidden pr-[1.125rem]'>
     {Array.from({ length: 3 }).map((_, index) => (
-      <div key={index} className='w-[19rem] shrink-0'>
+      <div
+        key={index}
+        className='w-[19rem] shrink-0'
+      >
         <Skeleton className='h-[18.9205rem] rounded-[1.125rem] bg-[#E6EEF2]' />
         <div className='mt-4 space-y-3'>
           <Skeleton className='h-6 w-4/5 rounded-full bg-[#E6EEF2]' />
@@ -32,12 +34,11 @@ const ComboListSkeleton = () => (
 
 const ComboEmptyState = ({ onReset }: { onReset: () => void }) => (
   <div className='w-[50.44rem] min-h-[29rem] rounded-[1.125rem] flex flex-col items-center justify-center text-center px-8'>
-
     <div className='mt-5 space-y-2'>
       <h3 className='pc-2x-20-m text-[#10475F]'>Chưa có combo phù hợp</h3>
       <p className='pc-16-16-r text-[#10475F]/70 max-w-[28rem]'>
-        Khu vực bạn chọn hiện chưa có combo nào. Hãy thử chọn địa điểm khác trên bản đồ
-        hoặc bỏ bộ lọc để xem toàn bộ combo.
+        Khu vực bạn chọn hiện chưa có combo nào. Hãy thử chọn địa điểm khác trên bản đồ hoặc bỏ bộ
+        lọc để xem toàn bộ combo.
       </p>
       <button
         type='button'
@@ -50,8 +51,15 @@ const ComboEmptyState = ({ onReset }: { onReset: () => void }) => (
   </div>
 )
 
-const Combo = ({ data, comboData, locations }:
-  { data: { title: string, desc: string }, comboData: ComboItem[], locations: LocationTerm[] }) => {
+const Combo = ({
+  data,
+  comboData,
+  locations,
+}: {
+  data: { title: string; desc: string }
+  comboData: ComboItem[]
+  locations: LocationTerm[]
+}) => {
   const [activeTab, setActiveTab] = useState<(typeof comboTabs)[number]>('Combo du lịch')
   const [isComboListAtEnd, setIsComboListAtEnd] = useState(false)
   const [selectedLocationSlugs, setSelectedLocationSlugs] = useState<string[]>([])
@@ -72,14 +80,10 @@ const Combo = ({ data, comboData, locations }:
     return `api/v1/get-all/combo?${query.toString()}`
   }, [selectedLocationSlugs])
 
-  const { data: filteredComboRes, isLoading } = useSWR<ApiResponse>(
-    comboFilterKey,
-    fetcher,
-    {
-      keepPreviousData: true,
-      revalidateOnFocus: false,
-    },
-  )
+  const { data: filteredComboRes, isLoading } = useSWR<ApiResponse>(comboFilterKey, fetcher, {
+    keepPreviousData: true,
+    revalidateOnFocus: false,
+  })
 
   const displayedComboData = filteredComboRes?.data ?? comboData
   const isFiltering = selectedLocationSlugs.length > 0
@@ -90,7 +94,10 @@ const Combo = ({ data, comboData, locations }:
     <section className='max-w-[93rem] relative mx-auto flex items-center rounded-[1.125rem] bg-white'>
       <div className='p-[1.5rem]'>
         <div className='w-[39.5625rem] h-[39.5625rem] bg-[#F8F8F8] rounded-[1rem]'>
-          <Map locations={locations} onLocationSelect={setSelectedLocationSlugs} />
+          <Map
+            locations={locations}
+            onLocationSelect={setSelectedLocationSlugs}
+          />
         </div>
       </div>
 
@@ -133,7 +140,10 @@ const Combo = ({ data, comboData, locations }:
         ) : shouldShowEmptyState ? (
           <ComboEmptyState onReset={() => setSelectedLocationSlugs([])} />
         ) : (
-          <List onHorizontalScrollEndChange={setIsComboListAtEnd} data={displayedComboData} />
+          <List
+            onHorizontalScrollEndChange={setIsComboListAtEnd}
+            data={displayedComboData}
+          />
         )}
       </div>
       <div
