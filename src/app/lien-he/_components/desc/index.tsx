@@ -36,10 +36,11 @@ const Desc = ({ data }: { data: ContactType }) => {
       </div>
 
       <div className='flex flex-col mt-[1.88rem] xsm:mt-[1.25rem]'>
-        <h3 className='pc-2x-20-m !m-[0] text-[#10475F] text-trim-both text-edge-[cap_alphabetic] xsm:m-16 py-[0.375rem] '>
-          {data.social_links.follow_us_title}
-        </h3>
-
+        <div className='py-[0.62rem]'>
+          <h3 className='pc-2x-20-m !m-0 !p-0 leading-[1] text-[#10475F] text-trim-both text-edge-[cap_alphabetic] '>
+            {data.social_links.follow_us_title}
+          </h3>
+        </div>
         <div className='mt-[1.12rem] relative w-fit xsm:mt-[0.38rem]'>
           <SwiperList data={data?.social_links?.social} />
         </div>

@@ -485,7 +485,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                 <p className='pc-16-16-r-input text-[#10475F] m-0 '>Ghi chú</p>
                 <FormControl>
                   <Textarea
-                    className='w-full h-[7.0625rem] px-[0.75rem] rounded-[0.5rem] text-[0.875rem] placeholder:text-[rgba(16,71,95,0.40)] mt-[0.25rem] text-[#10475F] bg-transparent border-[#10475F]/20 border-[0.0625rem] shadow-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 ring-0 xsm:border-[#10475F]/20 xsm:border-[0.0625rem] xsm:bg-transparent'
+                    className='w-full h-[7.0625rem] px-[0.75rem] rounded-[0.5rem] bg-[#F8F8F8] text-[0.875rem] text-[#10475F] placeholder:text-[rgba(16,71,95,0.40)] border-0 shadow-none outline-none focus:outline-none focus-visible:outline-none focus-visible:ring-0 ring-0 mt-[0.25rem] xsm:bg-transparent xsm:border-[#10475F]/20 xsm:border-[0.0625rem]'
                     placeholder='Nội dung ghi chú'
                     disabled={form.formState.isSubmitting}
                     {...field}
