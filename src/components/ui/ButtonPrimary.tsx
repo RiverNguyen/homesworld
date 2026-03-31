@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 
 interface ButtonPrimaryProps {
   isLoading?: boolean
-  text?: string
+  children?: React.ReactNode
   className?: string
   type?: 'submit' | 'button' | 'link'
   href?: string
@@ -14,7 +14,7 @@ interface ButtonPrimaryProps {
 
 const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
   isLoading = false,
-  text = 'Gửi thông tin',
+  children = 'Gửi thông tin',
   className = '',
   type = 'button',
   href = '#',
@@ -39,7 +39,7 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
     <span>Đang gửi...</span>
   ) : (
     <>
-      <span>{text}</span>
+      <span>{children}</span>
       {!hideDefaultIcon && <span className='ml-[0.5rem]'>{defaultIcon}</span>}
       {rightIcon}
     </>

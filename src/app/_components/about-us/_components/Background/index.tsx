@@ -1,7 +1,8 @@
 import Image from 'next/image'
+
 import Layout from '@/app/_components/about-us/_components/Form'
 
-const BG_DESKTOP = '/ve-chung-toi/background.png'
+const BG_DESKTOP = '/ve-chung-toi/Background_main.webp'
 const BG_MOBILE = '/ve-chung-toi/bg-mobile.webp'
 const BG_OVERLAY = '/ve-chung-toi/riso_texture_1_11zon.jpg'
 
@@ -37,7 +38,6 @@ const Background = () => {
         src={BG_DESKTOP}
         alt='Background'
         fill
-        
         className='absolute left-0 top-0 h-full w-full object-cover xsm:hidden'
       />
 
@@ -46,18 +46,16 @@ const Background = () => {
         alt='Background mobile'
         width={1600}
         height={1200}
-        
         className='absolute left-0 top-0 hidden h-[71.94rem] w-full object-cover xsm:block'
       />
       <Image
         src={BG_OVERLAY}
         alt='Background'
         fill
-        
-        className='absolute left-0 top-0 h-full w-full object-cover opacity-[0.4] xsm:opacity-[0.3]'
+        className='absolute left-0 top-0 h-full w-full object-cover opacity-[0.25] xsm:opacity-[0.3]'
       />
       <div
-        className='pointer-events-none absolute left-0 right-0 top-0 z-10 h-[6.53044rem]'
+        className='pointer-events-none absolute left-0 right-0 top-0 z-10 h-[17.25rem]'
         style={TOP_OVERLAY_STYLE}
       />
 
@@ -71,7 +69,7 @@ const Background = () => {
         style={MOBILE_CLOUD_OVERLAY_STYLE}
       />
 
-      <div className='relative z-[25] mt-[0rem] flex items-center justify-center xsm:mt-[0rem]'>
+      <div className='relative z-[25] mt-[0.6rem] flex items-center justify-center xsm:mt-[0rem]'>
         <Layout />
       </div>
 

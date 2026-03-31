@@ -18,3 +18,13 @@ export function formatDateDMY(dateStr: string) {
   const [year, month, day] = dateStr.split('-')
   return `${day}/${month}/${year}`
 }
+
+export function formatPrice(price: string) {
+  const numericPrice = Number(price.replace(/[^\d]/g, ''))
+
+  if (Number.isNaN(numericPrice)) {
+    return `${price}đ`
+  }
+
+  return `${numericPrice.toLocaleString('vi-VN')}đ`
+}

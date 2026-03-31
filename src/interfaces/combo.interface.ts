@@ -18,7 +18,10 @@ export interface ComboItem {
   permalink: string
   thumbnail: Thumbnail
   taxonomies: Taxonomies
-  acf: any | null
+  acf: null | {
+    gallery: string[]
+    price: string
+  }
 }
 
 export interface Thumbnail {
@@ -28,6 +31,24 @@ export interface Thumbnail {
 
 export interface Taxonomies {
   service_combo: ServiceCombo[]
+  location?: LocationTerm[]
+  duration?: DurationTerm[]
+}
+
+export interface LocationTerm {
+  id: number
+  name: string
+  slug: string
+  acf: {
+    longitude: string
+    latitude: string
+  }
+  children: LocationTerm[]
+}
+export interface DurationTerm {
+  id: number
+  name: string
+  slug: string
 }
 
 export interface ServiceCombo {

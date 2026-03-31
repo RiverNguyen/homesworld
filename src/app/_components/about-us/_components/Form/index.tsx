@@ -1,7 +1,8 @@
-import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+
+import ButtonPrimary from '@/components/ui/ButtonPrimary'
 
 type IconProps = React.SVGProps<SVGSVGElement>
 
@@ -53,7 +54,7 @@ const Layout = () => {
               <div
                 className={`${cardBaseClass} group mr-[1rem] flex h-[16.4375rem] flex-1 flex-col justify-between xsm:mr-0 xsm:h-[14rem] xsm:w-full`}
               >
-                <div className='relative z-20 m-[1.25rem] xsm:h-[11rem]'>
+                <div className='relative z-20 m-[1.5rem] xsm:h-[11rem]'>
                   <p className='pc-2x-24-m text-[#27AAE1] transition-colors duration-500 ease-out group-hover:text-white xsm:text-[1.25rem] xsm:font-medium xsm:leading-[1.1]'>
                     Trọn gói chi phí
                   </p>
@@ -64,7 +65,7 @@ const Layout = () => {
 
                 <div className='absolute top-[0.25rem] right-[0.25rem] bottom-[0.25rem] left-[0.25rem] overflow-hidden rounded-[1.125rem]'>
                   <div className='relative h-full w-full'>
-                    <div className='absolute right-0 bottom-0 left-0 h-[10rem] transition-all duration-500 ease-out group-hover:h-full xsm:h-[8rem]'>
+                    <div className='absolute right-0 bottom-0 left-0 h-[10rem] transition-all duration-500 ease-out group-hover:h-full group-hover:-translate-y-[1.5rem] xsm:h-[8rem]'>
                       <Image
                         src='/ve-chung-toi/image.webp'
                         fill
@@ -84,7 +85,7 @@ const Layout = () => {
                   style={partnerOverlayStyle}
                 />
 
-                <div className='relative z-20 m-[1.25rem] '>
+                <div className='relative z-20 m-[1.5rem] '>
                   <p className={`${cardTitleClass} max-w-[11rem] xsm:max-w-full`}>
                     Tuyển chọn đối tác chất lượng
                   </p>
@@ -106,7 +107,7 @@ const Layout = () => {
             </div>
             {/* cột trên trái dưới trái */}
             <div
-              className={`${cardBaseClass} group/policy h-[10.6875rem] w-full p-[1.25rem] xsm:min-h-[12rem] cursor-pointer `}
+              className={`${cardBaseClass} group/policy h-[10.6875rem] w-full p-[1.5rem] xsm:min-h-[12rem] cursor-pointer `}
             >
               <div
                 className='pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 opacity-0 transition-opacity duration-500 ease-out group-hover/policy:opacity-100'
@@ -124,7 +125,7 @@ const Layout = () => {
                     </p>
                   </div>
 
-                  <p className='pc-14-14-r max-w-[24.5625rem] text-[#10475F]/80 xsm:mt-[0.5rem] xsm:max-w-full r-14'>
+                  <p className='pc-14-14-r max-w-[24.5625rem] text-[#10475F]/80 xsm:mt-[0.5rem] xsm:max-w-full'>
                     Hỗ trợ thay đổi hoặc hoàn hủy theo điều kiện rõ ràng, minh bạch, giúp bạn chủ
                     động xử lý kế hoạch khi có phát sinh ngoài dự kiến.
                   </p>
@@ -136,7 +137,6 @@ const Layout = () => {
                   <ButtonPrimary
                     type='link'
                     href='/chinh-sach-thanh-toan'
-                    text='Chính sách hủy - đổi lịch - hoàn tiền'
                     className='relative xsm:w-full pr-[1rem] transition-all duration-300 group-hover/policy:pr-[2rem]'
                     hideDefaultIcon
                     rightIcon={
@@ -153,7 +153,9 @@ const Layout = () => {
                         />
                       </svg>
                     }
-                  />
+                  >
+                    Chính sách hủy - đổi lịch - hoàn tiền
+                  </ButtonPrimary>
                 </div>
               </div>
             </div>
