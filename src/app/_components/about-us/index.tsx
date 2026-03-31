@@ -2,8 +2,9 @@
 import { useEffect, useRef, useState } from 'react'
 
 import Background from '@/app/_components/about-us/_components/Background'
+import { IAboutUs } from '@/interfaces/about-us'
 
-const AboutUs = () => {
+const AboutUs = ({ acfData }: { acfData: IAboutUs }) => {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
@@ -21,11 +22,15 @@ const AboutUs = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
   return (
-    <section ref={sectionRef} className='relative' style={{
-      position: isVisible ? 'sticky' : 'relative',
-      top: isVisible ? '1.875rem' : 'auto',
-    }}>
-      <Background />
+    <section
+      ref={sectionRef}
+      className='relative'
+      style={{
+        position: isVisible ? 'sticky' : 'relative',
+        top: isVisible ? '1.875rem' : 'auto',
+      }}
+    >
+      <Background acfData={acfData} />
     </section>
   )
 }

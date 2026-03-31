@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import Layout from '@/app/_components/about-us/_components/Form'
+import { IAboutUs } from '@/interfaces/about-us'
 
 const BG_DESKTOP = '/home/img/d-bg-about.webp'
 const BG_MOBILE = '/ve-chung-toi/bg-mobile.webp'
@@ -31,7 +32,10 @@ const MOBILE_CLOUD_OVERLAY_STYLE = {
   filter: 'blur(14px)',
 }
 
-const Background = () => {
+type LayoutProps = {
+  acfData: IAboutUs
+}
+const Background = ({ acfData }: LayoutProps) => {
   return (
     <div className='relative mx-auto flex h-[49.875rem] max-w-[100rem] items-center justify-center overflow-hidden xsm:h-[73rem]'>
       <Image
@@ -70,7 +74,7 @@ const Background = () => {
       />
 
       <div className='relative z-[25] mt-[0.6rem] flex items-center justify-center xsm:mt-[0rem]'>
-        <Layout />
+        <Layout acfData={acfData} />
       </div>
 
       {DESKTOP_DECORATIONS.map((item) => (
