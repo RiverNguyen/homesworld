@@ -2,12 +2,13 @@ import Cloud from '@/app/_components/weather/_components/cloud'
 import Layout from '@/app/_components/weather/_components/layout'
 import { IWeatherAcf } from '@/interfaces/weather'
 
-
-const Weather = async ({ acfData }: { acfData: IWeatherAcf }) => {
+const Weather = ({ acfData }: { acfData: IWeatherAcf }) => {
   return (
-    <div className='max-w-[100rem] flex items-center justify-center flex-col'>
+    <div className='max-w-[100rem]'>
       <Cloud />
-      <Layout acfData={acfData} />
+      <div className="bg-[#FEFBF9] relative z-[5]">
+        <Layout acfData={acfData} />
+      </div>
     </div>
   )
 }
