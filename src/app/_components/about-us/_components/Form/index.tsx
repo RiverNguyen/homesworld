@@ -1,7 +1,8 @@
-import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+
+import ButtonPrimary from '@/components/ui/ButtonPrimary'
 
 type IconProps = React.SVGProps<SVGSVGElement>
 
@@ -124,7 +125,7 @@ const Layout = () => {
                     </p>
                   </div>
 
-                  <p className='pc-14-14-r max-w-[24.5625rem] text-[#10475F]/80 xsm:mt-[0.5rem] xsm:max-w-full r-14'>
+                  <p className='pc-14-14-r max-w-[24.5625rem] text-[#10475F]/80 xsm:mt-[0.5rem] xsm:max-w-full'>
                     Hỗ trợ thay đổi hoặc hoàn hủy theo điều kiện rõ ràng, minh bạch, giúp bạn chủ
                     động xử lý kế hoạch khi có phát sinh ngoài dự kiến.
                   </p>
@@ -136,7 +137,6 @@ const Layout = () => {
                   <ButtonPrimary
                     type='link'
                     href='/chinh-sach-thanh-toan'
-                    text='Chính sách hủy - đổi lịch - hoàn tiền'
                     className='relative xsm:w-full pr-[1rem] transition-all duration-300 group-hover/policy:pr-[2rem]'
                     hideDefaultIcon
                     rightIcon={
@@ -153,7 +153,9 @@ const Layout = () => {
                         />
                       </svg>
                     }
-                  />
+                  >
+                    Chính sách hủy - đổi lịch - hoàn tiền
+                  </ButtonPrimary>
                 </div>
               </div>
             </div>

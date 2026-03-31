@@ -1,9 +1,10 @@
 'use client'
 
-import { FC, useMemo } from 'react'
+import type { DivIcon } from 'leaflet'
+import { FC, useEffect, useState } from 'react'
 import { Marker } from 'react-leaflet'
 
-import { createMarkerDivIcon } from './create-marker-div-icon'
+import { createMarkerDivIconOptions } from './create-marker-div-icon'
 import { CityData } from './interactive-map'
 
 // Types
@@ -33,7 +34,23 @@ const DefaultMarker: FC<DefaultMarkerProps> = ({
   onHover,
   onLeave,
 }) => {
-  const icon = useMemo(() => createMarkerDivIcon(label), [label])
+  const [icon, setIcon] = useState<DivIcon | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    import('leaflet').then((mod) => {
+      if (cancelled) return
+      const leaflet = (mod as any).default ?? mod
+      setIcon(leaflet.divIcon(createMarkerDivIconOptions(label)))
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [label])
+
+  if (!icon) return null
 
   return (
     <Marker

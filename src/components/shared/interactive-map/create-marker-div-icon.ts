@@ -33,8 +33,11 @@ export type CreateMarkerDivIconOptions = {
 
 /**
  * HTML/CSS giống `DefaultMarker`: bubble trắng + vòng tròn xanh + nhà + label + tam giác pin.
+ *
+ * Chỉ trả về options thuần để tránh kéo `leaflet` vào lúc module được evaluate.
+ * Việc tạo `divIcon(...)` sẽ diễn ra bên trong client component sau khi Leaflet đã load.
  */
-export function createMarkerDivIcon(label: string, options?: CreateMarkerDivIconOptions) {
+export function createMarkerDivIconOptions(label: string, options?: CreateMarkerDivIconOptions) {
   const iconSize: [number, number] = options?.iconSize ?? [
     MARKER_DIV_ICON_WIDTH,
     MARKER_DIV_ICON_HEIGHT,
@@ -43,9 +46,8 @@ export function createMarkerDivIcon(label: string, options?: CreateMarkerDivIcon
     MARKER_DIV_ICON_WIDTH / 2,
     MARKER_DIV_ICON_HEIGHT,
   ]
-  const { DivIcon } = require('leaflet') as typeof import('leaflet')
-
-  return new DivIcon({
+ 
+  return {
     className: 'leaflet-div-icon interactive-map-default-marker-root',
     html:
       '<div class="interactive-map-default-marker">' +
@@ -59,5 +61,5 @@ export function createMarkerDivIcon(label: string, options?: CreateMarkerDivIcon
       '</div>',
     iconSize,
     iconAnchor,
-  })
+  }
 }

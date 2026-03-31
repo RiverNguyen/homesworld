@@ -25,7 +25,11 @@ import { useMap } from 'react-leaflet'
 
 import { Spinner } from '@/components/ui/spinner'
 
-import { createMarkerDivIcon, MARKER_DIV_ICON_HEIGHT, MARKER_DIV_ICON_WIDTH } from './create-marker-div-icon'
+import {
+  createMarkerDivIconOptions,
+  MARKER_DIV_ICON_HEIGHT,
+  MARKER_DIV_ICON_WIDTH,
+} from './create-marker-div-icon'
 
 /**
  * Zoom tối đa mặc định cho map. Phải đủ cao để leaflet.markercluster khi click cụm có thể
@@ -348,7 +352,7 @@ const DefaultMarker = dynamic(() => import('./default-marker').then((mod) => mod
 
 const noopSubscribe = () => () => { }
 
-/** Cùng HTML/CSS với `createMarkerDivIcon` — rộng hơn để vùng hover/click khớp label bung ra */
+/** Cùng HTML/CSS với `createMarkerDivIconOptions` — rộng hơn để vùng hover/click khớp label bung ra */
 // Leaflet DivIcon cần `iconSize` dạng số, nên để tránh width cố định quá lớn
 // (thường tạo ra style `width: 160px` trên element), ta dùng kích thước marker mặc định.
 const CLUSTER_ICON_SIZE: [number, number] = [MARKER_DIV_ICON_WIDTH, MARKER_DIV_ICON_HEIGHT]
@@ -357,21 +361,9 @@ const CLUSTER_ICON_ANCHOR: [number, number] = [
   MARKER_DIV_ICON_HEIGHT,
 ]
 
-const clusterIconCreateFunction = (cluster: {
+type ClusterIconCluster = {
   getChildCount(): number
   getAllChildMarkers(): Array<{ options?: { title?: string } }>
-}) => {
-  const firstChildLabel = cluster
-    .getAllChildMarkers()
-    .map((marker) => marker.options?.title?.trim())
-    .find(Boolean)
-
-  const locationLabel = firstChildLabel ?? `${cluster.getChildCount()} diem`
-
-  return createMarkerDivIcon(locationLabel, {
-    iconSize: CLUSTER_ICON_SIZE,
-    iconAnchor: CLUSTER_ICON_ANCHOR,
-  })
 }
 
 /** MarkerCluster + leaflet internals dùng khi xử lý clusterclick (giống logic plugin, nhưng zoom bằng fly). */
@@ -407,7 +399,7 @@ function CityMarkersCluster({
   clusterSpiderfyOnMaxZoom: boolean
   clusterMaxRadius: number
   clusterDisableClusteringAtZoom: number
-  iconCreate: typeof clusterIconCreateFunction
+  iconCreate: (cluster: ClusterIconCluster) => L.DivIcon
 }) {
   const map = useMap()
 
@@ -536,6 +528,24 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     },
     [onCitySelect],
   )
+  const clusterIconCreateFunction = useCallback(
+    (cluster: ClusterIconCluster) => {
+      const firstChildLabel = cluster
+        .getAllChildMarkers()
+        .map((marker) => marker.options?.title?.trim())
+        .find(Boolean)
+
+      const locationLabel = firstChildLabel ?? `${cluster.getChildCount()} diem`
+
+      return leaflet.divIcon(
+        createMarkerDivIconOptions(locationLabel, {
+          iconSize: CLUSTER_ICON_SIZE,
+          iconAnchor: CLUSTER_ICON_ANCHOR,
+        }),
+      )
+    },
+    [leaflet],
+  )
 
   const mapMaxZoom = config.maxZoom ?? DEFAULT_MAP_MAX_ZOOM
 
@@ -663,70 +673,72 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         />
       ))}
 
-      <CityMarkersCluster
-        clusterSpiderfyOnMaxZoom={clusterSpiderfyOnMaxZoom}
-        clusterMaxRadius={clusterMaxRadius}
-        clusterDisableClusteringAtZoom={clusterDisableClusteringAtZoom}
-        iconCreate={clusterIconCreateFunction}
-        onClusterCitySelect={handleMarkerSelect}
-      >
-        {cityList.flatMap((city) => {
-          const nodes: ReactNode[] = []
-          if (city.lat != null && city.lng != null) {
-            nodes.push(
-              <CustomMarker
-                key={city.value}
-                value={city.value}
-                position={[city.lat, city.lng]}
-                label={city.label}
-                city={city.city}
-                slug={city.slug}
-                clusterSlug={city.slug}
-                clusterLabel={city.label}
-                handleCitySelect={handleMarkerSelect}
-                selectedCity={selectedCity}
-                onHover={onCityHover ? () => onCityHover(city) : undefined}
-                onLeave={onCityHover ? () => onCityHover(null) : undefined}
-                {...markerProps}
-              />,
-            )
-          }
-          for (const child of city.children ?? []) {
-            const childCity: CityData = {
-              value: child.value,
-              city: city.city,
-              label: child.label,
-              slug: child.slug,
-              lat: child.lat,
-              lng: child.lng,
-              parentValue: city.value,
+      {leaflet ? (
+        <CityMarkersCluster
+          clusterSpiderfyOnMaxZoom={clusterSpiderfyOnMaxZoom}
+          clusterMaxRadius={clusterMaxRadius}
+          clusterDisableClusteringAtZoom={clusterDisableClusteringAtZoom}
+          iconCreate={clusterIconCreateFunction}
+          onClusterCitySelect={handleMarkerSelect}
+        >
+          {cityList.flatMap((city) => {
+            const nodes: ReactNode[] = []
+            if (city.lat != null && city.lng != null) {
+              nodes.push(
+                <CustomMarker
+                  key={city.value}
+                  value={city.value}
+                  position={[city.lat, city.lng]}
+                  label={city.label}
+                  city={city.city}
+                  slug={city.slug}
+                  clusterSlug={city.slug}
+                  clusterLabel={city.label}
+                  handleCitySelect={handleMarkerSelect}
+                  selectedCity={selectedCity}
+                  onHover={onCityHover ? () => onCityHover(city) : undefined}
+                  onLeave={onCityHover ? () => onCityHover(null) : undefined}
+                  {...markerProps}
+                />,
+              )
             }
-            nodes.push(
-              <CustomMarker
-                key={`${city.value}-${child.value}`}
-                value={child.value}
-                position={[child.lat, child.lng]}
-                label={child.label}
-                city={city.city}
-                slug={child.slug}
-                clusterSlug={city.slug}
-                clusterLabel={city.label}
-                handleCitySelect={(c) =>
-                  handleMarkerSelect({
-                    ...c,
-                    parentValue: city.value,
-                  })
-                }
-                selectedCity={selectedCity}
-                onHover={onCityHover ? () => onCityHover(childCity) : undefined}
-                onLeave={onCityHover ? () => onCityHover(null) : undefined}
-                {...markerProps}
-              />,
-            )
-          }
-          return nodes
-        })}
-      </CityMarkersCluster>
+            for (const child of city.children ?? []) {
+              const childCity: CityData = {
+                value: child.value,
+                city: city.city,
+                label: child.label,
+                slug: child.slug,
+                lat: child.lat,
+                lng: child.lng,
+                parentValue: city.value,
+              }
+              nodes.push(
+                <CustomMarker
+                  key={`${city.value}-${child.value}`}
+                  value={child.value}
+                  position={[child.lat, child.lng]}
+                  label={child.label}
+                  city={city.city}
+                  slug={child.slug}
+                  clusterSlug={city.slug}
+                  clusterLabel={city.label}
+                  handleCitySelect={(c) =>
+                    handleMarkerSelect({
+                      ...c,
+                      parentValue: city.value,
+                    })
+                  }
+                  selectedCity={selectedCity}
+                  onHover={onCityHover ? () => onCityHover(childCity) : undefined}
+                  onLeave={onCityHover ? () => onCityHover(null) : undefined}
+                  {...markerProps}
+                />,
+              )
+            }
+            return nodes
+          })}
+        </CityMarkersCluster>
+      ) : null}
     </MapContainer>
   )
 }

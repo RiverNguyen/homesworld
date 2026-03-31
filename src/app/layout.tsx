@@ -4,11 +4,12 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster } from 'sonner'
 
 import { halyardDisplay, montserrat } from '@/fonts'
-import './globals.css'
 import { ApiHeaderResponse } from '@/interfaces/header.interface'
+import CTA from '@/layouts/cta'
 import Footer from '@/layouts/footer/footer'
 import Header from '@/layouts/header/header'
 import headerService from '@/services/header'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Homes World',
@@ -49,6 +50,7 @@ export default async function RootLayout({
         />
         <Toaster richColors />
         <Footer />
+        <CTA data={[]} />
         <div
           id='google_translate_element'
           style={{ height: 0, overflow: 'hidden' }}

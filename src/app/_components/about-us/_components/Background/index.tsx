@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import Layout from '@/app/_components/about-us/_components/Form'
 
 const BG_DESKTOP = '/ve-chung-toi/background.png'
@@ -37,7 +38,6 @@ const Background = () => {
         src={BG_DESKTOP}
         alt='Background'
         fill
-        
         className='absolute left-0 top-0 h-full w-full object-cover xsm:hidden'
       />
 
@@ -46,14 +46,12 @@ const Background = () => {
         alt='Background mobile'
         width={1600}
         height={1200}
-        
         className='absolute left-0 top-0 hidden h-[71.94rem] w-full object-cover xsm:block'
       />
       <Image
         src={BG_OVERLAY}
         alt='Background'
         fill
-        
         className='absolute left-0 top-0 h-full w-full object-cover opacity-[0.4] xsm:opacity-[0.3]'
       />
       <div
