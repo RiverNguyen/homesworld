@@ -10,7 +10,10 @@
       "type": "Feature",
       "properties": {
         "GID_0": "XPI",
-        "COUNTRY": "ParacelIslands"
+        "COUNTRY": "ParacelIslands",
+        "NAME_1": "Hoàng Sa",
+        "VARNAME_1": "HoangSa",
+        "NL_NAME_1": "Quần đảo Hoàng Sa"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -287,7 +290,10 @@
       "type": "Feature",
       "properties": {
         "GID_0": "XSP",
-        "COUNTRY": "SpratlyIslands"
+        "COUNTRY": "SpratlyIslands",
+        "NAME_1": "Trường Sa",
+        "VARNAME_1": "TruongSa",
+        "NL_NAME_1": "Quần đảo Trường Sa"
       },
       "geometry": {
         "type": "MultiPolygon",

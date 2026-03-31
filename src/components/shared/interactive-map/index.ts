@@ -2,7 +2,13 @@
 export { default as InteractiveMap } from './interactive-map'
 
 // Export types
-export type { CityData, MapConfig, MapStyle, InteractiveMapProps } from './interactive-map'
+export type {
+  CityChild,
+  CityData,
+  MapConfig,
+  MapStyle,
+  InteractiveMapProps,
+} from './interactive-map'
 
 // Export default marker
 export { default as DefaultMarker } from './default-marker'

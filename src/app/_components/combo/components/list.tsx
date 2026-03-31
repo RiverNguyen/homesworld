@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import ICCalendar2 from '@/components/icons/ICCalendar2'
 import ICHotel from '@/components/icons/ICHotel'
 import ICRightArrow from '@/components/icons/ICRightArrow'
+import { ComboItem } from '@/interfaces/combo.interface'
 import { convertRemToPx, formatPrice } from '@/lib/utils'
 
 import 'swiper/css'
@@ -14,6 +15,7 @@ import 'swiper/css/pagination'
 
 type ListProps = {
   onHorizontalScrollEndChange?: (isAtEnd: boolean) => void
+  data: ComboItem[]
 }
 
 /** Swiper cập nhật `isEnd` sau transition; dùng thêm progress/translate để khớp khi kéo tay. */
@@ -26,64 +28,8 @@ function emitComboEnd(swiper: SwiperType, cb?: (isAtEnd: boolean) => void) {
   cb(atEnd)
 }
 
-const data = [
-  {
-    title: 'Combo du lịch Tà Xùa',
-    slug: 'combo-du-lich-ta-xua',
-    image: ['/home/img/d-combo.webp', '/home/img/d-combo.webp', '/home/img/d-combo.webp'],
-    duration: '3 ngày 2 đêm',
-    hotelCode: '123456',
-    price: '1850000',
-    location: 'Ha noi',
-  },
-  {
-    title: 'Combo du lịch Tà Xùa',
-    slug: 'combo-du-lich-ta-xua',
-    image: ['/home/img/d-combo.webp', '/home/img/d-combo.webp', '/home/img/d-combo.webp'],
-    duration: '3 ngày 2 đêm',
-    hotelCode: '123456',
-    price: '1850000',
-    location: 'Ha noi',
-  },
-  {
-    title: 'Combo du lịch Tà Xùa',
-    slug: 'combo-du-lich-ta-xua',
-    image: ['/home/img/d-combo.webp', '/home/img/d-combo.webp', '/home/img/d-combo.webp'],
-    duration: '3 ngày 2 đêm',
-    hotelCode: '123456',
-    price: '1850000',
-    location: 'Ha noi',
-  },
-  {
-    title: 'Combo du lịch Tà Xùa',
-    slug: 'combo-du-lich-ta-xua',
-    image: ['/home/img/d-combo.webp', '/home/img/d-combo.webp', '/home/img/d-combo.webp'],
-    duration: '3 ngày 2 đêm',
-    hotelCode: '123456',
-    price: '1850000',
-    location: 'Ha noi',
-  },
-  {
-    title: 'Combo du lịch Tà Xùa',
-    slug: 'combo-du-lich-ta-xua',
-    image: ['/home/img/d-combo.webp', '/home/img/d-combo.webp', '/home/img/d-combo.webp'],
-    duration: '3 ngày 2 đêm',
-    hotelCode: '123456',
-    price: '1850000',
-    location: 'Ha noi',
-  },
-  {
-    title: 'Combo du lịch Tà Xùa',
-    slug: 'combo-du-lich-ta-xua',
-    image: ['/home/img/d-combo.webp', '/home/img/d-combo.webp', '/home/img/d-combo.webp'],
-    duration: '3 ngày 2 đêm',
-    hotelCode: '123456',
-    price: '1850000',
-    location: 'Ha noi',
-  },
-]
 
-const List = ({ onHorizontalScrollEndChange }: ListProps) => {
+const List = ({ onHorizontalScrollEndChange, data }: ListProps) => {
   return (
     <div className='w-full relative'>
       <Swiper
@@ -127,7 +73,7 @@ const List = ({ onHorizontalScrollEndChange }: ListProps) => {
 
             return (
               <SwiperSlide key={index}>
-                <div className='relative overflow-hidden [&_.swiper-pagination-bullet]:!h-[0.375rem] [&_.swiper-pagination-bullet]:!w-[0.375rem] [&_.swiper-pagination-bullet]:!bg-white/30 [&_.swiper-pagination-bullet]:!opacity-100 [&_.swiper-pagination-bullet-active]:!bg-white'>
+                <div className='relative overflow-hidden [&_.swiper-pagination-bullet]:!h-[0.375rem] [&_.swiper-pagination-bullet]:!w-[0.375rem] [&_.swiper-pagination-bullet]:!bg-white/30 [&_.swiper-pagination-bullet]:!opacity-100 [&_.swiper-pagination-bullet-active]:!bg-white [&_.swiper-pagination-bullet]:transition-all [&_.swiper-pagination-bullet]:duration-300'>
                   <Swiper
                     slidesPerView={1}
                     grabCursor={true}
@@ -140,29 +86,28 @@ const List = ({ onHorizontalScrollEndChange }: ListProps) => {
                     }}
                     className='!h-[18.9205rem] rounded-[1.125rem] relative'
                   >
-                    {Array.isArray(item.image) &&
-                      item.image?.map((image, index) => (
-                        <SwiperSlide
-                          key={index}
-                          className='relative w-full !h-[18.9205rem]'
-                        >
-                          <div
-                            className='absolute inset-0 opacity-60 z-[1]'
-                            style={{
-                              background:
-                                'linear-gradient(180deg, rgba(24, 24, 24, 0.10) 0%, rgba(24, 24, 24, 0.20) 77.82%, rgba(24, 24, 24, 0.76) 87.05%, #181818 100%)',
-                            }}
-                          />
-                          <Image
-                            src={image}
-                            alt={item.title}
-                            fill
-                            className='object-cover'
-                          />
-                        </SwiperSlide>
-                      ))}
+                    {item.acf?.gallery?.map((image, index) => (
+                      <SwiperSlide
+                        key={index}
+                        className='relative w-full !h-[18.9205rem] group'
+                      >
+                        <div
+                          className='absolute inset-0 opacity-60 z-[1] pointer-events-none'
+                          style={{
+                            background:
+                              'linear-gradient(180deg, rgba(24, 24, 24, 0.10) 0%, rgba(24, 24, 24, 0.20) 77.82%, rgba(24, 24, 24, 0.76) 87.05%, #181818 100%)',
+                          }}
+                        />
+                        <Image
+                          src={image || '/default.webp'}
+                          alt={item.title}
+                          fill
+                          className='object-cover group-hover:scale-110 transition-transform duration-300'
+                        />
+                      </SwiperSlide>
+                    ))}
                     <div className='absolute bottom-[0.875rem] h-[1.8125rem] pl-[0.625rem] pr-[0.375rem] right-[0.875rem] z-[2] rounded-[6.25rem] bg-white/20 backdrop-blur-[2px] flex-center space-x-[0.1875rem]'>
-                      <p className='pc-14-14-r text-white'>{item.location}</p>
+                      <p className='pc-14-14-r text-white'>{item.taxonomies.location?.[0]?.name}</p>
                       <svg
                         className='size-4'
                         xmlns='http://www.w3.org/2000/svg'
@@ -196,19 +141,19 @@ const List = ({ onHorizontalScrollEndChange }: ListProps) => {
                     <p className='flex items-center mt-3'>
                       <ICCalendar2 className='size-[0.875rem] mr-[0.375rem]' />
                       <span className='pc-14-14-r text-[#10475F]/80'>
-                        Thời gian: {item.duration}
+                        Thời gian: {item.taxonomies.duration?.[0]?.name}
                       </span>
                     </p>
                     <p className='flex items-center mt-[0.4375rem]'>
                       <ICHotel className='size-[0.875rem] mr-[0.375rem]' />
                       <span className='pc-14-14-r text-[#10475F]/80'>
-                        Mã khách sạn: {item.hotelCode}
+                        Mã khách sạn: QKFGAKD
                       </span>
                     </p>
                     <p className='pc-16-16-r text-[#10475F]/60 mt-4'>
                       từ{' '}
                       <strong className='pc-18-18-m text-[#10475F]'>
-                        {formatPrice(item.price)}
+                        {item.acf?.price ? formatPrice(item.acf.price) : '—'}
                       </strong>{' '}
                       / người
                     </p>
@@ -218,10 +163,10 @@ const List = ({ onHorizontalScrollEndChange }: ListProps) => {
             )
           })}
       </Swiper>
-      <div className='flex-y-center justify-between absolute top-[7.4375rem] left-[-1.125rem] right-[0.6875rem] z-[11]'>
+      <div className='flex-y-center justify-between absolute top-[7.4375rem] left-[-1.125rem] right-[0.6875rem] z-[11] pointer-events-none'>
         <button
           type='button'
-          className='transition-all duration-300 combo-prev size-[2.5rem] rounded-full bg-white flex-center cursor-pointer shadow-[0_0_30px_0_rgba(0,0,0,0.12)]'
+          className='transition-all duration-300 combo-prev size-[2.5rem] rounded-full bg-white flex-center cursor-pointer shadow-[0_0_30px_0_rgba(0,0,0,0.12)] pointer-events-auto'
         >
           <svg
             className='size-[1.25rem]'
@@ -241,7 +186,7 @@ const List = ({ onHorizontalScrollEndChange }: ListProps) => {
         </button>
         <button
           type='button'
-          className='transition-all duration-300 combo-next size-[2.5rem] rounded-full bg-white flex-center cursor-pointer shadow-[0_0_30px_0_rgba(0,0,0,0.12)]'
+          className='transition-all duration-300 combo-next size-[2.5rem] rounded-full bg-white flex-center cursor-pointer shadow-[0_0_30px_0_rgba(0,0,0,0.12)] pointer-events-auto'
         >
           <svg
             className='size-[1.25rem] rotate-180'

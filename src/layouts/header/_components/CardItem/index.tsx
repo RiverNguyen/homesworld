@@ -15,7 +15,7 @@ const CardItem = ({ children, image, slug }: CardItemProps) => {
         width={134}
         height={128}
         alt=''
-        src={image}
+        src={image || '/default.webp'}
         className='w-full h-full object-cover'
       />
       <div className='w-full group h-full absolute top-0 left-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0.3)_0%,_rgba(0,0,0,0.4)_58.89%,_rgba(0,0,0,1)_82.88%)] hover:bg-[linear-gradient(180deg,_rgba(0,0,0,0)_58.89%,_rgba(0,0,0,1)_82.88%)] hover:opacity-20 transition-all duration-300'></div>
