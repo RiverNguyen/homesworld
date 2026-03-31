@@ -113,6 +113,9 @@ const config: Config = {
         '.pc-18-r': {
           '@apply text-[1.125rem] leading-[1.3]': {},
         },
+        '.pc-sub-12-r': {
+          '@apply text-[0.75rem] font-normal leading-[130%] ': {},
+        },
       })
     }),
   ],

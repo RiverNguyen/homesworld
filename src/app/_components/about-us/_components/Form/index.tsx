@@ -4,6 +4,8 @@ import React from 'react'
 
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import { IAboutUs } from '@/interfaces/about-us'
+import ICRightArrow from '@/components/icons/ICRightArrow'
+import ICRight from '@/components/icons/ICRight'
 
 type IconProps = React.SVGProps<SVGSVGElement>
 
@@ -42,13 +44,13 @@ const Layout = ({ acfData }: LayoutProps) => {
   const policyHref = policyLink?.url || '#'
   const isExternalPolicy = policyHref.startsWith('http')
   return (
-    <div className='w-full max-w-[83.5rem] xsm:px-[1rem]'>
-      <div className='flex items-center justify-between xsm:flex-col xsm:items-start'>
-        <h2 className='z-50 text-left font-montserrat text-[2.875rem] font-semibold leading-[1.3] tracking-[-0.15625rem] text-white xsm:s-25-mon xsm:text-center xsm:text-[2rem] xsm:tracking-[-0.08rem]'>
+    <div className='w-full max-w-[83.5rem] xsm:px-[1rem] xsm:mt-[3.28rem]'>
+      <div className='flex items-center justify-between xsm:flex-col xsm:items-center'>
+        <h2 className='z-50 text-left font-montserrat text-[2.875rem] font-semibold leading-[1.3] tracking-[-0.15625rem] text-white xsm:s-25-mon xsm:text-center  xsm:tracking-[-0.08rem] xsm:max-w-[13.875rem]'>
           {acfData?.distinctive?.title}
         </h2>
 
-        <p className='z-50 max-w-[24.8125rem] text-left font-halyard-display text-[1rem] font-normal leading-[1.5] text-white xsm:mt-[1rem] xsm:max-w-full xsm:text-center xsm:r-14'>
+        <p className='z-50 max-w-[24.8125rem] text-left font-halyard-display text-[1rem] font-normal leading-[1.5] text-white xsm:mt-[0.62rem] xsm:max-w-full xsm:text-center xsm:r-14'>
           {acfData?.distinctive?.desc}
         </p>
       </div>
@@ -59,25 +61,71 @@ const Layout = ({ acfData }: LayoutProps) => {
             <div className='mb-[1rem] flex xsm:mb-[0.75rem] xsm:block'>
               {/* cột trên trái 1 */}
               <div
-                className={`${cardBaseClass} group mr-[1rem] flex h-[16.4375rem] flex-1 flex-col justify-between xsm:mr-0 xsm:h-[14rem] xsm:w-full`}
+                className={`${cardBaseClass} group mr-[1rem] flex h-[16.4375rem] flex-1 flex-col justify-between xsm:mr-0 xsm:h-[13.63rem] xsm:w-full`}
               >
-                <div className='relative z-20 m-[1.5rem] xsm:h-[11rem]'>
-                  <p className='pc-2x-24-m text-[#27AAE1] transition-colors duration-500 ease-out group-hover:text-white xsm:text-[1.25rem] xsm:font-medium xsm:leading-[1.1]'>
+                <div className='relative z-20 m-[1.5rem] xsm:mx-[1.25rem] xsm:h-[11rem]'>
+                  <p
+                    className='
+        pc-2x-24-m
+        text-[#27AAE1]
+        transition-colors
+        duration-500
+        ease-out
+        md:group-hover:text-white
+        xsm:text-[1.25rem]
+        xsm:font-medium
+        xsm:leading-[1.1]
+      '
+                  >
                     {acfData?.distinctive?.group_1?.title}
                   </p>
-                  <p className='pc-14-14-r mt-[0.25rem] text-[#10475F]/80 transition-colors duration-500 ease-out group-hover:text-white/90 r-14'>
+
+                  <p
+                    className='
+        pc-14-14-r
+        mt-[0.25rem]
+        text-[#10475F]/80
+        transition-colors
+        duration-500
+        ease-out
+        md:group-hover:text-white/90
+        xsm:r-14
+    
+      '
+                  >
                     {acfData?.distinctive?.group_1?.desc}
                   </p>
                 </div>
 
                 <div className='absolute top-[0.25rem] right-[0.25rem] bottom-[0.25rem] left-[0.25rem] overflow-hidden rounded-[1.125rem]'>
                   <div className='relative h-full w-full'>
-                    <div className='absolute right-0 bottom-0 left-0 h-[10rem] transition-all duration-500 ease-out group-hover:h-full group-hover:-translate-y-[1.5rem] xsm:h-[8rem]'>
+                    <div
+                      className='
+          absolute
+          right-0
+          bottom-0
+          left-0
+          h-[10rem]
+          transition-all
+          duration-500
+          ease-out
+          md:group-hover:h-full
+          md:group-hover:-translate-y-[1.5rem]
+          xsm:h-[8rem]
+        '
+                    >
                       <Image
                         src={acfData?.distinctive?.group_1?.image}
                         fill
                         alt='Description'
-                        className='object-cover rounded-[1.125rem] transition-transform duration-500 ease-out group-hover:scale-[1.2]'
+                        className='
+            rounded-[1.125rem]
+            object-cover
+            transition-transform
+            duration-500
+            ease-out
+            md:group-hover:scale-[1.2]
+          '
                       />
                     </div>
                   </div>
@@ -85,35 +133,75 @@ const Layout = ({ acfData }: LayoutProps) => {
               </div>
               {/* cột trên trái 2 */}
               <div
-                className={`${cardBaseClass} group flex h-[16.4375rem] xsm:h-[13rem] flex-1 flex-col justify-between xsm:mt-[0.75rem] xsm:w-full`}
+                className={`${cardBaseClass} group flex h-[16.4375rem] xsm:h-[13.88rem] flex-1 flex-col justify-between xsm:mt-[0.75rem] xsm:w-full`}
               >
                 <div
                   className='pointer-events-none absolute right-0 bottom-0 left-0 z-0 h-0 opacity-0 transition-all duration-500 ease-out group-hover:h-full group-hover:opacity-100'
                   style={partnerOverlayStyle}
                 />
 
-                <div className='relative z-20 m-[1.5rem] '>
-                  <p className={`${cardTitleClass} max-w-[11rem] xsm:max-w-full`}>
+                <div className='relative z-20 m-[1.5rem] xsm:m-[1.25rem] '>
+                  <p className={`${cardTitleClass} max-w-[11rem]  xsm:max-w-[9.25rem]`}>
                     {acfData?.distinctive?.group_2?.title}
                   </p>
-                  <p className={`${cardDescClass} mt-[0.6rem] max-w-[23.5rem] xsm:max-w-full`}>
+                  <p
+                    className={`${cardDescClass} mt-[0.6rem] max-w-[23.5rem] xsm:max-w-full  text-trim-trim-both text-edge-[cap_alphabetic] xsm:mt-[0.5rem]`}
+                  >
                     {acfData?.distinctive?.group_2?.desc}
                   </p>
                 </div>
 
-                <div className='absolute right-0 bottom-0 z-20 mb-[1.5rem] h-[3.5rem] w-[20rem] xsm:relative xsm:mb-[1.25rem] xsm:ml-auto xsm:h-[3rem] xsm:w-[17rem]'>
-                  <Image
-                    src='/ve-chung-toi/d-ser.svg'
-                    fill
-                    alt='Description'
-                    className='object-cover'
-                  />
+                <div className='mx-[1.5rem] mb-[1.5rem] mt-auto flex items-center justify-end z-[100] xsm:mx-[1.25rem] xsm:mb-[1.25rem]'>
+                  <div className='flex items-center'>
+                    {acfData?.distinctive?.group_2?.gallery?.slice(0, 3).map((image, index) => (
+                      <div
+                        key={`${image}-${index}`}
+                        className={index !== 0 ? 'ml-[-0.46rem]' : ''}
+                      >
+                        <div className='relative size-[3.5rem] overflow-hidden rounded-full border-[0.15217rem] border-white/90'>
+                          <Image
+                            src={image}
+                            alt={`partner-avatar-${index + 1}`}
+                            fill
+                            className='object-cover'
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <p
+                    className='
+    ml-[-0.46rem]
+    flex min-h-[3.14rem] max-w-[10.2rem] items-center
+    rounded-[76.08695rem]
+    bg-[#8CC63F]
+    px-[1.06522rem]
+    pt-[0.53261rem]
+    pb-[0.6087rem]
+gap-[0.76087rem]
+    pt-[0.53261rem] pb-[0.6087rem] px-[1.06522rem]
+    text-left
+    text-white
+    whitespace-pre-line
+   max-w-[7.6923rem]!
+   h-[3.14rem]!
+    text-[0.75rem]
+    font-normal
+    leading-[130%]
+  '
+                  >
+                    {String(acfData?.distinctive?.group_2?.desc_gallery ?? '').replace(
+                      /<br\s*\/?>/gi,
+                      '\n',
+                    )}
+                  </p>
                 </div>
               </div>
             </div>
             {/* cột trên trái dưới trái */}
             <div
-              className={`${cardBaseClass} group/policy h-[10.6875rem] w-full p-[1.5rem] xsm:min-h-[12rem] cursor-pointer `}
+              className={`${cardBaseClass} group/policy relative h-[10.6875rem] w-full p-[1.5rem] cursor-pointer xsm:h-[11.81rem] xsm:p-[1.25rem]`}
             >
               <div
                 className='pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 opacity-0 transition-opacity duration-500 ease-out group-hover/policy:opacity-100'
@@ -123,7 +211,13 @@ const Layout = ({ acfData }: LayoutProps) => {
               <div className='relative z-10 flex h-full flex-col justify-between'>
                 <div className='flex items-center justify-between xsm:flex-col xsm:items-start'>
                   <div className='ml-[4.9rem] flex items-center justify-center xsm:ml-0 xsm:w-full xsm:justify-start'>
-                    <ICPolicyShield className='h-[3.25rem] w-[3.25rem] xsm:hidden' />
+                    <Image
+                      src={acfData?.distinctive?.group_3?.icon || ''}
+                      alt='policy icon'
+                      width={52}
+                      height={52}
+                      className='h-[3.25rem] w-[3.25rem] xsm:hidden object-contain'
+                    />
                     <p
                       className={`${cardTitleClass} ml-[0.75rem] max-w-[12.68rem] xsm:ml-0 xsm:w-full xsm:max-w-full`}
                     >
@@ -138,21 +232,28 @@ const Layout = ({ acfData }: LayoutProps) => {
 
                 <ICHorizontalDashedLine className='h-px w-full text-[#10475F] xsm:my-[1rem] xsm:hidden' />
 
-                <div className='flex justify-end xsm:justify-start'>
+                <div className='flex justify-end xsm:justify-start cusor-pointer'>
                   <ButtonPrimary
                     type='link'
                     href={policyHref}
-                    // target={isExternalPolicy ? '_blank' : undefined}
+                    target={isExternalPolicy ? '_blank' : undefined}
                     rel={isExternalPolicy ? 'noopener noreferrer' : undefined}
-                    className='relative pr-[1rem] transition-all duration-300 group-hover/policy:pr-[2rem] xsm:w-full'
                     hideDefaultIcon
+                    className='
+    relative
+    pr-[1rem]
+    pc-14-14-r-button
+    xsm:w-full
+    xsm:font-normal!
+    xsm:text-[0.8125rem]
+  '
                     rightIcon={
                       <svg
                         width='14'
                         height='14'
                         viewBox='0 0 14 14'
                         fill='none'
-                        className='absolute right-[0.75rem] top-1/2 -translate-y-1/2 opacity-0 translate-x-[-0.375rem] transition-all duration-300 ease-out group-hover/policy:translate-x-0 group-hover/policy:opacity-100 xsm:translate-x-0 xsm:opacity-100'
+                        className='hidden xsm:block'
                       >
                         <path
                           d='M11.7356 11.4832L11.8125 2.1875C9.48489 2.21014 4.84544 2.24182 2.51786 2.26446L2.49862 3.42782C4.59316 3.40744 7.37221 3.39046 9.81771 3.36784L2.1875 10.9988L3.00109 11.8125L10.6313 4.18151L10.5657 11.4956L11.7357 11.4819L11.7356 11.4832Z'
@@ -169,7 +270,7 @@ const Layout = ({ acfData }: LayoutProps) => {
           </div>
           {/* cột phải  */}
           <div
-            className={`${cardBaseClass} z-[107] w-[21rem] py-[1.5rem] xsm:mt-[0.75rem] xsm:w-full`}
+            className={`${cardBaseClass} z-[107] w-[21rem] py-[1.5rem] xsm:mt-[0.75rem] xsm:w-full xsm:py-[1.25rem] xsm:h-[9rem]`}
           >
             <p className='pc-2x-24-m mx-[1.5rem] mb-[1.5rem] text-[#27AAE1] xsm:mx-[1.25rem] xsm:mb-[1.11rem] xsm:text-[1.25rem] xsm:font-medium xsm:leading-[1.1]'>
               {acfData?.distinctive?.social_media?.title?.split(/\r?\n/).map((line, index) => (
@@ -194,25 +295,31 @@ const Layout = ({ acfData }: LayoutProps) => {
                     href={href}
                     target={isExternal ? '_blank' : undefined}
                     rel={isExternal ? 'noopener noreferrer' : undefined}
-                    className='flex w-full cursor-pointer flex-col items-start transition-colors duration-300 hover:bg-[#10475F]/10 xsm:w-auto xsm:flex-none xsm:hover:bg-transparent'
+                    className='flex w-full cursor-pointer flex-col items-start transition-colors duration-300 hover:bg-[#10475F]/10 xsm:w-auto xsm:flex-none xsm:hover:bg-transparent group'
                   >
                     <ICHorizontalDashedLine336 className='block h-px w-full text-[#10475F] xsm:hidden' />
 
-                    <div className='my-[0.88rem] ml-[1.5rem] mr-[1.5rem] flex w-auto items-center justify-start rounded-[0.75rem] xsm:my-0 xsm:ml-0 xsm:mr-[0.75rem]'>
-                      <div className='flex size-[2.875rem] items-center justify-center rounded-[6.25rem] bg-[#10475F]/6'>
+                    <div className='flex justify-between items-center w-full'>
+                      <div className='my-[0.88rem] ml-[1.5rem] mr-[1.5rem] flex w-auto items-center justify-start rounded-[0.75rem] xsm:my-0 xsm:ml-0 xsm:mr-[0.75rem]'>
                         <Image
                           src={item.icon}
-                          className='size-[1.25rem] object-contain'
+                          className='size-[2.875rem] object-contain xsm:size-[2.375rem]'
                           width={20}
                           height={20}
                           alt={item.name}
                         />
-                      </div>
 
-                      <div className='ml-[0.75rem] min-w-0 xsm:hidden'>
-                        <p className='pc-14-14-r font-semibold text-[#10475F]'>{item.name}</p>
-                        <p className='pc-14-14-r break-all text-[#10475F]/80'>{item.link?.title}</p>
+                        <div className='ml-[0.5rem] min-w-0 xsm:hidden'>
+                          <p className='pc-14-14-r font-semibold text-[#10475F] leading-[1] text-trim-both text-edge-[cap_alphabetic]'>
+                            {item.name}
+                          </p>
+
+                          <p className='pc-14-14-r break-all text-[#10475F]/80 leading-[1] text-trim-both text-edge-[cap_alphabetic] mt-[0.25rem]'>
+                            {item.link?.title}
+                          </p>
+                        </div>
                       </div>
+                      <ICRight className='size-[0.75rem] text-[#10475F] mr-[1.5rem] opacity-0 group-hover:opacity-100 xsm:hidden' />
                     </div>
                   </Link>
                 )
