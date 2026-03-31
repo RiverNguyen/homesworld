@@ -285,7 +285,9 @@ body>.skiptranslate {
 @utility text-edge-* {
   text-box-edge: --value(--text-edge-*, 'text', 'alphabetic', 'ideographic', 'cap', 'ex', [*]);
 }
-
+html {
+  scrollbar-gutter: stable;
+}
 ::-webkit-scrollbar {
   width: 0.38rem;
   /* Hoặc bất kỳ độ rộng nào */

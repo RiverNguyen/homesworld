@@ -8,6 +8,7 @@ import homeService from '@/services/home'
 import taxonomiesService from '@/services/taxonomies'
 
 import About_us from './_components/about-us'
+import HeaderSearch from './_components/header-search'
 
 export default async function HomePage() {
   const [homeData, blogRes, taxonomiesData, locationData, comboData] = await Promise.all([
@@ -20,6 +21,17 @@ export default async function HomePage() {
 
   return (
     <>
+      <style>{`
+          body {
+            margin-top:0;
+          }
+          @media (max-width: 639px) {
+            body {
+              margin-top: 3.13rem;
+            }
+          }
+        `}</style>
+      <HeaderSearch taxonomies={taxonomiesData?.data} locations={locationData?.data} />
       <BannerHomepage data={homeData?.acf?.banner} />
       <div className='bg-[#FEFBF9]'>
         <FilterSearch
