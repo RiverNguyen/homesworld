@@ -7,6 +7,8 @@ import comboService from '@/services/combo'
 import homeService from '@/services/home'
 import taxonomiesService from '@/services/taxonomies'
 
+import About_us from './_components/about-us'
+
 export default async function HomePage() {
   const [homeData, blogRes, taxonomiesData, locationData, comboData] = await Promise.all([
     homeService.getHome(),
@@ -18,16 +20,6 @@ export default async function HomePage() {
 
   return (
     <>
-      <style>{`
-          body {
-            margin-top:0;
-          }
-          @media (max-width: 639px) {
-            body {
-              margin-top: 3.13rem;
-            }
-          }
-        `}</style>
       <BannerHomepage data={homeData?.acf?.banner} />
       <div className='bg-[#FEFBF9]'>
         <FilterSearch
@@ -36,6 +28,8 @@ export default async function HomePage() {
         />
         <Combo data={homeData?.acf?.combo || []} comboData={comboData?.data || []}
           locations={locationData?.data || []} />
+        <About_us />
+
         <Weather acfData={homeData?.acf} />
         <TravelGuide
           page={homeData?.acf?.travel_guide || {}}

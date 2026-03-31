@@ -76,16 +76,14 @@ const Header = ({ data }: HeaderProps) => {
         <div
           className={`absolute top-0 left-0 w-screen h-screen bg-white transition-all duration-300 ${isOpen ? '' : 'translate-x-full'}`}
         >
-          <div className='w-full border-[#10475F]/12 border-b-[0.0625rem]'>
-            <div
-              onClick={() => {
-                setIsOpen(false)
-              }}
-              className='flex p-[0.875rem] w-fit h-fit '
-            >
-              <ChevronLeft className='size-[1.25rem] mr-[0.25rem]'></ChevronLeft>
-              <span className='mb-16-m font-normal'>Quay lại</span>
-            </div>
+          <div
+            onClick={() => {
+              setIsOpen(false)
+            }}
+            className='flex p-[0.875rem] w-full h-fit border-[#10475F]/12 border-b-[0.0625rem]'
+          >
+            <ChevronLeft className='size-[1.25rem] mr-[0.25rem]'></ChevronLeft>
+            <span className='mb-16-m font-normal'>Quay lại</span>
           </div>
           <div className='px-[0.75rem] mb-[3.62rem]'>
             {data?.menu?.map((menu, index) => {
@@ -109,7 +107,7 @@ const Header = ({ data }: HeaderProps) => {
           <Language
             language={language}
             setLanguage={setLanguage}
-          />
+          ></Language>
           <div className='flex justify-center mt-[1.56rem]'>
             {data?.social_media?.map((item, index) => {
               return (
@@ -211,7 +209,7 @@ const Header = ({ data }: HeaderProps) => {
           <Language
             language={language}
             setLanguage={setLanguage}
-          />
+          ></Language>
         </div>
       </div>
     </header>

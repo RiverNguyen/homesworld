@@ -273,7 +273,7 @@ input[type='number'] {
   display: none !important;
 }
 
-body > .skiptranslate {
+body>.skiptranslate {
   height: 0 !important;
   overflow: hidden !important;
 }
@@ -296,4 +296,37 @@ body > .skiptranslate {
   width: 0.25rem;
   border-radius: 2.8125rem;
   background: var(--mng-m-mng-icon, #10475f);
+}
+
+@keyframes ripple_video {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(39, 170, 225, 0.5),
+      0 0 0 0.28em rgba(39, 170, 225, 0.34),
+      0 0 0 0.6em rgba(39, 170, 225, 0.22);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0.28em rgba(39, 170, 225, 0.34),
+      0 0 0 0.6em rgba(39, 170, 225, 0.22),
+      0 0 0 1.05em rgba(39, 170, 225, 0);
+  }
+}
+
+.ripple_video {
+  position: absolute;
+  width: 3rem;
+  /* = size-10 */
+  height: 3rem;
+  border-radius: 50%;
+  animation: ripple_video 0.75s linear infinite;
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .ripple_video {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
