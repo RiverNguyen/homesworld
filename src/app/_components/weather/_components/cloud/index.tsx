@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import Image from 'next/image'
 
 type MovingCloud = {
+  id: string
   src: string
   className: string
   width: number
@@ -20,6 +21,7 @@ type MovingCloud = {
 
 const movingClouds: MovingCloud[] = [
   {
+    id: 'cloud-3-right',
     src: '/home/img/cloud-3.svg',
     className: 'absolute w-[27.375rem] h-[15.3125rem] bottom-[-1.5625rem] right-[-4.75rem]',
     width: 440,
@@ -28,6 +30,7 @@ const movingClouds: MovingCloud[] = [
     transition: { duration: 5.5, repeat: Infinity, ease: 'easeInOut' },
   },
   {
+    id: 'cloud-4-left',
     src: '/home/img/cloud-4.svg',
     className: 'absolute w-[23rem] h-[13rem] bottom-0 left-0',
     width: 595,
@@ -36,6 +39,7 @@ const movingClouds: MovingCloud[] = [
     transition: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
   },
   {
+    id: 'cloud-5-right',
     src: '/home/img/cloud-5.svg',
     className: 'absolute w-[55rem] h-[11rem] bottom-0 right-0',
     width: 960,
@@ -44,6 +48,7 @@ const movingClouds: MovingCloud[] = [
     transition: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
   },
   {
+    id: 'cloud-4-mid-left',
     src: '/home/img/cloud-4.svg',
     className: 'absolute w-[18rem] h-[10rem] bottom-[3.5rem] left-[10rem] opacity-80',
     width: 595,
@@ -52,6 +57,7 @@ const movingClouds: MovingCloud[] = [
     transition: { duration: 6.2, repeat: Infinity, ease: 'easeInOut' },
   },
   {
+    id: 'cloud-6-left',
     src: '/home/img/cloud-6.svg',
     className: 'absolute w-[36.25rem] h-[20.3125rem] bottom-0 left-[7rem]',
     width: 960,
@@ -60,6 +66,7 @@ const movingClouds: MovingCloud[] = [
     transition: { duration: 6.5, repeat: Infinity, ease: 'easeInOut' },
   },
   {
+    id: 'cloud-6-center',
     src: '/home/img/cloud-6.svg',
     className: 'absolute w-[24rem] h-[13.5rem] bottom-[4.5rem] left-[32rem] opacity-75',
     width: 960,
@@ -68,6 +75,7 @@ const movingClouds: MovingCloud[] = [
     transition: { duration: 6.8, repeat: Infinity, ease: 'easeInOut' },
   },
   {
+    id: 'cloud-8-right',
     src: '/home/img/cloud-8.svg',
     className: 'absolute w-[29.5rem] h-[15.75rem] bottom-0 right-0',
     width: 960,
@@ -76,6 +84,7 @@ const movingClouds: MovingCloud[] = [
     transition: { duration: 7.5, repeat: Infinity, ease: 'easeInOut' },
   },
   {
+    id: 'cloud-3-mid-right',
     src: '/home/img/cloud-3.svg',
     className: 'absolute w-[20rem] h-[11.25rem] bottom-[4rem] right-[18rem] opacity-80',
     width: 440,
@@ -84,6 +93,7 @@ const movingClouds: MovingCloud[] = [
     transition: { duration: 5.2, repeat: Infinity, ease: 'easeInOut' },
   },
   {
+    id: 'cloud-9-center',
     src: '/home/img/cloud-9.svg',
     className: 'absolute w-[30.25063rem] h-[11.6875rem] bottom-0 left-[33.5rem]',
     width: 960,
@@ -120,7 +130,7 @@ const Cloud = () => {
 
       {movingClouds.map((cloud) => (
         <motion.div
-          key={cloud.src}
+          key={cloud.id}
           className={`${cloud.className} will-change-transform`}
           animate={cloud.animate}
           transition={cloud.transition}
