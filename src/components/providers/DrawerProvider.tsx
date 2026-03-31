@@ -2,7 +2,7 @@
 
 import { FC, useEffect } from 'react'
 
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer'
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer-custom'
 import { cn } from '@/lib/utils'
 
 interface DrawerProviderProps {
@@ -63,7 +63,7 @@ const DrawerProvider: FC<DrawerProviderProps> = ({
     >
       <DrawerContent
         suppressHydrationWarning
-        className={cn('w-full rounded-[1rem_1rem_0rem_0rem] bg-white', className)}
+        className={cn('w-full rounded-[1.5rem_1.5rem_0rem_0rem] bg-white', className)}
         showDrawerDrag={showDrawerDrag}
       >
         {/* Giữ lại để tránh báo error */}

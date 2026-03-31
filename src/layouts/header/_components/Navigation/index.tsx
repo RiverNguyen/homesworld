@@ -33,7 +33,7 @@ const Navigation = ({ data }: NavigationProps) => {
                           key={index}
                           href={subLink?.link.url ?? '#'}
                         >
-                          <li className='pc-18-18-m font-normal cursor-pointer py-[0.875rem] pl-[1.25rem] w-[21.4375rem] h-[3.25rem] bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
+                          <li className='pc-18-18-m font-normal cursor-pointer py-[0.875rem] pl-[1.25rem] w-[21.4375rem] h-[3.25rem] bg-white hover:bg-[#E6E6F1] transition-all duration-300 truncate pr-4'>
                             {subLink?.link?.title}
                           </li>
                         </Link>

@@ -2,8 +2,8 @@
 
 import 'swiper/css'
 import SwiperList from '@/app/lien-he/_components/swiper'
-import ICCall from '@/components/ui/icons/ICCall'
-import ICLocation from '@/components/ui/icons/ICLocation'
+import ICCall from '@/components/icons/ICCall'
+import ICLocation from '@/components/icons/ICLocation'
 import type { Contact as ContactType } from '@/interfaces/contact.interface'
 
 const Desc = ({ data }: { data: ContactType }) => {
@@ -36,7 +36,7 @@ const Desc = ({ data }: { data: ContactType }) => {
       </div>
 
       <div className='flex flex-col mt-[1.88rem] xsm:mt-[1.25rem]'>
-        <div className='py-[0.62rem]'>
+        <div className='xsm:py-[0.62rem]'>
           <h3 className='pc-2x-20-m !m-0 !p-0 leading-[1] text-[#10475F] text-trim-both text-edge-[cap_alphabetic] '>
             {data.social_links.follow_us_title}
           </h3>

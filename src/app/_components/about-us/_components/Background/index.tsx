@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import Layout from '@/app/_components/about-us/_components/Form'
 
 const BG_DESKTOP = '/ve-chung-toi/Background_main.webp'

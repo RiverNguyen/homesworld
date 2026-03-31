@@ -72,7 +72,7 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
           ) : (
             <div className='relative pl-[0.75rem] pr-[0.25rem]'>
               <div className='pr-[0.28rem] pt-[0.75rem] pb-[3.65rem]  grid grid-cols-3 justify-items-center gap-y-[0.6875rem] w-full min-h-[12rem] max-h-[33.97rem] overflow-auto'>
-                {data?.categories?.map((item, index) => {
+                {Array.isArray(data?.categories) && data?.categories?.map((item, index) => {
                   return (
                     <CardItem
                       key={index}
@@ -120,7 +120,7 @@ export const Trigger = ({ children, icon }: TrigerProps) => {
           height={22}
           alt=''
           src={icon}
-        ></Image>
+        />
         <span className='mb-20-m text-[#10475F]'>{children}</span>
       </div>
       <ChevronRight className='size-[1rem]'></ChevronRight>

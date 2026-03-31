@@ -8,9 +8,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 
-import ICArrowLeft from '@/components/ui/icons/ICLeft'
-import ICRight from '@/components/ui/icons/ICRight'
+import ICArrowLeft from '@/components/icons/ICLeft'
+import ICRight from '@/components/icons/ICRight'
 import type { SocialItem } from '@/interfaces/contact.interface'
+import { convertRemToPx } from '@/lib/utils'
 
 export default function SocialSwiper({ data }: { data: SocialItem[] }) {
   const swiperRef = useRef<SwiperType | null>(null)
@@ -23,7 +24,7 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
     <>
       {/* desktop */}
       <section className='w-full xsm:hidden'>
-        <div className='flex items-center relative'>
+        <div className='relative flex items-center w-full max-w-[24.9rem]'>
           {isShowPagination && (
             <button
               type='button'
@@ -40,7 +41,7 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
             </button>
           )}
 
-          <div className='w-[24.9rem] overflow-hidden'>
+          <div className='w-full overflow-hidden'>
             <Swiper
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
@@ -53,7 +54,7 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
               }}
               slidesPerView='auto'
               slidesPerGroup={1}
-              spaceBetween={16}
+              spaceBetween={convertRemToPx(1)}
             >
               {data?.map((item, index) => (
                 <SwiperSlide

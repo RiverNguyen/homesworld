@@ -56,6 +56,7 @@ const Layout = ({ acfData }: LayoutProps) => {
     qrSrc: acfData?.weather?.qr_zalo || '',
     linkUrl: acfData?.weather?.link?.url || '',
     buttonText: acfData?.weather?.link?.title || '',
+    location: activeItem?.title || '',
   }
 
   const handlePrev = () => {
@@ -110,11 +111,22 @@ const Layout = ({ acfData }: LayoutProps) => {
                 })}
           </Swiper>
 
-          <div className='pointer-events-none absolute left-0 top-0 z-10 h-full w-full rounded-[1.125rem] bg-[linear-gradient(180deg,rgba(0,0,0,0)_54.4%,rgba(0,0,0,0.548)_67%,rgba(0,0,0,1)_79.99%)]' />
+          <div
+            className='pointer-events-none absolute left-0 top-0 z-10 h-full w-full rounded-[1.125rem]'
+            style={{
+              opacity: 0.56,
+              background:
+                'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 54.4%, rgba(0, 0, 0, 0.55) 67%, #000 79.99%)',
+            }}
+          />
+          <div
+            className='pointer-events-none absolute left-0 top-0 z-10 h-full w-full rounded-[1.125rem]'
+            style={{
+              opacity: 0.3,
+              background: '#000',
+            }}
+          />
         </div>
-
-        {/* Desktop overlay */}
-        <div className='absolute left-0 top-0 h-full w-full rounded-[1.125rem] bg-gradient-to-b from-transparent via-black/40 to-black/80 xsm:hidden' />
 
         {/* Mobile background */}
         <div className='absolute left-0 top-0 hidden h-full w-full px-[0.75rem] xsm:block'>
