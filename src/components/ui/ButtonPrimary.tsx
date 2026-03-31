@@ -40,7 +40,7 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
   ) : (
     <>
       <span>{text}</span>
-      {!hideDefaultIcon && <span className='ml-[0.5rem]'>{defaultIcon}</span>}
+      {!hideDefaultIcon && <span className=''>{defaultIcon}</span>}
       {rightIcon}
     </>
   )

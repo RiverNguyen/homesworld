@@ -13,20 +13,22 @@ const Desc = ({ data }: { data: ContactType }) => {
         {data.title}
       </h1>
 
-      <div className='flex flex-col mt-[1.12rem]'>
-        <div className='contact__item flex items-center text-sm'>
-          <ICCall className='w-4 h-4 aspect-square text-[#10475F]/80' />
-          <p className='pc-16-16-r text-[#10475F]/80 ml-[0.62rem] xsm:r-14'>{data.opening_hours}</p>
+      <div className='mt-[1.12rem] flex flex-col'>
+        <div className='contact__item flex items-center leading-[1]'>
+          <ICCall className='h-[1rem] w-[1rem] shrink-0 text-[#10475F]/80' />
+          <p className='pc-16-16-r ml-[0.625rem] text-[#10475F]/80 leading-[1] xsm:r-14'>
+            {data.opening_hours}
+          </p>
         </div>
 
-        <div className='contact__item flex items-center text-sm mt-[0.75rem]'>
-          <ICLocation className='w-4 h-4 aspect-square text-[#10475F]/80' />
+        <div className='contact__item mt-[0.75rem] flex items-center leading-[1]'>
+          <ICLocation className='h-[1rem] w-[1rem] shrink-0 text-[#10475F]/80' />
 
           <a
             href={data.location.link_google_map}
             target='_blank'
             rel='noopener noreferrer'
-            className='pc-16-16-r text-[#10475F]/80 ml-[0.62rem] xsm:r-14 hover:underline'
+            className='pc-16-16-r ml-[0.625rem] text-[#10475F]/80 leading-[1] hover:underline xsm:r-14'
           >
             {data.location.address}
           </a>

@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -17,6 +17,8 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
   const sliderPerview = 3
   const isShowPagination = data?.length > sliderPerview
 
+  const [isBeginning, setIsBeginning] = useState(true)
+  const [isEnd, setIsEnd] = useState(false)
   return (
     <>
       {/* desktop */}
@@ -26,10 +28,15 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
             <button
               type='button'
               onClick={() => swiperRef.current?.slidePrev()}
-              className='absolute left-[-15%] z-10 top-1/2 -translate-y-1/2 flex size-[3rem] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)]'
-              aria-label='Previous'
+              disabled={isBeginning}
+              className={`
+    absolute  left-[-2.96rem] top-1/2 -translate-y-1/2 z-10
+    flex size-[2.5rem] items-center justify-center rounded-full
+    shadow-[0_4px_16px_rgba(0,0,0,0.08)]
+    ${isBeginning ? 'bg-gray-200 cursor-not-allowed opacity-50' : 'bg-white'}
+  `}
             >
-              <ICArrowLeft className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
+              <ICArrowLeft className='w-[0.8095rem] h-[0.72956rem] text-[#10475F]' />
             </button>
           )}
 
@@ -37,6 +44,12 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
             <Swiper
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
+                setIsBeginning(swiper.isBeginning)
+                setIsEnd(swiper.isEnd)
+              }}
+              onSlideChange={(swiper) => {
+                setIsBeginning(swiper.isBeginning)
+                setIsEnd(swiper.isEnd)
               }}
               slidesPerView='auto'
               slidesPerGroup={1}
@@ -87,10 +100,15 @@ export default function SocialSwiper({ data }: { data: SocialItem[] }) {
             <button
               type='button'
               onClick={() => swiperRef.current?.slideNext()}
-              className='absolute right-[-15%] z-10 top-1/2 -translate-y-1/2 flex size-[3rem] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)]'
-              aria-label='Next'
+              disabled={isEnd}
+              className={`
+    absolute right-[-2.96rem] top-1/2 -translate-y-1/2 z-10
+    flex size-[2.5rem] items-center justify-center rounded-full
+    shadow-[0_4px_16px_rgba(0,0,0,0.08)]
+    ${isEnd ? 'bg-gray-200 cursor-not-allowed opacity-50' : 'bg-white'}
+  `}
             >
-              <ICRight className='h-[1.25rem] w-[1.25rem] text-[#10475F] cursor-pointer' />
+              <ICRight className='h-[0.8095rem] w-[0.72956rem] text-[#10475F]' />
             </button>
           )}
         </div>

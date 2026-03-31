@@ -210,7 +210,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
   }
 
   return (
-    <div className='w-[53.5rem] bg-[#fff] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.02)] rounded-[1.125rem]  xsm:w-[100%] xsm:bg-transparent'>
+    <div className='w-[53.5rem] bg-[#fff]  rounded-[1.125rem]  xsm:w-[100%] xsm:bg-transparent'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -224,10 +224,12 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
               const isError = !!form.formState.errors.you_are
               return (
                 <FormItem className='flex flex-col'>
-                  <FormLabel className='pc-16-16-r-input'>
-                    <span className={`${isError ? 'text-red-500' : 'text-[#10475F]'}`}>
+                  <FormLabel className='pc-16-16-r-input text-[1rem]'>
+                    <span
+                      className={`${isError ? 'text-red-500' : 'text-[#10475F]'} pc-16-16-r-input text-[1rem] text-trim-both text-edge-cap`}
+                    >
                       Bạn là
-                      <span className='text-red-500 ml-1'>*</span>
+                      <span className='ml-[0.25rem] text-red-500'>*</span>
                     </span>
                   </FormLabel>
                   <FormControl className='mt-[0.5rem]'>
@@ -381,7 +383,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
                         </PopoverTrigger>
                         <PopoverContent
                           align='start'
-                          className='p-0 mt-1 bg-white rounded-[0.5rem] shadow-md border-0 w-[var(--radix-popover-trigger-width)]'
+                          className='p-0 mt-1 bg-white rounded-[0.5rem]  border-0 w-[var(--radix-popover-trigger-width)]'
                         >
                           <div className='flex flex-col'>
                             {serviceComboData.map((item) => (
@@ -481,7 +483,7 @@ export default function MyForm({ serviceComboData }: { serviceComboData: Service
             isLoading={form.formState.isSubmitting}
             text='Gửi thông tin'
             type='submit'
-            className='xsm:w-[100%] [&_svg]:size-3.5 mt-[1.5rem] xsm:mt-[1.62rem] '
+            className='xsm:w-[100%] [&_svg]:size-3.5 mt-[1.5rem] xsm:mt-[1.62rem] w-[8rem] h-[2.5rem] '
           />
         </form>
       </Form>
