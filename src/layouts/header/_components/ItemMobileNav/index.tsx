@@ -53,7 +53,7 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
                       href={item?.link?.url}
                       className='mb-16-m font-normal  w-full border-b-[0.0625rem] border-dashed border-[#10475F]/20 last:border-none'
                     >
-                      <p className='my-[0.5rem] py-[0.875rem] pl-[1.25rem] w-full'>
+                      <p className='my-[0.5rem] py-[0.875rem] text-[#10475F] pl-[1.25rem] w-full'>
                         {item?.link?.title}
                       </p>
                     </Link>
@@ -71,7 +71,7 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
             </div>
           ) : (
             <div className='relative pl-[0.75rem] pr-[0.25rem]'>
-              <div className='pr-[0.28rem] pt-[0.75rem] pb-[3.65rem]  grid grid-cols-3 justify-items-center gap-y-[0.6875rem] w-full min-h-[12rem] max-h-[33.97rem] overflow-auto'>
+              <div className='pr-[0.28rem] pt-[0.75rem] pb-[3.65rem] grid grid-cols-3 justify-between gap-[0.675rem] w-full min-h-[12rem] max-h-[30.03rem] overflow-auto'>
                 {Array.isArray(data?.categories) && data?.categories?.map((item, index) => {
                   return (
                     <CardItem
@@ -94,9 +94,9 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
               <div className='pointer-events-none pt-[2.59rem] pb-[0.38rem] px-[1rem] absolute w-[23.4375rem] h-[5.4375rem] bg-[linear-gradient(180deg,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.709)_39.57%,_rgba(255,255,255,1)_74.05%)] left-0 bottom-0'>
                 <Link
                   href={'#'}
-                  className='pointer-events-auto'
+                  className='pointer-events-auto '
                 >
-                  <Button variant={'primary'}>Xem tất cả</Button>
+                  <Button className='!p-[0.88rem] !h-[2.25rem]' variant={'primary'}>Xem tất cả</Button>
                 </Link>
               </div>
             </div>
@@ -112,19 +112,25 @@ type TrigerProps = {
 }
 export const Trigger = ({ children, icon }: TrigerProps) => {
   return (
-    <div className='flex justify-between w-[21.94rem] items-center py-[1.125rem] border-b-[0.0625rem] border-dashed border-[#10475F]/20'>
-      <div className='flex'>
-        <Image
-          className='size-[1.375rem] mr-[0.75rem]'
-          width={22}
-          height={22}
-          alt=''
-          src={icon}
-        ></Image>
-        <span className='mb-20-m text-[#10475F]'>{children}</span>
+    <>
+      <div className='flex justify-between w-[21.94rem] items-center py-[1.125rem]'>
+        <div className='flex'>
+          <Image
+            className='w-[1.125rem] mr-[0.75rem]'
+            width={22}
+            height={22}
+            alt=''
+            src={icon}
+          ></Image>
+          <span className='text-[#10475F] text-[1.125rem] font-normal font-halyard-display leading-[1.3] text-left'>{children}</span>
+        </div>
+        <ChevronRight className='size-[1rem]'></ChevronRight>
       </div>
-      <ChevronRight className='size-[1rem]'></ChevronRight>
-    </div>
+      <svg className='w-[21.9375rem]' width="370" height="1" viewBox="0 0 370 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line opacity="0.2" x1="370" y1="0.500031" x2="-4.37114e-08" y2="0.5" stroke="#10475F" strokeDasharray="4 4"/>
+      </svg>
+
+    </>
   )
 }
 

@@ -53,12 +53,11 @@ export default function TocBot({ contentRef }: TocBotTypes) {
         Tóm tắt nội dung
       </span>
       <div ref={tocRef} />
-
       {hasMore && (
         <button
           type='button'
           onClick={() => setExpand((prev) => !prev)}
-          className='cursor-pointer text-[#27AAE1] hover:underline'
+          className='cursor-pointer text-[#27AAE1] hover:underline  text-edge-[cap_alphabetic] [text-box-trim:trim-both]'
         >
           {expand ? 'Ẩn bớt' : 'Xem thêm'}
         </button>

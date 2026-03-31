@@ -19,7 +19,7 @@ const Footer = async () => {
             height={92}
           ></Image>
         </Link>
-        <div className='xsm:order-5 xsm:max-w-max xsm:pt-[1.38rem] flex flex-col max-w-[17.9rem] xsm:border-t-1 border-dashed border-[#10475F]/20'>
+        <div className='xsm:order-5 xsm:max-w-max xsm:pt-[1.38rem] flex flex-col max-w-[17.9rem]'>
           {footer.info.map((item, index) => {
             if (!item.link.url || !item.link.title) {
               return
@@ -49,7 +49,7 @@ const Footer = async () => {
           })}
         </div>
         {/* <FooterClient acfFooter={footer}></FooterClient> */}
-        <div className='xsm:hidden flex flex-col xsm:border-t-1 border-dashed border-[#10475F]/20 lg:max-w-[10rem]'>
+        <div className='xsm:hidden flex flex-col lg:max-w-[10rem]'>
           {footer.first_column.map((item, index) => {
             if (!item.link.url || !item.link.title) {
               return
@@ -65,6 +65,7 @@ const Footer = async () => {
             )
           })}
         </div>
+
         <div className='xsm:flex hidden flex-row pt-[1.38rem] w-full justify-between border-t-1 border-dashed border-[#10475F]/20 lg:max-w-[10rem]'>
           {footer.link_mobile.map((item, index) => {
             if (!item.link.url || !item.link.title) {
@@ -109,7 +110,7 @@ const Footer = async () => {
                 <Image
                   width={18}
                   height={18}
-                  className='xsm:size-[0.97825rem] size-[1.25rem]'
+                  className='xsm:size-[0.88044rem] size-[1.25rem]'
                   src={item?.icon}
                   alt='Icon social media'
                 ></Image>

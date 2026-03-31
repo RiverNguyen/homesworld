@@ -20,6 +20,8 @@
   font-weight: 500;
   line-height: 110%;
   margin-top: 2.5rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
 
 #blog_content :is(h1, h2, h3, h4, h5, h6):first-of-type {
@@ -57,6 +59,8 @@
   font-weight: 400;
   line-height: 150%;
   margin-top: 1rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
 #blog_content strong {
   color: var(--Text, #10475f);
