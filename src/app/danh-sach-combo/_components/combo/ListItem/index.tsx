@@ -9,13 +9,13 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import useIsMobile from '@/hooks/useIsMobile'
 import { UseFormReturn } from 'react-hook-form'
-import { SidebarContent, type FilterFormValues } from '../form'
+import { SidebarContent, type FilterFormValues } from '@/app/danh-sach-combo/_components/combo/form'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer-list-custom'
 import { useState } from 'react'
-// import PaginationCustom from './PaginationCustom'
-import SortDropdown from '../../item/sort'
+import PaginationCustom from '@/app/danh-sach-combo/_components/item/PaginationCustom'
+import SortDropdown from '@/app/danh-sach-combo/_components/item/sort'
 
-import SidebarProvider from '../../item/sider-barprovide'
+import SidebarProvider from '@/app/danh-sach-combo/_components/item/sider-barprovide'
 
 type TourCardProps = {
   title: string
@@ -291,11 +291,11 @@ const ListItem = ({ form }: ListItemProps) => {
         ))}
       </div>
       <div className='mt-[2rem] flex justify-center'>
-        {/* <PaginationCustom
+        <PaginationCustom
           currentPage={currentPage}
           totalPages={10}
           onPageChange={setCurrentPage}
-        /> */}
+        />
       </div>
     </div>
   )
