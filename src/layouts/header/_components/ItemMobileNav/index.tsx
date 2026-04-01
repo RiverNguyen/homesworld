@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
+import { DialogDescription } from '@/components/ui/dialog'
 import {
   Drawer,
   DrawerContent,
@@ -43,6 +44,7 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
           <DrawerHeader>
             <DrawerTitle>{`${link?.title} tại địa điểm`}</DrawerTitle>
           </DrawerHeader>
+          <DialogDescription className='hidden'>Nội dung mô tả cho dialog</DialogDescription>
           {data?.select === 'mega' ? (
             <div className='pr-[0.25rem]'>
               <div className='flex flex-col pb-[0.5rem] w-full min-h-[12rem] max-h-[33.97rem] overflow-auto'>
@@ -70,8 +72,8 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
               </div>
             </div>
           ) : (
-            <div className='relative pl-[0.75rem] pr-[0.25rem]'>
-              <div className='pr-[0.28rem] pt-[0.75rem] pb-[3.65rem] grid grid-cols-3 justify-between gap-[0.675rem] w-full min-h-[12rem] max-h-[30.03rem] overflow-auto'>
+            <div className='relative pr-[0.25rem]'>
+              <div className='pr-[0.28rem] pl-[0.75rem] pt-[0.75rem] pb-[3.65rem] grid grid-cols-3 justify-between gap-[0.675rem] w-full min-h-[12rem] max-h-[30.03rem] overflow-auto'>
                 {Array.isArray(data?.categories) && data?.categories?.map((item, index) => {
                   return (
                     <CardItem

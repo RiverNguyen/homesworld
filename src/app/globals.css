@@ -313,7 +313,8 @@ html {
     gap: 0.1875rem;
     z-index: 20;
     pointer-events: auto;
-
+  }
+}
 @keyframes ripple_video {
   0% {
     box-shadow:

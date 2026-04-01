@@ -20,8 +20,6 @@
   font-weight: 500;
   line-height: 110%;
   margin-top: 2.5rem;
-  text-box-trim: trim-both;
-  text-box-edge: cap alphabetic;
 }
 
 #blog_content :is(h1, h2, h3, h4, h5, h6):first-of-type {
@@ -69,6 +67,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: 130%; /* 1.4625rem */
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
 #blog_content p:has(strong) {
   margin: 0;
@@ -86,33 +86,34 @@
 /* CSS tag ul, li */
 #blog_content ul {
   list-style: disc;
+  list-style-position: inside;
+ 
+}
+#blog_content ul, #blog_content ol {
+  padding-left: 1.5rem;
+  
 }
 
 #blog_content ol {
   list-style: decimal;
+  list-style-position: inside;
 }
 
 #blog_content li {
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
   margin-top: 0.83333rem;
-  list-style: none;
+  /* list-style: circle; */
 }
 
-#blog_content ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-#blog_content ul li {
+#blog_content li {
   position: relative;
-  padding-left: 12px;
 }
 
-#blog_content ul li::before {
-  content: '-';
+/* #blog_content ul li::before {
+  content: '.';
   position: absolute;
   left: 0;
-}
+} */
 
 @media (max-width: 639px) {
   #blog_content {
