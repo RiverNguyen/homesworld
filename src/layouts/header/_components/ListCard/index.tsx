@@ -51,17 +51,18 @@ const ListCard = ({ data }: ListCardProps) => {
           }}
           ref={containerRef}
         >
-          {Array.isArray(data) && data?.map((category, index) => {
-            return (
-              <CardItem
-                key={index}
-                slug={category?.slug}
-                image={category?.acf?.thumbnail}
-              >
-                {category?.name}
-              </CardItem>
-            )
-          })}
+          {Array.isArray(data) &&
+            data?.map((category, index) => {
+              return (
+                <CardItem
+                  key={index}
+                  slug={category?.slug}
+                  image={category?.acf?.thumbnail}
+                >
+                  {category?.name}
+                </CardItem>
+              )
+            })}
           {/* <CardItem image='https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/image-item-card.webp'>
             Hà Nội - Hà Đông
           </CardItem> */}

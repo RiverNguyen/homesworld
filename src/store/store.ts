@@ -13,7 +13,7 @@ type FilterState = {
 type FilterActions = {
   setStartDate: (date: Date | undefined) => void
   setEndDate: (date: Date | undefined) => void
-  setLocations: (locations:string[] | undefined) => void
+  setLocations: (locations: string[] | undefined) => void
   setCombo: (combo: number | undefined) => void
   setQuantity: (quantity: { adults: number; rooms: number }) => void
 }
@@ -46,12 +46,11 @@ export const useFilterStore = create<FilterState & FilterActions>((set, get) => 
   },
   setCombo: (combo) => set({ combo }),
   setQuantity: (quantity) => {
-    const { adults, rooms } = get().quantity = quantity
+    const { adults, rooms } = (get().quantity = quantity)
     if (adults == 0 || rooms == 0) {
       set({ quantity: { adults: 1, rooms: 1 } })
     } else {
       set({ quantity })
-
     }
   },
 }))

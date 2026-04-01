@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
+import { useGoogleTranslate } from '@/hooks/useGoogleTranslate'
 import { useScrollHeader } from '@/hooks/useScrollHeader'
 import { IHeaderAcf } from '@/interfaces/header.interface'
 import ItemMobileNav from '@/layouts/header/_components/ItemMobileNav'
@@ -13,7 +14,7 @@ type HeaderProps = {
   data: IHeaderAcf
 }
 const Header = ({ data }: HeaderProps) => {
-  const [language, setLanguage] = useState<'en' | 'vi'>('vi')
+  const { language, setLanguage } = useGoogleTranslate()
 
   const [isOpen, setIsOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
@@ -114,7 +115,7 @@ const Header = ({ data }: HeaderProps) => {
           <Language
             language={language}
             setLanguage={setLanguage}
-          />
+          ></Language>
           <div className='flex justify-center mt-[1.56rem]'>
             {data?.social_media?.map((item, index) => {
               return (
@@ -216,7 +217,7 @@ const Header = ({ data }: HeaderProps) => {
           <Language
             language={language}
             setLanguage={setLanguage}
-          />
+          ></Language>
         </div>
       </div>
     </header>

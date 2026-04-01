@@ -10,7 +10,6 @@ type LanguageProps = {
   setLanguage: (language: 'en' | 'vi') => void
 }
 const Language = ({ language, setLanguage }: LanguageProps) => {
-
   return (
     <>
       {/* MB */}
@@ -30,12 +29,10 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
               width={28}
               height={18}
               alt=''
-              src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Flag.svg'}
-            ></Image>
+              src='/header/vn-flag.svg'
+            />
             <span
-              className={`text-[#10475F] text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${
-                language === 'vi' ? 'text-white' : 'text-[#10475F]'
-              }`}
+              className={`text-[#10475F] text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${language === 'vi' ? 'text-white' : 'text-[#10475F]'}`}
             >
               Tiếng Việt
             </span>
@@ -51,22 +48,16 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
               width={28}
               height={18}
               alt=''
-              src={
-                'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Eng-Flag.svg'
-              }
-            ></Image>
+              src='/header/en-flag.svg'
+            />
             <span
-              className={` text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${
-                language === 'en' ? 'text-white' : 'text-[#10475F]'
-              }`}
+              className={` text-[0.8125rem] font-normal font-halyard-display leading-[1.5] text-left text-edge-[cap_alphabetic] [text-box-trim:trim-both] transition-all duration-300 ${language === 'en' ? 'text-white' : 'text-[#10475F]'}`}
             >
               Tiếng Anh
             </span>
           </div>
           <div
-            className={`absolute z-1 p-[0.875rem] grow rounded-[6.25rem] w-[calc(50%-0.25rem)] h-[2.25rem] bg-[#27AAE1] transition-all duration-300 ${
-              language === 'en' ? 'translate-x-[100%]' : ''
-            }`}
+            className={`absolute z-1 p-[0.875rem] grow rounded-[6.25rem] w-[calc(50%-0.25rem)] h-[2.25rem] bg-[#27AAE1] transition-all duration-300 ${language === 'en' ? 'translate-x-[100%]' : ''}`}
           ></div>
         </div>
       </div>
@@ -81,7 +72,7 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
             alt='Language'
             width={28}
             height={18}
-            src={'https://homesworld.okhub-tech.com/wp-content/uploads/2026/03/Language-Flag.svg'}
+            src={language === 'vi' ? '/header/vn-flag.svg' : '/header/en-flag.svg'}
           />
           <span className='text-[var(--header-bold-color)] transition-all duration-300 pc-16-16-r font-medium mr-[0.5625rem]'>
             Tiếng việt

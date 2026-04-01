@@ -4,6 +4,7 @@
   --header-bold-color: #10475F;
   --header-icon: #27aae11a;
 }
+
 .transparent {
   --header-bg: #06000000;
   --header-color: #ffffff;
@@ -14,9 +15,15 @@
 .transparent .logo-white {
   opacity: 1;
 }
+
 .transparent .logo-dark {
   opacity: 0;
 }
+
 .logo-dark {
   opacity: 1;
+}
+
+.skiptranslate {
+  display: none !important;
 }

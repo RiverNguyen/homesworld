@@ -1,19 +1,24 @@
 import BannerHomepage from '@/app/_components/banner'
+import Combo from '@/app/_components/combo'
 import FilterSearch from '@/app/_components/search'
 import TravelGuide from '@/app/_components/travel-guide'
+import Weather from '@/app/_components/weather'
+import comboService from '@/services/combo'
 import homeService from '@/services/home'
 import taxonomiesService from '@/services/taxonomies'
 
+import About_us from './_components/about-us'
 import HeaderSearch from './_components/header-search'
-import Weather from './_components/weather'
 
 export default async function HomePage() {
-  const [homeData, blogRes, taxonomiesData, locationData] = await Promise.all([
+  const [homeData, blogRes, taxonomiesData, locationData, comboData] = await Promise.all([
     homeService.getHome(),
     homeService.getBlogs({ limit: 5 }),
     taxonomiesService.getAllTaxonomies('service_combo'),
     taxonomiesService.getAllTaxonomies('location'),
+    comboService.getCombo(),
   ])
+
   return (
     <>
       <style>{`
@@ -26,17 +31,29 @@ export default async function HomePage() {
             }
           }
         `}</style>
-      <HeaderSearch taxonomies={taxonomiesData?.data} locations={locationData?.data} />
-      <BannerHomepage data={homeData?.acf?.banner} />
-      <FilterSearch
+      <HeaderSearch
         taxonomies={taxonomiesData?.data}
         locations={locationData?.data}
       />
-      <Weather acfData={homeData?.acf} />
-      <TravelGuide
-        page={homeData?.acf?.travel_guide || {}}
-        data={blogRes.data || []}
-      />
+      <BannerHomepage data={homeData?.acf?.banner} />
+      <div className='bg-[#FEFBF9]'>
+        <FilterSearch
+          taxonomies={taxonomiesData?.data}
+          locations={locationData?.data}
+        />
+        <Combo
+          data={homeData?.acf?.combo || []}
+          comboData={comboData?.data || []}
+          locations={locationData?.data || []}
+        />
+        <About_us acfData={homeData?.acf} />
+
+        <Weather acfData={homeData?.acf} />
+        <TravelGuide
+          page={homeData?.acf?.travel_guide || {}}
+          data={blogRes.data || []}
+        />
+      </div>
     </>
   )
 }

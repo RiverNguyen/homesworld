@@ -39,7 +39,6 @@ export function useScrollHeader(headerRef: React.RefObject<HTMLElement>) {
             headerRef.current!.style.transform = 'translateY(-150%)'
             headerRef.current.classList.remove('transparent')
           } else {
-
             if (
               scrollY <= window.innerHeight / 4 &&
               window.location.pathname === '/' &&

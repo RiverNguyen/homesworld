@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 
+import ICCountNumber from '@/components/icons/ICCountNumber'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn, convertRemToPx } from '@/lib/utils'
 
@@ -13,13 +14,12 @@ type NumberPopoverProps = {
 }
 
 const NumberPopover = ({ className, placeholder, label, value, onChange }: NumberPopoverProps) => {
-
   const [open, setOpen] = useState(false)
 
   const summary = `${String(value.adults).padStart(2, '0')} người, ${String(value.rooms).padStart(2, '0')} phòng`
-  const displayText = ((value?.adults !==0 || value?.rooms !==0)? summary : placeholder)
+  const displayText = value?.adults !== 0 || value?.rooms !== 0 ? summary : placeholder
   const handleRoomsChange = (direction: 'increase' | 'decrease') => {
-    if ( direction === 'decrease' ) {
+    if (direction === 'decrease') {
       onChange(value.adults, Math.max(1, value.rooms - 1))
     } else {
       onChange(value.adults, value.rooms + 1)
@@ -27,7 +27,7 @@ const NumberPopover = ({ className, placeholder, label, value, onChange }: Numbe
   }
 
   const handleAdultsChange = (direction: 'increase' | 'decrease') => {
-    if ( direction === 'decrease' ) {
+    if (direction === 'decrease') {
       onChange(Math.max(1, value.adults - 1), value.rooms)
     } else {
       onChange(value.adults + 1, value.rooms)
@@ -47,11 +47,18 @@ const NumberPopover = ({ className, placeholder, label, value, onChange }: Numbe
           )}
         >
           <div className='flex-y-center space-x-[0.375rem]'>
-            <ICNumber className='size-[0.875rem]' />
+            <ICCountNumber className='size-[0.875rem]' />
             <p className='pc-14-14-r text-[#10475F]'>{label}</p>
           </div>
           <div className='flex-y-center justify-between space-x-[0.375rem]'>
-            <p className={cn(!(value?.adults !==0 || value?.rooms !==0) && 'opacity-55', 'line-clamp-1')}>{displayText}</p>
+            <p
+              className={cn(
+                !(value?.adults !== 0 || value?.rooms !== 0) && 'opacity-55',
+                'line-clamp-1',
+              )}
+            >
+              {displayText}
+            </p>
             <svg
               className={cn(
                 'size-5 transition-transform duration-200 ease-out',
@@ -112,12 +119,12 @@ type CounterRowProps = {
   onIncrease: () => void
 }
 
-const CounterRow = ({ label, value, min = 0, onDecrease, onIncrease }: CounterRowProps) => {
+export const CounterRow = ({ label, value, min = 0, onDecrease, onIncrease }: CounterRowProps) => {
   const isMin = value <= min
 
   return (
     <div className='flex items-center justify-between px-[1.5rem] py-[0.875rem]'>
-      <p className='text-[1.125rem] text-[#10475F] leading-[1.3]'>{label}</p>
+      <p className='text-[1.125rem] xsm:text-[1rem] text-[#10475F] leading-[1.3]'>{label}</p>
       <div className='flex items-center space-x-[0.5rem]'>
         <button
           type='button'
@@ -142,7 +149,7 @@ const CounterRow = ({ label, value, min = 0, onDecrease, onIncrease }: CounterRo
             />
           </svg>
         </button>
-        <p className='text-[#10475F] text-[1.125rem] leading-[1.3]'>
+        <p className='text-[#10475F] text-[1.125rem] xsm:text-[1rem] leading-[1.3]'>
           {String(value).padStart(2, '0')}
         </p>
         <button
@@ -171,47 +178,5 @@ const CounterRow = ({ label, value, min = 0, onDecrease, onIncrease }: CounterRo
     </div>
   )
 }
-
-const ICNumber = (props: React.SVGAttributes<SVGElement>) => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='14'
-    height='14'
-    viewBox='0 0 14 14'
-    fill='none'
-    {...props}
-  >
-    <path
-      d='M7.00016 6.99996C8.61099 6.99996 9.91683 5.69412 9.91683 4.08329C9.91683 2.47246 8.61099 1.16663 7.00016 1.16663C5.38933 1.16663 4.0835 2.47246 4.0835 4.08329C4.0835 5.69412 5.38933 6.99996 7.00016 6.99996Z'
-      stroke='#10475F'
-      strokeWidth='1.2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <path
-      d='M11.2058 9.18168L9.14076 11.2467C9.0591 11.3284 8.98327 11.48 8.96577 11.5908L8.85494 12.3783C8.8141 12.6642 9.01244 12.8625 9.29828 12.8217L10.0858 12.7108C10.1966 12.6933 10.3541 12.6175 10.4299 12.5358L12.4949 10.4709C12.8508 10.115 13.0199 9.70084 12.4949 9.17584C11.9758 8.65667 11.5616 8.82584 11.2058 9.18168Z'
-      stroke='#10475F'
-      strokeWidth='1.2'
-      strokeMiterlimit='10'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <path
-      d='M10.9082 9.47913C11.0832 10.1091 11.5732 10.5991 12.2032 10.7741'
-      stroke='#10475F'
-      strokeWidth='1.2'
-      strokeMiterlimit='10'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <path
-      d='M1.98926 12.8333C1.98926 10.5758 4.23511 8.75 7.00011 8.75C7.60677 8.75 8.19009 8.8375 8.73259 9.00083'
-      stroke='#10475F'
-      strokeWidth='1.2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-)
 
 export default NumberPopover

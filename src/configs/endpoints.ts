@@ -1,11 +1,11 @@
 const ENDPOINTS = {
   taxonomies: {
     getAll(taxonomy: string) {
-      return `api/v1/taxonomies/${taxonomy}`
+      return `api/v1/taxonomies/${taxonomy}?nested=true&parent=0&acf=true`
     },
   },
-  tour: {
-    list: '/tour/list',
+  combo: {
+    list: 'api/v1/get-all/combo?acf=true&limit=6&paged=1&orderby=date&order=DESC',
   },
   paymentPolicyPageId: 18,
   home: 'wp/v2/pages/66?_fields=acf&acf_format=standard',
