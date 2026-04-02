@@ -1,12 +1,14 @@
 :root {
   --header-bg: #ffffff;
   --header-color: #10475fcc;
+  --header-bold-color: #10475F;
   --header-icon: #27aae11a;
 }
 
 .transparent {
   --header-bg: #06000000;
   --header-color: #ffffff;
+  --header-bold-color: #fff;
   --header-icon: #ffffff0f;
 }
 
