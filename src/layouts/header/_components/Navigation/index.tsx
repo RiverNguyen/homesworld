@@ -10,22 +10,22 @@ type NavigationProps = {
 
 const Navigation = ({ data }: NavigationProps) => {
   return (
-    <nav className='flex pt-[0.88rem]'>
+    <nav className='flex pt-[0.38rem]'>
       {data?.map((menu, index) => {
         return (
           <div
             key={index}
-            className='relative group'
+            className='relative group py-[0.5rem] px-[1.125rem]'
           >
             <Link
               href={menu?.link?.url}
-              className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300 px-[1.25rem] py-[0.5rem]'
+              className='text-[var(--header-color)] pc-16-16-r uppercase group-hover:opacity-50  transition-all duration-300'
             >
               {menu?.link?.title}
             </Link>
             {menu?.select === 'mega' && (
               <>
-                <div className='-translate-x-1/2 absolute left-1/2 top-full pt-[1.5rem] group-hover:opacity-100 group-hover:visible invisible opacity-0 transition-all duration-300'>
+                <div className='-translate-x-1/2 absolute left-1/2 pt-[1.5rem] group-hover:opacity-100 group-hover:visible invisible opacity-0 transition-all duration-300'>
                   <ul className='bg-white rounded-[1.125rem] shadow-[0.125rem_0.375rem_2rem_0rem_rgba(0,0,0,0.06)] overflow-hidden'>
                     {menu.links.map((subLink, index) => {
                       return (
@@ -33,7 +33,7 @@ const Navigation = ({ data }: NavigationProps) => {
                           key={index}
                           href={subLink?.link.url ?? '#'}
                         >
-                          <li className='pc-18-18-m font-normal cursor-pointer py-[0.875rem] pl-[1.25rem] w-[21.4375rem] h-[3.25rem] bg-white hover:bg-[#E6E6F1] transition-all duration-300 truncate pr-4'>
+                          <li className='pc-18-18-m font-normal cursor-pointer py-[0.875rem] pl-[1.25rem] w-[21.4375rem] h-[3.25rem] text-[#10475F] bg-white hover:bg-[#E6E6F1] transition-all duration-300'>
                             {subLink?.link?.title}
                           </li>
                         </Link>

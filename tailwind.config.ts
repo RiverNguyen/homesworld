@@ -59,8 +59,14 @@ const config: Config = {
         '.mb-16-m': {
           '@apply  text-[1rem] font-medium leading-[1.3]': {},
         },
+        '.mb-12-r': {
+          '@apply text-[0.75rem] font-normal leading-[1.5]': {},
+        },
         '.mb-14-r': {
           '@apply text-[0.875rem] font-normal leading-[1.5]': {},
+        },
+        '.mb-18-s': {
+          '@apply text-[1.125rem] font-semibold leading-[1.3]': {},
         },
         '.mb-20-m': {
           '@apply text-[1.25rem] font-medium leading-[1.1]': {},
@@ -90,7 +96,9 @@ const config: Config = {
         '.pc-2x-20-m': {
           '@apply text-[1.25rem] font-medium leading-[1.3]': {},
         },
-
+        '.pc-2x-28-m': {
+          '@apply text-[1.75rem] font-medium leading-[1.1]': {},
+        },
         '.pc-16-16-r-input': {
           '@apply  text-[1rem] font-normal leading-[150%]': {},
         },

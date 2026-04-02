@@ -50,7 +50,7 @@ const DrawerContent = React.forwardRef<
     >
       {showDrawerDrag && (
         <div className='pt-[0.625rem] pb-[1rem] px-[9.25rem] bg-[#27AAE1]'>
-          <div className='mx-auto w-full rounded-[6.25rem] h-[0.375rem] bg-white opacity-[0.68]' />
+          <div className='mx-auto w-[4.94rem] rounded-[6.25rem] h-[0.375rem] bg-white opacity-[0.68]' />
         </div>
       )}
       {children}
@@ -62,7 +62,7 @@ DrawerContent.displayName = 'DrawerContent'
 const DrawerHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'grid gap-1.5 pb-[0.75rem] pt-[0.5rem] text-center sm:text-left bg-[#27AAE1]',
+      'grid gap-1.5 pb-[0.62rem] pt-[0.5rem] text-center sm:text-left bg-[#27AAE1]',
       className,
     )}
     {...props}
