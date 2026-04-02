@@ -1,8 +1,6 @@
 import HeaderSearch from '@/app/_components/header-search'
-
 import Banner from '@/app/danh-sach-combo/_components/banner'
 import Combo from '@/app/danh-sach-combo/_components/combo'
-
 import taxonomiesService from '@/services/taxonomies'
 
 const ComboList = async () => {

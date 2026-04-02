@@ -66,16 +66,11 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }: PaginationC
               key={item}
               type='button'
               onClick={() => onPageChange(item)}
-              className={`
-                ml-[0.5rem] flex size-[2rem] items-center justify-center rounded-full
-                pc-14-14-r font-normal!
-                transition-all
-                ${
-                  isActive
-                    ? 'bg-[#154A62] text-white'
-                    : 'bg-[#E4E6E7] text-[#154A62] hover:bg-[#E7EBEF]'
-                }
-              `}
+              className={`ml-[0.5rem] flex size-[2rem] items-center justify-center rounded-full pc-14-14-r font-normal! transition-all ${
+                isActive
+                  ? 'bg-[#154A62] text-white'
+                  : 'bg-[#E4E6E7] text-[#154A62] hover:bg-[#E7EBEF]'
+              }`}
               aria-current={isActive ? 'page' : undefined}
               aria-label={`Trang ${item}`}
             >

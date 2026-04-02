@@ -1,7 +1,6 @@
 .toc-list {
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
-
 }
 .toc-list-item {
   margin-top: 1.5rem;
@@ -12,7 +11,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 1.5rem */
- 
+
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
 }

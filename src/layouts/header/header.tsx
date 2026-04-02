@@ -85,8 +85,21 @@ const Header = ({ data }: HeaderProps) => {
               className='flex p-[0.875rem] items-center w-fit h-fit '
             >
               <div className='flex justify-center items-center mr-[0.25rem] size-[1.25rem]'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="15" viewBox="0 0 8 15" fill="none">
-                  <path d="M6.66458 13.95L1.23125 8.51667C0.589583 7.875 0.589583 6.825 1.23125 6.18333L6.66458 0.75" stroke="#10475F" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='8'
+                  height='15'
+                  viewBox='0 0 8 15'
+                  fill='none'
+                >
+                  <path
+                    d='M6.66458 13.95L1.23125 8.51667C0.589583 7.875 0.589583 6.825 1.23125 6.18333L6.66458 0.75'
+                    stroke='#10475F'
+                    strokeWidth='1.5'
+                    strokeMiterlimit='10'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
                 </svg>
               </div>
               {/* <ChevronLeft className='size-[1.25rem] mr-[0.25rem]'></ChevronLeft> */}

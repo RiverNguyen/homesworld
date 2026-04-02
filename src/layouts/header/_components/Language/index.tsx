@@ -77,16 +77,31 @@ const Language = ({ language, setLanguage }: LanguageProps) => {
           <span className='text-[var(--header-bold-color)] transition-all duration-300 pc-16-16-r font-medium mr-[0.5625rem]'>
             Tiếng việt
           </span>
-          <svg className='text-[var(--header-bold-color)] size-[0.75rem]' xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M1.5 3.49994L6.36291 8.25009L11 3.49994" stroke="currentColor" strokeWidth="1.52"/>
+          <svg
+            className='text-[var(--header-bold-color)] size-[0.75rem]'
+            xmlns='http://www.w3.org/2000/svg'
+            width='12'
+            height='12'
+            viewBox='0 0 12 12'
+            fill='none'
+          >
+            <path
+              d='M1.5 3.49994L6.36291 8.25009L11 3.49994'
+              stroke='currentColor'
+              strokeWidth='1.52'
+            />
           </svg>
           {/* <ChevronDown className='text-[var(--header-color)] size-[0.75rem]'></ChevronDown>  */}
           <div className='absolute pt-[1.4rem] top-full right-0 group-hover:opacity-100 group-hover:visible invisible opacity-0 transition-all duration-300'>
             <div className='rounded-[1.125rem] w-[10.9375rem] h-fit bg-white shadow-[0.125rem_0.375rem_2rem_0rem_rgba(0,0,0,0.06)] overflow-hidden'>
-              <RadioGroup defaultValue="1" value={language} onValueChange={(data)=>{
-                setLanguage(data as 'en' | 'vi')
-              }}
-              className="w-full gap-0">
+              <RadioGroup
+                defaultValue='1'
+                value={language}
+                onValueChange={(data) => {
+                  setLanguage(data as 'en' | 'vi')
+                }}
+                className='w-full gap-0'
+              >
                 <Label className='flex w-full items-center justify-start py-[0.875rem] pl-[0.75rem] pr-[1.25rem] self-stretch h-[3.5rem] bg-white cursor-pointer hover:bg-[#E6E6F1] transition-all duration-300'>
                   <div className='mr-[0.62rem]'>
                     <RadioGroupItem value={'vi'} />

@@ -27,15 +27,11 @@ export default function SortDropdown({ isMobile }: SortDropdownProps) {
       <Button
         type='button'
         onClick={() => setOpen((prev) => !prev)}
-        className={`
-    flex h-[2.5rem] w-[16.25rem] items-center justify-center rounded-[6.25rem]
-    border-[0.0625rem] font-display pc-14-14-r-button transition-all duration-200
-    ${
-      open
-        ? '!border-[#27AAE1] !bg-[#27AAE1] !text-white'
-        : '!border-[#10475F]/20 !bg-transparent !text-[#10475F] hover:!bg-[#27AAE1] hover:!text-white hover:!border-[#27AAE1]'
-    }
-  `}
+        className={`flex h-[2.5rem] w-[16.25rem] items-center justify-center rounded-[6.25rem] border-[0.0625rem] font-display pc-14-14-r-button transition-all duration-200 ${
+          open
+            ? '!border-[#27AAE1] !bg-[#27AAE1] !text-white'
+            : '!border-[#10475F]/20 !bg-transparent !text-[#10475F] hover:!bg-[#27AAE1] hover:!text-white hover:!border-[#27AAE1]'
+        }`}
       >
         <ICSort className='size-[0.875rem] mr-[0.5rem]' /> Sắp xếp theo: {active}
       </Button>
@@ -65,15 +61,11 @@ export default function SortDropdown({ isMobile }: SortDropdownProps) {
                   />
 
                   <span
-                    className={`
-                      relative flex size-[1.5rem] shrink-0 items-center justify-center rounded-[62.5rem]
-                      border-[0.125rem] transition-all
-                      ${
-                        checked
-                          ? 'border-[#10475F]'
-                          : 'border-[rgba(16,71,95,0.60)] group-hover:border-[#10475F]'
-                      }
-                    `}
+                    className={`relative flex size-[1.5rem] shrink-0 items-center justify-center rounded-[62.5rem] border-[0.125rem] transition-all ${
+                      checked
+                        ? 'border-[#10475F]'
+                        : 'border-[rgba(16,71,95,0.60)] group-hover:border-[#10475F]'
+                    }`}
                   >
                     <span
                       className={`

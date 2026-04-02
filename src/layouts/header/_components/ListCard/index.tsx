@@ -11,8 +11,7 @@ type ListCardProps = {
 }
 const ListCard = ({ data }: ListCardProps) => {
   const decoRef = useRef<HTMLDivElement>(null)
-  const containerRef= useRef<HTMLDivElement>(null)
-
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const checkScrollPosition = (element: HTMLDivElement) => {
     const scrollHeight = element.scrollHeight
@@ -43,10 +42,14 @@ const ListCard = ({ data }: ListCardProps) => {
     <div className='pointer-events-none'>
       <div className='absolute z-[-1] w-screen h-screen left-[50%] -translate-x-1/2 top-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,_rgba(0,0,0,0.3)_8.1%,_rgba(0,0,0,0.7)_24.19%)]'></div>
       {/* Clound */}
-      <div onMouseEnter={lockBodyScroll} onMouseLeave={unlockBodyScroll} className='w-[87.5rem] bg-white pt-[2.1875rem] max-h-[30.38rem] pointer-events-auto pr-[0.62rem] mx-auto rounded-[1.125rem] shadow-[0.125rem_0.375rem_2rem_0rem_rgba(0,0,0,0.06)] overflow-hidden'>
+      <div
+        onMouseEnter={lockBodyScroll}
+        onMouseLeave={unlockBodyScroll}
+        className='w-[87.5rem] bg-white pt-[2.1875rem] max-h-[30.38rem] pointer-events-auto pr-[0.62rem] mx-auto rounded-[1.125rem] shadow-[0.125rem_0.375rem_2rem_0rem_rgba(0,0,0,0.06)] overflow-hidden'
+      >
         <div
           className='grid grid-cols-9 pb-[2.1875rem] pl-[2.1875rem] grid-auto-rows gap-[1rem] pr-[1.38rem] max-h-[26rem] overflow-auto'
-          onScroll={()=>{
+          onScroll={() => {
             checkScrollPosition(containerRef.current as HTMLDivElement)
           }}
           ref={containerRef}

@@ -1,15 +1,15 @@
 'use client'
 
-import { FC, ReactNode, useEffect } from 'react'
 import { ChevronLeft } from 'lucide-react'
+import { FC, type Dispatch, type ReactNode, type SetStateAction, useEffect } from 'react'
 
-import { cn } from '@/lib/utils'
 import { ICTrash } from '@/app/lien-he/_components/form'
+import { cn } from '@/lib/utils'
 
 interface SidebarProviderProps {
   children: ReactNode
   open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setOpen: Dispatch<SetStateAction<boolean>>
   className?: string
   onReset?: () => void
 }

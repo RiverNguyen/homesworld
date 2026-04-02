@@ -68,9 +68,7 @@ export function useScrollHeader(headerRef: React.RefObject<HTMLElement>) {
           }
 
           if (headerSearchEl) {
-            headerSearchEl.style.transform = hasPassedFilter
-              ? 'translateY(0)'
-              : 'translateY(-150%)'
+            headerSearchEl.style.transform = hasPassedFilter ? 'translateY(0)' : 'translateY(-150%)'
           }
         }
 

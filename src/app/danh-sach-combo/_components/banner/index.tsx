@@ -23,16 +23,9 @@ const Banner = () => {
         width={1200}
         height={400}
         className='w-full h-auto object-cover'
-        
       />
       {/* TEXT */}
-      <div
-        className='absolute left-[6.25rem] bottom-[3rem] z-[2]   xsm:left-[0.75rem]
-    xsm:top-[2.56rem]
-    xsm:bottom-[2.56rem]
-
-    xsm:flex xsm:flex-col xsm:justify-center'
-      >
+      <div className='absolute left-[6.25rem] bottom-[3rem] z-[2] xsm:left-[0.75rem] xsm:top-[2.56rem] xsm:bottom-[2.56rem] xsm:flex xsm:flex-col xsm:justify-center'>
         <h1 className='pc-h1-48-s text-white font-montserrat mb-[0.75rem] xsm:pc-26-s-mons xsm:mb-[0.25rem]'>
           Danh sách combo
         </h1>

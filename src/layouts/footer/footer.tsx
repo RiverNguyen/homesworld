@@ -20,8 +20,23 @@ const Footer = async () => {
           />
         </Link>
         <div className='xsm:order-5 xsm:max-w-max flex flex-col max-w-[17.9rem]'>
-          <svg className='mb-[1.38rem] lg:hidden' width="350" height="1" viewBox="0 0 350 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line opacity="0.2" x1="350" y1="0.5" x2="-4.37114e-08" y2="0.499971" stroke="#10475F" strokeDasharray="4 4"/>
+          <svg
+            className='mb-[1.38rem] lg:hidden'
+            width='350'
+            height='1'
+            viewBox='0 0 350 1'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <line
+              opacity='0.2'
+              x1='350'
+              y1='0.5'
+              x2='-4.37114e-08'
+              y2='0.499971'
+              stroke='#10475F'
+              strokeDasharray='4 4'
+            />
           </svg>
           {footer.info.map((item, index) => {
             if (!item.link.url || !item.link.title) {
@@ -70,8 +85,23 @@ const Footer = async () => {
         </div>
 
         <div className='xsm:flex relative hidden flex-row pt-[1.38rem] px-[1rem] w-full justify-between lg:max-w-[10rem]'>
-          <svg className='absolute top-0 left-1/2 -translate-x-1/2 mb-[1.38rem] lg:hidden' width="350" height="1" viewBox="0 0 350 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line opacity="0.2" x1="350" y1="0.5" x2="-4.37114e-08" y2="0.499971" stroke="#10475F" strokeDasharray="4 4"/>
+          <svg
+            className='absolute top-0 left-1/2 -translate-x-1/2 mb-[1.38rem] lg:hidden'
+            width='350'
+            height='1'
+            viewBox='0 0 350 1'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <line
+              opacity='0.2'
+              x1='350'
+              y1='0.5'
+              x2='-4.37114e-08'
+              y2='0.499971'
+              stroke='#10475F'
+              strokeDasharray='4 4'
+            />
           </svg>
           {footer.link_mobile.map((item, index) => {
             if (!item.link.url || !item.link.title) {

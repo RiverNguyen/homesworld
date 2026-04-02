@@ -61,6 +61,7 @@ const config: Config = {
         },
         '.m-20-20': {
           '@apply text-[1.25rem] font-medium leading-[1.1]': {},
+        },
         '.mb-12-r': {
           '@apply text-[0.75rem] font-normal leading-[1.5]': {},
         },
@@ -118,7 +119,7 @@ const config: Config = {
         '.r-14': {
           '@apply text-[0.875rem] font-normal leading-[150%]': {},
         },
-       
+
         '.r-13-button': {
           '@apply text-[0.8125rem] font-normal leading-[150%]': {},
         },
