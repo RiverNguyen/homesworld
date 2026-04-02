@@ -1,21 +1,22 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useState } from 'react'
+import { UseFormReturn } from 'react-hook-form'
 import { Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { SidebarContent, type FilterFormValues } from '@/app/danh-sach-combo/_components/combo/form'
+import PaginationCustom from '@/app/danh-sach-combo/_components/item/PaginationCustom'
+import SidebarProvider from '@/app/danh-sach-combo/_components/item/sider-barprovide'
+import SortDropdown from '@/app/danh-sach-combo/_components/item/sort'
+import useIsMobile from '@/hooks/useIsMobile'
+
+import { Button } from '@/components/ui/button'
+
 import './index.css'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import useIsMobile from '@/hooks/useIsMobile'
-import { UseFormReturn } from 'react-hook-form'
-import { SidebarContent, type FilterFormValues } from '@/app/danh-sach-combo/_components/combo/form'
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer-list-custom'
-import { useState } from 'react'
-import PaginationCustom from '@/app/danh-sach-combo/_components/item/PaginationCustom'
-import SortDropdown from '@/app/danh-sach-combo/_components/item/sort'
-
-import SidebarProvider from '@/app/danh-sach-combo/_components/item/sider-barprovide'
 
 type TourCardProps = {
   title: string
@@ -212,7 +213,7 @@ const ListItem = ({ form }: ListItemProps) => {
               >
                 <SidebarContent
                   form={form}
-                  onApply={({ formValues, selectedItems, sortValue }) => {
+                  onApply={({ formValues: _formValues, selectedItems, sortValue }) => {
                     // TODO: dùng formValues để call API search/filter data thật
                     setSelectedItems(selectedItems)
                     setSelectedSort(sortValue ?? '')

@@ -3,10 +3,9 @@ import Link from 'next/link'
 import React from 'react'
 
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
-import { IAboutUs } from '@/interfaces/about-us'
-import ICRightArrow from '@/components/icons/ICRightArrow'
 import ICRight from '@/components/icons/ICRight'
 
+import { IAboutUs } from '@/interfaces/about-us'
 type IconProps = React.SVGProps<SVGSVGElement>
 
 // css
@@ -88,11 +87,7 @@ const Layout = ({ acfData }: LayoutProps) => {
         transition-colors
         duration-500
         ease-out
-        md:group-hover:text-white/90
-        xsm:r-14
-    
-      '
-                  >
+        md:group-hover:text-white/90 xsm:r-14 ' >
                     {acfData?.distinctive?.group_1?.desc}
                   </p>
                 </div>

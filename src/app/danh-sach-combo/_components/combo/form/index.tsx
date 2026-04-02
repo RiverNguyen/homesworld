@@ -1,18 +1,17 @@
 'use client'
 
-import { UseFormReturn } from 'react-hook-form'
-import { Checkbox } from '@/components/ui/checkbox-list-custom'
-import { Slider } from '@/components/ui/slide-list-custom'
-import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
-import { ICTrash } from '@/app/lien-he/_components/form'
-import { cn } from '@/lib/utils'
-import { is } from 'date-fns/locale'
-import useIsMobile from '@/hooks/useIsMobile'
-import SortDropdown from '@/app/danh-sach-combo/_components/item/sort'
 import { RadioGroup } from '@radix-ui/react-radio-group'
-import { RadioGroupItem } from '@/components/ui/radio-group'
 import { useState } from 'react'
+import { UseFormReturn } from 'react-hook-form'
+
+import { ICTrash } from '@/app/lien-he/_components/form'
+import useIsMobile from '@/hooks/useIsMobile'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox-list-custom'
+import { FormControl, FormField, FormItem } from '@/components/ui/form'
+import { RadioGroupItem } from '@/components/ui/radio-group'
+import { Slider } from '@/components/ui/slide-list-custom'
+import { cn } from '@/lib/utils'
 
 export type FilterFormValues = {
   priceRange: [number, number]
@@ -185,25 +184,10 @@ function SidebarInner({
                   />
 
                   <span
-                    className={`
-            relative flex size-[1.5rem] shrink-0 items-center justify-center rounded-[62.5rem]
-            border-[0.125rem] transition-all
-            ${
-              checked
-                ? 'border-[#10475F]'
-                : 'border-[rgba(16,71,95,0.6)] group-hover:border-[#10475F]'
-            }
-          `}
+                    className={`relative flex size-[1.5rem] shrink-0 items-center justify-center rounded-[62.5rem] border-[0.125rem] transition-all ${checked ? 'border-[#10475F]' : 'border-[rgba(16,71,95,0.6)] group-hover:border-[#10475F]'}`}
                   >
                     <span
-                      className={`
-              block rounded-[0.75rem] transition-all
-              ${
-                checked
-                  ? 'size-[0.75rem] bg-[#10475F]'
-                  : 'size-[0.75rem] bg-transparent group-hover:bg-[#10475F]'
-              }
-            `}
+                      className={`block size-[0.75rem] rounded-[0.75rem] transition-all ${checked ? 'bg-[#10475F]' : 'bg-transparent group-hover:bg-[#10475F]'}`}
                     />
                   </span>
 

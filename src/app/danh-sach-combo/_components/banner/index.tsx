@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+
 import useIsMobile from '@/hooks/useIsMobile'
 
 const Banner = () => {
@@ -19,9 +20,8 @@ const Banner = () => {
         width={1200}
         height={400}
         className='w-full h-auto object-cover'
-        priority
+        
       />
-
       {/* TEXT */}
       <div
         className='absolute left-[6.25rem] bottom-[3rem] z-[2]   xsm:left-[0.75rem]
