@@ -191,7 +191,7 @@ const ListItem = ({ form }: ListItemProps) => {
   return (
     <div className='flex flex-col'>
       <div className='flex items-end justify-between xsm:flex-col xsm:items-start'>
-        <div className='flex items-end justify-between w-full xsm:items-center'>
+        <div className='flex items-end justify-between w-full xsm:items-center xsm:px-[0.75rem]'>
           <p className='font-display text-[#27AAE1] pc-2x-20-m xsm:m-16-16'>58 Kết quả liên quan</p>
 
           <SortDropdown isMobile={isMobile} />
@@ -254,28 +254,31 @@ const ListItem = ({ form }: ListItemProps) => {
           )}
         </div>
       </div>
-      {/* // TODO: render danh sách filter đã chọn, dài thì vuốt ngang */}
-      {!!selectedItems.length && (
-        <div className='mt-[1rem] overflow-x-auto overflow-y-hidden no-scrollbar bg-transparent'>
-          <div className='flex min-w-max items-center gap-[0.5rem] bg-transparent'>
-            {selectedItems.map((item) => (
-              <div
-                key={item.key}
-                className='flex h-[2.25rem] shrink-0 items-center rounded-[6.25rem] border-[0.0625rem] border-[#D9D9D9] bg-white pr-[0.38rem]'
-              >
-                <span className='ml-[0.62rem] text-[#10475F] r-14'>{item.label}</span>
+      {isMobile && (
+        <>
+          {/* TODO: render danh sách filter đã chọn, dài thì vuốt ngang */}
+          {!!selectedItems.length && (
+            <div className='mt-[1rem] overflow-x-auto overflow-y-hidden no-scrollbar bg-transparent pl-[0.75rem]'>
+              <div className='flex min-w-max items-center gap-[0.5rem] bg-transparent'>
+                {selectedItems.map((item) => (
+                  <div
+                    key={item.key}
+                    className='flex h-[2.25rem] shrink-0 items-center rounded-[6.25rem] border-[0.0625rem] border-[#D9D9D9] bg-white pr-[0.38rem]'
+                  >
+                    <span className='ml-[0.62rem] text-[#10475F] r-14'>{item.label}</span>
 
-                <ICClose className='ml-[0.38rem] flex size-[1.04169rem] items-center justify-center rounded-full text-[#27AAE1]' />
+                    <ICClose className='ml-[0.38rem] flex size-[1.04169rem] items-center justify-center rounded-full text-[#27AAE1]' />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          )}
+        </>
       )}
-
       <div
         className={`
     mt-[1rem] grid grid-cols-3 gap-x-[1rem] gap-y-[3rem]
-    xsm:gap-y-[1.5rem]
+    xsm:gap-y-[1.5rem] xsm:px-[0.75rem]
     ${isMobile ? (isSingleColumn ? 'xsm:grid-cols-1' : 'xsm:grid-cols-2 xsm:gap-x-[0.5rem]') : ''}
   `}
       >

@@ -8,7 +8,10 @@ const Banner = () => {
   const isMobile = useIsMobile()
 
   return (
-    <div className='relative max-w-[100rem] w-full'>
+    <div
+      id='filter'
+      className='relative max-w-[100rem] w-full '
+    >
       {/* ẢNH */}
       <Image
         src={

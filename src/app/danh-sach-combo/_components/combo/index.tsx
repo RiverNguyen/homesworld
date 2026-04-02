@@ -27,7 +27,7 @@ export default function Combo() {
         onSubmit={form.handleSubmit(onSubmit)}
         className='flex w-full max-w-[87.5rem] xsm:flex-col'
       >
-        <div className='sticky top-[3.125rem] w-[20.1875rem] shrink-0 self-start xsm:hidden'>
+        <div className='sticky top-[4.63rem] w-[20.1875rem] shrink-0 self-start xsm:hidden'>
           <Sidebar form={form} />
         </div>
 

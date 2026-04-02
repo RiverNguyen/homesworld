@@ -15,10 +15,11 @@ const ComboList = async () => {
     <div className='flex flex-col items-center bg-[#F8F8F8]'>
       <Banner />
       <HeaderSearch
+        className='translate-y-[-260%]'
         taxonomies={taxonomiesData?.data || []}
         locations={locationData?.data || []}
       />
-      <div className='flex justify-center pt-[6.25rem] xsm:pt-[1.5rem] xsm:w-full xsm:px-[0.75rem]'>
+      <div className='flex justify-center pt-[6.25rem] xsm:pt-[1.5rem] xsm:w-full '>
         <div className='w-full max-w-[100rem]'>
           <Combo />
         </div>

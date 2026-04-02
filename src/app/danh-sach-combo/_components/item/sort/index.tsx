@@ -40,7 +40,7 @@ export default function SortDropdown({ isMobile }: SortDropdownProps) {
         <ICSort className='size-[0.875rem] mr-[0.5rem]' /> Sắp xếp theo: {active}
       </Button>
       {open && (
-        <div className='absolute left-0 top-[3rem] z-[20] w-[18rem] rounded-[1.5rem] bg-white px-[1.25rem] shadow-[0_0.25rem_1.5rem_rgba(0,0,0,0.12)]'>
+        <div className='absolute left-0 top-[3rem] z-[20] min-w-[18rem] rounded-[1.5rem] bg-white px-[1.25rem] shadow-[0_0.25rem_1.5rem_rgba(0,0,0,0.12)]'>
           <RadioGroup
             value={active}
             onValueChange={(value) => {
