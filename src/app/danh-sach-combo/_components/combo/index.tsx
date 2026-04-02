@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 
-import ListItem from '@/app/danh-sach-combo/_components/combo/ListItem'
+import ListItem from '@/app/danh-sach-combo/_components/combo/list-item'
 import Sidebar, { type FilterFormValues } from '@/app/danh-sach-combo/_components/combo/form'
 import { Form } from '@/components/ui/form'
 

@@ -7,8 +7,8 @@ import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { SidebarContent, type FilterFormValues } from '@/app/danh-sach-combo/_components/combo/form'
-import PaginationCustom from '@/app/danh-sach-combo/_components/item/PaginationCustom'
-import SidebarProvider from '@/app/danh-sach-combo/_components/item/sider-barprovide'
+import PaginationCustom from '@/app/danh-sach-combo/_components/item/pagination-custom'
+import SidebarProvider from '@/app/danh-sach-combo/_components/item/sidebar-provide'
 import SortDropdown from '@/app/danh-sach-combo/_components/item/sort'
 import useIsMobile from '@/hooks/useIsMobile'
 
