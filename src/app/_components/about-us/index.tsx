@@ -27,7 +27,7 @@ const AboutUs = ({ acfData }: { acfData: IAboutUs }) => {
       className='relative'
       style={{
         position: isVisible ? 'sticky' : 'relative',
-        top: isVisible ? '1.875rem' : 'auto',
+        top: isVisible ? '0' : 'auto',
       }}
     >
       <Background acfData={acfData} />

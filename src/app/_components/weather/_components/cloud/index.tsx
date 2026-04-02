@@ -105,7 +105,7 @@ const movingClouds: MovingCloud[] = [
 
 const Cloud = () => {
   return (
-    <div className='relative h-[33.5rem] w-full overflow-hidden'>
+    <div className='relative h-[33.5rem] w-full overflow-hidden pointer-events-none'>
       <Image
         className='absolute left-0 bottom-5 right-0 h-[20.875rem] w-full'
         src='/home/img/cloud-1.svg'
