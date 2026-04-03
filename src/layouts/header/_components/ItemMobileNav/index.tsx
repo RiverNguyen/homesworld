@@ -74,17 +74,18 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
           ) : (
             <div className='relative pr-[0.25rem]'>
               <div className='pr-[0.28rem] pl-[0.75rem] pt-[0.75rem] pb-[3.65rem] grid grid-cols-3 justify-between gap-[0.675rem] w-full min-h-[12rem] max-h-[30.03rem] overflow-auto'>
-                {Array.isArray(data?.categories) && data?.categories?.map((item, index) => {
-                  return (
-                    <CardItem
-                      key={index}
-                      slug={item?.slug}
-                      image={item?.acf?.thumbnail}
-                    >
-                      {item?.name}
-                    </CardItem>
-                  )
-                })}
+                {Array.isArray(data?.categories) &&
+                  data?.categories?.map((item, index) => {
+                    return (
+                      <CardItem
+                        key={index}
+                        slug={item?.slug}
+                        image={item?.acf?.thumbnail}
+                      >
+                        {item?.name}
+                      </CardItem>
+                    )
+                  })}
 
                 {/* <CardItem
                   slug=''
@@ -98,7 +99,12 @@ const ItemMobileNav = ({ data, onClose }: ItemMobileNavProps) => {
                   href={'#'}
                   className='pointer-events-auto '
                 >
-                  <Button className='!p-[0.88rem] !h-[2.25rem]' variant={'primary'}>Xem tất cả</Button>
+                  <Button
+                    className='!p-[0.88rem] !h-[2.25rem]'
+                    variant={'primary'}
+                  >
+                    Xem tất cả
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -124,14 +130,30 @@ export const Trigger = ({ children, icon }: TrigerProps) => {
             alt=''
             src={icon}
           ></Image>
-          <span className='text-[#10475F] text-[1.125rem] font-normal font-halyard-display leading-[1.3] text-left'>{children}</span>
+          <span className='text-[#10475F] text-[1.125rem] font-normal font-halyard-display leading-[1.3] text-left'>
+            {children}
+          </span>
         </div>
         <ChevronRight className='size-[1rem]'></ChevronRight>
       </div>
-      <svg className='w-[21.9375rem]' width="370" height="1" viewBox="0 0 370 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line opacity="0.2" x1="370" y1="0.500031" x2="-4.37114e-08" y2="0.5" stroke="#10475F" strokeDasharray="4 4"/>
+      <svg
+        className='w-[21.9375rem]'
+        width='370'
+        height='1'
+        viewBox='0 0 370 1'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <line
+          opacity='0.2'
+          x1='370'
+          y1='0.500031'
+          x2='-4.37114e-08'
+          y2='0.5'
+          stroke='#10475F'
+          strokeDasharray='4 4'
+        />
       </svg>
-
     </>
   )
 }

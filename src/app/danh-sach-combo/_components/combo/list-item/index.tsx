@@ -10,9 +10,8 @@ import { SidebarContent, type FilterFormValues } from '@/app/danh-sach-combo/_co
 import PaginationCustom from '@/app/danh-sach-combo/_components/item/pagination-custom'
 import SidebarProvider from '@/app/danh-sach-combo/_components/item/sidebar-provide'
 import SortDropdown from '@/app/danh-sach-combo/_components/item/sort'
-import useIsMobile from '@/hooks/useIsMobile'
-
 import { Button } from '@/components/ui/button'
+import useIsMobile from '@/hooks/useIsMobile'
 
 import './index.css'
 import 'swiper/css'
@@ -187,7 +186,7 @@ const ListItem = ({ form }: ListItemProps) => {
   const [openSidebar, setOpenSidebar] = useState(false)
 
   const [selectedItems, setSelectedItems] = useState<SelectedFilterItem[]>([])
-  const [selectedSort, setSelectedSort] = useState('')
+
   return (
     <div className='flex flex-col'>
       <div className='flex items-end justify-between xsm:flex-col xsm:items-start'>
@@ -205,7 +204,6 @@ const ListItem = ({ form }: ListItemProps) => {
               >
                 Bộ lọc <ICSort className='size-[0.8125rem]' />
               </Button>
-
               <SidebarProvider
                 open={openSidebar}
                 setOpen={setOpenSidebar}
@@ -213,10 +211,8 @@ const ListItem = ({ form }: ListItemProps) => {
               >
                 <SidebarContent
                   form={form}
-                  onApply={({ formValues: _formValues, selectedItems, sortValue }) => {
-                    // TODO: dùng formValues để call API search/filter data thật
+                  onApply={({ formValues: _formValues, selectedItems }) => {
                     setSelectedItems(selectedItems)
-                    setSelectedSort(sortValue ?? '')
                     setOpenSidebar(false)
                   }}
                 />
@@ -277,7 +273,7 @@ const ListItem = ({ form }: ListItemProps) => {
       )}
       <div
         className={`
-    mt-[1rem] grid grid-cols-3 gap-x-[1rem] gap-y-[3rem]
+    mt-[1.46rem] grid grid-cols-3 gap-x-[1rem] gap-y-[3rem]
     xsm:gap-y-[1.5rem] xsm:px-[0.75rem]
     ${isMobile ? (isSingleColumn ? 'xsm:grid-cols-1' : 'xsm:grid-cols-2 xsm:gap-x-[0.5rem]') : ''}
   `}
