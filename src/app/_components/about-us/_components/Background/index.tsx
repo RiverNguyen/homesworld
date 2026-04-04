@@ -5,7 +5,7 @@ import { IAboutUs } from '@/interfaces/about-us'
 
 const BG_DESKTOP = '/home/img/d-bg-about.webp'
 const BG_MOBILE = '/ve-chung-toi/bg-mobile.webp'
-const BG_OVERLAY = '/ve-chung-toi/riso_texture_1_11zon.jpg'
+const BG_OVERLAY = '/ve-chung-toi/Background.webp'
 
 const TOP_OVERLAY_STYLE = {
   background:
@@ -14,14 +14,18 @@ const TOP_OVERLAY_STYLE = {
 
 const DESKTOP_CLOUD_OVERLAY_STYLE = {
   background: `
-    radial-gradient(ellipse 70% 50% at 20% 20%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 65%),
-    radial-gradient(ellipse 80% 55% at 50% 10%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 65%),
-    radial-gradient(ellipse 70% 50% at 80% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 65%),
-    linear-gradient(180deg, rgba(250,250,247,1) 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0) 100%)
+    radial-gradient(ellipse 60% 40% at 20% 30%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 75%),
+    radial-gradient(ellipse 70% 45% at 50% 20%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 75%),
+    radial-gradient(ellipse 60% 40% at 80% 35%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 75%),
+    linear-gradient(
+      180deg,
+      rgba(250,250,247,0.85) 0%,
+      rgba(255,255,255,0.4) 60%,
+      rgba(255,255,255,0) 100%
+    )
   `,
-  filter: 'blur(18px)',
+  filter: 'blur(6px)',
 }
-
 const MOBILE_CLOUD_OVERLAY_STYLE = {
   background: `
     radial-gradient(ellipse 70% 60% at 20% 0%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 70%),
@@ -37,7 +41,7 @@ type LayoutProps = {
 }
 const Background = ({ acfData }: LayoutProps) => {
   return (
-    <div className='relative mx-auto flex h-[49.875rem] max-w-[100rem] items-center justify-center overflow-hidden xsm:h-[73rem]'>
+    <div className='relative mx-auto flex h-[49.875rem] max-w-[100rem] items-center justify-center overflow-hidden xsm:h-[68.69rem] xsm:items-start'>
       <Image
         src={BG_DESKTOP}
         alt='Background'
@@ -50,21 +54,21 @@ const Background = ({ acfData }: LayoutProps) => {
         alt='Background mobile'
         width={1600}
         height={1200}
-        className='absolute left-0 top-0 hidden h-[71.94rem] w-full object-cover xsm:block'
+        className='absolute left-0 top-0 hidden h-[68.69rem] w-full object-cover xsm:block'
       />
       <Image
         src={BG_OVERLAY}
         alt='Background'
         fill
-        className='absolute left-0 top-0 h-full w-full object-cover opacity-[0.25] xsm:opacity-[0.3]'
+        className='absolute left-0 top-0 h-full w-full object-cover opacity-[0.2] xsm:opacity-[0.2]'
       />
       <div
-        className='pointer-events-none absolute left-0 right-0 top-0 z-10 h-[17.25rem]'
+        className='pointer-events-none absolute left-0 right-0 top-0 z-10 h-[9rem] xsm:h-[3.56rem]'
         style={TOP_OVERLAY_STYLE}
       />
 
       <div
-        className='pointer-events-none absolute left-0 right-0 bottom-[-4rem] z-20 h-[18.875rem] xsm:hidden'
+        className='pointer-events-none absolute left-0 right-0 bottom-[-8rem] z-20 h-[18.875rem] xsm:hidden'
         style={DESKTOP_CLOUD_OVERLAY_STYLE}
       />
 
@@ -111,7 +115,7 @@ const DESKTOP_DECORATIONS = [
     width: 400,
     height: 300,
     className:
-      'absolute bottom-0 left-0 z-[101] h-[20.8125rem] w-[30.375rem] overflow-hidden xsm:hidden',
+      'absolute bottom-0 left-0 z-[101] h-[20.8125rem] w-[30.375rem] overflow-hidden xsm:hidden pointer-events-none',
   },
   // nhà
   {
@@ -120,7 +124,7 @@ const DESKTOP_DECORATIONS = [
     width: 400,
     height: 300,
     className:
-      'absolute bottom-0 left-[17rem] z-[100] h-[7.4375rem] w-[42.1875rem] overflow-hidden xsm:hidden',
+      'absolute bottom-0 left-[17rem] z-[100] h-[7.4375rem] w-[42.1875rem] overflow-hidden xsm:hidden pointer-events-none',
   },
   // cầu
   {

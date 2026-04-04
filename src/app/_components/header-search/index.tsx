@@ -14,10 +14,12 @@ import { useFilterStore } from '@/store/store'
 
 const today = startOfDay(new Date())
 const HeaderSearch = ({
+  className,
   taxonomies,
   locations,
 }: {
   taxonomies: ITaxonomies[]
+  className?: string
   locations: ITaxonomies[]
 }) => {
   const {
@@ -38,7 +40,7 @@ const HeaderSearch = ({
   return (
     <section
       id='header-search'
-      className='xsm:hidden fixed z-[100] w-full h-[4.625rem] bg-white flex items-center justify-start shadow-[0rem_0.8125rem_1.75rem_0rem_rgba(168,168,168,0.1),0rem_3.125rem_3.125rem_0rem_rgba(168,168,168,0.09),0rem_7.0625rem_4.25rem_0rem_rgba(168,168,168,0.05),0rem_12.625rem_5.0625rem_0rem_rgba(168,168,168,0.01),0rem_19.6875rem_5.5rem_0rem_rgba(168,168,168,0)] overflow-hidden transition-transform duration-300 translate-y-[-150%]'
+      className={`xsm:hidden fixed z-[100] w-full h-[4.625rem] bg-white flex items-center justify-start shadow-[0rem_0.8125rem_1.75rem_0rem_rgba(168,168,168,0.1),0rem_3.125rem_3.125rem_0rem_rgba(168,168,168,0.09),0rem_7.0625rem_4.25rem_0rem_rgba(168,168,168,0.05),0rem_12.625rem_5.0625rem_0rem_rgba(168,168,168,0.01),0rem_19.6875rem_5.5rem_0rem_rgba(168,168,168,0)] overflow-hidden transition-transform duration-300 ${className || 'translate-y-[-250%]'}`}
     >
       <div className='flex items-center w-[31.6875rem] bg-[#27AAE1] h-full px-[1rem]'>
         <Link href={'/'}>

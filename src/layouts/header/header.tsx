@@ -1,5 +1,4 @@
 'use client'
-import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
@@ -30,7 +29,7 @@ const Header = ({ data }: HeaderProps) => {
       className='z-99 fixed top-0 left-0  w-full bg-[var(--header-bg)] transition-all duration-600'
     >
       {/* MB */}
-      <div className='xsm:flex hidden justify-between items-center w-full pl-[0.75rem] w-[23.4375rem] h-[3.125rem]  border-white/20 border-b-[0.0625rem] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.01),0rem_3.4375rem_3.4375rem_0rem_rgba(0,0,0,0.01),0rem_7.75rem_4.625rem_0rem_rgba(0,0,0,0.01),0rem_13.75rem_5.5rem_0rem_rgba(0,0,0,0),0rem_21.5rem_6rem_0rem_rgba(0,0,0,0)]'>
+      <div className='xsm:flex hidden justify-between items-center pl-[0.75rem] w-[23.4375rem] h-[3.125rem] border-white/20 border-b-[0.0625rem] shadow-[0rem_0.875rem_1.875rem_0rem_rgba(0,0,0,0.01),0rem_3.4375rem_3.4375rem_0rem_rgba(0,0,0,0.01),0rem_7.75rem_4.625rem_0rem_rgba(0,0,0,0.01),0rem_13.75rem_5.5rem_0rem_rgba(0,0,0,0),0rem_21.5rem_6rem_0rem_rgba(0,0,0,0)]'>
         <Link href={'/'}>
           <Image
             className='w-[8.5rem] h-[1.375rem]'
@@ -44,7 +43,7 @@ const Header = ({ data }: HeaderProps) => {
           onClick={() => {
             setIsOpen(true)
           }}
-          className='py-[0.625rem] px-[0.875rem] border-[#10475F]/20 border-l-[0.0625rem] opacity-[0.55] '
+          className='py-[0.625rem] px-[0.875rem] border-[#10475F]/20 border-l-[0.0625rem]'
         >
           <svg
             width='24'
@@ -74,16 +73,38 @@ const Header = ({ data }: HeaderProps) => {
           </svg>
         </div>
         <div
-          className={`absolute top-0 left-0 w-screen h-screen bg-white transition-all duration-300 ${isOpen ? '' : 'translate-x-full'}`}
+          className={`absolute top-0 left-0 w-screen h-screen bg-[#FEFBF9] transition-all duration-300 ${
+            isOpen ? '' : 'translate-x-full'
+          }`}
         >
-          <div
-            onClick={() => {
-              setIsOpen(false)
-            }}
-            className='flex p-[0.875rem] w-full h-fit border-[#10475F]/12 border-b-[0.0625rem]'
-          >
-            <ChevronLeft className='size-[1.25rem] mr-[0.25rem]'></ChevronLeft>
-            <span className='mb-16-m font-normal'>Quay lại</span>
+          <div className='w-full border-[#10475F]/12 border-b-[0.0625rem]'>
+            <div
+              onClick={() => {
+                setIsOpen(false)
+              }}
+              className='flex p-[0.875rem] items-center w-fit h-fit '
+            >
+              <div className='flex justify-center items-center mr-[0.25rem] size-[1.25rem]'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='8'
+                  height='15'
+                  viewBox='0 0 8 15'
+                  fill='none'
+                >
+                  <path
+                    d='M6.66458 13.95L1.23125 8.51667C0.589583 7.875 0.589583 6.825 1.23125 6.18333L6.66458 0.75'
+                    stroke='#10475F'
+                    strokeWidth='1.5'
+                    strokeMiterlimit='10'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </div>
+              {/* <ChevronLeft className='size-[1.25rem] mr-[0.25rem]'></ChevronLeft> */}
+              <span className='mb-16-m font-normal text-[#10475F]'>Quay lại</span>
+            </div>
           </div>
           <div className='px-[0.75rem] mb-[3.62rem]'>
             {data?.menu?.map((menu, index) => {
@@ -143,21 +164,21 @@ const Header = ({ data }: HeaderProps) => {
         </div>
       </div>
       {/* PC */}
-      <div className='xsm:hidden flex justify-between items-center py-[1rem] w-[87.5rem] mx-auto'>
-        <div className='flex items-center'>
+      <div className='xsm:hidden flex justify-between items-center py-[1rem] w-[87.5rem] h-[4.88rem] mx-auto'>
+        <div className='flex h-[2.37rem] items-start'>
           <Link
             href={'/'}
-            className='relative w-[12.75rem] h-[2.125rem] mr-[2.62rem]'
+            className='relative w-[12.75rem] h-[2.125rem] mr-[1.5rem]'
           >
             <Image
-              className='logo-dark absolute top-0 left-0 transition-all duration-300'
+              className='logo-dark w-[12.75rem] h-[2.125rem] absolute top-0 left-0 transition-all duration-300'
               width={204}
               height={34}
               alt='Logo'
               src={data?.logo}
             />
             <Image
-              className='logo-white absolute top-0 left-0 opacity-0 transition-all duration-300'
+              className='logo-white w-[12.75rem] h-[2.125rem] absolute top-0 left-0 opacity-0 transition-all duration-300'
               width={204}
               height={34}
               alt='Logo'

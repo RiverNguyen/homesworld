@@ -10,62 +10,85 @@ export function useScrollHeader(headerRef: React.RefObject<HTMLElement>) {
   const isClient = useIsClient()
 
   useEffect(() => {
+    if (!isClient) return
+
+    const headerSearchEl = document.getElementById('header-search')
+
     if (window.location.pathname === '/' && window.innerWidth > 639) {
-      headerRef.current.classList.add('transparent')
+      headerRef.current?.classList.add('transparent')
     }
-  }, [])
+
+    if (headerSearchEl) {
+      headerSearchEl.style.transform = 'translateY(-150%)'
+    }
+  }, [headerRef, isClient])
+
   const updateScrollDirection = useCallback(() => {
     if (!isClient) return
+
     const el = headerRef.current
     const headerSearchEl = document.getElementById('header-search')
     const filterSection = document.getElementById('filter')
+
     if (!el) return
+    if (ticking.current) return
 
     const scrollY = window.scrollY
+    ticking.current = true
 
-    if (!ticking.current) {
-      requestAnimationFrame(() => {
-        const direction = scrollY > lastScrollY.current ? 'down' : 'up'
+    requestAnimationFrame(() => {
+      const direction = scrollY > lastScrollY.current ? 'down' : 'up'
+      const diff = Math.abs(scrollY - lastScrollY.current)
 
-        // Tăng threshold để giảm số lần update
-        if (Math.abs(scrollY - lastScrollY.current) > 15) {
-          if (direction === 'down') {
-            if (filterSection) {
-              const rect = filterSection.getBoundingClientRect()
-              if (rect.bottom < 0) {
-                headerSearchEl!.style.transform = 'translateY(150%)'
-              }
-            }
-            headerRef.current!.style.transform = 'translateY(-150%)'
-            headerRef.current.classList.remove('transparent')
-          } else {
-            if (
-              scrollY <= window.innerHeight / 4 &&
-              window.location.pathname === '/' &&
-              window.innerWidth > 639
-            ) {
-              headerRef.current.classList.add('transparent')
-            }
-            if (headerSearchEl) {
-              headerSearchEl.style.transform = 'translateY(0)'
-            }
-            headerRef.current!.style.transform = 'translateY(0)'
+      if (diff > 15) {
+        const hasPassedFilter = filterSection
+          ? filterSection.getBoundingClientRect().bottom < 0
+          : true
+
+        if (direction === 'down') {
+          el.style.transform = 'translateY(-150%)'
+          el.classList.remove('transparent')
+
+          if (headerSearchEl) {
+            headerSearchEl.style.transform = hasPassedFilter
+              ? 'translateY(150%)'
+              : 'translateY(-150%)'
           }
-          lastScrollY.current = scrollY > 0 ? scrollY : 0
+        } else {
+          el.style.transform = 'translateY(0)'
+
+          if (
+            scrollY <= window.innerHeight / 4 &&
+            window.location.pathname === '/' &&
+            window.innerWidth > 639
+          ) {
+            el.classList.add('transparent')
+          } else {
+            el.classList.remove('transparent')
+          }
+
+          if (headerSearchEl) {
+            headerSearchEl.style.transform = hasPassedFilter ? 'translateY(0)' : 'translateY(-150%)'
+          }
         }
 
-        ticking.current = false
-      })
+        lastScrollY.current = scrollY > 0 ? scrollY : 0
+      }
 
-      ticking.current = true
-    }
+      ticking.current = false
+    })
   }, [headerRef, isClient])
 
   useEffect(() => {
     if (!isClient) return
 
-    window.addEventListener('scroll', updateScrollDirection, { passive: true })
-    return () => window.removeEventListener('scroll', updateScrollDirection)
+    window.addEventListener('scroll', updateScrollDirection, {
+      passive: true,
+    })
+
+    return () => {
+      window.removeEventListener('scroll', updateScrollDirection)
+    }
   }, [updateScrollDirection, isClient])
 
   return headerRef

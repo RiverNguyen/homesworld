@@ -10,6 +10,10 @@ interface ButtonPrimaryProps {
   href?: string
   rightIcon?: React.ReactNode
   hideDefaultIcon?: boolean
+
+  // 👇 thêm vào đây
+  rel?: string
+  target?: string
 }
 
 const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({

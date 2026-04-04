@@ -299,7 +299,22 @@ html {
   border-radius: 2.8125rem;
   background: var(--mng-m-mng-icon, #10475f);
 }
-
+::-webkit-scrollbar-track {
+  background: #10475f33;
+  border-radius: 2.8125rem;
+}
+@layer components {
+  .banner-pagination {
+    position: absolute;
+    right: 6.25rem !important;
+    bottom: 4rem !important;
+    display: flex;
+    justify-content: center;
+    gap: 0.1875rem;
+    z-index: 20;
+    pointer-events: auto;
+  }
+}
 @keyframes ripple_video {
   0% {
     box-shadow:
@@ -324,6 +339,14 @@ html {
   border-radius: 50%;
   animation: ripple_video 0.75s linear infinite;
   pointer-events: none;
+}
+@utility text-fit {
+  text-box-edge: cap alphabetic;
+  text-box-trim: trim-both;
+}
+@utility anim {
+  transition-property: all;
+  transition-duration: 300ms;
 }
 
 @media (max-width: 639px) {

@@ -32,6 +32,7 @@ export default async function HomePage() {
           }
         `}</style>
       <HeaderSearch
+        className='translate-y-[-150%]'
         taxonomies={taxonomiesData?.data}
         locations={locationData?.data}
       />
