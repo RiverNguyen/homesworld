@@ -24,11 +24,7 @@ const AboutUs = ({ acfData }: { acfData: IAboutUs }) => {
   return (
     <section
       ref={sectionRef}
-      className='relative'
-      style={{
-        position: isVisible ? 'sticky' : 'relative',
-        top: isVisible ? '1.875rem' : 'auto',
-      }}
+      className={isVisible ? 'sticky top-[1.875rem] xsm:top-[-26rem]' : 'relative'}
     >
       <Background acfData={acfData} />
     </section>

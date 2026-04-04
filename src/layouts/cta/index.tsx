@@ -223,7 +223,7 @@ const CTA = ({ data }: { data: { icon: IMedia; link: string }[] }) => {
       {/* mobile */}
       <div
         ref={mobileBarRef}
-        className='fixed inset-x-0 bottom-0 z-[10000] hidden xsm:block pb-[env(safe-area-inset-bottom)]'
+        className='fixed inset-x-0 bottom-0 z-[50] hidden xsm:block pb-[env(safe-area-inset-bottom)]'
       >
         <div className='flex h-[4.25rem] w-full bg-white shadow-[0_-0.25rem_1.5rem_rgba(0,0,0,0.12)]'>
           {mobileItems.map((item, index) => (

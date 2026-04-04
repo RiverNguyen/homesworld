@@ -171,9 +171,7 @@ const HeaderSearch = ({
             label='Số lượng'
             placeholder='Số người, phòng'
             value={quantity}
-            onChange={(adults, rooms) => {
-              setQuantity({ adults, rooms: rooms })
-            }}
+            onChange={setQuantity}
           />
         </div>
         <svg

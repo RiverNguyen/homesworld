@@ -6,7 +6,6 @@ import { Fragment } from 'react'
 import ICLineDashed from '@/components/icons/ICLineDashed'
 import ICRightArrow from '@/components/icons/ICRightArrow'
 import BlogItemCompact from '@/components/shared/blog/BlogItemCompact'
-import useIsMobile from '@/hooks/useIsMobile'
 import { PostItem } from '@/interfaces/blog.interface'
 import { TravelGuide as TravelGuideType } from '@/interfaces/home.interface'
 
@@ -18,8 +17,6 @@ interface TravelGuideProps {
 export default function TravelGuide({ page, data }: TravelGuideProps) {
   const featuredData = data.slice(0, 2)
   const compactData = data.slice(2, 5)
-
-  const isMobile = useIsMobile()
 
   return (
     <section className='pt-30 mb-28.75 xsm:pt-0 xsm:mb-18 relative z-[5] bg-[#FEFBF9]'>
@@ -34,21 +31,19 @@ export default function TravelGuide({ page, data }: TravelGuideProps) {
             </p>
           </div>
 
-          {isMobile && (
-            <div className='flex gap-3 px-3 overflow-x-auto hidden_scroll scroll-smooth'>
-              {data.map((item) => (
-                <div
-                  key={item.id}
-                  className='w-76 h-90.75 shrink-0'
-                >
-                  <BlogItemCompact
-                    blog={item}
-                    variant='large'
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          <div className='flex gap-3 px-3 overflow-x-auto hidden_scroll scroll-smooth lg:hidden'>
+            {data.map((item) => (
+              <div
+                key={item.id}
+                className='w-76 h-90.75 shrink-0'
+              >
+                <BlogItemCompact
+                  blog={item}
+                  variant='large'
+                />
+              </div>
+            ))}
+          </div>
 
           <Link
             href='/blog'
@@ -59,33 +54,31 @@ export default function TravelGuide({ page, data }: TravelGuideProps) {
           </Link>
         </div>
 
-        {!isMobile && (
-          <div className='flex-y-center gap-5'>
-            <div className='flex-y-center flex-1 gap-5'>
-              {featuredData.map((item) => (
-                <div
-                  key={item.id}
-                  className='w-98.5 h-117.75'
-                >
-                  <BlogItemCompact
-                    blog={item}
-                    variant='large'
-                  />
-                </div>
-              ))}
-            </div>
-
-            <div className='flex flex-col gap-4 w-143.25'>
-              {compactData?.map((item, index) => (
-                <Fragment key={item.id}>
-                  {index === 0 && <ICLineDashed className='w-full' />}
-                  <BlogItemCompact blog={item} />
-                  <ICLineDashed className='w-full' />
-                </Fragment>
-              ))}
-            </div>
+        <div className='flex-y-center gap-5 xsm:hidden'>
+          <div className='flex-y-center flex-1 gap-5'>
+            {featuredData.map((item) => (
+              <div
+                key={item.id}
+                className='w-98.5 h-117.75'
+              >
+                <BlogItemCompact
+                  blog={item}
+                  variant='large'
+                />
+              </div>
+            ))}
           </div>
-        )}
+
+          <div className='flex flex-col gap-4 w-143.25'>
+            {compactData?.map((item, index) => (
+              <Fragment key={item.id}>
+                {index === 0 && <ICLineDashed className='w-full' />}
+                <BlogItemCompact blog={item} />
+                <ICLineDashed className='w-full' />
+              </Fragment>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -19,12 +19,12 @@ const ServiceTabs = ({ taxonomies, activeId, onChange }: ServiceTabsProps) => {
   return (
     <div className='flex space-x-2 xsm:overflow-x-auto xsm:px-3 hidden_scroll xsm:space-x-[0.375rem]'>
       {serviceCombo?.map((item) => {
-        const isActive = activeId === item.id
+        const isActive = activeId === item.id?.toString()
 
         return (
           <button
             key={item.id}
-            onClick={() => onChange(isActive ? null : item.id)}
+            onClick={() => onChange(isActive ? null : item.id?.toString())}
             className={`group h-[2.875rem] xms:h-[2.625rem] xsm:px-[0.875rem] xsm:space-x-[0.375rem] px-4 space-x-2 flex-center cursor-pointer rounded-[6.25rem] xsm:shrink-0 backdrop-blur-[5px] transition-colors ${isActive ? 'bg-[#27AAE1] text-white' : 'bg-white text-[#10475F]'}`}
           >
             <Image

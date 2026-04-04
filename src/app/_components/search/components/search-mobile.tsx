@@ -12,7 +12,7 @@ type SearchMobileProps = {
 
 const SearchMobile = ({ rowLabels, onOpenDrawer }: SearchMobileProps) => {
   return (
-    <div className='lg:hidden px-[0.375rem]'>
+    <div className='hidden xsm:block px-[0.375rem]'>
       <div className='w-full px-[0.1875rem] pt-[0.1875rem] h-[13.5rem] rounded-[1rem] bg-[#27AAE1] mt-[1.06rem] relative'>
         <div className='w-full h-[10.0625rem] bg-white rounded-[0.875rem]'>
           {MOBILE_ROWS.map((row, i) => (

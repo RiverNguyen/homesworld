@@ -1,37 +1,59 @@
 'use client'
+
 import { useState } from 'react'
 
 import ICCountNumber from '@/components/icons/ICCountNumber'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn, convertRemToPx } from '@/lib/utils'
 
+export type QuantityValue = {
+  adults: number
+  rooms: number
+}
+
 type NumberPopoverProps = {
   className?: string
   placeholder?: string
   label?: string
-  value: { adults: number; rooms: number } // controlled
-  onChange: (adults: number, rooms: number) => void
+  /** When set, adults/rooms are controlled by the parent (e.g. filter store). */
+  value?: QuantityValue
+  onChange?: (next: QuantityValue) => void
 }
+
+const formatSummary = (adults: number, rooms: number) =>
+  `${String(adults).padStart(2, '0')} người, ${String(rooms).padStart(2, '0')} phòng`
 
 const NumberPopover = ({ className, placeholder, label, value, onChange }: NumberPopoverProps) => {
   const [open, setOpen] = useState(false)
+  const [roomsUncontrolled, setRoomsUncontrolled] = useState(1)
+  const [adultsUncontrolled, setAdultsUncontrolled] = useState(1)
+  const [hasInteracted, setHasInteracted] = useState(false)
 
-  const summary = `${String(value.adults).padStart(2, '0')} người, ${String(value.rooms).padStart(2, '0')} phòng`
-  const displayText = value?.adults !== 0 || value?.rooms !== 0 ? summary : placeholder
-  const handleRoomsChange = (direction: 'increase' | 'decrease') => {
-    if (direction === 'decrease') {
-      onChange(value.adults, Math.max(1, value.rooms - 1))
+  const rooms = value ? Math.max(1, value.rooms || 1) : roomsUncontrolled
+  const adults = value ? Math.max(1, value.adults || 1) : adultsUncontrolled
+
+  const summary = formatSummary(adults, rooms)
+  const showPlaceholder = value ? value.adults === 0 && value.rooms === 0 : !hasInteracted
+  const displayText = showPlaceholder ? placeholder : summary
+
+  const commit = (nextAdults: number, nextRooms: number) => {
+    if (value !== undefined) {
+      onChange?.({ adults: nextAdults, rooms: nextRooms })
     } else {
-      onChange(value.adults, value.rooms + 1)
+      setHasInteracted(true)
+      setAdultsUncontrolled(nextAdults)
+      setRoomsUncontrolled(nextRooms)
     }
   }
 
+  const handleRoomsChange = (direction: 'increase' | 'decrease') => {
+    const next = direction === 'decrease' ? Math.max(1, rooms - 1) : rooms + 1
+    commit(adults, next)
+  }
+
   const handleAdultsChange = (direction: 'increase' | 'decrease') => {
-    if (direction === 'decrease') {
-      onChange(Math.max(1, value.adults - 1), value.rooms)
-    } else {
-      onChange(value.adults + 1, value.rooms)
-    }
+    const next = direction === 'decrease' ? Math.max(1, adults - 1) : adults + 1
+    commit(next, rooms)
   }
 
   return (
@@ -51,14 +73,7 @@ const NumberPopover = ({ className, placeholder, label, value, onChange }: Numbe
             <p className='pc-14-14-r text-[#10475F]'>{label}</p>
           </div>
           <div className='flex-y-center justify-between space-x-[0.375rem]'>
-            <p
-              className={cn(
-                !(value?.adults !== 0 || value?.rooms !== 0) && 'opacity-55',
-                'line-clamp-1',
-              )}
-            >
-              {displayText}
-            </p>
+            <p className={cn(showPlaceholder && 'opacity-55')}>{displayText}</p>
             <svg
               className={cn(
                 'size-5 transition-transform duration-200 ease-out',
@@ -92,14 +107,14 @@ const NumberPopover = ({ className, placeholder, label, value, onChange }: Numbe
           <div className='flex flex-col'>
             <CounterRow
               label='Số phòng'
-              value={value?.rooms}
+              value={rooms}
               min={1}
               onDecrease={() => handleRoomsChange('decrease')}
               onIncrease={() => handleRoomsChange('increase')}
             />
             <CounterRow
               label='Người lớn ( >18 tuổi)'
-              value={value?.adults}
+              value={adults}
               min={1}
               onDecrease={() => handleAdultsChange('decrease')}
               onIncrease={() => handleAdultsChange('increase')}
