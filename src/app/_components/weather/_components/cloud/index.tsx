@@ -103,8 +103,7 @@ const movingClouds: MovingCloud[] = [
   {
     id: 'cloud-9-center',
     src: '/home/img/cloud-9.svg',
-    className:
-      'hidden sm:block absolute w-[30.25063rem] h-[11.6875rem] bottom-0 left-[33.5rem]',
+    className: 'hidden sm:block absolute w-[30.25063rem] h-[11.6875rem] bottom-0 left-[33.5rem]',
     width: 960,
     height: 385,
     animate: { x: [0, 165, 0] },
